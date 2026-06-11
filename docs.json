@@ -121,7 +121,8 @@
               "getting-started/first-warm-introduction",
               "faq/index",
               "getting-started/definitions"
-            ]
+            ],
+            "public": true
           },
           {
             "group": "Workspace",
@@ -130,7 +131,8 @@
             "pages": [
               "workspace/saved-lists",
               "workspace/missions"
-            ]
+            ],
+            "public": true
           },
           {
             "group": "Setup Network",
@@ -141,7 +143,8 @@
               "setup-network/import-contacts",
               "setup-network/alumni-networks",
               "setup-network/groups"
-            ]
+            ],
+            "public": true
           },
           {
             "group": "People",
@@ -152,7 +155,8 @@
               "people/view-paths",
               "people/request-introductions",
               "people/relationship-insights"
-            ]
+            ],
+            "public": true
           },
           {
             "group": "Companies",
@@ -163,7 +167,8 @@
               "companies/company-connectors",
               "companies/warm-paths-into-companies",
               "companies/company-signals"
-            ]
+            ],
+            "public": true
           },
           {
             "group": "Introductions",
@@ -174,7 +179,8 @@
               "introductions/track-requests",
               "introductions/intro-outcomes",
               "introductions/best-practices"
-            ]
+            ],
+            "public": true
           },
           {
             "group": "Chrome Extension",
@@ -186,7 +192,8 @@
               "chrome-extension/linkedin-integration",
               "chrome-extension/understanding-checkmarks",
               "chrome-extension/troubleshooting"
-            ]
+            ],
+            "public": true
           },
           {
             "group": "How Introd Decides",
@@ -196,7 +203,8 @@
               "relationship-intelligence/connector-ranking",
               "relationship-intelligence/trustrank-and-confidence",
               "relationship-intelligence/communities-and-networks"
-            ]
+            ],
+            "public": true
           },
           {
             "group": "Privacy & Security",
@@ -207,7 +215,8 @@
               "privacy-security/integration-data-usage",
               "privacy-security/oauth-permissions",
               "privacy-security/gdpr-and-deletion"
-            ]
+            ],
+            "public": true
           }
         ]
       },
@@ -232,9 +241,11 @@
                 "pages": [
                   "reference/generated/api-endpoint-inventory",
                   "reference/generated/environment-variables"
-                ]
+                ],
+                "public": true
               }
-            ]
+            ],
+            "public": true
           }
         ]
       },
@@ -246,7 +257,8 @@
             "group": "Local Setup",
             "icon": "terminal",
             "root": "quickstart",
-            "pages": []
+            "pages": [],
+            "public": true
           },
           {
             "group": "Architecture",
@@ -269,9 +281,11 @@
                   "graph/edge-provenance",
                   "graph/non-user-targets",
                   "product/relationship-intelligence-defensibility"
-                ]
+                ],
+                "public": true
               }
-            ]
+            ],
+            "public": true
           },
           {
             "group": "Operations",
@@ -296,9 +310,11 @@
                   "migration/moat-migration-audit-2026-05-26",
                   "releases/phase2",
                   "releases/rollback-phase2"
-                ]
+                ],
+                "public": true
               }
-            ]
+            ],
+            "public": true
           }
         ]
       }
