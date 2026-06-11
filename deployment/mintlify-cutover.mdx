@@ -49,6 +49,15 @@ Do not point the CNAME before certificate verification is ready, or HTTPS can br
 
 For Cloudflare-hosted DNS, keep SSL/TLS set to Full (strict) and disable Always Use HTTPS until Mintlify completes certificate validation.
 
+## Publish access
+
+`docs.getintrod.ai` is a public knowledge base. In the Mintlify dashboard, go to Authentication and either:
+
+1. disable site authentication, or
+2. switch authentication from full-site protection to partial protection, then keep all public docs groups marked with `"public": true` in `docs.json`.
+
+If the domain redirects to `/login`, the site is still protected by Mintlify Auth and is not launch-ready.
+
 ## Local preview
 
 From `introd-docs`:
