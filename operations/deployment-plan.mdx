@@ -1,0 +1,30 @@
+---
+title: "Deployment Plan"
+description: "How to generate, validate, and deploy the Introd docs portal."
+---
+
+## Source of truth
+
+The source of truth for the docs site is `Introd-Technologies-Inc/introd-docs`.
+
+## Local workflow
+
+```bash
+npx mintlify validate
+npx mintlify dev
+```
+
+## Connected deployment
+
+Recommended connected repository: `Introd-Technologies-Inc/introd-docs`
+
+Recommended docs path: `/`
+
+## Release sequence
+
+1. Merge docs changes.
+2. Run generated docs artifacts.
+3. Validate Mintlify locally.
+4. Confirm docs navigation contains no FoundersNest remnants.
+5. Deploy through Mintlify.
+6. Verify domain, search, and navigation in production.

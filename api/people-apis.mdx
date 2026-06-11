@@ -1,0 +1,124 @@
+---
+title: "People APIs"
+description: "People search, profile discovery, and route-ranking API surfaces."
+---
+
+People APIs are where Introd starts to feel opinionated. Results are not just names; they include path status, why-ranked reasons, source transparency, and connector intelligence.
+
+## Main routes
+
+| Route | Purpose |
+| --- | --- |
+| `POST /api/people/search` | Broad discovery search with smart query relaxation and suggestions |
+| `GET|POST /api/people/network-search` | Session-scoped in-network ranked search |
+| `GET|POST /api/people/company-search` | Session-scoped company discovery |
+| `POST /api/people/network-intro` | Create an intro request from a search result |
+| `GET /api/people/profile/:id` | Fetch a local profile by ID |
+| `POST /api/people/lookup` | Lookup and resolve specific profiles |
+| `GET /api/dashboard/people` | Dashboard bridge people index with graph-backed ranking |
+
+## Search modes
+
+<Tabs>
+  <Tab title="Discovery search">
+    `POST /api/people/search` accepts a natural-language query and returns broader search results. When there are no exact matches, it can return suggestions and parsed query hints such as role, company, location, and seniority.
+  </Tab>
+  <Tab title="Network search">
+    `GET|POST /api/people/network-search` is the more Introd-native path. It searches the user's scoped network and returns path-aware results with `whyRanked`, path confidence, and connector insight.
+  </Tab>
+  <Tab title="Dashboard graph people">
+    `GET /api/dashboard/people` uses the dashboard bridge and can fall back to LinkedIn-imported records if Neo4j is unavailable or the graph has not finished materializing.
+  </Tab>
+</Tabs>
+
+## Network search request
+
+The ranked network search contract supports:
+
+- `query`: free text, optional
+- `limit`: `1` to `25`, default `12`
+- `filter`: `all`, `founders`, `investors`, or `high-trust`
+
+```json
+{
+  "query": "climate founders in sf",
+  "limit": 12,
+  "filter": "founders"
+}
+```
+
+## Ranked result model
+
+The network-search layer builds a response with:
+
+- `source`: `graph`, `database`, or `pdl`
+- `path`: status, confidence, label, hop count, connector ID, and explanation
+- `whyRanked`: compact reasons shown to the user
+- `connectorInsight`: execution-aware connector guidance
+- `lastUpdated`: recency metadata
+
+```json
+{
+  "id": "per_123",
+  "name": "Jane Founder",
+  "role": "CEO",
+  "company": "Acme Bio",
+  "location": "San Francisco, CA",
+  "trustRank": 82,
+  "source": "graph",
+  "path": {
+    "status": "verified",
+    "confidence": 84,
+    "label": "Strongest warm path",
+    "hops": 2,
+    "viaName": "Owen",
+    "viaId": "per_connector",
+    "explanation": [
+      "Email communication exists in your graph",
+      "Shared organization overlap at Stanford"
+    ],
+    "score": 84
+  },
+  "whyRanked": [
+    "Founder routes historically perform best through this connector",
+    "Strongest warm path (84/100 confidence)"
+  ],
+  "connectorInsight": {
+    "trustScore": 86,
+    "replyProbability": 74,
+    "introProbability": 69,
+    "reputationScore": 81,
+    "freshnessLabel": "Relationship signal"
+  }
+}
+```
+
+## Dashboard people fields
+
+The dashboard bridge response adds graph-specific fields that are useful in the product:
+
+- `warmPathCount`
+- `connectorCount`
+- `evidenceChips`
+- `sharedCommunities`
+- `sharedAlumni`
+- `investorNetworkMatch`
+- `connectorReputation`
+- `relationshipStrength`
+- `relationshipStrengthLabel`
+- `relationshipConfidence`
+
+## Safeguards
+
+The people-search runtime already includes the behavior the docs should reflect:
+
+- People Data Labs usage limits and reset handling
+- cache-aware search behavior
+- explicit `source` labeling for graph, local database, and PDL
+- low-confidence fallback messaging instead of fake certainty
+
+## Read next
+
+- [Search People](/people/search-people)
+- [View Paths](/people/view-paths)
+- [Create Request](/introductions/create-request)

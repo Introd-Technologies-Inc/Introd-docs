@@ -1,0 +1,38 @@
+---
+title: "Infrastructure Audit"
+description: "Audit of the checked-in FoundersNest docs stack and what can be reused for Introd."
+---
+
+This audit is based on checked-in source, not live server access.
+
+## Found in source
+
+| Area | Evidence | Audit finding |
+| --- | --- | --- |
+| Docs frontend | `foundersnest/docs-site/package.json`, `foundersnest/docs-site/docusaurus.config.ts` | FoundersNest docs frontend is a standalone Docusaurus site that reads content from `../docs` |
+| Build hooks | `foundersnest/package.json` | Root scripts include `docs:install`, `docs:dev`, `docs:build`, and `docs:serve` |
+| Static output | `foundersnest/docs-site/README.md` | Docusaurus outputs to `docs-site/build` |
+| Main container | `foundersnest/Dockerfile` | FoundersNest production container builds and serves the main app, not the Docusaurus docs build |
+| Reverse proxy | `foundersnest/nginx.conf` | Checked-in Nginx config is for the main app and API gateway, not a docs subdomain |
+| Runtime startup | `foundersnest/server/start-prod.sh` | Main runtime starts Nginx plus a Node API process |
+| CI/CD | no checked-in `foundersnest/.github/workflows` directory | No docs-specific GitHub Actions workflow was present in the repo snapshot |
+
+## What can be reused
+
+- the separation between docs app and docs content
+- the habit of explicit docs build scripts
+- the domain cutover discipline from the existing FoundersNest docs footprint
+
+## What should not be reused directly
+
+- FoundersNest branding, titles, footer links, and `.io` domain assumptions
+- the Docusaurus app itself, because Introd already has an in-repo Mintlify docs root that better matches the desired final experience
+
+## What still needs live verification
+
+- the actual host serving `docs.foundersnest.io`
+- live SSL renewal mechanism
+- reverse proxy config currently attached to the docs domain
+- live deployment trigger path outside source control
+
+Those items were not recoverable from the checked-in FoundersNest repo alone.

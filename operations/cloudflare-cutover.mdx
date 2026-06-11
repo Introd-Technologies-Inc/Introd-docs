@@ -1,0 +1,51 @@
+---
+title: "Cloudflare Cutover"
+description: "Cloudflare DNS and TLS runbook for launching docs.getintrod.ai on Mintlify."
+---
+
+Use this runbook when `getintrod.ai` DNS is managed in Cloudflare and the docs site is hosted by Mintlify.
+
+## Before you touch DNS
+
+Collect the values from the Mintlify custom domain screen for:
+
+- `docs.getintrod.ai`
+- verification `TXT` record 1
+- verification `TXT` record 2
+
+Do not change the `docs` CNAME yet.
+
+## Cloudflare changes
+
+1. Open the `getintrod.ai` zone in Cloudflare.
+2. In `SSL/TLS`, set the encryption mode to `Full (strict)`.
+3. In `SSL/TLS -> Edge Certificates`, turn `Always Use HTTPS` off until Mintlify finishes certificate provisioning.
+4. In `DNS`, add the two `TXT` records exactly as Mintlify shows them:
+   - `_acme-challenge.<custom-domain>`
+   - `_cf-custom-hostname.<custom-domain>`
+5. If the zone uses `CAA` records, add:
+
+```text
+0 issue "letsencrypt.org"
+```
+
+6. Wait until Mintlify shows both `TXT` records as verified.
+7. Create or update the `CNAME` for `docs` so it points to:
+
+```text
+cname.mintlify.builders
+```
+
+8. Leave `docs.foundersnest.io` unchanged during the Introd cutover.
+
+## Verification
+
+- `https://docs.getintrod.ai` loads with a valid certificate
+- `https://docs.getintrod.ai/sitemap.xml` returns successfully
+- `https://docs.getintrod.ai/robots.txt` returns successfully
+- canonical tags resolve to `https://docs.getintrod.ai`
+- no redirect loop appears on first load
+
+## Roll forward
+
+After Mintlify finishes TLS provisioning and the docs site loads cleanly over HTTPS, you can decide whether to re-enable `Always Use HTTPS` at the zone level.

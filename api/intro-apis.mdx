@@ -1,0 +1,102 @@
+---
+title: "Intro APIs"
+description: "Introduction request creation, orchestration, and outcome-feedback route families."
+---
+
+Intro APIs are where Introd stops being analysis and starts being workflow. They create requests, normalize status, record lifecycle events, and feed that history back into the graph.
+
+## Main routes
+
+| Route | Purpose |
+| --- | --- |
+| `GET /api/dashboard/intro-requests` | List intro requests for the dashboard |
+| `POST /api/dashboard/intro-requests` | Create a request through the dashboard bridge |
+| `PATCH /api/dashboard/intro-requests/:id` | Update request content, schedule, or status |
+| `POST /api/people/network-intro` | Create a request directly from people search |
+| `GET /api/graph/intro-outcomes` | Outcome dashboard |
+| `GET /api/graph/intro-outcomes/leaderboards` | Connector and target outcome views |
+| `GET /api/graph/intro-marketplace` | Marketplace-style route intelligence |
+| `GET /api/graph/intro-marketplace/routes/:targetId` | Ranked connector options for a target |
+| `/api/intros-ai/*` | AI prep cards, follow-ups, and insight helpers |
+
+## Create request payload
+
+The dashboard bridge accepts a surprisingly rich draft payload:
+
+```json
+{
+  "target_name": "Jane Founder",
+  "target_company": "Acme Bio",
+  "target_title": "CEO",
+  "target_linkedin_url": "https://www.linkedin.com/in/example/",
+  "via_name": "Trusted Connector",
+  "via_company": "Introd",
+  "via_title": "Founder",
+  "via_linkedin_url": "https://www.linkedin.com/in/connector/",
+  "path_strength": "strong",
+  "mutual_count": 3,
+  "path_evidence": [
+    "6 emails exchanged",
+    "1 meetings",
+    "Shared investor network"
+  ],
+  "path_reason": "Recent email evidence and investor overlap",
+  "subject": "Warm intro to Jane Founder",
+  "message": "Would you be open to introducing me?",
+  "status": "draft",
+  "scheduled_for": "2026-06-15T15:00:00.000Z"
+}
+```
+
+## Lifecycle normalization
+
+The intro request bridge maps multiple raw statuses into a smaller product vocabulary.
+
+| Input or event | Dashboard status | Connector status | Target status |
+| --- | --- | --- | --- |
+| `draft`, `drafted` | `pending` | `drafted` | `not_contacted` |
+| `pending`, `requested`, `awaiting_connector` | `pending` | `awaiting_connector` | `not_contacted` |
+| `approved`, `accepted`, `connector_replied` | `approved` | `connector_replied` | `not_contacted` |
+| `sent`, `intro_sent` | `in_progress` | `completed` | `intro_sent` |
+| `replied`, `target_replied` | `replied` | `completed` | `target_replied` |
+| `meeting`, `meeting_booked` | `meeting` | `completed` | `meeting_booked` |
+| `completed`, `converted` | `completed` | `completed` | `converted` |
+| `declined` | `declined` | `declined` | `declined` |
+| `failed`, `ghosted`, `archived`, `cancelled` | `cancelled` | `failed` | `ghosted` |
+
+## What happens after create or update
+
+When a request is created or updated, Introd already does important follow-on work:
+
+- creates an intro request event
+- invalidates connector execution insights
+- invalidates relationship intelligence caches
+- schedules a user graph sync
+- syncs intro outcomes back into the graph when relevant
+
+That feedback loop is the reason intro execution belongs in the documentation, not just the UI.
+
+## Tracking tabs
+
+The dashboard request list already supports meaningful filtering:
+
+- `all`
+- `active`
+- `in_progress`
+- `completed`
+- `declined`
+
+## Why outcomes matter
+
+Intro outcomes directly influence:
+
+- connector score
+- introducer likelihood
+- target responsiveness
+- route ranking for similar future asks
+
+## Read next
+
+- [Create Request](/introductions/create-request)
+- [Track Requests](/introductions/track-requests)
+- [Intro Outcomes](/introductions/intro-outcomes)

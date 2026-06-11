@@ -1,0 +1,33 @@
+---
+title: "Permissions"
+description: "What the extension requests and why."
+---
+
+The extension manifest is intentionally narrow. It requests only what is needed to support LinkedIn sync, popup state, and Introd callback handling.
+
+## Extension permissions
+
+| Permission | Why it exists |
+| --- | --- |
+| `storage` | Persist auth state, sync status, settings, and caches in the browser |
+| `alarms` | Drive scheduled extension housekeeping and refresh behavior |
+| `tabs` | Detect the active LinkedIn page and open required flows |
+| `scripting` | Run page-aware behavior on supported LinkedIn surfaces |
+
+## Host permissions
+
+| Host pattern | Why it exists |
+| --- | --- |
+| `https://www.linkedin.com/*` | Detect signed-in state, connections pages, and profile context |
+| `https://linkedin.com/*` | Cover LinkedIn host variations |
+| `https://getintrod.ai/*` | Handle Introd callback and bridge pages |
+| `https://*.getintrod.ai/*` | Support app and API subdomains cleanly |
+
+## What the extension does not request
+
+- broad cross-site host access
+- clipboard permissions
+- downloads permissions
+- background permissions unrelated to sync
+
+That narrower scope helps with user trust and Chrome Web Store review.

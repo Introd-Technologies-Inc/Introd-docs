@@ -1,0 +1,25 @@
+---
+title: "Domain Setup"
+description: "Domain, DNS, TLS, canonical URL, sitemap, and robots guidance for docs.getintrod.ai."
+---
+
+## Target state
+
+- primary docs domain: `https://docs.getintrod.ai`
+- canonical URL: `https://docs.getintrod.ai`
+- sitemap: `https://docs.getintrod.ai/sitemap.xml`
+- robots: `https://docs.getintrod.ai/robots.txt`
+
+## DNS and TLS sequence
+
+1. Add `docs.getintrod.ai` as a Mintlify custom domain.
+2. Publish the verification TXT records Mintlify provides.
+3. Wait until verification is complete and TLS is ready.
+4. Point the `docs` CNAME for `getintrod.ai` at Mintlify.
+5. Re-test canonical pages, sitemap, and robots.
+
+Use [Cloudflare Cutover](/operations/cloudflare-cutover) when the `getintrod.ai` zone is managed in Cloudflare.
+
+## Keep FoundersNest online
+
+Do not repoint `docs.foundersnest.io` as part of the Introd cutover. Treat it as a separate legacy docs domain until the Introd launch is stable.

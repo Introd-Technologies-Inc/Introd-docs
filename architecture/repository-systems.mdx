@@ -1,0 +1,61 @@
+---
+title: "Repository Systems"
+description: "Generated map of the repos and runtime surfaces that feed Introd documentation."
+---
+
+This page is generated from the current workspace layout.
+
+## Summary
+
+- docs pages: 75
+- API route files with extracted endpoints: 48
+- dashboard routes discovered: 40
+- extension permissions: 4
+
+## Workspace map
+
+```text
+Introd Technologies Inc/
+  introd-api/
+    docs/
+    server/
+    graph-intel/
+  introd-dashboard/
+    src/routes/
+  introd-extension/
+    src/
+    manifest.json
+```
+
+## Docs navigation groups
+
+| Group | Pages |
+| --- | --- |
+
+
+## Extension manifest summary
+
+- name: Introd for LinkedIn
+- version: 1.0.23
+- permissions: storage, alarms, tabs, scripting
+- host permissions: https://www.linkedin.com/*, https://linkedin.com/*, https://getintrod.ai/*, https://*.getintrod.ai/*
+
+## Content scripts
+
+### Content script 1
+
+- matches: `https://www.linkedin.com/*`, `https://linkedin.com/*`
+- js: `src/content/linkedin.js`
+- run at: `document_idle`
+
+### Content script 2
+
+- matches: `https://getintrod.ai/api/linkedin/callback*`, `https://www.getintrod.ai/api/linkedin/callback*`, `https://app.getintrod.ai/api/linkedin/callback*`, `https://*.getintrod.ai/api/linkedin/callback*`, `https://getintrod.ai/api/auth/linkedin/callback*`, `https://www.getintrod.ai/api/auth/linkedin/callback*`, `https://app.getintrod.ai/api/auth/linkedin/callback*`, `https://*.getintrod.ai/api/auth/linkedin/callback*`
+- js: `src/content/oauthCallback.js`
+- run at: `document_start`
+
+### Content script 3
+
+- matches: `https://getintrod.ai/onboarding/priority-access*`, `https://www.getintrod.ai/onboarding/priority-access*`
+- js: `src/content/requestAccessBridge.js`
+- run at: `document_idle`

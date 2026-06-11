@@ -1,0 +1,23 @@
+---
+title: "Sync Pipeline"
+description: "How relationship evidence moves from providers into Introd's graph and product state."
+---
+
+```mermaid
+flowchart LR
+  A[LinkedIn visible rows] --> D[Introd API]
+  B[Google metadata] --> D
+  C[Microsoft metadata] --> D
+  D --> E[Operational storage]
+  D --> F[Neo4j graph]
+  E --> G[Dashboard views]
+  F --> G
+  F --> H[Extension warm path context]
+```
+
+## Pipeline goals
+
+- ingest evidence safely
+- keep provider-specific logic out of the user-facing experience where possible
+- preserve provenance
+- avoid pretending a sync is complete when only partial coverage exists

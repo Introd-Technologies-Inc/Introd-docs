@@ -1,0 +1,22 @@
+---
+title: "Go-Live Checklist"
+description: "Launch-readiness checklist for docs.getintrod.ai."
+---
+
+- [ ] `docs.getintrod.ai` resolves correctly
+- [ ] TLS is valid and auto-renewing
+- [ ] Mintlify verification TXT records are published and verified
+- [ ] `docs` CNAME points at `cname.mintlify.builders`
+- [ ] Cloudflare SSL/TLS is set to `Full (strict)` when Cloudflare is the DNS provider
+- [ ] Cloudflare is not forcing HTTPS before Mintlify certificate provisioning completes
+- [ ] Canonical URLs point at `https://docs.getintrod.ai`
+- [ ] `robots.txt` is present
+- [ ] `sitemap.xml` is present
+- [ ] Search returns useful results for TrustRank, Warm Path, LinkedIn, Companies, and Introductions
+- [ ] Mobile navigation and page layout are clean
+- [ ] Navbar and footer links are valid
+- [ ] No FoundersNest branding remains in the live docs
+- [ ] Live homepage and sitemap reflect Introd documentation, not the default Mintlify starter kit
+- [ ] No placeholder copy remains in user-facing pages
+- [ ] Analytics is available through Mintlify and any required external integration
+- [ ] Launch owner has a rollback and fallback plan

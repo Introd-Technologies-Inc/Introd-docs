@@ -1,0 +1,23 @@
+---
+title: "GDPR and Deletion"
+description: "Disconnect flows, data deletion boundaries, and user expectations."
+---
+
+Users should be able to understand the difference between disconnecting an integration, clearing local extension state, and deleting server-side data.
+
+## User-facing actions
+
+| Action | What it should do |
+| --- | --- |
+| Disconnect provider | Stop future sync and invalidate the linked integration |
+| Clear local extension data | Remove browser-local auth, caches, and diagnostics |
+| Delete account or data | Remove or queue removal of server-side records according to product policy |
+
+## Documentation requirement
+
+Deletion pages should always answer:
+
+- what is deleted immediately
+- what is queued or retained briefly for operational reasons
+- what remains if only a local browser reset was performed
+- where the user can go to confirm the action completed

@@ -1,0 +1,54 @@
+---
+title: "Connect Integrations"
+description: "Connect LinkedIn, Gmail, Google Calendar, Outlook, and related evidence sources."
+---
+
+Introd becomes useful when the graph has real evidence. The two core setup surfaces are:
+
+- guided setup for first-time activation
+- integrations settings for connection health, sync, and reconnect flows
+
+![Sync accounts in Introd](/images/product/sync-network.png)
+
+![Integrations in Introd](/images/product/integrations.png)
+
+## Integration coverage
+
+| Source | Why it matters | Primary surface |
+| --- | --- | --- |
+| LinkedIn | First-degree graph coverage and profile context | Chrome extension plus setup |
+| Google Contacts, Gmail, Calendar | Communication and meeting evidence | setup and integrations settings |
+| Microsoft Outlook and Calendar | Communication and meeting evidence | setup and integrations settings |
+
+## LinkedIn
+
+LinkedIn import currently depends on the Chrome extension. The extension detects signed-in LinkedIn state, imports visible first-degree rows from the LinkedIn connections page, and reports truthful progress back to Introd.
+
+## Google Workspace
+
+Google setup supports Gmail, Calendar, and Contacts metadata. The dashboard surfaces connection state, sync state, and evidence counts so users can tell whether the integration is actually producing relationship signal.
+
+## Microsoft 365
+
+Microsoft setup focuses on Outlook email and calendar metadata. The product should show whether both email and calendar are connected, whether either side is partial, and how much evidence has been added to the graph.
+
+## What good setup looks like
+
+- LinkedIn is connected and at least one sync has completed.
+- Google or Microsoft evidence has started contributing communication or meeting edges.
+- The dashboard can show last-sync timestamps and evidence counts.
+- Search pages can explain why a suggested connector is strong instead of just showing a name.
+
+## Common issues
+
+| Issue | What it usually means |
+| --- | --- |
+| OAuth redirected back with an error | Callback URI or provider credentials need attention |
+| Integration connected but no evidence count changes | Sync ran, but the provider returned limited or no usable relationship metadata |
+| Search shows weak or empty routes | The graph still lacks first-degree coverage or verified communication evidence |
+
+## Continue with
+
+- [Sync accounts](/setup-network/sync-accounts)
+- [Import contacts](/setup-network/import-contacts)
+- [Chrome extension](/chrome-extension)

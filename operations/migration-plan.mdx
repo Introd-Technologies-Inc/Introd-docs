@@ -1,0 +1,31 @@
+---
+title: "Migration Plan"
+description: "Plan for moving from the current FoundersNest docs footprint to docs.getintrod.ai."
+---
+
+## Recommendation
+
+Use the standalone `Introd-Technologies-Inc/introd-docs` repository as the authoritative portal and treat the FoundersNest Docusaurus repo as an audit source, not as the long-term docs frontend.
+
+## Why this plan
+
+- Introd now has a dedicated Mintlify docs repository with a root-level `docs.json`.
+- Mintlify lines up with the requested docs experience better than carrying Docusaurus over unchanged.
+- The FoundersNest repo does not contain enough checked-in live deployment detail to justify a risky in-place mutation of its unseen server state.
+
+## Phased plan
+
+1. Expand `introd-docs` into the complete Introd documentation portal.
+2. Generate route, env, and repo inventories from the active Introd codebases.
+3. Validate the Mintlify build locally.
+4. Add `docs.getintrod.ai` in Mintlify and complete verification records.
+5. Point DNS only after TXT validation and certificate readiness are confirmed.
+6. Leave `docs.foundersnest.io` online during the cutover window.
+
+## Reuse, rename, remove
+
+| Decision | Action |
+| --- | --- |
+| Reuse | Docs content repo pattern, docs build discipline, subdomain cutover process |
+| Rename | Brand, footer, canonical URLs, navbar destinations, all FoundersNest references |
+| Remove | Old FoundersNest docs content from the active Introd docs navigation |

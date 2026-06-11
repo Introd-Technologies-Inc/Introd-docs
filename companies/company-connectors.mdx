@@ -1,0 +1,52 @@
+---
+title: "Company Connectors"
+description: "Identify the connectors in-network who can unlock a target company credibly."
+---
+
+Connector analysis at the company level should still resolve down to a person with a real chance of replying. Company coverage without a connector decision is just research.
+
+## Useful signals
+
+- reachable people count at the account
+- strength of the best connector for each target
+- evidence density across the account
+- department fit for the intro goal
+- outcome history into the account
+
+## Relevant response fields
+
+The current company search and graph layers already surface the right primitives:
+
+- `strongestPath`
+- `bestConnectorInsight`
+- `companyMemory`
+- `topRoles`
+- `introHistoryCount`
+- `relationshipDensity`
+
+## What to rank highest
+
+Choose the connector who can move the right conversation, not the connector with the most generic adjacency.
+
+In practice that means favoring:
+
+- better response history
+- better intro completion history
+- stronger path confidence
+- better context fit by department or goal
+- lower decay and staleness
+
+## Good company-connector view
+
+A strong company connector view should answer:
+
+1. who inside the company is most reachable
+2. which connector should make the ask
+3. what evidence makes that route believable
+4. whether the account is warming up or going dormant
+
+## Follow-on actions
+
+- open the strongest target path
+- compare the fastest connector and most reliable connector
+- turn the best route into a request, not a generic account note

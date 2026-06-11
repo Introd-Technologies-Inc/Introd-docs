@@ -1,0 +1,21 @@
+---
+title: "Troubleshooting"
+description: "Resolve the most common extension setup and sync issues."
+---
+
+## Common issues
+
+| Symptom | Likely cause | What to do |
+| --- | --- | --- |
+| Popup says LinkedIn login is required | The browser session is not active on LinkedIn | Open LinkedIn and confirm you are signed in before retrying |
+| Sync stalls after partial progress | LinkedIn has not rendered more rows yet or the API asked the extension to pace | Keep the connections tab open, wait, then retry or resume |
+| Sync finishes but coverage still looks weak | Not enough first-degree rows or communication evidence exists yet | Run another sync and connect Google or Microsoft data |
+| OAuth returns but the extension still looks signed out | Callback bridge did not complete cleanly | Re-open the popup and retry the sign-in flow |
+| Warm path context does not appear on profile pages | No imported graph coverage exists yet for that user or target | Complete at least one sync and refresh the LinkedIn page |
+
+## If issues keep happening
+
+- remove and reinstall the extension
+- sign out and back into LinkedIn in the same browser profile
+- reconnect the extension to Introd
+- rerun a sync with the LinkedIn connections page open

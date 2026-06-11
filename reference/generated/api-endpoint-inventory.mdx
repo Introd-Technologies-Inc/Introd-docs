@@ -1,0 +1,110 @@
+---
+title: "Generated API Endpoint Inventory"
+description: "Auto-generated route family inventory from the current Introd API source."
+---
+
+This page is generated from the current checked-in API route files.
+
+## Summary
+
+- route files with extracted endpoints: 48
+- extracted endpoint entries: 576
+- dashboard routes discovered separately: 40
+
+## API route families
+
+| Family | Mount path(s) | Source file | Extracted endpoints | Sample endpoints |
+| --- | --- | --- | --- | --- |
+| Campaign3Api | (inline app routes) | `server/routes/campaign3Api.ts` | 10 | GET /api/campaign3/connection<br/>POST /api/campaign3/connect<br/>POST /api/campaign3/disconnect<br/>PUT /api/campaign3/settings<br/>POST /api/campaign3/cross-post<br/>GET /api/campaign3/cross-posts |
+| CmsApi | (inline app routes) | `server/routes/cmsApi.ts` | 35 | GET /api/cms/config<br/>GET /api/cms/dm-templates<br/>GET /api/cms/launch-kit<br/>GET /api/cms/social-bios<br/>GET /api/cms/stats<br/>GET /api/cms/viral-hooks |
+| DataApi | (inline app routes) | `server/routes/dataApi.ts` | 16 | GET /api/data/providers<br/>GET /api/data/connections<br/>GET /api/data/connections/:id<br/>POST /api/data/connect<br/>POST /api/data/google-sheets/auto-connect<br/>GET /api/data/google-sheets/status |
+| DripPagesApi | (inline app routes) | `server/routes/dripPagesApi.ts` | 24 | GET /api/drip-pages<br/>GET /api/drip-pages/:id<br/>POST /api/drip-pages<br/>PATCH /api/drip-pages/:id<br/>DELETE /api/drip-pages/:id<br/>GET /p/:slug |
+| ExtensionApi | (inline app routes) | `server/routes/extensionApi.ts` | 24 | GET /v1/auth/session<br/>POST /v1/auth/oauth/callback<br/>POST /v1/auth/refresh<br/>POST /v1/auth/logout<br/>POST /v1/client/register<br/>POST /v1/client/heartbeat |
+| GtmAutomation | (inline app routes) | `server/routes/gtmAutomation.ts` | 12 | POST /api/gtm/event<br/>POST /api/gtm/trigger/waitlist<br/>POST /api/gtm/trigger/demo<br/>POST /api/gtm/trigger/founding100-interest<br/>POST /api/gtm/trigger/founding100-purchase<br/>POST /api/gtm/trigger/newsletter |
+| HealthApi | (inline app routes) | `server/routes/healthApi.ts` | 5 | GET /health/live<br/>GET /health/ready<br/>GET /health/status<br/>GET /healthz<br/>GET /health |
+| IntegrationsApi | (inline app routes) | `server/routes/integrationsApi.ts` | 6 | POST /api/integrations/clickup/webhook<br/>GET /api/integrations/providers<br/>GET /api/integrations/categories<br/>GET /api/integrations/connected<br/>GET /api/integrations/status<br/>GET /api/integrations/:id |
+| InvestorTracking | (inline app routes) | `server/routes/investorTracking.ts` | 9 | POST /api/investors/submit<br/>POST /api/investors/track-page<br/>POST /api/investors/track-action<br/>POST /api/investors/track-event<br/>POST /api/investors/end-session<br/>POST /api/investors/track |
+| LeadTracking | (inline app routes) | `server/routes/leadTracking.ts` | 26 | POST /api/leads/track<br/>POST /api/folk/track-lead<br/>POST /api/leads/contact<br/>POST /api/leads/newsletter<br/>POST /api/leads/waitlist<br/>POST /api/leads/demo |
+| NotificationsApi | (inline app routes) | `server/routes/notificationsApi.ts` | 8 | GET /<br/>GET /count<br/>PATCH /:id/read<br/>POST /mark-all-read<br/>DELETE /:id<br/>DELETE / |
+| PublicContent | (inline app routes) | `server/routes/publicContent.ts` | 26 | GET /api/public/content/blog<br/>GET /api/public/content/blog/:slug<br/>GET /api/public/content/docs<br/>GET /api/public/content/docs/:slug<br/>GET /api/public/content/guides<br/>GET /api/public/content/guides/:slug |
+| SubstackApi | (inline app routes) | `server/routes/substackApi.ts` | 27 | GET /api/substack/settings<br/>POST /api/substack/settings<br/>GET /api/substack/posts<br/>GET /api/substack/posts/:id<br/>POST /api/substack/posts<br/>PUT /api/substack/posts/:id |
+| AcceleratorChat | /api | `server/routes/acceleratorChat.ts` | 2 | POST /api/accelerator-chat<br/>GET /api/advisor-docs-status |
+| HallucinationRoutes | /api/ai/hallucination | `server/routes/hallucinationRoutes.ts` | 8 | POST /api/ai/hallucination/verify<br/>POST /api/ai/hallucination/verify-intro<br/>POST /api/ai/hallucination/ground<br/>POST /api/ai/hallucination/context<br/>POST /api/ai/hallucination/verify-network-claim<br/>GET /api/ai/hallucination/stats |
+| HqApprovalsApi | /api/approvals, /api/hq/approvals | `server/routes/hqApprovalsApi.ts` | 12 | GET /api/approvals/pending<br/>GET /api/approvals/auto-approved<br/>GET /api/approvals/rejected<br/>POST /api/approvals/:approvalId/approve<br/>POST /api/approvals/:approvalId/reject<br/>GET /api/approvals/stats |
+| CalendarApi | /api/calendar | `server/routes/calendarApi.ts` | 17 | GET /api/calendar/:provider/oauth/start<br/>GET /api/calendar/:provider/oauth/callback<br/>POST /api/calendar/:provider/disconnect<br/>GET /api/calendar/status<br/>GET /api/calendar/providers<br/>GET /api/calendar/providers/:provider |
+| CommsApi | /api/comms | `server/routes/commsApi.ts` | 38 | GET /api/comms/encryption-status<br/>POST /api/comms/integrations/connect<br/>POST /api/comms/integrations/:platform/disconnect<br/>GET /api/comms/channels<br/>POST /api/comms/send<br/>POST /api/comms/send/bulk |
+| CrmApi | /api/crm | `server/routes/crmApi.ts` | 9 | GET /api/crm/status<br/>GET /api/crm/providers<br/>GET /api/crm/:provider/status<br/>GET /api/crm/:provider/oauth/start<br/>GET /api/crm/:provider/oauth/callback<br/>POST /api/crm/:provider/disconnect |
+| DashboardBillingBridge | /api/dashboard | `server/routes/dashboardBillingBridge.ts` | 3 | GET /api/dashboard/billing/status<br/>POST /api/dashboard/billing/checkout<br/>POST /api/dashboard/billing/portal |
+| DashboardGoogleBridge | /api/dashboard | `server/routes/dashboardGoogleBridge.ts` | 5 | GET /api/dashboard/google/status<br/>GET /api/dashboard/google/oauth/start<br/>GET /api/dashboard/google/oauth/callback<br/>POST /api/dashboard/google/sync<br/>POST /api/dashboard/google/disconnect |
+| DashboardGraphIntelligenceBridge | /api/dashboard | `server/routes/dashboardGraphIntelligenceBridge.ts` | 3 | GET /api/dashboard/people<br/>GET /api/dashboard/companies<br/>GET /api/dashboard/graph/paths |
+| DashboardGraphSharingBridge | /api/dashboard | `server/routes/dashboardGraphSharingBridge.ts` | 3 | GET /api/dashboard/graph-sharing<br/>GET /api/dashboard/graph-sharing/network-seeding<br/>PATCH /api/dashboard/graph-sharing/settings |
+| DashboardIntroOutcomesBridge | /api/dashboard | `server/routes/dashboardIntroOutcomesBridge.ts` | 4 | GET /api/dashboard/intro-outcomes<br/>GET /api/dashboard/intro-marketplace<br/>GET /api/dashboard/intro-marketplace/routes<br/>POST /api/dashboard/intro-outcomes/record |
+| DashboardIntroRequestsBridge | /api/dashboard | `server/routes/dashboardIntroRequestsBridge.ts` | 3 | GET /api/dashboard/intro-requests<br/>POST /api/dashboard/intro-requests<br/>PATCH /api/dashboard/intro-requests/:id |
+| DashboardLinkedinBridge | /api/dashboard | `server/routes/dashboardLinkedinBridge.ts` | 4 | GET /api/dashboard/linkedin/status<br/>GET /api/dashboard/linkedin/connections<br/>GET /api/dashboard/linkedin/new-connections<br/>GET /api/dashboard/linkedin/relationship-changes |
+| DashboardMicrosoftBridge | /api/dashboard | `server/routes/dashboardMicrosoftBridge.ts` | 5 | GET /api/dashboard/microsoft/status<br/>GET /api/dashboard/microsoft/oauth/start<br/>GET /api/dashboard/microsoft/oauth/callback<br/>POST /api/dashboard/microsoft/sync<br/>POST /api/dashboard/microsoft/disconnect |
+| DashboardUsersBridge | /api/dashboard | `server/routes/dashboardUsersBridge.ts` | 1 | POST /api/dashboard/users/ensure |
+| EmailApi | /api/email | `server/routes/emailApi.ts` | 35 | GET /api/email/threads<br/>GET /api/email/threads/:threadId<br/>GET /api/email/search-suggestions<br/>POST /api/email/send<br/>PATCH /api/email/messages/:messageId<br/>PATCH /api/email/threads/:threadId |
+| EmailSequenceApi | /api/email-sequence | `server/routes/emailSequenceApi.ts` | 10 | GET /api/email-sequence/stats<br/>GET /api/email-sequence/scheduled<br/>GET /api/email-sequence/logs<br/>POST /api/email-sequence/process<br/>POST /api/email-sequence/schedule<br/>POST /api/email-sequence/backfill-davos |
+| EnrichmentApi | /api/enrich | `server/routes/enrichmentApi.ts` | 12 | GET /api/enrich/providers<br/>GET /api/enrich/status<br/>POST /api/enrich/:provider/connect<br/>POST /api/enrich/:provider/disconnect<br/>POST /api/enrich/:provider/priority<br/>POST /api/enrich/enrich/contact |
+| FoundingDashboardApi | /api/founding | `server/routes/foundingDashboardApi.ts` | 2 | GET /api/founding/dashboard<br/>POST /api/founding/roadmap/vote |
+| GraphIntel | /api/graph | `server/routes/graphIntel.ts` | 26 | GET /api/graph/health<br/>POST /api/graph/recompute<br/>POST /api/graph/sync<br/>POST /api/graph/org-sync<br/>GET /api/graph/person/:id<br/>GET /api/graph/top |
+| HqApi | /api/hq | `server/routes/hqApi.ts` | 42 | POST /api/hq/auth/initiate<br/>POST /api/hq/auth/phone-verify<br/>POST /api/hq/auth/verify-2fa<br/>GET /api/hq/virtual-employees<br/>GET /api/hq/virtual-employees/:code<br/>POST /api/hq/virtual-employees/:code/run |
+| HqMissionControlApi | /api/hq | `server/routes/hqMissionControlApi.ts` | 8 | GET /api/hq/mission-status<br/>GET /api/hq/activity/recent<br/>GET /api/hq/velocity<br/>POST /api/hq/quick-actions<br/>GET /api/hq/agents<br/>GET /api/hq/agents/:agentId/messages |
+| HqAnalyticsApi | /api/hq/analytics | `server/routes/hqAnalyticsApi.ts` | 6 | GET /api/hq/analytics/kpis<br/>GET /api/hq/analytics/performance<br/>GET /api/hq/analytics/health<br/>GET /api/hq/analytics/costs<br/>GET /api/hq/analytics/ai-usage<br/>GET /api/hq/analytics/autonomy-score |
+| HqRevenueApi | /api/hq/revenue | `server/routes/hqRevenueApi.ts` | 2 | GET /api/hq/revenue/pipeline<br/>GET /api/hq/revenue/forecast |
+| VirtualTeamApi | /api/hq/virtual-team | `server/routes/virtualTeamApi.ts` | 6 | GET /api/hq/virtual-team/status<br/>GET /api/hq/virtual-team/definitions<br/>POST /api/hq/virtual-team/bootstrap<br/>POST /api/hq/virtual-team/start<br/>POST /api/hq/virtual-team/stop<br/>POST /api/hq/virtual-team/run-cycle |
+| CustomerioApi | /api/integrations/customerio | `server/routes/customerioApi.ts` | 9 | GET /api/integrations/customerio/status<br/>POST /api/integrations/customerio/connect<br/>POST /api/integrations/customerio/disconnect<br/>POST /api/integrations/customerio/track<br/>POST /api/integrations/customerio/sync-contacts<br/>POST /api/integrations/customerio/sync |
+| ZendeskApi | /api/integrations/zendesk | `server/routes/zendeskApi.ts` | 12 | GET /api/integrations/zendesk/status<br/>POST /api/integrations/zendesk/connect<br/>POST /api/integrations/zendesk/disconnect<br/>GET /api/integrations/zendesk/tickets<br/>GET /api/integrations/zendesk/tickets/:ticketId<br/>POST /api/integrations/zendesk/tickets |
+| IntrosAiApi | /api/intros-ai | `server/routes/introsAiApi.ts` | 6 | POST /api/intros-ai/prep-card<br/>GET /api/intros-ai/opportunities<br/>POST /api/intros-ai/followup<br/>GET /api/intros-ai/meeting-suggestions<br/>GET /api/intros-ai/contact/:email/meetings<br/>GET /api/intros-ai/dashboard-insights |
+| LumaApi | /api/luma | `server/routes/lumaApi.ts` | 9 | GET /api/luma/events<br/>GET /api/luma/events/:id<br/>POST /api/luma/events/:id/sync<br/>GET /api/luma/events/:id/attendees<br/>GET /api/luma/newsletter/subscribers<br/>POST /api/luma/newsletter/add |
+| DashboardNetworkTruthBridge | /api/network | `server/routes/dashboardNetworkTruthBridge.ts` | 9 | GET /api/network/invitations/:id/public<br/>POST /api/network/invitations/:id/events<br/>POST /api/network/invitations/:id/lifecycle<br/>GET /api/network/relationship-intelligence<br/>GET /api/network/acquisition<br/>GET /api/network/conversion |
+| OnboardingIntelligenceApi | /api/onboarding | `server/routes/onboardingIntelligenceApi.ts` | 1 | POST /api/onboarding/company-intelligence |
+| HqOrchestratorApi | /api/orchestrator | `server/routes/hqOrchestratorApi.ts` | 5 | GET /api/orchestrator/status<br/>POST /api/orchestrator/control<br/>POST /api/orchestrator/configure<br/>GET /api/orchestrator/playbooks<br/>POST /api/orchestrator/playbooks/:playbookId/run |
+| PeopleSearchApi | /api/people | `server/routes/peopleSearchApi.ts` | 15 | POST /api/people/search<br/>GET /api/people/network-search<br/>POST /api/people/network-search<br/>GET /api/people/company-search<br/>POST /api/people/company-search<br/>POST /api/people/network-intro |
+| SecurityRoutes | /api/security | `server/routes/securityRoutes.ts` | 11 | POST /api/security/mfa/setup<br/>POST /api/security/mfa/verify<br/>POST /api/security/mfa/disable<br/>GET /api/security/mfa/status<br/>GET /api/security/devices<br/>POST /api/security/devices/:deviceId/trust |
+| WefLinkedinApi | /api/wef/linkedin | `server/routes/wefLinkedinApi.ts` | 5 | GET /api/wef/linkedin/auth<br/>GET /api/wef/linkedin/callback<br/>GET /api/wef/linkedin/status<br/>POST /api/wef/linkedin/disconnect<br/>POST /api/wef/linkedin/reconnect |
+
+## Dashboard route map
+
+| Route | Title | Source file |
+| --- | --- | --- |
+| `/` | Dashboard - Introd | `introd-dashboard/src/routes/index.tsx` |
+| `/access` | Access | `introd-dashboard/src/routes/access.tsx` |
+| `/access/` | Request access — Introd Founding Network | `introd-dashboard/src/routes/access.index.tsx` |
+| `/access/linkedin` | Verify your professional identity — Introd | `introd-dashboard/src/routes/access.linkedin.tsx` |
+| `/access/network` | Building your network — Introd | `introd-dashboard/src/routes/access.network.tsx` |
+| `/access/personalize` | Personalize your experience — Introd | `introd-dashboard/src/routes/access.personalize.tsx` |
+| `/access/priority` | You | `introd-dashboard/src/routes/access.priority.tsx` |
+| `/access/welcome` | You | `introd-dashboard/src/routes/access.welcome.tsx` |
+| `/all-contacts` | All Contacts | `introd-dashboard/src/routes/all-contacts.tsx` |
+| `/auth/callback` | Finishing sign in - Introd | `introd-dashboard/src/routes/auth/callback.tsx` |
+| `/collections` | Collections - Introd | `introd-dashboard/src/routes/collections.tsx` |
+| `/collections/$id` | Collection ${String(params.id).slice(0, 8)} — Introd | `introd-dashboard/src/routes/collections.$id.tsx` |
+| `/connector-invite/$invitationId` | Connector Invite InvitationId | `introd-dashboard/src/routes/connector-invite.$invitationId.tsx` |
+| `/contacts/` | People — Introd | `introd-dashboard/src/routes/contacts.index.tsx` |
+| `/contacts/$id` | Contact ${String(params.id).slice(0, 8)} — Introd | `introd-dashboard/src/routes/contacts.$id.tsx` |
+| `/forgot-password` | Reset your password — Introd | `introd-dashboard/src/routes/forgot-password.tsx` |
+| `/getting-started` | Getting Started — Introd | `introd-dashboard/src/routes/getting-started.tsx` |
+| `/introductions` | Introductions — Introd | `introd-dashboard/src/routes/introductions.tsx` |
+| `/introductions/compose` | Create Intro Request — Introd | `introd-dashboard/src/routes/introductions.compose.tsx` |
+| `/introductions/path` | Warm Intro Path — Introd | `introd-dashboard/src/routes/introductions.path.tsx` |
+| `/missions` | Missions - Introd | `introd-dashboard/src/routes/missions.tsx` |
+| `/network` | Network - Introd | `introd-dashboard/src/routes/network.tsx` |
+| `/onboarding` | Welcome to Introd | `introd-dashboard/src/routes/onboarding.tsx` |
+| `/people` | People | `introd-dashboard/src/routes/people.tsx` |
+| `/people/contacts` | People Contacts | `introd-dashboard/src/routes/people.contacts.tsx` |
+| `/people/search` | People Search | `introd-dashboard/src/routes/people.search.tsx` |
+| `/relationship-intelligence` | Relationship Intelligence | `introd-dashboard/src/routes/relationship-intelligence.tsx` |
+| `/reset-password` | Choose a new password — Introd | `introd-dashboard/src/routes/reset-password.tsx` |
+| `/search/companies` | Companies - Introd | `introd-dashboard/src/routes/search.companies.tsx` |
+| `/search/people` | Find People — Introd | `introd-dashboard/src/routes/search.people.tsx` |
+| `/settings` | Settings — Introd | `introd-dashboard/src/routes/settings.tsx` |
+| `/settings_/integrations` | Settings Integrations | `introd-dashboard/src/routes/settings_.integrations.tsx` |
+| `/setup-network` | Setup Network | `introd-dashboard/src/routes/setup-network.tsx` |
+| `/setup-network/alumni` | Setup Network Alumni | `introd-dashboard/src/routes/setup-network.alumni.tsx` |
+| `/setup-network/contacts` | Setup Network Contacts | `introd-dashboard/src/routes/setup-network.contacts.tsx` |
+| `/setup-network/groups` | Setup Network Groups | `introd-dashboard/src/routes/setup-network.groups.tsx` |
+| `/setup-network/import` | Setup Network Import | `introd-dashboard/src/routes/setup-network.import.tsx` |
+| `/setup-network/team` | Setup Network Team | `introd-dashboard/src/routes/setup-network.team.tsx` |
+| `/sign-in` | Sign in — Introd | `introd-dashboard/src/routes/sign-in.tsx` |
+| `/sign-up` | Create your account — Introd | `introd-dashboard/src/routes/sign-up.tsx` |

@@ -1,0 +1,14 @@
+---
+title: "Missing Docs Inventory"
+description: "Generated inventory of the remaining documentation and deployment gaps."
+---
+
+This page captures the important gaps that still require follow-through after the current portal build-out.
+
+| Gap | Impact | Next step |
+| --- | --- | --- |
+| Complete OpenAPI specification | Mintlify can support interactive API pages, but no checked-in spec is wired into the current docs config yet. | Generate or hand-author a public OpenAPI 3.x spec for stable route families. |
+| FoundersNest docs CI/CD evidence | The checked-in FoundersNest repo does not reveal how docs.foundersnest.io is deployed today. | Verify the live docs host, deploy trigger, and rollback path outside source control before decommissioning anything. |
+| Checked-in Introd docs deployment workflow | This repo does not currently include a dedicated workflow file for docs generation and validation in CI. | Add a workflow that runs docs generation and Mintlify validation on pull requests and merges. |
+| Repo-managed reverse proxy for docs.getintrod.ai | No checked-in Nginx or Caddy config exists for a self-hosted docs.getintrod.ai deployment in this repo. | Keep docs hosted through Mintlify or add an explicit fallback proxy config if self-hosting is required. |
+| External analytics integration config | Mintlify built-in analytics is assumed, but no external analytics provider is wired into docs.json. | Add GA4, PostHog, or another approved provider if the launch requires external event pipelines. |

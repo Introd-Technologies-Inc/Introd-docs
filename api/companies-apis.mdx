@@ -1,0 +1,89 @@
+---
+title: "Company APIs"
+description: "Current company-intelligence API surfaces and why they are grouped across search and graph routes."
+---
+
+Introd does not yet have a single public `/api/companies` router. Company intelligence is assembled from graph queries, people search infrastructure, and dashboard-specific aggregation.
+
+## Where company data comes from
+
+| Route | What it returns |
+| --- | --- |
+| `GET /api/dashboard/companies` | Graph-backed company ranking for the dashboard |
+| `GET|POST /api/people/company-search` | Session-scoped company discovery |
+| `GET /api/dashboard/graph/paths` | Connector routes into specific people at the company |
+| `GET /api/graph/intro-marketplace` | Connector reputation and route availability that influence account strategy |
+| `GET /api/graph/alumni`, `/communities`, `/investor-networks` | Shared context that can improve reach into an account |
+
+## Dashboard company result model
+
+The company aggregation layer is already richer than a simple directory result. Each row can include:
+
+- `peopleCount`
+- `sharedConnections`
+- `relationshipDensity`
+- `strongestPath`
+- `whyRanked`
+- `topRoles`
+- `introHistoryCount`
+- `bestConnectorInsight`
+- `companyMemory`
+
+```json
+{
+  "id": "com_123",
+  "name": "OpenAI",
+  "domain": "openai.com",
+  "industry": "Artificial Intelligence",
+  "peopleCount": 9,
+  "sharedConnections": 13,
+  "relationshipDensity": 72,
+  "strongestPath": {
+    "status": "verified",
+    "confidence": 79,
+    "label": "Warm path",
+    "hops": 2,
+    "viaName": "Trusted connector",
+    "why": [
+      "Investor network overlap increases intro odds"
+    ]
+  },
+  "topRoles": [
+    "Partner",
+    "Founder",
+    "Engineering"
+  ],
+  "introHistoryCount": 4,
+  "companyMemory": {
+    "healthScore": 77,
+    "bestConnectorName": "Owen",
+    "bestRouteLabel": "Warm path",
+    "warmestDepartment": "Partnerships",
+    "recommendation": "Start with partnership roles before broad account outreach"
+  }
+}
+```
+
+## What company ranking should optimize for
+
+Good company ranking is not just logo recognition. It should combine:
+
+- reachable people count
+- strongest connector quality
+- density of evidence-backed relationships
+- context fit by department or role
+- prior intro outcomes into that account
+
+## Documentation rule
+
+Until a dedicated company router exists, keep the docs honest:
+
+1. people search discovers people and target accounts
+2. graph services explain reach and strongest paths
+3. dashboard company aggregation turns those signals into action
+
+## Read next
+
+- [Companies](/companies)
+- [Company Connectors](/companies/company-connectors)
+- [Warm Paths Into Companies](/companies/warm-paths-into-companies)

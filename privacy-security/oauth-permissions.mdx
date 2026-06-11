@@ -1,0 +1,21 @@
+---
+title: "OAuth Permissions"
+description: "Why Introd requests provider permissions and how those scopes should be explained."
+---
+
+OAuth permissions should always be explained in terms of the user-facing value they unlock.
+
+## Good permission explanations
+
+| Provider | Why the user is asked |
+| --- | --- |
+| LinkedIn | To connect profile and first-degree relationship context |
+| Google | To add communication, meeting, and contacts metadata |
+| Microsoft | To add Outlook communication and calendar metadata |
+
+## Documentation rules
+
+- explain what data is used
+- explain what product behavior it unlocks
+- explain what happens if the user disconnects
+- avoid vague "improve your experience" language when a concrete explanation is possible

@@ -1,0 +1,129 @@
+---
+title: "Generated Environment Variables"
+description: "Auto-generated environment variable inventory from the checked-in example files."
+---
+
+This page is generated from `introd-api/.env.example` and `introd-dashboard/.env.example`. Secret values are intentionally redacted or normalized.
+
+| Source | Section | Variable | Example or default |
+| --- | --- | --- | --- |
+| introd-api | Database (PostgreSQL / DigitalOcean Managed DB) | `DATABASE_URL` | `postgresql://user:password@localhost:5432/introd` |
+| introd-api | Pool tuning (spike-ready defaults) | `DB_POOL_MAX_CONNECTIONS` | `20` |
+| introd-api | Pool tuning (spike-ready defaults) | `DB_POOL_IDLE_TIMEOUT` | `30000` |
+| introd-api | Pool tuning (spike-ready defaults) | `DB_QUERY_TIMEOUT` | `15000` |
+| introd-api | Session & encryption (required in production) | `SESSION_SECRET` | `set at deploy` |
+| introd-api | Session & encryption (required in production) | `ENCRYPTION_MASTER_KEY` | `set at deploy` |
+| introd-api | Session & encryption (required in production) | `FOLK_ENCRYPTION_KEY` | `set at deploy` |
+| introd-api | Valkey (Redis-compatible, required, for cache/rate limit) | `REDIS_URL` | `rediss://valkey-host:6379` |
+| introd-api | App | `NODE_ENV` | `development` |
+| introd-api | App | `PORT` | `5000` |
+| introd-api | App | `DISABLE_RATE_LIMITS` | `true` |
+| introd-api | Domain routing (local development defaults; replace with deployed domains in production) | `APP_DOMAIN` | `localhost:5000` |
+| introd-api | Domain routing (local development defaults; replace with deployed domains in production) | `APP_BASE_URL` | `http://localhost:5000` |
+| introd-api | Domain routing (local development defaults; replace with deployed domains in production) | `APP_URL` | `http://localhost:5173` |
+| introd-api | Domain routing (local development defaults; replace with deployed domains in production) | `DASHBOARD_APP_URL` | `http://localhost:5173` |
+| introd-api | Domain routing (local development defaults; replace with deployed domains in production) | `MARKETING_BASE_URL` | `http://localhost:5000` |
+| introd-api | Domain routing (local development defaults; replace with deployed domains in production) | `OAUTH_BASE_URL` | `http://localhost:5000` |
+| introd-api | Domain routing (local development defaults; replace with deployed domains in production) | `EXTENSION_LINKEDIN_REDIRECT_URI` | `http://localhost:5000/api/linkedin/callback` |
+| introd-api | Public keys may be exposed to browser bundles only through VITE_* names. | `SUPABASE_URL` | `set at deploy` |
+| introd-api | Public keys may be exposed to browser bundles only through VITE_* names. | `SUPABASE_SERVICE_ROLE_KEY` | `set at deploy` |
+| introd-api | Public keys may be exposed to browser bundles only through VITE_* names. | `SUPABASE_PUBLISHABLE_KEY` | `set at deploy` |
+| introd-api | Public keys may be exposed to browser bundles only through VITE_* names. | `VITE_SUPABASE_URL` | `set at deploy` |
+| introd-api | Public keys may be exposed to browser bundles only through VITE_* names. | `VITE_SUPABASE_PUBLISHABLE_KEY` | `set at deploy` |
+| introd-api | Google OAuth (required for Google sign-in and Google integrations) | `GOOGLE_CLIENT_ID` | `set at deploy` |
+| introd-api | Google OAuth (required for Google sign-in and Google integrations) | `GOOGLE_CLIENT_SECRET` | `set at deploy` |
+| introd-api | Google OAuth (required for Google sign-in and Google integrations) | `GOOGLE_REDIRECT_URI` | `http://localhost:5000/api/auth/google/callback` |
+| introd-api | Google OAuth (required for Google sign-in and Google integrations) | `GOOGLE_WORKSPACE_METADATA_SYNC_ENABLED` | `false` |
+| introd-api | LinkedIn OAuth (optional unless you use LinkedIn connect/sign-in) | `LINKEDIN_CLIENT_ID` | `set at deploy` |
+| introd-api | LinkedIn OAuth (optional unless you use LinkedIn connect/sign-in) | `LINKEDIN_CLIENT_SECRET` | `set at deploy` |
+| introd-api | LinkedIn OAuth (optional unless you use LinkedIn connect/sign-in) | `LINKEDIN_ENCRYPTION_KEY` | `set at deploy` |
+| introd-api | Microsoft Graph OAuth (metadata foundations only; use real values outside source control) | `MICROSOFT_CLIENT_ID` | `set at deploy` |
+| introd-api | Microsoft Graph OAuth (metadata foundations only; use real values outside source control) | `MICROSOFT_CLIENT_SECRET` | `set at deploy` |
+| introd-api | Microsoft Graph OAuth (metadata foundations only; use real values outside source control) | `MICROSOFT_TENANT_ID` | `common` |
+| introd-api | Microsoft Graph OAuth (metadata foundations only; use real values outside source control) | `MICROSOFT_GRAPH_METADATA_PAGE_SIZE` | `50` |
+| introd-api | Microsoft Graph OAuth (metadata foundations only; use real values outside source control) | `MICROSOFT_GRAPH_METADATA_MAX_PAGES` | `4` |
+| introd-api | Graph (Neo4j) - optional but required for production graph intelligence | `NEO4J_URI` | `bolt://localhost:7687` |
+| introd-api | Graph (Neo4j) - optional but required for production graph intelligence | `NEO4J_USER` | `neo4j` |
+| introd-api | Graph (Neo4j) - optional but required for production graph intelligence | `NEO4J_PASSWORD` | `set at deploy` |
+| introd-api | Graph (Neo4j) - optional but required for production graph intelligence | `NEO4J_DATABASE` | `neo4j` |
+| introd-api | Graph (Neo4j) - optional but required for production graph intelligence | `NEO4J_AUTO_MIGRATE` | `true` |
+| introd-api | Graph sync scheduler (optional) | `GRAPH_SYNC_ENABLED` | `true` |
+| introd-api | Graph sync scheduler (optional) | `GRAPH_SYNC_INTERVAL_MINUTES` | `15` |
+| introd-api | Graph sync scheduler (optional) | `GRAPH_SYNC_LOOKBACK_HOURS` | `24` |
+| introd-api | Graph sync scheduler (optional) | `GRAPH_SYNC_MAX_USERS` | `200` |
+| introd-api | Graph sync scheduler (optional) | `GRAPH_SYNC_CONCURRENCY` | `4` |
+| introd-api | Graph sync scheduler (optional) | `GRAPH_SYNC_FORCE_ALL` | `false` |
+| introd-api | Folk CRM OAuth (required for managed CRM sync) | `FOLK_CLIENT_ID` | `set at deploy` |
+| introd-api | Folk CRM OAuth (required for managed CRM sync) | `FOLK_CLIENT_SECRET` | `set at deploy` |
+| introd-api | ClickUp API fallback (used by repo scripts and webhook-driven automation) | `CLICKUP_API_TOKEN` | `set at deploy` |
+| introd-api | ClickUp API fallback (used by repo scripts and webhook-driven automation) | `CLICKUP_WORKSPACE_NAME` | `set at deploy` |
+| introd-api | ClickUp API fallback (used by repo scripts and webhook-driven automation) | `CLICKUP_SPACE_NAME` | `set at deploy` |
+| introd-api | ClickUp API fallback (used by repo scripts and webhook-driven automation) | `CLICKUP_FOLDER_NAME` | `set at deploy` |
+| introd-api | ClickUp API fallback (used by repo scripts and webhook-driven automation) | `CLICKUP_WEBHOOK_SIGNING_SECRET` | `set at deploy` |
+| introd-api | ClickUp API fallback (used by repo scripts and webhook-driven automation) | `CLICKUP_WEBHOOK_SIGNING_SECRETS` | `set at deploy` |
+| introd-api | ClickUp API fallback (used by repo scripts and webhook-driven automation) | `CLICKUP_WEBHOOK_ENDPOINT` | `http://localhost:5000/api/integrations/clickup/webhook` |
+| introd-api | Workflow bus / orchestration | `N8N_WEBHOOK_URL` | `set at deploy` |
+| introd-api | Workflow bus / orchestration | `N8N_API_BASE_URL` | `set at deploy` |
+| introd-api | Workflow bus / orchestration | `N8N_API_KEY` | `set at deploy` |
+| introd-api | Workflow bus / orchestration | `ANTFARM_BIN` | `antfarm` |
+| introd-api | Workflow bus / orchestration | `ANTFARM_API_BASE_URL` | `set at deploy` |
+| introd-api | Workflow bus / orchestration | `ANTFARM_API_TOKEN` | `set at deploy` |
+| introd-api | Workflow bus / orchestration | `OPENMOSS_API_BASE_URL` | `set at deploy` |
+| introd-api | Workflow bus / orchestration | `OPENMOSS_PLANNER_API_KEY` | `set at deploy` |
+| introd-api | Introd virtual team runtime | `VIRTUAL_TEAM_ENABLED` | `true` |
+| introd-api | Introd virtual team runtime | `VIRTUAL_TEAM_AUTOSTART` | `false` |
+| introd-api | Introd virtual team runtime | `VIRTUAL_TEAM_INTERVAL_MS` | `30000` |
+| introd-api | Introd virtual team runtime | `VIRTUAL_TEAM_MAX_TASKS_PER_CYCLE` | `8` |
+| introd-api | Introd virtual team runtime | `VIRTUAL_TEAM_MODEL` | `gpt-4.1-mini` |
+| introd-api | Outreach delivery | `RESEND_API_KEY` | `set at deploy` |
+| introd-api | Outreach delivery | `RESEND_FROM_EMAIL` | `Introd &lt;hello@example.com&gt;` |
+| introd-api | Customer.io (optional global lifecycle / transactional email support) | `CUSTOMERIO_SITE_ID` | `set at deploy` |
+| introd-api | Customer.io (optional global lifecycle / transactional email support) | `CUSTOMERIO_API_KEY` | `set at deploy` |
+| introd-api | Customer.io (optional global lifecycle / transactional email support) | `CUSTOMERIO_APP_API_KEY` | `set at deploy` |
+| introd-api | Customer.io (optional global lifecycle / transactional email support) | `CUSTOMERIO_REGION` | `US` |
+| introd-api | Customer.io (optional global lifecycle / transactional email support) | `CUSTOMERIO_REGION_PREFIX` | `track` |
+| introd-api | Founder Telegram command channel | `TELEGRAM_CEO_BOT_TOKEN` | `set at deploy` |
+| introd-api | Founder Telegram command channel | `TELEGRAM_CEO_MODE` | `webhook` |
+| introd-api | Founder Telegram command channel | `TELEGRAM_CEO_WEBHOOK_SECRET` | `set at deploy` |
+| introd-api | Founder Telegram command channel | `TELEGRAM_CEO_ALLOWED_CHAT_IDS` | `set at deploy` |
+| introd-api | Founder Telegram command channel | `TELEGRAM_CEO_ALLOWED_USER_IDS` | `set at deploy` |
+| introd-api | Founder Telegram command channel | `TELEGRAM_CEO_DEFAULT_USER_EMAIL` | `set at deploy` |
+| introd-api | Founder Telegram command channel | `TELEGRAM_CEO_AUTO_ENROLL_FIRST_PRIVATE_CHAT` | `true` |
+| introd-api | Founder Telegram command channel | `TELEGRAM_CEO_AUTO_RUN_DELEGATED_TASKS` | `true` |
+| introd-api | Founder Telegram command channel | `TELEGRAM_CEO_MAX_DELEGATED_RUNS` | `3` |
+| introd-api | Founder Telegram command channel | `TELEGRAM_CEO_POLL_INTERVAL_MS` | `5000` |
+| introd-api | Slack app credentials (optional for OAuth connect, manual bot-token setup also works) | `SLACK_CLIENT_ID` | `set at deploy` |
+| introd-api | Slack app credentials (optional for OAuth connect, manual bot-token setup also works) | `SLACK_CLIENT_SECRET` | `set at deploy` |
+| introd-api | Slack app credentials (optional for OAuth connect, manual bot-token setup also works) | `SLACK_SIGNING_SECRET` | `set at deploy` |
+| introd-api | Slack app credentials (optional for OAuth connect, manual bot-token setup also works) | `SLACK_OAUTH_SCOPES` | `channels:read,groups:read,im:read,mpim:read,chat:write,chat:write.public` |
+| introd-api | Default Slack channel used when no per-user channel is configured yet | `SLACK_DEFAULT_CHANNEL` | `#introd` |
+| introd-api | Request-access / Founding 100 notifications | `SLACK_FOUNDING_100_WEBHOOK_URL` | `set at deploy` |
+| introd-api | Request-access / Founding 100 notifications | `FOUNDING_100_SLACK_WEBHOOK_URL` | `set at deploy` |
+| introd-api | Request-access / Founding 100 notifications | `SLACK_BOT_TOKEN` | `set at deploy` |
+| introd-api | Request-access / Founding 100 notifications | `SLACK_FOUNDING_100_CHANNEL_ID` | `set at deploy` |
+| introd-api | Request-access / Founding 100 notifications | `SLACK_FOUNDING_100_CHANNEL` | `#founding-100` |
+| introd-api | Discord app credentials | `DISCORD_PUBLIC_KEY` | `set at deploy` |
+| introd-api | Discord app credentials | `DISCORD_WEBHOOK_URL` | `set at deploy` |
+| introd-api | AI provider keys | `OPENAI_API_KEY` | `set at deploy` |
+| introd-api | AI provider keys | `OPENROUTER_API_KEY` | `set at deploy` |
+| introd-api | AI provider keys | `ANTHROPIC_API_KEY` | `set at deploy` |
+| introd-api | AI provider keys | `GEMINI_API_KEY` | `set at deploy` |
+| introd-api | AI provider keys | `NVIDIA_API_KEY` | `set at deploy` |
+| introd-api | Dashboard bridge for introd-dashboard -> introd-api LinkedIn sync hydration | `INTROD_DASHBOARD_API_SECRET` | `set at deploy` |
+| introd-api | Stripe Billing (server-side only; never expose STRIPE_SECRET_KEY) | `STRIPE_SECRET_KEY` | `set at deploy` |
+| introd-api | Stripe Billing (server-side only; never expose STRIPE_SECRET_KEY) | `STRIPE_WEBHOOK_SECRET` | `set at deploy` |
+| introd-api | Stripe Billing (server-side only; never expose STRIPE_SECRET_KEY) | `STRIPE_PRO_PRICE_ID` | `set at deploy` |
+| introd-api | Stripe Billing (server-side only; never expose STRIPE_SECRET_KEY) | `STRIPE_TEAM_PRICE_ID` | `set at deploy` |
+| introd-api | Stripe Billing (server-side only; never expose STRIPE_SECRET_KEY) | `STRIPE_COMMUNITY_PRICE_ID` | `set at deploy` |
+| introd-api | Stripe Billing (server-side only; never expose STRIPE_SECRET_KEY) | `STRIPE_SUCCESS_URL` | `http://localhost:5173/settings?billing=success` |
+| introd-api | Stripe Billing (server-side only; never expose STRIPE_SECRET_KEY) | `STRIPE_CANCEL_URL` | `http://localhost:5173/settings?billing=canceled` |
+| introd-dashboard | General | `SUPABASE_PUBLISHABLE_KEY` | `configured example` |
+| introd-dashboard | General | `SUPABASE_SERVICE_ROLE_KEY` | `set at deploy` |
+| introd-dashboard | General | `SUPABASE_URL` | `https://bzciqgkzzngqrfwoopbk.supabase.co` |
+| introd-dashboard | General | `VITE_SUPABASE_PROJECT_ID` | `bzciqgkzzngqrfwoopbk` |
+| introd-dashboard | General | `VITE_SUPABASE_PUBLISHABLE_KEY` | `configured example` |
+| introd-dashboard | General | `VITE_SUPABASE_URL` | `https://bzciqgkzzngqrfwoopbk.supabase.co` |
+| introd-dashboard | General | `INTROD_API_URL` | `https://api.getintrod.ai` |
+| introd-dashboard | General | `INTROD_DASHBOARD_API_SECRET` | `set at deploy` |
+| introd-dashboard | General | `BRANDFETCH_CLIENT_ID` | `set at deploy` |
+| introd-dashboard | General | `VITE_BRANDFETCH_CLIENT_ID` | `set at deploy` |

@@ -1,0 +1,35 @@
+---
+title: "LinkedIn Integration"
+description: "How the extension connects LinkedIn activity to Introd's trust graph."
+---
+
+The extension uses LinkedIn as a user-opened, browser-local signal source. It does not operate as a hidden crawler.
+
+## How sync works
+
+```mermaid
+flowchart LR
+  A[Open LinkedIn connections page] --> B[Extension detects page and session]
+  B --> C[Scroll and capture visible rows]
+  C --> D[Upload batches to Introd API]
+  D --> E[Persist imported records]
+  E --> F[Update graph coverage and sync status]
+```
+
+## What gets captured
+
+- visible first-degree connection rows
+- profile identifiers and URLs
+- headline and company context when available
+- progress, retry, and pacing diagnostics
+
+## OAuth and callback handling
+
+The manifest includes content scripts for Introd LinkedIn callback routes so the extension can complete browser-local sign-in and bridge flows cleanly.
+
+## Real constraints
+
+- LinkedIn loads large networks incrementally.
+- The extension can only import rows that are visible as LinkedIn renders them.
+- Large networks can pause because of API pacing or LinkedIn row loading.
+- Partial progress is normal and should be shown truthfully.

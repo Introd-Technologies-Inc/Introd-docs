@@ -1,0 +1,22 @@
+---
+title: "Extension"
+description: "How the browser extension detects LinkedIn, syncs visible rows, and shows relationship context."
+---
+
+```mermaid
+flowchart LR
+  A[Popup UI] --> B[Background Service Worker]
+  B --> C[LinkedIn Content Script]
+  B --> D[Introd API]
+  C --> E[LinkedIn Browser Context]
+  D --> F[Graph and Product State]
+```
+
+## Components
+
+- popup state and sync controls
+- background runtime and messaging
+- LinkedIn content script and page diagnostics
+- browser-local storage for auth and caches
+
+The extension should remain reliable and narrow enough to pass Chrome Web Store review without claiming unsupported behavior.

@@ -1,0 +1,71 @@
+---
+title: "Mintlify Cutover"
+description: "Repurpose the existing docs deployment for Introd at docs.getintrod.ai."
+---
+
+Use this checklist to repurpose the existing FoundersNest docs deployment for Introd without carrying old content into the new site.
+
+## Repository setup
+
+The Mintlify docs root is:
+
+```text
+introd-docs
+```
+
+Mintlify dashboard settings should point the project at this repository:
+
+```text
+Introd-Technologies-Inc/introd-docs
+```
+
+Use the repository root as the docs path because `docs.json` lives at the top level:
+
+```text
+/
+```
+
+Do not connect the wider local workspace or the API repository for the production docs deployment.
+
+## Remove FoundersNest content
+
+In the Mintlify dashboard or connected Git repository:
+
+1. Disconnect or delete old FoundersNest pages.
+2. Remove old FoundersNest custom domains.
+3. Replace project branding with Introd.
+4. Confirm the deployed navigation matches `docs.json`.
+5. Run a search for `FoundersNest`, `foundersnest`, `.io`, and `.com` before publishing.
+
+## Configure `docs.getintrod.ai`
+
+1. Add `docs.getintrod.ai` as a custom domain in Mintlify.
+2. Add the verification `TXT` records that Mintlify shows in the dashboard.
+3. Wait until both verification records show as verified.
+4. Point the `docs` CNAME for `getintrod.ai` to `cname.mintlify.builders`.
+5. Keep the canonical URL in `docs.json` set to `https://docs.getintrod.ai`.
+
+Do not point the CNAME before certificate verification is ready, or HTTPS can break during the cutover.
+
+For Cloudflare-hosted DNS, keep SSL/TLS set to Full (strict) and disable Always Use HTTPS until Mintlify completes certificate validation.
+
+## Local preview
+
+From `introd-docs`:
+
+```bash
+npx mintlify dev
+```
+
+## Validation
+
+```bash
+npx mintlify validate
+```
+
+After deploy, validate these URLs:
+
+- `https://docs.getintrod.ai`
+- `https://docs.getintrod.ai/api`
+- `https://docs.getintrod.ai/graph`
+- `https://getintrod.ai/api-docs`

@@ -1,0 +1,24 @@
+---
+title: "Dashboard"
+description: "How the dashboard routes, setup flows, and intro workflows are organized."
+---
+
+```mermaid
+flowchart TD
+  A[Auth and onboarding] --> B[Setup network]
+  B --> C[Search people and companies]
+  C --> D[Relationship intelligence]
+  D --> E[Introductions]
+  B --> F[Settings and integrations]
+```
+
+## High-value routes
+
+- `/setup-network`
+- `/search/people`
+- `/search/companies`
+- `/relationship-intelligence`
+- `/introductions`
+- `/settings/integrations`
+
+The dashboard is where users make decisions. It should stay focused on warm intro workflows and relationship insight, not drift into a generic CRM shell.

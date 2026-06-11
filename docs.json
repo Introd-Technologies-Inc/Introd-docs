@@ -1,122 +1,307 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Mint Starter Kit",
-  "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+  "name": "Introd",
+  "description": "User documentation for getting set up, finding warm paths, requesting introductions, and understanding how Introd makes trust decisions.",
+  "icons": {
+    "library": "lucide"
   },
-  "favicon": "/favicon.svg",
+  "colors": {
+    "primary": "#08AE7E",
+    "light": "#57E3BA",
+    "dark": "#08976E"
+  },
+  "appearance": {
+    "default": "dark",
+    "strict": false
+  },
+  "background": {
+    "decoration": "gradient",
+    "color": {
+      "light": "#F6FBF8",
+      "dark": "#07131A"
+    }
+  },
+  "fonts": {
+    "family": "Inter",
+    "weight": 450
+  },
+  "logo": {
+    "light": "/images/brand/logo-light.png",
+    "dark": "/images/brand/logo-dark.png",
+    "href": "/getting-started/quickstart"
+  },
+  "favicon": {
+    "light": "/images/brand/favicon.png",
+    "dark": "/images/brand/favicon.png"
+  },
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/getting-started/quickstart"
+    }
+  ],
+  "navbar": {
+    "links": [
+      {
+        "label": "Website",
+        "href": "https://getintrod.ai"
+      },
+      {
+        "label": "FAQ",
+        "href": "/faq"
+      },
+      {
+        "label": "Trust",
+        "href": "/privacy-security"
+      }
+    ],
+    "primary": {
+      "type": "button",
+      "label": "Open app",
+      "href": "https://app.getintrod.ai"
+    }
+  },
+  "footer": {
+    "links": [
+      {
+        "title": "Docs",
+        "items": [
+          {
+            "label": "Getting started",
+            "href": "/getting-started/quickstart"
+          },
+          {
+            "label": "Chrome extension",
+            "href": "/chrome-extension"
+          },
+          {
+            "label": "API reference",
+            "href": "/api"
+          }
+        ]
+      },
+      {
+        "title": "Company",
+        "items": [
+          {
+            "label": "Introd",
+            "href": "https://getintrod.ai"
+          },
+          {
+            "label": "App",
+            "href": "https://app.getintrod.ai"
+          }
+        ]
+      }
+    ],
+    "socials": {
+      "linkedin": "https://www.linkedin.com/company/introd-ai"
+    }
+  },
+  "seo": {
+    "metatags": {
+      "canonical": "https://docs.getintrod.ai"
+    }
+  },
   "navigation": {
     "tabs": [
       {
-        "tab": "Guides",
+        "tab": "Documentation",
+        "icon": "book-open",
         "groups": [
           {
-            "group": "Getting started",
+            "group": "Get Started",
+            "icon": "rocket",
+            "root": "getting-started/quickstart",
             "pages": [
-              "index",
-              "quickstart",
-              "development"
+              "getting-started/index",
+              "getting-started/create-account",
+              "getting-started/connect-integrations",
+              "getting-started/first-warm-introduction",
+              "faq/index",
+              "getting-started/definitions"
             ]
           },
           {
-            "group": "Customization",
+            "group": "Workspace",
+            "icon": "layout-dashboard",
+            "root": "workspace/home",
             "pages": [
-              "essentials/settings",
-              "essentials/navigation"
+              "workspace/saved-lists",
+              "workspace/missions"
             ]
           },
           {
-            "group": "Writing content",
+            "group": "Setup Network",
+            "icon": "user-round-cog",
+            "root": "setup-network/index",
             "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/reusable-snippets"
+              "setup-network/sync-accounts",
+              "setup-network/import-contacts",
+              "setup-network/alumni-networks",
+              "setup-network/groups"
             ]
           },
           {
-            "group": "AI tools",
+            "group": "People",
+            "icon": "users",
+            "root": "people/index",
             "pages": [
-              "ai-tools/cursor",
-              "ai-tools/claude-code",
-              "ai-tools/windsurf"
+              "people/search-people",
+              "people/view-paths",
+              "people/request-introductions",
+              "people/relationship-insights"
+            ]
+          },
+          {
+            "group": "Companies",
+            "icon": "building-2",
+            "root": "companies/index",
+            "pages": [
+              "companies/company-intelligence",
+              "companies/company-connectors",
+              "companies/warm-paths-into-companies",
+              "companies/company-signals"
+            ]
+          },
+          {
+            "group": "Introductions",
+            "icon": "handshake",
+            "root": "introductions/index",
+            "pages": [
+              "introductions/create-request",
+              "introductions/track-requests",
+              "introductions/intro-outcomes",
+              "introductions/best-practices"
+            ]
+          },
+          {
+            "group": "Chrome Extension",
+            "icon": "chrome",
+            "root": "chrome-extension/index",
+            "pages": [
+              "chrome-extension/installation",
+              "chrome-extension/permissions",
+              "chrome-extension/linkedin-integration",
+              "chrome-extension/understanding-checkmarks",
+              "chrome-extension/troubleshooting"
+            ]
+          },
+          {
+            "group": "How Introd Decides",
+            "icon": "network",
+            "root": "relationship-intelligence/index",
+            "pages": [
+              "relationship-intelligence/connector-ranking",
+              "relationship-intelligence/trustrank-and-confidence",
+              "relationship-intelligence/communities-and-networks"
+            ]
+          },
+          {
+            "group": "Privacy & Security",
+            "icon": "shield-check",
+            "root": "privacy-security/index",
+            "pages": [
+              "privacy-security/data-handling",
+              "privacy-security/integration-data-usage",
+              "privacy-security/oauth-permissions",
+              "privacy-security/gdpr-and-deletion"
             ]
           }
         ]
       },
       {
-        "tab": "API reference",
+        "tab": "API Reference",
+        "icon": "square-terminal",
         "groups": [
           {
-            "group": "API documentation",
+            "group": "API Reference",
+            "icon": "square-terminal",
+            "root": "api/index",
             "pages": [
-              "api-reference/introduction"
+              "api/authentication",
+              "api/graph-apis",
+              "api/people-apis",
+              "api/companies-apis",
+              "api/intro-apis",
+              {
+                "group": "Generated Inventories",
+                "icon": "folder-kanban",
+                "expanded": false,
+                "pages": [
+                  "reference/generated/api-endpoint-inventory",
+                  "reference/generated/environment-variables"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Developers",
+        "icon": "blocks",
+        "groups": [
+          {
+            "group": "Local Setup",
+            "icon": "terminal",
+            "root": "quickstart",
+            "pages": []
+          },
+          {
+            "group": "Architecture",
+            "icon": "blocks",
+            "root": "architecture/index",
+            "pages": [
+              "architecture/neograph",
+              "architecture/dashboard",
+              "architecture/extension",
+              "architecture/sync-pipeline",
+              "architecture/warm-path-engine",
+              "architecture/intro-marketplace",
+              "architecture/repository-systems",
+              {
+                "group": "Graph Internals",
+                "icon": "git-branch",
+                "expanded": false,
+                "pages": [
+                  "graph/trust-aware-pathfinding",
+                  "graph/edge-provenance",
+                  "graph/non-user-targets",
+                  "product/relationship-intelligence-defensibility"
+                ]
+              }
             ]
           },
           {
-            "group": "Endpoint examples",
+            "group": "Operations",
+            "icon": "server",
+            "root": "operations/index",
             "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
+              "operations/infrastructure-audit",
+              "operations/migration-plan",
+              "operations/domain-setup",
+              "operations/cloudflare-cutover",
+              "deployment/mintlify-cutover",
+              "operations/deployment-plan",
+              "operations/generated-docs-inventory",
+              "operations/missing-docs-inventory",
+              "operations/go-live-checklist",
+              {
+                "group": "Legacy Migration Context",
+                "icon": "history",
+                "expanded": false,
+                "pages": [
+                  "migration/core-infra-manifest-2026-05-26",
+                  "migration/moat-migration-audit-2026-05-26",
+                  "releases/phase2",
+                  "releases/rollback-phase2"
+                ]
+              }
             ]
           }
         ]
       }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
-        }
-      ]
-    }
-  },
-  "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
-  },
-  "navbar": {
-    "links": [
-      {
-        "label": "Support",
-        "href": "mailto:hi@mintlify.com"
-      }
-    ],
-    "primary": {
-      "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
-    }
-  },
-  "contextual": {
-    "options": [
-     "copy",
-     "view",
-     "chatgpt",
-     "claude",
-     "perplexity",
-     "mcp",
-     "cursor",
-     "vscode"
-   ]
-  },
-  "footer": {
-    "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
-    }
+    ]
   }
 }

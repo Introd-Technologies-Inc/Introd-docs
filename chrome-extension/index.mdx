@@ -1,0 +1,55 @@
+---
+title: "Chrome Extension"
+description: "Install and operate the Introd for LinkedIn extension."
+---
+
+The Introd Chrome extension is the fastest way to turn a LinkedIn session into usable first-degree graph coverage. It is intentionally scoped around reproducible behavior:
+
+![Introd Chrome extension](/images/product/chrome-extension.png)
+
+- LinkedIn sign-in detection
+- first-degree connection sync
+- warm intro context on LinkedIn pages
+- truthful progress, pause, retry, and pacing states
+
+<Columns cols={2}>
+  <Card title="Install the extension" icon="download" href="/chrome-extension/installation">
+    Load the unpacked build locally or follow the Chrome Web Store path once distribution is live.
+  </Card>
+  <Card title="Review permissions" icon="shield" href="/chrome-extension/permissions">
+    Understand exactly why the extension needs LinkedIn and Introd host access before you approve it.
+  </Card>
+  <Card title="Use it on LinkedIn" icon="linkedin" href="/chrome-extension/linkedin-integration">
+    See how sync, checkmarks, and on-page relationship context appear during a normal LinkedIn workflow.
+  </Card>
+  <Card title="Fix sync issues" icon="wrench" href="/chrome-extension/troubleshooting">
+    Work through sign-in, permissions, tab state, and sync pacing issues without guesswork.
+  </Card>
+</Columns>
+
+## What the extension does
+
+The extension:
+
+- detects whether the user is signed in to LinkedIn in the current browser
+- imports visible rows from the LinkedIn connections page
+- reports sync state back to Introd
+- loads relationship context when the user opens a LinkedIn profile page
+
+It does **not** claim hidden background scraping or unsupported discovery behavior.
+
+## Core pages
+
+- [Installation](/chrome-extension/installation)
+- [Permissions](/chrome-extension/permissions)
+- [LinkedIn integration](/chrome-extension/linkedin-integration)
+- [Understanding checkmarks](/chrome-extension/understanding-checkmarks)
+- [Troubleshooting](/chrome-extension/troubleshooting)
+
+## Where it works
+
+The extension is designed for normal use on LinkedIn alongside the Introd app. It should feel like a focused assistant for network sync and profile-level relationship context, not a separate product to learn from scratch.
+
+## Product boundary
+
+The extension is part of Introd's relationship intelligence system, but its shipped behavior should stay narrow, testable, and Chrome Web Store safe.

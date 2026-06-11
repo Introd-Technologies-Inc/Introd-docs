@@ -1,0 +1,48 @@
+---
+title: "TrustRank and Confidence"
+description: "How Introd should explain trust, freshness, evidence, and whether a route is safe to use."
+---
+
+TrustRank only helps if the score is legible. Users should be able to tell why Introd is confident, why it is uncertain, and what to do next.
+
+## Trust stack
+
+| Layer | Meaning | Where it comes from |
+| --- | --- | --- |
+| Relationship strength | Directness and quality of a specific edge | Edge strength and interaction evidence |
+| Evidence chips | Human-readable proof points | Provenance, meetings, emails, communities, intros |
+| TrustRank | Composite signal for a person or route | Graph scoring plus execution history |
+| Graph confidence | How safe it is to act on the route now | Edge confidence, freshness, weak links, path quality |
+
+## What should raise confidence
+
+- recent interaction evidence
+- prior successful introductions
+- clear connector-to-target context
+- multiple proof points that agree with each other
+- low decay and low ambiguity in the route
+
+## What should lower confidence
+
+- stale relationships with no recent evidence
+- routes held together only by weak overlap
+- unclear connector intent or availability
+- a single fragile edge inside an otherwise weak path
+- missing proof about why the route should work now
+
+## What the product should show
+
+Every path or connector score should show:
+
+- the score
+- the reasons it ranked there
+- weak-link diagnostics
+- freshness or decay cues
+- the next best action when confidence is limited
+
+## Confidence rules
+
+- strong observed evidence should raise confidence
+- stale edges should visibly decay
+- inferred context can support ranking but should not masquerade as proof
+- unknown targets should not produce fabricated warm paths

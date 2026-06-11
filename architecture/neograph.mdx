@@ -1,0 +1,52 @@
+---
+title: "NeoGraph"
+description: "How Introd's trust graph, Neo4j runtime, and graph services fit together."
+---
+
+```mermaid
+flowchart LR
+  A[Extension Sync] --> C[Introd API]
+  B[Google and Microsoft Evidence] --> C
+  H[Dashboard Bridge] --> C
+  C --> D[Neo4j]
+  C --> E[Graph Services]
+  E --> D
+  D --> F[Trust-aware Pathfinding]
+  D --> G[Connector and Company Memory]
+  G --> H
+```
+
+NeoGraph is the relationship substrate behind Introd. It is not a generic social graph browser; it is a tenant-scoped, evidence-backed graph for finding and explaining warm routes.
+
+## Core responsibilities
+
+- store tenant-scoped people, company, and identity nodes
+- materialize relationship edges from LinkedIn, email, meetings, shared context, and intro history
+- preserve provenance and confidence on every edge
+- support pathfinding, TrustRank, graph sharing, and intro outcome intelligence
+- feed ranked results back into dashboard and extension experiences
+
+## Active components
+
+| Layer | Files or services |
+| --- | --- |
+| Graph storage | `server/services/graph/neo4j.ts` and Neo4j |
+| Query layer | `server/services/graph/queries.ts` |
+| Path scoring | `server/services/graph/pathIntelligence.ts` |
+| Sharing and unlocks | `server/services/graph/sharing.ts` |
+| Intro marketplace | `server/services/graph/introMarketplaceService.ts` |
+| Fallback pathfinding | `server/services/pathFinder.ts` |
+| Public graph routes | `server/routes/graphIntel.ts` |
+
+## Design rules
+
+- every graph read must stay user- or workspace-scoped
+- every warm route must be explainable
+- inferred context can support ranking but not impersonate proof
+- graph output should degrade honestly when evidence is weak or Neo4j is unavailable
+
+## What NeoGraph powers
+
+- [TrustRank and confidence](/relationship-intelligence/trustrank-and-confidence)
+- [Warm path engine](/architecture/warm-path-engine)
+- [Graph APIs](/api/graph-apis)

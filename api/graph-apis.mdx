@@ -1,0 +1,142 @@
+---
+title: "Graph APIs"
+description: "Graph, network, and trust-intelligence route families."
+---
+
+The graph APIs are the core of Introd. They compute TrustRank, rank paths, expose graph health, surface sharing controls, and feed intro execution back into future ranking.
+
+## Route groups
+
+| Route group | What it does | Auth |
+| --- | --- | --- |
+| `/api/graph/health` | Neo4j health and availability | Public |
+| `/api/graph/recompute`, `/sync`, `/org-sync` | Refresh TrustRank and graph materialization | Session |
+| `/api/graph/person/:id`, `/top`, `/trustrank`, `/stats`, `/clusters` | Direct graph intelligence and TrustRank views | Session |
+| `/api/graph/paths`, `/search` | Raw graph pathfinding and graph-aware search | Session |
+| `/api/graph/alumni`, `/communities`, `/investor-networks`, `/events`, `/relationship-map` | Community and network overlays | Session |
+| `/api/graph/sharing*` | Graph sharing settings and unlock logic | Session |
+| `/api/graph/intro-outcomes*`, `/api/graph/intro-marketplace*` | Outcome dashboards and connector-route ranking | Session |
+| `/api/dashboard/people`, `/companies`, `/graph/paths` | Dashboard-specific graph summaries | Dashboard bridge |
+
+## First call
+
+<CodeGroup>
+
+```bash cURL
+curl https://api.getintrod.ai/api/graph/health
+```
+
+```bash Session pathfinding
+curl https://api.getintrod.ai/api/graph/paths \
+  -H "Content-Type: application/json" \
+  -b "your_session_cookie" \
+  -d '{
+    "sourceId": "current-user-id",
+    "targetId": "target-person-id",
+    "maxHops": 4,
+    "includeAlternatives": true,
+    "maxAlternatives": 3
+  }'
+```
+
+</CodeGroup>
+
+## Dashboard path response
+
+The highest-value dashboard graph endpoint today is `GET /api/dashboard/graph/paths`. It resolves a target by contact ID, LinkedIn identity, or name and returns ranked connector routes.
+
+### Useful query parameters
+
+| Parameter | Meaning |
+| --- | --- |
+| `email` | Introd user whose graph should be queried |
+| `targetContactId` | Direct graph person ID if already known |
+| `targetPersonIdentityId` | Stable person-identity key |
+| `targetLinkedInUrl` | LinkedIn URL for target resolution |
+| `targetName` | Fallback name lookup |
+| `targetCompany` | Extra disambiguation for name lookup |
+| `limit` | Result cap, default `5`, max `25` |
+
+### Response shape
+
+```json
+{
+  "userId": "usr_123",
+  "email": "founder@getintrod.ai",
+  "target": {
+    "id": "per_target",
+    "name": "Sarah Guo",
+    "title": "Founder",
+    "company": "Conviction",
+    "linkedinUrl": "https://www.linkedin.com/in/example/"
+  },
+  "paths": [
+    {
+      "id": "per_target:per_connector:0",
+      "pathLength": 2,
+      "source": "neo4j",
+      "reason": "Recent email and shared investor context",
+      "confidenceScore": 84,
+      "introSuccessScore": 88,
+      "relationshipStrength": "strong",
+      "relationshipStrengthLabel": "Strong",
+      "mutualCount": 3,
+      "evidenceChips": [
+        "6 emails exchanged",
+        "1 meetings",
+        "Shared investor network"
+      ],
+      "graphConfidence": 0.84,
+      "scoreBreakdown": {
+        "connectorTargetStrength": 0.83,
+        "userConnectorStrength": 0.91,
+        "emailEvidenceScore": 0.78,
+        "meetingEvidenceScore": 0.64
+      },
+      "connector": {
+        "id": "per_connector",
+        "name": "Owen",
+        "title": "Founder",
+        "company": "Introd",
+        "linkedinUrl": "https://www.linkedin.com/in/example/",
+        "strength": "strong",
+        "mutualCount": 3
+      }
+    }
+  ],
+  "pathCount": 1,
+  "source": "neo4j"
+}
+```
+
+## What Introd scores
+
+Graph ranking is more than shortest path:
+
+- edge strength
+- provenance confidence
+- freshness of recent interaction
+- email and meeting evidence
+- weak-link penalties
+- connector and target trust
+- intro outcome history
+- community, alumni, and investor context
+
+Those rules live primarily in `server/services/graph/pathIntelligence.ts`, `server/services/networkSearchScoring.ts`, and `server/services/graph/introMarketplaceService.ts`.
+
+## Fallback behavior
+
+If Neo4j is unavailable, some routes fall back to `server/services/pathFinder.ts`. The fallback exists to keep the product responsive, but it should still preserve user scoping and low-confidence labeling.
+
+## Production rules
+
+- Never fabricate a warm path for an unknown target.
+- Keep graph reads tenant-scoped and workspace-aware.
+- Return weak-link diagnostics when confidence is limited.
+- Prefer explainable routes over shorter but weaker ones.
+
+## Read next
+
+- [Trust-aware pathfinding](/graph/trust-aware-pathfinding)
+- [Edge provenance](/graph/edge-provenance)
+- [TrustRank and confidence](/relationship-intelligence/trustrank-and-confidence)

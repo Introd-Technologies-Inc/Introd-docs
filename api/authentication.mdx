@@ -1,0 +1,145 @@
+---
+title: "Authentication"
+description: "Sessions, OAuth providers, extension callback handling, and API auth expectations."
+---
+
+Introd has three real authentication patterns in production: browser sessions for user-facing product flows, bearer-backed extension sessions for Chrome runtime calls, and a shared-secret bridge for selected dashboard-to-API server calls.
+
+## Auth surface map
+
+| Surface | Routes | Credential | Used for |
+| --- | --- | --- | --- |
+| Browser session | `/api/people/*`, `/api/network/*`, `/api/graph/*`, `/api/calendar/*`, `/api/crm/*`, `/api/comms/*` | User session cookie | Dashboard search, graph, integrations, and intro workflows |
+| Dashboard bridge | `/api/dashboard/people`, `/api/dashboard/companies`, `/api/dashboard/graph/paths`, `/api/dashboard/intro-requests` | `x-introd-dashboard-secret` plus user email | Server-to-server calls from the dashboard runtime |
+| Extension session | `/api/extension/v1/*` | Browser session or extension bearer token | LinkedIn sync, enrichment, TrustRank, paths, and intro actions from the extension |
+| OAuth callbacks | Dashboard Google and Microsoft routes plus extension LinkedIn callback handling | Provider auth code and signed state | Linking Google Workspace, Microsoft 365, and LinkedIn |
+
+## Core domains
+
+- `https://app.getintrod.ai`
+- `https://api.getintrod.ai`
+- `https://docs.getintrod.ai`
+
+## Browser session flow
+
+The dashboard is the normal front door:
+
+1. The user signs in or signs up on `app.getintrod.ai`.
+2. The dashboard stores the authenticated browser session.
+3. Product requests call the API with `credentials: "include"`.
+4. Session-protected routes such as `/api/people/network-search` and `/api/graph/*` resolve the current user from the session.
+
+<CodeGroup>
+
+```javascript Browser fetch
+const response = await fetch("https://api.getintrod.ai/api/people/network-search", {
+  method: "POST",
+  credentials: "include",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    query: "seed investors in climate",
+    filter: "investors",
+    limit: 12
+  })
+});
+
+const data = await response.json();
+```
+
+```bash cURL
+curl https://api.getintrod.ai/api/graph/health
+```
+
+</CodeGroup>
+
+Use cookie-backed browser auth for anything initiated by the signed-in user in the dashboard.
+
+## Dashboard bridge auth
+
+Some Introd dashboard flows call the API from a controlled server boundary rather than directly from the browser. Those routes require the `x-introd-dashboard-secret` header and a user identity passed by email.
+
+### Bridge routes in active use
+
+- `GET /api/dashboard/people`
+- `GET /api/dashboard/companies`
+- `GET /api/dashboard/graph/paths`
+- `GET /api/dashboard/intro-requests`
+- `POST /api/dashboard/intro-requests`
+- `PATCH /api/dashboard/intro-requests/:id`
+
+<CodeGroup>
+
+```bash cURL
+curl -G "https://api.getintrod.ai/api/dashboard/graph/paths" \
+  -H "x-introd-dashboard-secret: $INTROD_DASHBOARD_API_SECRET" \
+  --data-urlencode "email=founder@getintrod.ai" \
+  --data-urlencode "targetName=Sarah Guo" \
+  --data-urlencode "targetCompany=Conviction"
+```
+
+```text Response contract
+The bridge resolves the Introd user from the supplied email address.
+If the secret is missing or wrong, the API returns 401.
+If the secret is not configured at all, the API returns 503.
+```
+
+</CodeGroup>
+
+Bridge auth is for trusted server code only. Do not expose the dashboard secret in browser JavaScript, the extension, or public examples.
+
+## Extension auth
+
+The extension accepts either:
+
+- the same logged-in browser session used by the dashboard, or
+- a bearer session token backed by `browserExtensionSessions`
+
+Important extension routes:
+
+- `GET /api/extension/v1/auth/session`
+- `POST /api/extension/v1/auth/oauth/callback`
+- `POST /api/extension/v1/auth/refresh`
+- `POST /api/extension/v1/auth/logout`
+
+Once authenticated, the extension can call routes such as:
+
+- `GET /api/extension/v1/linkedin/status`
+- `POST /api/extension/v1/linkedin/start`
+- `POST /api/extension/v1/linkedin/batch`
+- `GET /api/extension/v1/trustrank/:platform/:profileId`
+- `GET /api/extension/v1/paths/:platform/:targetId`
+- `POST /api/extension/v1/intros/request`
+
+## OAuth providers
+
+<Tabs>
+  <Tab title="LinkedIn">
+    The extension uses a dedicated LinkedIn redirect flow. The default supported redirect is `https://app.getintrod.ai/api/linkedin/callback`.
+
+    The extension explicitly rejects older callback values such as:
+
+    - `https://app.getintrod.ai/api/auth/linkedin/callback`
+    - `https://api.getintrod.ai/api/auth/linkedin/callback`
+  </Tab>
+  <Tab title="Google">
+    Google is used for dashboard sign-in and Google Workspace evidence. The dashboard bridge exposes status, OAuth start, OAuth callback, sync, and disconnect routes under `/api/dashboard/google/*`.
+  </Tab>
+  <Tab title="Microsoft">
+    Microsoft powers Outlook and calendar evidence. The dashboard bridge exposes status, OAuth start, OAuth callback, sync, and disconnect routes under `/api/dashboard/microsoft/*`.
+  </Tab>
+</Tabs>
+
+## Operational rules
+
+- Keep callback URIs explicit and environment-specific.
+- Do not mix `app.getintrod.ai` and `api.getintrod.ai` casually in callback handling.
+- Use the dashboard bridge secret only on server-side calls.
+- Keep extension bearer sessions short-lived and user-scoped.
+- Prefer session auth for normal dashboard product traffic.
+
+## Read next
+
+- [Graph APIs](/api/graph-apis)
+- [People APIs](/api/people-apis)
+- [Intro APIs](/api/intro-apis)
+- [OAuth permissions](/privacy-security/oauth-permissions)

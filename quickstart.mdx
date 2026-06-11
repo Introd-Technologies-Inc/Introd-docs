@@ -1,80 +1,129 @@
 ---
 title: "Quickstart"
-description: "Start building awesome documentation in minutes"
+description: "Run the Introd API, dashboard, extension, and docs locally."
 ---
 
-## Get started in three steps
+Use this guide when you want the current Introd stack running locally with as little guesswork as possible.
 
-Get your documentation site running locally and make your first customization.
+## Repositories in scope
 
-### Step 1: Set up your local environment
+<Columns cols={2}>
+  <Card title="API" icon="server">
+    `introd-api` powers auth, graph services, integrations, extension APIs, and intro workflows.
+  </Card>
+  <Card title="Dashboard" icon="layout-dashboard">
+    `introd-dashboard` is the main product UI for search, setup, and introductions.
+  </Card>
+  <Card title="Chrome extension" icon="chrome">
+    `introd-extension` handles LinkedIn sync and in-page relationship context.
+  </Card>
+  <Card title="Docs" icon="book-open">
+    `introd-docs` is the Mintlify portal that publishes to `docs.getintrod.ai`.
+  </Card>
+</Columns>
 
-<AccordionGroup>
-  <Accordion icon="copy" title="Clone your docs locally">
-    During the onboarding process, you created a GitHub repository with your docs content if you didn't already have one. You can find a link to this repository in your [dashboard](https://dashboard.mintlify.com).
-    
-    To clone the repository locally so that you can make and preview changes to your docs, follow the [Cloning a repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) guide in the GitHub docs.
-  </Accordion>
-  <Accordion icon="rectangle-terminal" title="Start the preview server">
-    1. Install the Mintlify CLI: `npm i -g mint`
-    2. Navigate to your docs directory and run: `mint dev`
-    3. Open `http://localhost:3000` to see your docs live!
-    
-    <Tip>Your preview updates automatically as you edit files.</Tip>
-  </Accordion>
-</AccordionGroup>
+## Boot order
 
-### Step 2: Deploy your changes
+Start the stack in this order so the product surfaces can find each other cleanly:
 
-<AccordionGroup>
-  <Accordion icon="github" title="Install our GitHub app">
-    Install the Mintlify GitHub app from your [dashboard](https://dashboard.mintlify.com/settings/organization/github-app).
-    
-    Our GitHub app automatically deploys your changes to your docs site, so you don't need to manage deployments yourself.
-</Accordion>
-<Accordion icon="palette" title="Update your site name and colors">
-    For a first change, let's update the name and colors of your docs site.
+1. API service
+2. dashboard
+3. extension build
+4. docs preview
+5. optional graph-intel service for TrustRank and pathfinding work
 
-    1. Open `docs.json` in your editor.
-    2. Change the `"name"` field to your project name.
-    3. Update the `"colors"` to match your brand.
-    4. Save and see your changes instantly at `http://localhost:3000`.
+## API service
 
-    <Tip>Try changing the primary color to see an immediate difference!</Tip>
-  </Accordion>
-</AccordionGroup>
+Install dependencies and run the backend from `introd-api`:
 
-### Step 3: Go live
+```bash
+npm ci
+cp .env.example .env
+npm run dev
+```
 
-<Accordion icon="rocket" title="Publish your docs">
-  1. Commit and push your changes.
-  2. Your docs will update and be live in moments!
-</Accordion>
+Use non-production credentials locally. Keep `DISABLE_VITE=true` for API-only runs so the backend does not attempt to serve the retired bundled frontend.
 
-## Next steps
+## Run each surface
 
-Now that you have your docs running, explore these key features:
+<Tabs>
+  <Tab title="API">
 
-<CardGroup cols={2}>
+  ```bash
+  cd introd-api
+  npm ci
+  cp .env.example .env
+  npm run dev
+  ```
 
-<Card title="Write Content" icon="pen-to-square" href="/essentials/markdown">
-  Learn MDX syntax and start writing your documentation.
-</Card>
+  The API defaults to `http://localhost:5000` and exposes the main health probes used by the dashboard and docs examples.
+  </Tab>
+  <Tab title="Dashboard">
 
-<Card title="Customize style" icon="palette" href="/essentials/settings">
-  Make your docs match your brand perfectly.
-</Card>
+  ```bash
+  cd introd-dashboard
+  npm ci
+  cp .env.example .env
+  npm run dev
+  ```
 
-<Card title="Add code examples" icon="square-code" href="/essentials/code">
-  Include syntax-highlighted code blocks.
-</Card>
+  Set `INTROD_API_URL` to the local API, typically `http://localhost:5000`.
+  </Tab>
+  <Tab title="Extension">
 
-<Card title="API documentation" icon="code" href="/api-reference/introduction">
-  Auto-generate API docs from OpenAPI specs.
-</Card>
+  ```bash
+  cd introd-extension
+  npm ci
+  npm run typecheck
+  npm run build
+  ```
 
-</CardGroup>
+  Load `dist/` as an unpacked Chrome extension and keep a signed-in LinkedIn tab open while testing sync.
+  </Tab>
+  <Tab title="Docs">
 
-<Note>
-  **Need help?** See our [full documentation](https://mintlify.com/docs) or join our [community](https://mintlify.com/community).
-</Note>
+  ```bash
+  cd introd-docs
+  npx mintlify dev
+  ```
+
+  Mintlify will serve the docs locally and validate navigation, MDX, and links as you iterate.
+  </Tab>
+</Tabs>
+
+## Health checks
+
+The main readiness endpoints are:
+
+```http
+GET /health/live
+GET /health/ready
+GET /health/status
+```
+
+## Graph intelligence service
+
+Run the Python TrustRank and pathfinding service separately:
+
+```bash
+cd graph-intel
+pip install -r requirements.txt
+uvicorn app.main:app --reload --port 8000
+```
+
+The graph service powers TrustRank, pathfinding, and network search. Keep all graph queries tenant-scoped and evidence-backed.
+
+## Validation pass
+
+Before shipping backend changes:
+
+```bash
+npm run check
+npm run graph-intel:test
+```
+
+Before shipping docs changes:
+
+```bash
+npx mintlify validate
+```

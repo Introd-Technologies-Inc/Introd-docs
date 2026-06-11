@@ -1,0 +1,41 @@
+---
+title: "Create Account"
+description: "Complete the Introd sign-up, sign-in, and onboarding flow."
+---
+
+The account flow should move you from authentication into setup quickly. A new user should never wonder what to do next after sign-in.
+
+![Create your Introd account](/images/product/sign-up.png)
+
+![Sign in to Introd](/images/product/sign-in.png)
+
+## Account flow
+
+1. Create an account or sign in.
+2. Finish the provider callback cleanly.
+3. Land in onboarding or setup, not an empty dashboard.
+4. Connect the sources that make Introd useful.
+5. Return to search only after network coverage exists.
+
+## Recommended sequence
+
+1. Create an account with the supported auth flow.
+2. Confirm you are signed in before closing the browser tab.
+3. Move directly into LinkedIn and integration setup so the graph has data to work with.
+4. Return to search only after at least one relationship source is connected.
+
+## What the product should show after sign-in
+
+- a valid user session
+- a clear next-step path into setup
+- clear status for LinkedIn, Google, and Microsoft connections
+- no fake warm path recommendations before evidence exists
+
+## Troubleshooting
+
+If account creation succeeds but the dashboard still looks anonymous:
+
+- refresh the browser and confirm the sign-in flow completed
+- sign out and sign back in if the session looks partial
+- make sure you are using the correct Introd environment and not an old tab
+- return to onboarding and continue setup from there

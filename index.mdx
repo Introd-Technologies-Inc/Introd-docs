@@ -1,97 +1,105 @@
 ---
-title: "Introduction"
-description: "Welcome to the new home for your documentation"
+title: "Introd Documentation"
+description: "The authoritative documentation portal for Introd's product, APIs, extension, and trust graph."
 ---
 
-## Setting up
+Introd is relationship intelligence infrastructure for warm introduction paths, trust graph workflows, relationship memory, and strategic network insight.
 
-Get your documentation site up and running in minutes.
+These docs are the source for `docs.getintrod.ai`. They intentionally use Introd `.ai` production domains and do not carry over FoundersNest content.
 
-<Card
-  title="Start here"
-  icon="rocket"
-  href="/quickstart"
-  horizontal
->
-  Follow our three step quickstart guide.
-</Card>
+![Warm intro path in Introd](/images/product/warm-intro-path.png)
 
-## Make it yours
-
-Design a docs site that looks great and empowers your users.
-
-<Columns cols={2}>
-  <Card
-    title="Edit locally"
-    icon="pen-to-square"
-    href="/development"
-  >
-    Edit your docs locally and preview them in real time.
+<Columns cols={3}>
+  <Card title="Getting started" icon="rocket" href="/getting-started">
+    Connect LinkedIn, add communication evidence, and move from zero coverage to a first credible warm path.
   </Card>
-  <Card
-    title="Customize your site"
-    icon="palette"
-    href="/essentials/settings"
-  >
-    Customize the design and colors of your site to match your brand.
+  <Card title="People" icon="users" href="/people">
+    Search targets, inspect ranked paths, and move from a promising route into a real introduction request.
   </Card>
-    <Card
-    title="Set up navigation"
-    icon="map"
-    href="/essentials/navigation"
-  >
-    Organize your docs to help users find what they need and succeed with your product.
+  <Card title="Companies" icon="building-2" href="/companies">
+    Map target accounts, compare connectors, and understand which companies are actually reachable now.
   </Card>
-  <Card
-    title="API documentation"
-    icon="terminal"
-    href="/api-reference/introduction"
-  >
-    Auto-generate API documentation from OpenAPI specifications.
+  <Card title="Relationship intelligence" icon="network" href="/relationship-intelligence">
+    Learn how TrustRank, connector ranking, evidence chips, and graph confidence shape each recommendation.
+  </Card>
+  <Card title="Chrome extension" icon="chrome" href="/chrome-extension">
+    Install the LinkedIn extension, understand its permissions, and troubleshoot sync truthfully.
+  </Card>
+  <Card title="Privacy & security" icon="shield-check" href="/privacy-security">
+    Understand data handling, OAuth scopes, deletion workflows, and provider-specific boundaries.
+  </Card>
+  <Card title="API & platform" icon="blocks" href="/api">
+    Review route families, authentication patterns, generated inventories, and local setup for engineering work.
   </Card>
 </Columns>
 
-## Create beautiful pages
+## What Introd helps you decide
 
-Everything you need to create world-class documentation.
-
-<Columns cols={2}>
-  <Card
-    title="Write with MDX"
-    icon="pen-fancy"
-    href="/essentials/markdown"
-  >
-    Use MDX to style your docs pages.
+<Columns cols={3}>
+  <Card title="Who matters" icon="target">
+    Focus attention on the people and companies that are worth a warm-intro workflow right now.
   </Card>
-  <Card
-    title="Code samples"
-    icon="code"
-    href="/essentials/code"
-  >
-    Add sample code to demonstrate how to use your product.
+  <Card title="Who can get you in" icon="handshake">
+    Rank connectors by trust, relationship freshness, and demonstrated ability to move a conversation.
   </Card>
-  <Card
-    title="Images"
-    icon="image"
-    href="/essentials/images"
-  >
-    Display images and other media.
-  </Card>
-  <Card
-    title="Reusable snippets"
-    icon="recycle"
-    href="/essentials/reusable-snippets"
-  >
-    Write once and reuse across your docs.
+  <Card title="Why the route is credible" icon="shield">
+    Show the evidence behind every path instead of hiding weak graph coverage behind confident UI.
   </Card>
 </Columns>
 
-## Need inspiration?
+## Core workflows
 
-<Card
-  title="See complete examples"
-  icon="stars"
-  href="https://mintlify.com/customers"
->
-  Browse our showcase of exceptional documentation sites.
-</Card>
+<Tabs>
+  <Tab title="Find a person">
+    1. Search from the dashboard or people surfaces.
+    2. Review the strongest connector and the evidence supporting that route.
+    3. Move directly into an intro request when the path is actually worth action.
+
+    Start with [People](/people) and [Introductions](/introductions).
+  </Tab>
+  <Tab title="Break into a company">
+    1. Open a target company and inspect connector density, reachable roles, and company signals.
+    2. Resolve the company-level opportunity down to specific people and connectors.
+    3. Turn the strongest route into an intro request instead of a generic account note.
+
+    Start with [Companies](/companies) and [Relationship intelligence](/relationship-intelligence).
+  </Tab>
+  <Tab title="Set up the graph">
+    1. Create an account and connect LinkedIn.
+    2. Add Google Workspace or Microsoft 365 evidence so ranking can go beyond social adjacency.
+    3. Verify graph coverage before trusting any connector recommendation.
+
+    Start with [Getting started](/getting-started) and the [Chrome extension](/chrome-extension).
+  </Tab>
+</Tabs>
+
+## Product-first docs, with engineering where it belongs
+
+Most of this portal is designed for users, operators, and teams trying to get value from Introd quickly. API references, architecture notes, and local setup live under the separate platform tab so they do not crowd the core product guides.
+
+## Product boundary
+
+Introd should behave like a relationship decision layer, not a generic CRM, scraping product, or LinkedIn utility.
+
+Every recommendation should explain:
+
+- why this person matters
+- why this connector is trustworthy
+- what evidence supports the route
+- what is weak or missing
+- what the user should do next
+
+## Core system map
+
+```mermaid
+flowchart LR
+  A[LinkedIn Extension] --> B[Introd API]
+  C[Dashboard] --> B
+  D[Google and Outlook Integrations] --> B
+  B --> E[Neo4j Trust Graph]
+  B --> F[Postgres Operational Store]
+  E --> G[Warm Path Engine]
+  F --> G
+  G --> C
+  G --> A
+```

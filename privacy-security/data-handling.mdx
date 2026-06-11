@@ -1,0 +1,25 @@
+---
+title: "Data Handling"
+description: "How Introd stores, scopes, and uses relationship data."
+---
+
+Relationship data in Introd should always be treated as sensitive.
+
+## Storage layers
+
+| Layer | Role |
+| --- | --- |
+| Postgres | Operational product data, sessions, workflow state |
+| Neo4j | Trust graph relationships, pathfinding, and evidence-backed reach |
+| Browser extension storage | Local auth state, sync caches, and diagnostics |
+
+## Handling rules
+
+- keep graph data tenant-scoped
+- encrypt provider tokens and sensitive credentials
+- avoid exposing service-role or secret values in docs or client bundles
+- treat LinkedIn sync and communication metadata as user-authorized PII
+
+## Operational notes
+
+The extension's "clear local data" flow only clears browser-local state. It does not delete server-side relationship records by itself. Disconnect and deletion flows should be documented separately and surfaced clearly to the user.

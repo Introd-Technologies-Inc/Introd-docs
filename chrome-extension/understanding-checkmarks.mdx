@@ -1,0 +1,49 @@
+---
+title: "Understanding Checkmarks"
+description: "Interpret extension status states, ready indicators, and graph-readiness signals."
+---
+
+Introd uses readiness states to tell the truth about what the extension has actually done. A checkmark should mean usable progress, not optimistic UI.
+
+## Status states
+
+The extension uses a few clear states so the UI tells the truth about progress:
+
+| State | Meaning |
+| --- | --- |
+| `disconnected` | No active extension client is visible to the API |
+| `ready` | Extension client is active and LinkedIn is available, but no sync is running |
+| `starting` | A sync run is being created |
+| `running` | Visible LinkedIn rows are being uploaded |
+| `paused` | Import stopped intentionally and can resume |
+| `completed` | A run finished successfully |
+| `failed` | The latest run ended with an error |
+| `auth_required` | The extension needs Introd auth or LinkedIn auth |
+| `awaiting_linkedin` | Introd is ready but LinkedIn context is missing |
+| `resetting` | LinkedIn data is being cleared and rebuilt |
+
+## How to read a good completed state
+
+A completed or checked state should imply:
+
+- the extension client is active
+- LinkedIn was detected successfully
+- imported records were accepted by the API
+- at least one sync run completed
+- the graph has enough first-degree coverage to begin path discovery
+
+## What a checkmark should not imply
+
+- total coverage of every LinkedIn connection
+- proof that a target route is strong
+- permission to skip connector review
+- background access to unsupported LinkedIn surfaces
+
+## Related signals
+
+- imported count
+- last synced timestamp
+- visible total detected on LinkedIn
+- new connections in the latest run
+- relationship changes detected in the latest run
+- retry and error counts

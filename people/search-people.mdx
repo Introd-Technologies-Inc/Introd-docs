@@ -1,0 +1,59 @@
+---
+title: "Search People"
+description: "Search the network for targets, then rank results by route quality instead of raw coverage."
+---
+
+People search should feel like the first real proof that Introd is not a contact database. The result list needs to answer two questions immediately: who matters, and how you can credibly get to them.
+
+## Start with a real target
+
+Use people search when you already know the kind of person you want to reach:
+
+- a specific person
+- a role at a target company
+- a founder, investor, operator, or hiring contact
+- someone who should be reachable through your extended network
+
+## What a result needs to show
+
+| Field | Why it matters |
+| --- | --- |
+| Name, role, company, location | Basic target identification |
+| Warm path status | Whether the route is verified, limited, or missing |
+| Confidence | Whether action is justified now |
+| Connector recommendation | Who should make the ask |
+| Why this ranked well | Why this result is above the next one |
+| Evidence source | Whether the route is grounded in real relationship data |
+
+## Quick filters
+
+The ranked network-search flow already supports:
+
+- `all`
+- `founders`
+- `investors`
+- `high-trust`
+
+Use those when the user has a real goal instead of a vague directory browse.
+
+## Good-result checklist
+
+- target identity is clear
+- strongest connector is visible
+- route confidence is honest
+- evidence freshness is present
+- next action is obvious: view path, inspect company, or create request
+
+## Failure modes to avoid
+
+- returning broad PDL matches ahead of reachable graph-backed targets
+- showing a strong visual affordance when path status is only `limited`
+- hiding why-ranked reasons
+- making the user guess whether the result is warm, cold, or just adjacent
+
+## Suggested workflow
+
+1. Start with a search query and optional quick filter.
+2. Scan the ranking reason and connector recommendation, not only name recognition.
+3. Open [View Paths](/people/view-paths) for the top target.
+4. Only then move into [Create Request](/introductions/create-request).
