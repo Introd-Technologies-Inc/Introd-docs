@@ -7,6 +7,17 @@ Sync Accounts is the first setup step most users should complete. It gives Intro
 
 ![Sync accounts in Introd](/images/product/sync-network.png)
 
+## Read connection state
+
+Each account row should show provider, status, last sync, evidence count, and the next action.
+
+| State | Meaning | User action |
+| --- | --- | --- |
+| Connected | The source is authorized and contributing data. | Review last sync and coverage. |
+| Partial | The source is connected but some scopes, calendars, or folders are excluded. | Open settings and fix the missing access. |
+| Not connected | Introd cannot read that source. | Connect the provider if it is relevant to your workflow. |
+| Warning | The provider needs attention. | Re-authenticate, update settings, or check permissions. |
+
 ## What to connect first
 
 1. LinkedIn for first-degree network coverage.
@@ -25,10 +36,11 @@ Sync Accounts is the first setup step most users should complete. It gives Intro
 
 ## Healthy sync state
 
-A healthy sync shows connected accounts, last synced timestamps, and enough evidence to improve search and path quality.
+A healthy sync shows connected accounts, recent timestamps, enough evidence to improve path quality, and no provider stuck in warning state. It should also make the network setup summary move in a way the user can understand.
 
 ## Continue with
 
 - [Import contacts](/setup-network/import-contacts)
+- [Invite team](/setup-network/invite-team)
 - [Chrome extension](/chrome-extension)
 - [First warm introduction](/getting-started/first-warm-introduction)

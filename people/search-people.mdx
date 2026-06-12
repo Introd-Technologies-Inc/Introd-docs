@@ -5,7 +5,7 @@ description: "Search the network for targets, then rank results by route quality
 
 People search should feel like the first real proof that Introd is not a contact database. The result list needs to answer two questions immediately: who matters, and how you can credibly get to them.
 
-![People and company search in Introd](/images/product/company-search.png)
+![People search in Introd](/images/product/people-search.png)
 
 ## Start with a real target
 
@@ -21,22 +21,24 @@ Use people search when you already know the kind of person you want to reach:
 | Field | Why it matters |
 | --- | --- |
 | Name, role, company, location | Basic target identification |
-| Warm path status | Whether the route is verified, limited, or missing |
+| Best connection | Who can credibly unlock the path |
 | Confidence | Whether action is justified now |
-| Connector recommendation | Who should make the ask |
-| Why this ranked well | Why this result is above the next one |
-| Evidence source | Whether the route is grounded in real relationship data |
+| Evidence context | Why this person ranked above similar results |
+| Action | Whether to request an intro, view path, save, or inspect |
 
-## Quick filters
+## Filter model
 
-The ranked network-search flow already supports:
+Use filters in this order:
 
-- `all`
-- `founders`
-- `investors`
-- `high-trust`
+1. **Connection degree** to control how close the route must be.
+2. **Relationship strength** to avoid weak paths.
+3. **Current company** when the target account matters.
+4. **Role** when searching by function.
+5. **Location** when geography affects access.
 
-Use those when the user has a real goal instead of a vague directory browse.
+Saved searches are useful when the same target motion repeats, such as hiring managers at FAANG companies or product leaders in San Francisco.
+
+![People search table in Introd](/images/product/people-search-table.png)
 
 ## Good-result checklist
 
@@ -52,6 +54,7 @@ Use those when the user has a real goal instead of a vague directory browse.
 - showing a strong visual affordance when path status is only `limited`
 - hiding why-ranked reasons
 - making the user guess whether the result is warm, cold, or just adjacent
+- showing confidence without explaining what evidence supports it
 
 ## Suggested workflow
 

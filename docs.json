@@ -12,7 +12,7 @@
     "dark": "#08976E"
   },
   "appearance": {
-    "default": "dark",
+    "default": "light",
     "strict": false
   },
   "background": {
@@ -129,8 +129,11 @@
             "icon": "layout-dashboard",
             "root": "workspace/home",
             "pages": [
-              "workspace/saved-lists",
-              "workspace/missions"
+              "workspace/collections",
+              "workspace/contacts",
+              "workspace/network",
+              "workspace/missions",
+              "workspace/settings"
             ],
             "public": true
           },
@@ -141,6 +144,7 @@
             "pages": [
               "setup-network/sync-accounts",
               "setup-network/import-contacts",
+              "setup-network/invite-team",
               "setup-network/alumni-networks",
               "setup-network/groups"
             ],
@@ -175,6 +179,7 @@
             "icon": "handshake",
             "root": "introductions/index",
             "pages": [
+              "introductions/opportunity-flow",
               "introductions/create-request",
               "introductions/track-requests",
               "introductions/intro-outcomes",
