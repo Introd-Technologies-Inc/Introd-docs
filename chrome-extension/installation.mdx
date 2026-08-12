@@ -1,34 +1,66 @@
 ---
-title: "Installation"
-description: "Install the Introd extension from a build artifact or an unpacked local build."
+title: "Install a Testing Build"
+description: "Install an Introd-provided extension build in Chrome and verify that it loaded correctly."
 ---
 
-## Local developer install
+> Last verified against current extension packaging and manifest source on August 11, 2026.
 
-From `introd-extension`:
+<Warning>
+  There is no public self-service installation link in these docs. Continue only if Introd supplied the build and its installation instructions directly to you.
+</Warning>
 
-```bash
-npm ci
-npm run typecheck
-npm run build
-```
+Before installing, read [LinkedIn Integration](/chrome-extension/linkedin-integration). The current build performs default-on contextual capture while you browse permitted LinkedIn pages, separately from the full-network import you start from the popup.
 
-Then in Chrome:
+## Prerequisites
 
-1. Open `chrome://extensions`.
-2. Enable Developer Mode.
-3. Click `Load unpacked`.
-4. Select the repo's `dist/` directory.
-5. Pin the Introd extension.
+- Desktop Chrome
+- The Introd-provided extension folder or archive
+- The version or checksum supplied with that build
+- Permission to use the testing build
 
-## First verification pass
+Do not install an Introd extension obtained from a third-party download, forwarded archive, advertisement, or search result.
 
-1. Sign in to Introd through the extension.
-2. Open `https://www.linkedin.com/` and confirm LinkedIn is signed in.
-3. Open the LinkedIn connections page.
-4. Start sync from the popup.
-5. Keep the LinkedIn tab open while progress updates.
+## Install the build
 
-## Release artifacts
+1. If Introd supplied an archive, extract it to a folder that you will not move during testing.
+2. Confirm that the extracted folder contains manifest.json.
+3. Open chrome://extensions.
+4. Enable **Developer mode**.
+5. Choose **Load unpacked**.
+6. Select the folder that contains manifest.json.
+7. Pin **Introd for LinkedIn** from Chrome's extension menu.
 
-The repo also keeps packaged release zips in `introd-extension/releases/` for launch candidates and submission preparation.
+## Verify the installation
+
+1. Open the Introd extension popup.
+2. Open Settings using the gear icon.
+3. Confirm that the footer identifies the extension as Introd and shows the expected version.
+4. Return to the popup.
+
+**Expected result:** the popup opens Extension Setup or the signed-in Introd home view. It does not replace the current browser tab.
+
+## First connection
+
+1. Open LinkedIn in the same Chrome profile and sign in.
+2. Open the extension.
+3. Choose **Continue with LinkedIn**.
+4. Complete the opened sign-in flow.
+5. Reopen the popup and choose **I finished signing in** if that control is visible.
+
+**Expected result:** Extension Setup marks **Introd account connected** and **Logged into LinkedIn** when both sessions are available.
+
+## Installation failures
+
+| What you see | Recovery |
+| --- | --- |
+| Manifest file is missing or unreadable | Select the extracted folder that directly contains manifest.json |
+| The extension appears with an unexpected name or version | Remove it and contact Introd before signing in |
+| The extension disappears after moving the folder | Return the folder to its original path or reload the supplied build |
+| Introd is not detected in Network Setup | Reload the extension from chrome://extensions and refresh Introd |
+| The popup reports Connection error | Choose **Retry**; if it continues, reload the extension |
+
+## Updates
+
+Testing builds do not update through a public distribution channel. Use only the replacement build and version instructions supplied by Introd.
+
+Continue with [LinkedIn Integration](/chrome-extension/linkedin-integration).

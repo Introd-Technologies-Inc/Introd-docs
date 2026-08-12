@@ -1,25 +1,54 @@
 ---
 title: "Data Handling"
-description: "How Introd stores, scopes, and uses relationship data."
+description: "Understand the customer data categories used by the current Introd product and where each control applies."
 ---
 
-Relationship data in Introd should always be treated as sensitive.
+Introd uses authorized account, network, and relationship data to help you review warm paths and prepare introduction drafts.
 
-## Storage layers
+> Last verified against current product and extension source on August 11, 2026.
 
-| Layer | Role |
-| --- | --- |
-| Postgres | Operational product data, sessions, workflow state |
-| Neo4j | Trust graph relationships, pathfinding, and evidence-backed reach |
-| Browser extension storage | Local auth state, sync caches, and diagnostics |
+## Data categories
 
-## Handling rules
+| Category | Examples in the current product | Customer-facing purpose |
+| --- | --- | --- |
+| Account and session data | Name, email address, authentication method, and session state | Create an account and maintain a signed-in Introd session |
+| LinkedIn relationship data | Visible identity and relationship fields from permitted LinkedIn pages, connection-import records, sync counts, and path context | Build searchable network coverage and display path context |
+| Google Workspace metadata | Gmail header metadata, Calendar event metadata, and Contacts data | Add authorized relationship evidence |
+| Microsoft 365 metadata | Basic Outlook message metadata and Calendar metadata | Add authorized relationship evidence |
+| Introduction workflow data | Targets, connectors, subjects, draft messages, and workflow status | Save and organize introduction drafts |
+| Extension-local data | Extension auth state, settings, sync checkpoints, cached data, and diagnostics | Operate the installed extension and show sync status |
 
-- keep graph data tenant-scoped
-- encrypt provider tokens and sensitive credentials
-- avoid exposing service-role or secret values in docs or client bundles
-- treat LinkedIn sync and communication metadata as user-authorized PII
+The current Google and Microsoft metadata syncs do not import email bodies, meeting contents, or private notes.
 
-## Operational notes
+## Where controls apply
 
-The extension's "clear local data" flow only clears browser-local state. It does not delete server-side relationship records by itself. Disconnect and deletion flows should be documented separately and surfaced clearly to the user.
+### Introd account
+
+[Account Settings](https://app.getintrod.ai/settings) contains the current account deletion control. Starting that action signs you out and begins deletion of dashboard-owned product records. For a complete privacy request or confirmation, email [privacy@getintrod.ai](mailto:privacy@getintrod.ai).
+
+### Provider connections
+
+[Integrations](https://app.getintrod.ai/settings/integrations) controls Google Workspace and Microsoft 365 connections. Disconnecting either provider clears Introd's stored connection tokens and stops future sync jobs. Previously imported Introd records remain.
+
+Provider-side consent is managed separately in the provider account.
+
+### Chrome extension
+
+**Pause Sync** stops the full-network connection import and automatic background resume. It does not stop contextual identity capture on other LinkedIn pages.
+
+Turning off either capture setting makes the current background handler skip new profile-view signals and enrichment, but it does not stop current-page diagnostics, full-network recovery, upload of already-queued signals while authenticated, or LinkedIn host access. Disabling Introd in `chrome://extensions` stops its code from running. **Clear local extension data** removes auth state, caches, signals, and diagnostics from that Chrome installation, but defaults can turn capture back on after reinitialization. It does not remove server-side relationship records, disconnect Google or Microsoft, or delete the Introd account.
+
+## Draft data boundary
+
+**Save draft** stores the introduction workflow record in Introd. It does not send email, send a LinkedIn message, schedule delivery, or contact the target.
+
+Review a draft before sharing it outside Introd. Remove confidential information and any context the connector is not permitted to forward.
+
+## If data looks wrong
+
+1. Pause the full-network LinkedIn sync. Disable the extension in Chrome too if you need contextual page processing to stop.
+2. Record the affected person, provider, and approximate sync time without copying credentials.
+3. Email [help@getintrod.ai](mailto:help@getintrod.ai).
+4. For access, deletion, or other privacy rights, email [privacy@getintrod.ai](mailto:privacy@getintrod.ai).
+
+See [Integration Data Usage](/privacy-security/integration-data-usage) for provider-specific boundaries and [Deletion and Privacy Requests](/privacy-security/gdpr-and-deletion) for removal options.

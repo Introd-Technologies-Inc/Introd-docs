@@ -1,0 +1,54 @@
+name: Live docs trust
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: "17 13 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: docs-live-trust
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    name: Verify production boundaries
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      DOCS_MAX_FINDINGS: "80"
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Wait for the production deployment and regenerated surfaces
+        if: github.event_name == 'push'
+        shell: bash
+        run: |
+          for attempt in $(seq 1 12); do
+            if node scripts/check-live-docs.mjs; then
+              exit 0
+            fi
+            if [ "$attempt" -lt 12 ]; then
+              echo "Production has not converged yet; retrying in 60 seconds ($attempt/12)."
+              sleep 60
+            fi
+          done
+          exit 1
+
+      - name: Check live pages and machine surfaces
+        if: github.event_name != 'push'
+        run: node scripts/check-live-docs.mjs

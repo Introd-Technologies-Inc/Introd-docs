@@ -1,55 +1,73 @@
 ---
 title: "Chrome Extension"
-description: "Install and operate the Introd for LinkedIn extension."
+description: "Understand the current extension's LinkedIn capture, connection indexing, background behavior, and controls."
 ---
 
-The Introd Chrome extension is the fastest way to turn a LinkedIn session into usable first-degree graph coverage. It is intentionally scoped around reproducible behavior:
+The Introd extension has two separate LinkedIn data behaviors:
 
-![Introd Chrome extension](/images/product/chrome-extension.png)
+- connect an Introd account
+- detect the LinkedIn session in the current Chrome profile
+- capture visible identity and relationship fields while you browse permitted LinkedIn pages when the default capture settings are on
+- start, pause, resume, and monitor a full-network connection import
+- automatically resume an incomplete full-network import in an inactive LinkedIn connections tab
+- show available warm-path context beside supported LinkedIn identities
+- manage extension settings and clear browser-local data
 
-- LinkedIn sign-in detection
-- first-degree connection sync
-- warm intro context on LinkedIn pages
-- truthful progress, pause, retry, and pacing states
+> Last verified against extension version 1.8.4 source on August 11, 2026.
+
+<Warning>
+  These docs do not provide a public installation link. Use only a testing build and installation instructions supplied directly by Introd.
+</Warning>
 
 <Columns cols={2}>
-  <Card title="Install the extension" icon="download" href="/chrome-extension/installation">
-    Load the unpacked build locally or follow the Chrome Web Store path once distribution is live.
+  <Card title="Install a testing build" icon="download" href="/chrome-extension/installation">
+    Load the Introd-provided build and verify its identity and version.
   </Card>
   <Card title="Review permissions" icon="shield" href="/chrome-extension/permissions">
-    Understand exactly why the extension needs LinkedIn and Introd host access before you approve it.
+    See every browser permission and host listed in the current manifest.
   </Card>
-  <Card title="Use it on LinkedIn" icon="linkedin" href="/chrome-extension/linkedin-integration">
-    See how sync, checkmarks, and on-page relationship context appear during a normal LinkedIn workflow.
+  <Card title="Sync LinkedIn" icon="linkedin" href="/chrome-extension/linkedin-integration">
+    Review browsing capture, start a full-network import, and understand automatic resume.
   </Card>
-  <Card title="Fix sync issues" icon="wrench" href="/chrome-extension/troubleshooting">
-    Work through sign-in, permissions, tab state, and sync pacing issues without guesswork.
+  <Card title="Troubleshoot" icon="wrench" href="/chrome-extension/troubleshooting">
+    Recover from auth, LinkedIn session, extension detection, and sync failures.
   </Card>
 </Columns>
 
-## What the extension does
+## Prerequisites
 
-The extension:
+- A desktop version of Chrome
+- An Introd account
+- A LinkedIn account signed in in the same Chrome profile
+- An Introd-provided testing build
 
-- detects whether the user is signed in to LinkedIn in the current browser
-- imports visible rows from the LinkedIn connections page
-- reports sync state back to Introd
-- loads relationship context when the user opens a LinkedIn profile page
+## What the extension does not establish
 
-It does **not** claim hidden background scraping or unsupported discovery behavior.
+- It does not guarantee complete coverage of your LinkedIn connections.
+- It does not create a warm path when the Introd graph has no supporting evidence.
+- It does not send an introduction request, email, or LinkedIn message.
+- It does not ask you to enter your LinkedIn password into the extension.
+- It does not have permission to read arbitrary websites.
 
-## Core pages
+## Controls are not interchangeable
 
-- [Installation](/chrome-extension/installation)
-- [Permissions](/chrome-extension/permissions)
-- [LinkedIn integration](/chrome-extension/linkedin-integration)
-- [Understanding checkmarks](/chrome-extension/understanding-checkmarks)
-- [Troubleshooting](/chrome-extension/troubleshooting)
+- **Pause Sync** stops the active full-network import and its automatic background resume. It does not stop contextual identity capture on other LinkedIn pages.
+- Turning off **Enable extension** or **Auto-capture profile context** makes the current background capture handler skip new profile-view signals and enrichment. It does not stop current-page diagnostics, unload the LinkedIn content script, revoke host access, or stop full-network recovery.
+- Disabling Introd from `chrome://extensions` is the reliable way to stop its code from running on LinkedIn pages. Clearing local data does not delete records already stored by Introd.
 
-## Where it works
+Read [LinkedIn Integration](/chrome-extension/linkedin-integration) and [Permissions](/chrome-extension/permissions) before installing the testing build.
 
-The extension is designed for normal use on LinkedIn alongside the Introd app. It should feel like a focused assistant for network sync and profile-level relationship context, not a separate product to learn from scratch.
+## Basic workflow
 
-## Product boundary
+1. [Install the provided build](/chrome-extension/installation).
+2. Open the extension and choose **Continue with LinkedIn**.
+3. Finish sign-in and reopen the popup.
+4. Keep LinkedIn signed in in the same Chrome profile.
+5. Choose **Start Sync**.
+6. Expect an incomplete run to continue or resume in an inactive LinkedIn connections tab until it is paused or completed.
+7. Verify the imported count and current status.
+8. Open a supported LinkedIn page to inspect available context.
 
-The extension is part of Introd's relationship intelligence system, but its shipped behavior should stay narrow, testable, and Chrome Web Store safe.
+## Support
+
+For extension help, email [help@getintrod.ai](mailto:help@getintrod.ai). Include the extension version, Chrome version, exact visible status, and the time of the failure. Do not send passwords, OAuth codes, access tokens, or the extension package.

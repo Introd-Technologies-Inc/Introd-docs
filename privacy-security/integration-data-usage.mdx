@@ -1,33 +1,83 @@
 ---
 title: "Integration Data Usage"
-description: "What LinkedIn, Google, and Microsoft data Introd uses and why."
+description: "See which LinkedIn, Google Workspace, and Microsoft 365 data the current Introd syncs use."
 ---
+
+Connect only the sources you are authorized to use. Each source adds a different kind of relationship context.
+
+> Last verified against current extension, dashboard, and API source on August 11, 2026.
 
 ## LinkedIn
 
-LinkedIn is used to:
+The Introd-provided Chrome extension currently supports:
 
-- detect whether the user is signed in locally
-- import visible first-degree connections from the connections page
-- read profile context when the user actively opens a profile page
+- detecting whether LinkedIn is signed in in the same Chrome profile
+- importing visible first-degree connection identities and sync status
+- continuously deriving visible identity and relationship fields while permitted LinkedIn pages change, when the default capture settings are on
+- processing identity containers on profiles, feeds, comments, messaging surfaces, hover cards, organization people pages, events, discovery results, and lists
+- automatically resuming an incomplete full-network import in an inactive connections tab
+- showing available warm-path context beside supported identities
 
-Introd should not claim hidden scraping or full background coverage beyond those visible, user-opened flows.
+The extension does not ask for your LinkedIn password or send connection requests, messages, or introductions.
 
-## Google
+LinkedIn visibility, page rendering, session state, and rate limits can make a sync partial. Review the popup status before treating the imported count as complete.
 
-Google Workspace data is used to add:
+The documented capture data includes profile identity, URL, headline or role, current and past work, education, company, location, image, connection degree, and mutual-connection context when those fields are visible. Profile-view signals can be stored locally and uploaded on a schedule; authenticated captures can be submitted for enrichment. The payload does not define a dedicated message-body field. Current relationship parsing can nevertheless inspect surrounding rendered text, including on LinkedIn messaging surfaces, and Introd has not completed a runtime attestation proving message-page text cannot leave the browser.
 
-- Gmail communication metadata
-- Google Calendar meeting metadata
-- Google Contacts relationship context
+**Pause Sync** stops full-network import and its automatic background resume; it does not stop contextual browsing capture or current-page diagnostics. The settings toggles skip new profile-view signals and enrichment but do not stop diagnostics, full-network recovery, or upload of signals already queued while authenticated. Disabling the extension in Chrome is the reliable way to stop its code from running on LinkedIn pages. See [LinkedIn Integration](/chrome-extension/linkedin-integration) for the complete control matrix.
 
-The value of Google in Introd is not inbox search for its own sake. It is relationship evidence that strengthens or weakens path confidence.
+## Google Workspace
 
-## Microsoft
+The current Google sync requests access to:
 
-Microsoft 365 data is used to add:
+- Gmail metadata, including available From, To, Cc, Bcc, Date, and Subject headers
+- read-only Calendar event metadata
+- read-only Contacts data
+- basic account identity needed to connect the correct provider account
 
-- Outlook email metadata
-- Outlook calendar meeting metadata
+The current sync does not import Gmail message bodies, meeting contents, or private notes.
 
-As with Google, the key product value is relationship evidence rather than generic productivity sync.
+## Microsoft 365
+
+The current Microsoft sync requests access to:
+
+- basic Outlook mail metadata exposed through Mail.ReadBasic
+- read-only Outlook Calendar metadata
+- basic account identity needed to connect the correct provider account
+
+The current sync is configured for metadata-only mail processing. It does not import Outlook message bodies, meeting contents, or private notes.
+
+## How Introd uses this data
+
+Authorized provider data can contribute to:
+
+- searchable people and company records
+- available connector and path context
+- relationship evidence counts and sync status
+- TrustRank, confidence, or relationship-strength signals shown by the product
+
+Those signals rank available evidence. They are not guarantees that a relationship is current, that a connector will agree, or that an introduction will succeed.
+
+## Disconnect behavior
+
+For Google Workspace and Microsoft 365:
+
+1. Open [Integrations](https://app.getintrod.ai/settings/integrations).
+2. Open the connected provider card.
+3. Choose **Disconnect** and confirm.
+
+**Expected result:** Introd clears its stored connection tokens and stops future sync jobs. Previously imported Introd records remain.
+
+Revoking provider-side consent and deleting imported data are separate actions. See [Deletion and Privacy Requests](/privacy-security/gdpr-and-deletion).
+
+## Sync failures
+
+| What you see | Meaning or recovery |
+| --- | --- |
+| Partial | Some provider surfaces are connected or some work remains; open the provider details |
+| Reauthorization needed | Complete provider consent again from Integrations |
+| Zero new evidence | Confirm the connected account contains eligible metadata, then retry once |
+| LinkedIn login required | Sign in to LinkedIn in the same Chrome profile and resume from the extension |
+| LinkedIn sync needs attention | Open the popup and read the issue; automatic resume can retry an incomplete run unless you pause it |
+
+For the exact provider scopes, see [OAuth Permissions](/privacy-security/oauth-permissions).

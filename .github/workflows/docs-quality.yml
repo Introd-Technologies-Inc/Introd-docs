@@ -1,0 +1,48 @@
+name: Docs quality
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: docs-quality-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Validate public docs
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install pinned tooling
+        run: npm ci --ignore-scripts --no-audit --no-fund
+
+      - name: Report tooling advisories and block critical findings
+        run: npm audit --audit-level=critical
+
+      - name: Check public boundaries, metadata, and links
+        run: npm run check:public
+
+      - name: Validate Mintlify configuration and content
+        run: npx mintlify validate --telemetry=false
+
+      - name: Check accessibility
+        run: npm run check:a11y

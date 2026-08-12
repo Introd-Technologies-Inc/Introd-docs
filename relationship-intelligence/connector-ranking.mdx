@@ -1,34 +1,49 @@
 ---
-title: "Connector Ranking"
-description: "How Introd should rank connectors for warm introductions."
+title: "Compare Warm Intro Paths"
+description: "How to compare the connector routes Introd shows for a target."
 ---
 
-Connector ranking should optimize for introduction quality, not just graph distance.
+Open a target's **Warm Intro Path** to compare the routes currently supported by your synced network evidence.
 
-## Ranking inputs
+## What the view shows
 
-The most useful signals are:
-
-- response rate
-- intro success rate
-- meeting conversion rate
-- reliability score
-- freshness and decay
-- relationship memory and evidence signals
-- context fit for the requested goal
-
-## Practical interpretation
-
-| Signal | Why it matters |
+| Area | How to use it |
 | --- | --- |
-| Reliability | A connector who often follows through is more valuable than one with broad but weak reach |
-| Freshness | Old relationships should rank lower unless there is new evidence |
-| Outcome history | Prior intro outcomes are stronger than inferred similarity |
-| Context fit | The best connector can vary by investor ask, customer intro, hiring, or partnership goal |
+| Path rail | Confirm the selected connector chain and target. |
+| Path Strength | Use the `/100` value to compare routes shown for this target. |
+| Why this path works | Read the reasons and evidence attached to the selected route. |
+| Relationship context | Review the connector, target, mutual context, and suggested next step. |
+| Other paths | Select another available route and compare its evidence. |
 
-## What users should see
+Introd orders available routes by the score shown in the path view. A higher position means that Introd ranked that route ahead of the other routes it returned for the target.
 
-- who ranked first
-- why they ranked first
-- what would make another connector stronger
-- whether the recommended connector is overused or cooling down
+<Note>
+  Use the ranking to compare options in the current view. Do not treat it as an objective grade for a person or as a universal score that is comparable across every target.
+</Note>
+
+## A practical review
+
+1. Check the connector identity and role.
+2. Read every visible reason under **Why this path works**.
+3. Look for specific context you recognize, such as a named mutual connection or recorded path evidence.
+4. Compare the alternatives instead of acting on rank alone.
+5. Ask the connector whether they are comfortable making the introduction.
+
+The **Estimated success** percentage is a directional estimate shown by the product. It is not a calibrated promise that an introduction, reply, meeting, or other outcome will happen.
+
+## Empty and incomplete results
+
+- **No alternate verified paths are available yet** means Introd did not return another supported route for this target.
+- **No named mutual connectors available yet** means the current result has no named mutual connector to display.
+- **Sync more relationship evidence** means the product needs more applicable data before it can explain or compare a route.
+- A blank or unavailable score means there is no usable score to interpret yet.
+
+Missing evidence is an unknown, not a negative judgment about the connector or target.
+
+## Next step
+
+Selecting **Request intro** opens the introduction request flow for the chosen connector. Review the message and recipient context yourself; the ranking does not provide permission to contact anyone.
+
+<Card title="Find a target" icon="route" href="https://app.getintrod.ai/search/people">
+  Select a person, then choose **View Paths** to review the routes available from your synced network.
+</Card>

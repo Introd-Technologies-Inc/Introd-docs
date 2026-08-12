@@ -1,41 +1,59 @@
 ---
-title: "Create Account"
-description: "Complete the Introd sign-up, sign-in, and onboarding flow."
+title: "Create an Account"
+description: "Create an Introd account with a supported authentication method and enter Network Setup."
 ---
 
-The account flow should move you from authentication into setup quickly. A new user should never wonder what to do next after sign-in.
+Open [Create your Introd account](https://app.getintrod.ai/sign-up).
 
-![Create your Introd account](/images/product/sign-up.png)
+> Last verified against current authentication source on August 11, 2026.
 
-![Sign in to Introd](/images/product/sign-in.png)
+## Supported methods
 
-## Account flow
+| Method | Current behavior |
+| --- | --- |
+| Email and password | Creates an account after the form passes validation |
+| Google | Opens Google authentication and returns to Introd |
+| LinkedIn | Opens LinkedIn authentication and returns to Introd |
+| Microsoft | Not available for account creation or sign-in on the auth page |
 
-1. Create an account or sign in.
-2. Finish the provider callback cleanly.
-3. Land in onboarding or setup, not an empty dashboard.
-4. Connect the sources that make Introd useful.
-5. Return to search only after network coverage exists.
+Microsoft 365 can be connected later from [Integrations](https://app.getintrod.ai/settings/integrations).
 
-## Recommended sequence
+## Create an account with email
 
-1. Create an account with the supported auth flow.
-2. Confirm you are signed in before closing the browser tab.
-3. Move directly into LinkedIn and integration setup so the graph has data to work with.
-4. Return to search only after at least one relationship source is connected.
+1. Enter your first and last name.
+2. Enter a valid work email.
+3. Create a password with at least eight characters and at least one number.
+4. Enter the same password in **Confirm password**.
+5. Review and accept the [Terms of Service](https://getintrod.ai/legal/terms) and [Privacy Policy](https://getintrod.ai/legal/privacy).
+6. Choose **Create account**.
 
-## What the product should show after sign-in
+**Expected result:** Introd starts an authenticated browser session and opens [Network Setup](https://app.getintrod.ai/setup-network).
 
-- a valid user session
-- a clear next-step path into setup
-- clear status for LinkedIn, Google, and Microsoft connections
-- no fake warm path recommendations before evidence exists
+## Create an account with Google or LinkedIn
 
-## Troubleshooting
+1. Choose the Google or LinkedIn button.
+2. Complete the provider's consent and authentication page.
+3. Return to Introd.
 
-If account creation succeeds but the dashboard still looks anonymous:
+**Expected result:** the provider callback creates or restores the Introd session and continues to Network Setup.
 
-- refresh the browser and confirm the sign-in flow completed
-- sign out and sign back in if the session looks partial
-- make sure you are using the correct Introd environment and not an old tab
-- return to onboarding and continue setup from there
+## Failure states
+
+| Message or symptom | Recovery |
+| --- | --- |
+| Please enter your first and last name | Complete both name fields |
+| Please enter a valid email address | Correct the email format |
+| Password must be at least 8 characters | Use a longer password |
+| Password must include at least one number | Add a numeric character |
+| Passwords do not match | Re-enter the confirmation |
+| Account created, but the authenticated session could not be started | Open [Sign in](https://app.getintrod.ai/sign-in) and use the account you created |
+| Provider callback returns an error | Return to Sign in and retry the same provider |
+| Microsoft sign-up is not available | Use email, Google, or LinkedIn, then connect Microsoft 365 after sign-in |
+
+## Security notes
+
+- Enter your provider credentials only on the provider's own authentication page.
+- Introd's extension does not ask for your LinkedIn password.
+- Never send a password, OAuth code, access token, or extension build to support.
+
+For account help, email [help@getintrod.ai](mailto:help@getintrod.ai).

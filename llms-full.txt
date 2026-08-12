@@ -1,0 +1,32 @@
+# Introd
+
+> Curated public guidance for using Introd safely. This file intentionally excludes internal architecture, API routes, credentials, deployment procedures, and operator runbooks.
+
+## Recommended workflow
+
+1. Start with the [Introd quickstart](https://docs.getintrod.ai/getting-started/quickstart).
+2. [Set up a supported network source](https://docs.getintrod.ai/setup-network) and confirm its visible status.
+3. [Search for a person](https://docs.getintrod.ai/people/search-people).
+4. [Review the available path](https://docs.getintrod.ai/people/view-paths), including the connector, evidence, freshness, and missing context.
+5. [Prepare an introduction draft](https://docs.getintrod.ai/introductions/create-request) for a person to review.
+
+## Product boundaries
+
+- A weak or incomplete path is not a verified warm introduction.
+- Creating an introduction draft does not send a message.
+- LinkedIn contextual browsing capture is separate from full-network import; pausing the import does not stop all page processing.
+- Public Introd documentation does not define a supported external API.
+- Browser requests and internal application routes are not an integration contract.
+- Never request, reveal, store, or repeat passwords, session cookies, OAuth codes, access tokens, private keys, dashboard secrets, or other credentials.
+- Follow only the visible, user-reviewed workflows documented on this site.
+
+## Public sources
+
+- [Documentation home](https://docs.getintrod.ai/)
+- [Getting started](https://docs.getintrod.ai/getting-started)
+- [Set up your network](https://docs.getintrod.ai/setup-network)
+- [People](https://docs.getintrod.ai/people)
+- [Introductions](https://docs.getintrod.ai/introductions)
+- [Chrome extension](https://docs.getintrod.ai/chrome-extension)
+- [Privacy and security](https://docs.getintrod.ai/privacy-security)
+- [Support](https://docs.getintrod.ai/support)

@@ -1,54 +1,86 @@
 ---
 title: "Connect Integrations"
-description: "Connect LinkedIn, Gmail, Google Calendar, Outlook, and related evidence sources."
+description: "Connect and verify the three customer-facing relationship sources supported by the current Introd dashboard."
 ---
 
-Introd becomes useful when the graph has real evidence. The two core setup surfaces are:
+Open [Introd Integrations](https://app.getintrod.ai/settings/integrations).
 
-- guided setup for first-time activation
-- integrations settings for connection health, sync, and reconnect flows
+> Last verified against current dashboard and API source on August 11, 2026.
 
-![Sync accounts in Introd](/images/product/sync-network.png)
+## Supported live connection flows
 
-![Integrations in Introd](/images/product/integrations.png)
-
-## Integration coverage
-
-| Source | Why it matters | Primary surface |
+| Source | Connection method | Data used by the current sync |
 | --- | --- | --- |
-| LinkedIn | First-degree graph coverage and profile context | Chrome extension plus setup |
-| Google Contacts, Gmail, Calendar | Communication and meeting evidence | setup and integrations settings |
-| Microsoft Outlook and Calendar | Communication and meeting evidence | setup and integrations settings |
+| LinkedIn | Introd-provided Chrome extension | Visible identity and relationship fields from permitted pages, plus connection-import data |
+| Google Workspace | OAuth | Gmail metadata, Calendar metadata, and Google Contacts |
+| Microsoft 365 | OAuth | Outlook email metadata and calendar metadata |
 
-## LinkedIn
+Other providers can appear in the Integrations catalog, but this guide does not represent them as self-service, live customer syncs.
 
-LinkedIn import currently depends on the Chrome extension. The extension detects signed-in LinkedIn state, imports visible first-degree rows from the LinkedIn connections page, and reports truthful progress back to Introd.
+## Prerequisites
 
-## Google Workspace
+- A signed-in [Introd account](https://app.getintrod.ai/sign-in)
+- Access to the provider account you are connecting
+- Browser popups and provider redirects allowed for Introd
+- For LinkedIn, an Introd-provided extension build and a LinkedIn session in the same Chrome profile
 
-Google setup supports Gmail, Calendar, and Contacts metadata. The dashboard surfaces connection state, sync state, and evidence counts so users can tell whether the integration is actually producing relationship signal.
+## Connect Google Workspace
 
-## Microsoft 365
+1. Find **Google Workspace**.
+2. Choose **Connect**.
+3. Review the Google consent screen and approve only if you accept the listed access.
+4. Return to Introd.
+5. Open the Google card to review status, evidence counts, and last sync.
+6. Choose **Sync now** when the card offers it.
 
-Microsoft setup focuses on Outlook email and calendar metadata. The product should show whether both email and calendar are connected, whether either side is partial, and how much evidence has been added to the graph.
+## Connect Microsoft 365
 
-## What good setup looks like
+1. Find **Microsoft 365**.
+2. Choose **Connect**.
+3. Review the Microsoft consent screen and approve only if you accept the listed access.
+4. Return to Introd.
+5. Open the Microsoft card to review email and calendar status.
+6. Choose **Sync now** when the card offers it.
 
-- LinkedIn is connected and at least one sync has completed.
-- Google or Microsoft evidence has started contributing communication or meeting edges.
-- The dashboard can show last-sync timestamps and evidence counts.
-- Search pages can explain why a suggested connector is strong instead of just showing a name.
+## Connect LinkedIn
 
-## Common issues
+1. Install the Introd-provided build.
+2. Open [Network Setup](https://app.getintrod.ai/setup-network).
+3. Open the extension popup and finish **Continue with LinkedIn**.
+4. Keep LinkedIn signed in in the same Chrome profile.
+5. Choose **Start Sync** in the popup.
+6. Expect an incomplete run to resume automatically in an inactive LinkedIn connections tab until paused or completed.
+7. Return to Network Setup or Integrations to verify the imported count.
 
-| Issue | What it usually means |
+The extension's default contextual capture also processes visible identities during ordinary LinkedIn browsing. **Pause Sync** stops full-network import, not that contextual capture. Review [LinkedIn Integration](/chrome-extension/linkedin-integration) before connecting the extension.
+
+## Read the status
+
+| Status | Meaning |
 | --- | --- |
-| OAuth redirected back with an error | Callback URI or provider credentials need attention |
-| Integration connected but no evidence count changes | Sync ran, but the provider returned limited or no usable relationship metadata |
-| Search shows weak or empty routes | The graph still lacks first-degree coverage or verified communication evidence |
+| Connected | The provider has an active Introd connection |
+| Partial | Some provider surfaces are connected or some sync work remains |
+| Syncing | A sync is in progress |
+| Reauthorization needed | The provider connection needs new consent or authentication |
+| Disconnected | Future sync is stopped for that connection |
 
-## Continue with
+## Data boundary
 
-- [Sync accounts](/setup-network/sync-accounts)
-- [Import contacts](/setup-network/import-contacts)
-- [Chrome extension](/chrome-extension)
+The Google and Microsoft flows use relationship metadata. Email bodies, meeting contents, and private notes are not imported by the current metadata sync. See [Integration Data Usage](/privacy-security/integration-data-usage) and [OAuth Permissions](/privacy-security/oauth-permissions) for the exact scopes and fields.
+
+## Failure states
+
+| What you see | Recovery |
+| --- | --- |
+| OAuth returns with an error | Retry from the provider card and confirm popups are allowed |
+| Connected but Partial | Open the card to identify the provider surface that remains disconnected |
+| Reauthorization needed | Choose the reconnect action and complete provider consent again |
+| Sync completes with zero evidence | Confirm the connected account contains eligible metadata, then retry once |
+| Extension not detected | Reload the provisioned build in chrome://extensions and use the same Chrome profile |
+| LinkedIn remains Partial | Automatic resume can retry; choose **Pause Sync** to stop it, or resume explicitly from the popup |
+
+## Disconnect behavior
+
+For Google Workspace and Microsoft 365, **Disconnect** clears Introd's stored connection tokens and stops future sync. Previously imported Introd records are preserved. Provider-side consent and complete data deletion are separate actions.
+
+For those additional actions, see [GDPR and Deletion](/privacy-security/gdpr-and-deletion).

@@ -1,23 +1,76 @@
 ---
-title: "GDPR and Deletion"
-description: "Disconnect flows, data deletion boundaries, and user expectations."
+title: "Deletion and Privacy Requests"
+description: "Choose the correct action to disconnect a provider, clear extension data, or request deletion of Introd data."
 ---
 
-Users should be able to understand the difference between disconnecting an integration, clearing local extension state, and deleting server-side data.
+Disconnecting a provider, clearing an extension installation, and deleting an Introd account have different effects.
 
-## User-facing actions
+> Last verified against current application, extension, API, and Privacy Policy source on August 11, 2026.
 
-| Action | What it should do |
+<Note>
+  This page explains current product behavior, not legal advice. See the [Privacy Policy](https://getintrod.ai/legal/privacy) for the governing retention and rights terms.
+</Note>
+
+## Choose the action
+
+| Your goal | Action | What remains |
+| --- | --- | --- |
+| Stop future Google or Microsoft sync | Disconnect the provider in Introd | Previously imported Introd records remain |
+| Clear one extension installation | Clear local extension data | Server-side Introd data and provider connections remain; default-on capture settings return after reinitialization |
+| Start deletion from the product | Use the account deletion control | The app starts deletion of dashboard-owned records; the current UI does not provide a completion receipt |
+| Make a complete privacy request | Email privacy@getintrod.ai | Records allowed or required by the Privacy Policy can remain for the stated period |
+
+## Disconnect Google Workspace or Microsoft 365
+
+1. Open [Integrations](https://app.getintrod.ai/settings/integrations).
+2. Open the connected provider card.
+3. Choose **Disconnect**.
+4. Confirm the dialog.
+
+**Expected result:** Introd clears the stored connection tokens and future sync jobs stop. The confirmation states that imported Introd records are preserved.
+
+To revoke consent at the provider, also use the Google or Microsoft account's connected-app controls.
+
+## Clear extension-local data
+
+1. Open the Introd extension.
+2. Open Settings.
+3. In **Danger zone**, find **Clear local extension data**.
+4. Choose **Clear local data** and confirm.
+
+**Expected result:** the extension removes browser-local auth state, settings, caches, queued signals, and diagnostics for that installation and returns to setup. Server data is not deleted. Reinitialization restores the build's default-on capture settings.
+
+This action does not guarantee that an already-running LinkedIn page crawler stops immediately. Disable Introd in `chrome://extensions` when you need its code to stop running on LinkedIn pages.
+
+## Start account deletion
+
+1. Open [Settings](https://app.getintrod.ai/settings).
+2. Locate the account deletion control.
+3. Review and confirm the action.
+
+**Expected result:** the current app starts deletion of dashboard-owned product records and signs you out. Its confirmation message indicates that deletion started; it is not proof that every applicable account, graph, backup, or provider record has finished deletion.
+
+For complete scope or confirmation, continue with a privacy request.
+
+## Submit a privacy request
+
+Email [privacy@getintrod.ai](mailto:privacy@getintrod.ai) from the address associated with your Introd account. Include:
+
+- the account email
+- the request type, such as access, correction, or deletion
+- any connected provider or extension installation relevant to the request
+- enough non-secret context to identify the affected records
+
+Do not include passwords, OAuth codes, access tokens, or extension files. Introd may request additional information to verify the account before fulfilling the request.
+
+The current [Privacy Policy](https://getintrod.ai/legal/privacy) states that deletion or anonymization is completed within 30 days, subject to records retained for legal, fraud-prevention, security, or other stated obligations. It also states that backups are purged on a rolling 35-day cycle.
+
+## Failure states
+
+| What you see | Next step |
 | --- | --- |
-| Disconnect provider | Stop future sync and invalidate the linked integration |
-| Clear local extension data | Remove browser-local auth, caches, and diagnostics |
-| Delete account or data | Remove or queue removal of server-side records according to product policy |
-
-## Documentation requirement
-
-Deletion pages should always answer:
-
-- what is deleted immediately
-- what is queued or retained briefly for operational reasons
-- what remains if only a local browser reset was performed
-- where the user can go to confirm the action completed
+| Provider says Disconnected but imported people remain | This is the documented disconnect result; submit a privacy request if deletion is required |
+| Extension setup returns after local clear | Sign in again only if you intend to reconnect that installation |
+| Account deletion signs you out without a receipt | Email privacy@getintrod.ai for scope or status confirmation |
+| You cannot access the account | Email privacy@getintrod.ai from the account address and explain the access problem |
+| You do not receive a response | Retry the privacy address and include the original request date; do not resend secrets |

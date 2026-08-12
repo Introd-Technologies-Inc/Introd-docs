@@ -1,64 +1,40 @@
 ---
 title: "Search People"
-description: "Search the network for targets, then rank results by route quality instead of raw coverage."
+description: "Find a person in the relationship data currently available to your Introd workspace."
 ---
 
-People search should feel like the first real proof that Introd is not a contact database. The result list needs to answer two questions immediately: who matters, and how you can credibly get to them.
+Open [People](https://app.getintrod.ai/search/people) and use the main search field to query the current workspace network.
 
-![People search in Introd](/images/product/people-search.png)
+## Run a search
 
-## Start with a real target
+1. Enter a person's name, company, title, or another phrase likely to appear in the available profile data.
+2. Press **Enter**.
+3. Review the result count and each row's source, profile details, warm-path count, and relationship label.
+4. Select a row to open more context, or choose **View Paths** for the path review.
 
-Use people search when you already know the kind of person you want to reach:
+The page can update while a recent LinkedIn sync is still processing. If counts change during that period, wait for the source status to settle before treating the result set as complete.
 
-- a specific person
-- a role at a target company
-- a founder, investor, operator, or hiring contact
-- someone who should be reachable through your extended network
+## Read a result row
 
-## What a result needs to show
-
-| Field | Why it matters |
+| Field | What it tells you |
 | --- | --- |
-| Name, role, company, location | Basic target identification |
-| Best connection | Who can credibly unlock the path |
-| Confidence | Whether action is justified now |
-| Evidence context | Why this person ranked above similar results |
-| Action | Whether to request an intro, view path, save, or inspect |
+| Person | The name and available role, company, or location attached to the record |
+| Source | Where the current record came from, such as LinkedIn or a manual contact |
+| Warm paths | The number of paths currently returned for that person |
+| Strength | A relative relationship label derived from the available evidence |
+| Last interaction | The most recent stored contact or record date when available |
 
-## Filter model
+## No results or the wrong person
 
-Use filters in this order:
+Try these checks in order:
 
-1. **Connection degree** to control how close the route must be.
-2. **Relationship strength** to avoid weak paths.
-3. **Current company** when the target account matters.
-4. **Role** when searching by function.
-5. **Location** when geography affects access.
+1. Use a shorter, exact name or company query.
+2. Clear the query and confirm the person appears anywhere in the current list.
+3. Review [Network Setup](/setup-network) for incomplete, partial, or failed sources.
+4. Confirm the person has been synced, imported, or added to this workspace.
 
-Saved searches are useful when the same target motion repeats, such as hiring managers at FAANG companies or product leaders in San Francisco.
+Public profile signals can appear separately from saved contacts. Treat them as leads for review, not as verified relationship records. Adding one creates a weak contact record that still needs validation.
 
-![People search table in Introd](/images/product/people-search-table.png)
-
-## Good-result checklist
-
-- target identity is clear
-- strongest connector is visible
-- route confidence is honest
-- evidence freshness is present
-- next action is obvious: view path, inspect company, or create request
-
-## Failure modes to avoid
-
-- returning broad PDL matches ahead of reachable graph-backed targets
-- showing a strong visual affordance when path status is only `limited`
-- hiding why-ranked reasons
-- making the user guess whether the result is warm, cold, or just adjacent
-- showing confidence without explaining what evidence supports it
-
-## Suggested workflow
-
-1. Start with a search query and optional quick filter.
-2. Scan the ranking reason and connector recommendation, not only name recognition.
-3. Open [View Paths](/people/view-paths) for the top target.
-4. Only then move into [Create Request](/introductions/create-request).
+<Note>
+  A zero-result search means the current query returned no matching workspace record. It does not prove that the person or relationship does not exist.
+</Note>

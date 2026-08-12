@@ -1,65 +1,34 @@
 ---
-title: "Track Requests"
-description: "Follow intro progress, bottlenecks, and connector responsiveness over time."
+title: "Track Introduction Requests"
+description: "Search, review, and maintain introduction records in the pipeline or list view."
 ---
 
-Tracking is how Introd learns whether it is producing access or just motion.
+Open [Introductions](https://app.getintrod.ai/introductions) to review the workspace's stored introduction requests.
 
-![Opportunity flow in Introd](/images/product/opportunity-flow.png)
+## Find a record
 
-## What tracking should show
+- Search by target, company, connector, subject, message, or status text.
+- Filter by a displayed stage.
+- Sort by newest, oldest, or recent activity.
+- Switch between **Pipeline** and **List** view.
 
-- current request status
-- how long the request has been sitting
-- whether the connector responded
-- whether the target responded
-- what next action should happen
-- which mission or collection the request belongs to
+Select a card or row to review its target, connector, relationship context, message, dates, and stored status.
 
-## Tabs and filters
+## Update the workflow
 
-The dashboard intro list already supports:
+In pipeline view, drag a card to the stage that best represents confirmed progress. Use **Edit** to reopen the composer context. Use **Archive** only to cancel a request and remove it from active work.
 
-- `all`
-- `active`
-- `in_progress`
-- `completed`
-- `declined`
-- `stalled`
+<Warning>
+  Status changes and archive actions update the Introd record only. They do not send, retract, or cancel a message in email, LinkedIn, or another external channel.
+</Warning>
 
-Search can also match:
+## When the page looks wrong
 
-- target name
-- target company
-- connector name
-- subject
-- message
-- status
+| Symptom | Check |
+| --- | --- |
+| No introductions | Clear the search and filter, then confirm a request was saved or submitted in this workspace |
+| Missing target or connector | Edit the record and confirm the source contact still exists |
+| Unexpected stage | Open the record and compare its stored status with the event you confirmed externally |
+| Load error | Refresh once; if it persists, contact [support](/support) with the page URL and approximate time |
 
-## What tracking should reveal
-
-- request status and age
-- whether the connector has replied
-- whether the target has replied
-- where a request is blocked
-- which next action should happen
-
-## Useful status ladder
-
-1. pending
-2. approved
-3. in progress
-4. replied
-5. meeting
-6. completed
-7. declined or cancelled
-
-## Why it matters
-
-A great intro request that disappears into a black box teaches the system nothing. Tracking is what turns a single request into future connector intelligence.
-
-## Related guides
-
-- [Opportunity Flow](/introductions/opportunity-flow)
-- [Intro Outcomes](/introductions/intro-outcomes)
-- [Missions](/workspace/missions)
+For stage definitions, see [Introduction statuses](/introductions/opportunity-flow).

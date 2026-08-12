@@ -1,38 +1,46 @@
 ---
 title: "Definitions"
-description: "Key Introd terms for warm introductions, trust, and path quality."
+description: "Definitions for the customer-facing relationship, sync, path, and introduction terms used in Introd."
 ---
 
-Use this page as a quick glossary while you learn the product.
+> Last verified against current product source on August 11, 2026.
+
+## Synced contact
+
+A person record imported from an authorized source or added to your Introd network. A synced contact can still have missing company, role, or relationship fields.
 
 ## Warm path
 
-A route from you to a target person through one or more real connectors with enough evidence to explain why the path might work.
+A route shown by Introd between you, a possible connector, and a target. A path is available only when the current graph returns supporting relationship evidence.
 
 ## Connector
 
-The person Introd recommends as the best person to make the introduction.
+The person positioned between you and the target in a proposed path. Connector ranking is a recommendation for review, not proof that the person will make an introduction.
 
 ## TrustRank
 
-Introd's explanation of how trustworthy and usable a route looks right now based on evidence, freshness, and prior outcomes.
+A value from 0 to 100 displayed when graph relationship data supplies a trust or relationship-confidence signal. Treat it as a relative ranking aid within Introd, not as a published probability or guarantee.
 
 ## Graph confidence
 
-How safe it is to act on a suggested route without overclaiming what the system knows.
+A value from 0 to 100 representing the confidence value returned with current graph metadata. A low or missing value means the route needs more review; it does not become reliable merely because a target exists.
 
-## Evidence chips
+## Evidence chip
 
-Short proof points such as recent emails, meetings, shared networks, or prior introductions that explain why a path ranks well.
+A short label returned with graph data, such as shared community context, alumni overlap, connector reputation, or a recent relationship signal. Evidence chips explain a ranking input; they do not establish consent to make an introduction.
 
-## Relationship strength
+## Relationship labels
 
-How direct, recent, and proven a relationship edge is between two people.
+Contact-level relationship strength can appear as **Strong**, **Medium**, or **Weak**. Warm-path evidence uses the separate labels **Strong**, **Moderate**, or **Limited**. Both are current product signals that can change as relationship data changes; neither is a promise about a person or outcome.
 
-## Community context
+## Partial sync
 
-Helpful overlap such as alumni, investor, or operator networks. This supports a route, but it is not proof by itself.
+A sync that saved imported records but did not reach the full total LinkedIn exposed to the extension. It can be resumed from the saved checkpoint.
 
-## Intro request
+## Introduction draft
 
-The forwardable ask a user sends through a connector once the route is strong enough to act on.
+A target, connector, subject, and message saved with draft status. Saving a draft does not contact anyone.
+
+## Introduction workflow status
+
+The status used to organize an introduction record in Introd. A status change tracks workflow state; it is not, by itself, evidence that an email or LinkedIn message was delivered.

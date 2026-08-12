@@ -1,54 +1,38 @@
 ---
-title: "View Paths"
-description: "Inspect ranked paths, connector quality, and the evidence behind a warm introduction route."
+title: "View and Verify Paths"
+description: "Inspect the connector, evidence, and uncertainty behind a path before preparing an introduction."
 ---
 
-Path review is the trust test for Introd. Users should be able to understand why the route was recommended before asking anyone to spend social capital.
+Choose **View Paths** from a person result to open the warm-path review.
 
-![Warm intro path in Introd](/images/product/warm-intro-path.png)
+## Review in this order
 
-## What a path contains
+<Steps>
+  <Step title="Confirm the target">
+    Verify the person's name, role, company, and LinkedIn profile when those details are available. Stop if the identity is ambiguous.
+  </Step>
+  <Step title="Identify the route">
+    A direct route means the person is already represented as your contact. A brokered route names another person as the connector. Confirm that the route shown matches your real-world understanding.
+  </Step>
+  <Step title="Read the evidence">
+    Review the relationship label, source context, mutual count, path explanation, and last-updated context shown. Not every path has every field.
+  </Step>
+  <Step title="Check alternatives">
+    When other routes are available, compare their connectors and evidence. The top-ranked path is a recommendation, not a command.
+  </Step>
+  <Step title="Decide whether to act">
+    Save the path, gather more context, or prepare an introduction request. If the evidence is weak, warm the relationship or find another route first.
+  </Step>
+</Steps>
 
-Each path should expose the right material for a strong review decision:
+## Interpreting path strength
 
-- who the connector is
-- how strong the relationship looks
-- what evidence supports the route
-- where the weak link is
-- what likely happens next if you proceed
-- what fallback paths exist if the strongest route is not appropriate
+Displayed scores and labels combine signals available to the product. Use them to compare routes within the current result, not as a universal measure of trust.
 
-## Review checklist
+<Warning>
+  A high path score does not establish consent, availability, or current relationship quality. Confirm those facts with the people involved.
+</Warning>
 
-| Look for | Why |
-| --- | --- |
-| Connector identity | Someone specific has to make the ask |
-| Confidence score | Low confidence should slow the user down |
-| Evidence chips | Proof that the route is not fabricated |
-| Weak or stale edges | The likely failure point in the route |
-| Mutual count and source evidence | Extra context for why the route exists |
-| Intro preview | Whether the generated ask is specific enough |
-| What happens next | Whether the user understands the approval and handoff flow |
+## When no verified path appears
 
-## Move forward only when the explanation is clear
-
-A good path review page should make it obvious:
-
-- why this connector is the best choice
-- what proof supports the recommendation
-- whether the relationship is fresh enough to use
-- whether a fallback connector exists if the first route is weak
-
-## Decision rule
-
-If the explanation is thin, stale, or ambiguous, do not push the user into a request. Instead:
-
-1. gather more relationship evidence
-2. choose a different connector
-3. warm the route first
-
-That honesty is part of the product.
-
-## Next action
-
-Use **Request intro** only when the path strength, evidence, and connector fit all support the ask. If the route is promising but not ready, add context, save the path, or choose another connector.
+The current relationship data did not produce a usable path for this target. Return to [People search](/people/search-people), review source status, or gather more relationship context outside Introd. Do not convert a public-profile match into a warm path without evidence.

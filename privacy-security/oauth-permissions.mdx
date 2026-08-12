@@ -1,21 +1,68 @@
 ---
 title: "OAuth Permissions"
-description: "Why Introd requests provider permissions and how those scopes should be explained."
+description: "Review the exact identity, Gmail, Calendar, Contacts, and Outlook scopes used by current Introd connection flows."
 ---
 
-OAuth permissions should always be explained in terms of the user-facing value they unlock.
+OAuth lets you grant provider access without giving Introd your provider password. Review the provider consent screen before approving it.
 
-## Good permission explanations
+> Last verified against current dashboard and API source on August 11, 2026.
 
-| Provider | Why the user is asked |
+## LinkedIn account connection
+
+| Scope | Current use |
 | --- | --- |
-| LinkedIn | To connect profile and first-degree relationship context |
-| Google | To add communication, meeting, and contacts metadata |
-| Microsoft | To add Outlook communication and calendar metadata |
+| <code>openid</code> | Complete OpenID Connect authentication |
+| <code>profile</code> | Read the signed-in LinkedIn profile identity |
+| <code>email</code> | Associate the returned email identity with the Introd account flow |
 
-## Documentation rules
+This OAuth flow is distinct from the Chrome extension's LinkedIn host access. See [Extension Permissions](/chrome-extension/permissions) for the browser permissions.
 
-- explain what data is used
-- explain what product behavior it unlocks
-- explain what happens if the user disconnects
-- avoid vague "improve your experience" language when a concrete explanation is possible
+## Google Workspace
+
+| Scope | Current use |
+| --- | --- |
+| <code>openid</code> | Complete OpenID Connect authentication |
+| <code>profile</code> | Read basic Google account identity |
+| <code>email</code> | Identify the connected Google account |
+| <code>https://www.googleapis.com/auth/gmail.metadata</code> | Read Gmail message metadata and headers without message bodies |
+| <code>https://www.googleapis.com/auth/calendar.events.readonly</code> | Read Calendar event metadata |
+| <code>https://www.googleapis.com/auth/contacts.readonly</code> | Read Contacts data |
+
+## Microsoft 365
+
+| Scope | Current use |
+| --- | --- |
+| <code>openid</code> | Complete OpenID Connect authentication |
+| <code>profile</code> | Read basic Microsoft account identity |
+| <code>email</code> | Identify the connected Microsoft account |
+| <code>User.Read</code> | Read the signed-in user's basic profile |
+| <code>Mail.ReadBasic</code> | Read basic Outlook message metadata without message content |
+| <code>Calendars.Read</code> | Read Outlook Calendar metadata |
+| <code>offline_access</code> | Allow the authorized connection to refresh without a new sign-in for every sync |
+
+## Grant access
+
+1. Start from [Introd Integrations](https://app.getintrod.ai/settings/integrations).
+2. Choose **Connect** for Google Workspace or Microsoft 365.
+3. Confirm that the provider account and requested permissions match this page.
+4. Approve the provider consent screen only if you accept that access.
+5. Return to Introd and verify the provider card.
+
+**Expected result:** the card reports Connected, Partial, Syncing, or another explicit status. A provider callback error means the connection was not completed.
+
+## Change or remove access
+
+- Use **Disconnect** in Introd to clear Introd's stored Google or Microsoft connection tokens and stop future sync.
+- Use the provider's account controls to review or revoke provider-side consent.
+- Request deletion of imported Introd data separately.
+
+Disconnecting does not erase previously imported Introd records. See [Deletion and Privacy Requests](/privacy-security/gdpr-and-deletion).
+
+## Consent failures
+
+| What you see | Recovery |
+| --- | --- |
+| Provider denies consent | Return to Integrations; no completed connection is expected |
+| Callback error | Retry from the provider card and allow the provider redirect |
+| Reauthorization needed | Reconnect and review the current consent screen |
+| Unexpected permission | Stop the flow and email [help@getintrod.ai](mailto:help@getintrod.ai) with the provider name and screenshot; do not include codes or tokens |

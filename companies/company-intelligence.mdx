@@ -1,41 +1,44 @@
 ---
-title: "Company Intelligence"
-description: "Understand why a company matters and what network evidence makes it reachable."
+title: "Search and Sort Companies"
+description: "Use company search, filters, and sort controls without overstating the available coverage."
 ---
 
-Company intelligence turns a target account into a reachable opportunity map. A good company page should help a user decide whether the account is worth pursuing now and how to enter it credibly.
+Open [Companies](https://app.getintrod.ai/search/companies) to search the company records represented in your workspace network.
 
-![Company search and intelligence in Introd](/images/product/company-search.png)
+## Search
 
-## What this view should answer
+1. Enter a query in the search field.
+2. Press **Enter** to submit it.
+3. Review the result count and the company rows returned for that query.
 
-- why this company matters right now
-- which roles are worth targeting first
-- whether the network has real access or only thin coverage
-- what evidence makes the account reachable
-- which filters produced the current result set
-- which saved search or collection should hold the account
+Search coverage depends on the company names and attributes attached to your current network data. A zero-result search does not prove that the company or a relationship does not exist; it means Introd did not return a matching company from the data available to this workspace.
 
-## Search and filters
+## Narrow the list
 
-Use company search filters to narrow the result set:
+The company page provides workspace-specific views such as:
 
-| Filter | Use it for |
+| View | What it focuses on |
 | --- | --- |
-| Industry | Focus a market such as technology, fintech, healthcare, or real estate. |
-| Company size | Separate startup, mid-market, and enterprise workflows. |
-| Headquarters | Prioritize local or regional access. |
-| Growth stage | Distinguish emerging companies from mature accounts. |
-| Technologies | Find accounts using tools relevant to your offer or ecosystem. |
+| All companies | The current company result set |
+| Reachable | Companies with at least one warm path in the current data |
+| Strategic targets | Companies with stronger coverage in the current ranking |
+| In warm paths | Companies attached to an active introduction workflow |
+| Needs enrichment | Records with weak coverage or missing company context |
 
-## Results table
+Use **Sort by** to order results by relevance, contact count, warm-path count, or company name.
 
-The results table should show company identity, industry, headquarters, your connections, confidence, and actions. The most important field is not company name. It is whether Introd can show credible access.
+## Review a row
 
-## Side-panel signals
+Select a row to open its detail panel. The row and panel can show:
 
-The right-side panels should explain search confidence, top industries, smart filters, and useful help. Use them to understand why a result set looks the way it does before adding accounts to a collection.
+- company name, industry, and location when present;
+- the number of associated people and warm paths;
+- a relative coverage label;
+- available connector names; and
+- actions to inspect paths or prepare an introduction request.
 
-## Output quality bar
+Missing industry, location, or connector context is a data limitation. Do not replace an unknown field with an assumption.
 
-The company view should read like account strategy, not a scraped directory dump. If the view cannot explain reachability, it is not ready for an intro workflow.
+<Tip>
+  If a newly synced or imported company is missing, confirm the source has finished processing, refresh once, and retry a simpler company-name query.
+</Tip>

@@ -1,21 +1,63 @@
 ---
 title: "Troubleshooting"
-description: "Resolve the most common extension setup and sync issues."
+description: "Recover from the extension's current authentication, detection, sync, and profile-context failures."
 ---
+
+> Last verified against current extension error and status handling on August 11, 2026.
 
 ## Common issues
 
-| Symptom | Likely cause | What to do |
+| What you see | Meaning | Recovery |
 | --- | --- | --- |
-| Popup says LinkedIn login is required | The browser session is not active on LinkedIn | Open LinkedIn and confirm you are signed in before retrying |
-| Sync stalls after partial progress | LinkedIn has not rendered more rows yet or the API asked the extension to pace | Keep the connections tab open, wait, then retry or resume |
-| Sync finishes but coverage still looks weak | Not enough first-degree rows or communication evidence exists yet | Run another sync and connect Google or Microsoft data |
-| OAuth returns but the extension still looks signed out | Callback bridge did not complete cleanly | Re-open the popup and retry the sign-in flow |
-| Warm path context does not appear on profile pages | No imported graph coverage exists yet for that user or target | Complete at least one sync and refresh the LinkedIn page |
+| Connection error | The popup could not reach Introd or initialize | Choose **Retry**; if it continues, reload the extension from chrome://extensions |
+| Extension not detected | Introd cannot see the build in this Chrome profile | Enable and reload the supplied build, then refresh Network Setup |
+| Finish sign in | The Introd authentication tab has not completed | Finish the opened flow, reopen the popup, then choose **I finished signing in** |
+| LinkedIn login required | LinkedIn is not signed in in this Chrome profile | Open LinkedIn, sign in, and retry |
+| Sync paused | The run has a saved checkpoint | Choose **Resume Sync** |
+| Retrying | LinkedIn has not rendered additional rows | Automatic background resume can retry; choose **Pause Sync** if you do not want it to continue |
+| Partial | Imported records were saved, but the visible total was not reached | Automatic background resume can retry; otherwise pause or resume explicitly |
+| Sync needs attention | The run failed | Read the displayed error, refresh LinkedIn, then retry |
+| Zero imported while LinkedIn shows connections | The extension could not read visible connection rows | Refresh LinkedIn, confirm the connections page loads, and retry |
+| No path context on a profile | The page is unsupported, evidence is missing, or sync is incomplete | Open a LinkedIn person or company profile, complete sync, and refresh |
 
-## If issues keep happening
+## Verify the browser profile
 
-- remove and reinstall the extension
-- sign out and back into LinkedIn in the same browser profile
-- reconnect the extension to Introd
-- rerun a sync with the LinkedIn connections page open
+Introd and LinkedIn must be signed in in the same Chrome profile that contains the extension. A private window or second Chrome profile has separate cookies and extension state.
+
+## Stop an automatic retry
+
+Closing the LinkedIn connections tab does not reliably stop an incomplete import. The extension can recreate or reuse an inactive tab on its next background-resume check.
+
+1. Open the extension popup.
+2. Choose **Pause Sync**.
+3. Confirm the visible state is **Sync paused**.
+
+Pause stops the full-network run. It does not stop contextual identity capture while you browse other LinkedIn pages. Disable Introd in `chrome://extensions` when you need all extension page processing to stop.
+
+## Reset browser-local extension state
+
+Use this only when normal retry and sign-in recovery fail:
+
+1. Open the extension popup.
+2. Open Settings with the gear icon.
+3. In **Danger zone**, find **Clear local extension data**.
+4. Choose **Clear local data**.
+5. Confirm the prompt.
+6. Reconnect Introd and LinkedIn.
+
+This action clears browser-local auth state, settings, sync caches, queued signals, and diagnostics. It does not delete server-side relationship data, and reinitialization restores default-on capture settings. It also does not guarantee that an already-running page crawler stops immediately; disable the extension in Chrome when you need its page code to stop.
+
+## Before requesting help
+
+Collect:
+
+- extension version from Settings
+- Chrome version
+- exact visible status and error text
+- whether LinkedIn and Introd are signed in in the same Chrome profile
+- imported count and visible total, if shown
+- approximate time of the failure
+
+Email those details to [help@getintrod.ai](mailto:help@getintrod.ai).
+
+Never include a password, OAuth code, access token, browser cookie, or extension package.

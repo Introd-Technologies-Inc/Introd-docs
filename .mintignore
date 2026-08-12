@@ -1,0 +1,23 @@
+# Contributor-only files
+AGENTS.md
+README.md
+.github/
+.gitignore
+package.json
+package-lock.json
+scripts/
+
+# Internal implementation and operator material must never be published from
+# this customer documentation site. Remove an entry only after a public-content
+# review and an explicit navigation update.
+api/
+architecture/
+deployment/
+graph/
+migration/
+operations/
+product/
+reference/
+releases/
+research/
+/quickstart.mdx

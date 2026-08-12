@@ -1,58 +1,49 @@
 ---
 title: "Introductions"
-description: "Create requests, track progress, understand outcomes, and use warm intro best practices."
+description: "Prepare and track human-reviewed warm introduction requests without confusing workflow state with message delivery."
 ---
 
-Introductions are the action layer of Introd. This is where graph evidence becomes an actual ask.
+Use **Introductions** to store the target, connector, request context, and current workflow state for a warm introduction.
 
-![Opportunity flow in Introd](/images/product/opportunity-flow.png)
+<Card title="Open Introductions" icon="arrow-up-right" href="https://app.getintrod.ai/introductions">
+  Sign-in is required. The page shows introduction records available to your workspace.
+</Card>
 
-<Columns cols={2}>
-  <Card title="Opportunity flow" icon="workflow" href="/introductions/opportunity-flow">
-    Track warm paths through momentum, request, introduction, and outcome.
-  </Card>
-  <Card title="Request intro" icon="square-pen" href="/introductions/create-request">
-    Turn a ranked connector recommendation into an intro request with enough context to be useful.
-  </Card>
-  <Card title="Track requests" icon="list-checks" href="/introductions/track-requests">
-    Follow intro status, delays, and response patterns instead of treating a request as a black box.
-  </Card>
-  <Card title="Intro outcomes" icon="chart-line" href="/introductions/intro-outcomes">
-    Feed success and failure back into connector reputation and ranking.
-  </Card>
-  <Card title="Best practices" icon="badge-check" href="/introductions/best-practices">
-    Keep requests honest, contextual, and worthy of the connector's effort.
-  </Card>
-</Columns>
+## Two separate responsibilities
+
+| Introd records | A person remains responsible for |
+| --- | --- |
+| Target and connector context | Confirming the identities and relationship |
+| Draft subject and message | Reviewing every claim and edit |
+| Pending, active, or closed workflow state | Contacting the connector through an approved channel |
+| Stored progress and scheduled date | Confirming whether an external message was actually delivered |
+
+<Warning>
+  Creating, submitting, scheduling, or moving an introduction record does not deliver an email or LinkedIn message. Introd tracks the workflow; external outreach remains a human action.
+</Warning>
 
 ## Core workflow
 
-1. discover or save a promising path
-2. decide whether the path is ready or still warming up
-3. create a request from a strong path
-4. monitor whether the connector engages
-5. track the result and learn from it
-6. use outcomes to improve future ranking
+<Steps>
+  <Step title="Review the path">
+    Confirm the target, connector, and evidence in [View and verify paths](/people/view-paths).
+  </Step>
+  <Step title="Prepare the request">
+    Edit the subject and message, remove unverified claims, and save a draft when it needs more work.
+  </Step>
+  <Step title="Create the tracked request">
+    When ready, move the record into the pending workflow. Complete any external outreach yourself.
+  </Step>
+  <Step title="Maintain the status">
+    Use the pipeline or list to keep the stored state aligned with what actually happened.
+  </Step>
+</Steps>
 
-## Opportunity Flow
-
-Opportunity Flow is the best view when you are managing several warm paths at once. Use it to see path strength, mission fit, current status, last update, next step, and recommended moves.
-
-## Request Intro
-
-The compose flow should prefill the target, the suggested connector, and enough context to help the user move quickly without losing nuance.
-
-## Track Requests
-
-Tracking matters because connector performance changes over time. A request record should help users understand not just whether something was sent, but whether it was accepted, ignored, delayed, converted, or stalled.
-
-## Intro Outcomes
-
-Intro outcomes are one of the best sources of truth for future ranking. They should feed back into connector reputation, reliability, and context-fit scoring.
-
-## Best practices
-
-- prefer the strongest credible connector, not just the closest one
-- give the connector enough context to decide
-- do not spam weak paths
-- use outcomes to refine future ranking
+<Columns cols={2}>
+  <Card title="Prepare a request" icon="edit-3" href="/introductions/create-request">
+    Review composer fields and the difference between save, submit, and schedule.
+  </Card>
+  <Card title="Track requests" icon="list-checks" href="/introductions/track-requests">
+    Search, filter, sort, move, and archive introduction records.
+  </Card>
+</Columns>

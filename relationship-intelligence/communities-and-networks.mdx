@@ -1,22 +1,42 @@
 ---
-title: "Communities and Networks"
-description: "How communities, alumni networks, and investor networks extend warm path discovery."
+title: "Manage Sharing and Communities"
+description: "How to review graph-sharing levels and trusted communities in Introd."
 ---
 
-Introd should be able to reason across more than a flat contact list. Communities, alumni clusters, and investor networks provide additional structure for finding credible paths.
+The **Relationship Intelligence** screen includes graph-sharing controls. The active level determines where Introd can use the relationship evidence described by that setting.
 
-![Alumni and VC communities in Introd](/images/product/alumni-network.png)
+## Sharing levels shown in Introd
 
-![Groups in Introd](/images/product/groups.png)
-
-## Community layers
-
-| Layer | Example use |
+| Level | Scope described in the app |
 | --- | --- |
-| Communities | Find trusted connectors in curated groups |
-| Alumni networks | Re-rank paths based on school, cohort, or operator overlap |
-| Investor networks | Find the connectors most likely to unlock investor access |
+| Private | No relationship evidence is shared. |
+| Organization Only | Aggregate evidence can support warm paths inside approved workspaces. |
+| Trusted Community | Aggregate evidence can support paths inside selected communities. |
+| Public Warm Intros | Connector identity and aggregate strength can appear in intro paths. |
 
-## Design rule
+To change the setting, open **Relationship Intelligence**, review each description, and select the level you intend to use. The active option is marked in the interface.
 
-These network layers should improve ranking and explainability. They should not be treated as proof by themselves. A shared school or community is context, not trust.
+<Warning>
+  Increasing the sharing scope is a meaningful privacy choice. Confirm the intended audience before changing it. If you are uncertain, leave the setting at **Private** and contact your workspace administrator or Introd support.
+</Warning>
+
+## Trusted communities
+
+The **Trusted Communities** section lists communities available to your account. Selected communities are included in the current community-sharing configuration.
+
+If no communities appear, there is no community option available to select in that view. Do not interpret an empty list as evidence that a person is outside your real-world network.
+
+## Sharing is not consent
+
+A sharing level controls how Introd may use relationship evidence in path discovery. It does not mean that:
+
+- a connector agreed to make a specific introduction;
+- a target agreed to be contacted;
+- a ranked path is accurate in every detail; or
+- an introduction will succeed.
+
+Confirm the connector's willingness before requesting an introduction, regardless of rank or sharing level.
+
+<Card title="Review graph sharing" icon="shield" href="https://app.getintrod.ai/relationship-intelligence">
+  Check the active sharing level and selected communities in Introd.
+</Card>
