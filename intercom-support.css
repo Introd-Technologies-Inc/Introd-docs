@@ -1,0 +1,167 @@
+#introd-support-controls {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.4rem;
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+}
+
+.introd-support-button,
+.introd-cookie-settings-button,
+.introd-support-primary,
+.introd-support-secondary,
+.introd-support-close {
+  border-radius: 999px;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 650;
+}
+
+.introd-support-button {
+  min-width: 7.5rem;
+  border: 1px solid #034b39;
+  background: #046147;
+  color: #fff;
+  padding: 0.7rem 1rem;
+  box-shadow: 0 10px 30px rgb(4 97 71 / 25%);
+}
+
+.introd-cookie-settings-button {
+  border: 0;
+  background: rgb(255 255 255 / 94%);
+  color: #334155;
+  padding: 0.35rem 0.65rem;
+  font-size: 0.75rem;
+  box-shadow: 0 4px 18px rgb(15 23 42 / 12%);
+}
+
+.introd-support-button:hover,
+.introd-support-button:focus-visible {
+  background: #034b39;
+}
+
+.introd-support-button:focus-visible,
+.introd-cookie-settings-button:focus-visible,
+.introd-support-dialog button:focus-visible,
+.introd-support-dialog a:focus-visible {
+  outline: 3px solid #57e3ba;
+  outline-offset: 2px;
+}
+
+.introd-support-status {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.introd-support-dialog {
+  width: min(31rem, calc(100vw - 2rem));
+  max-width: 31rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 1rem;
+  background: #fff;
+  color: #0f172a;
+  padding: 1.35rem;
+  box-shadow: 0 24px 70px rgb(15 23 42 / 25%);
+}
+
+.introd-support-dialog::backdrop {
+  background: rgb(15 23 42 / 52%);
+}
+
+.introd-support-dialog h2 {
+  margin: 0 0 0.75rem;
+  font-size: 1.25rem;
+  line-height: 1.35;
+}
+
+.introd-support-dialog p {
+  margin: 0 0 0.75rem;
+  color: #475569;
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.introd-support-dialog .introd-support-safety {
+  font-size: 0.8rem;
+}
+
+.introd-support-email,
+.introd-support-policy {
+  display: inline-block;
+  margin: 0.15rem 1rem 0.85rem 0;
+  color: #046147;
+  font-size: 0.875rem;
+  font-weight: 650;
+  text-decoration: underline;
+  text-underline-offset: 0.2rem;
+}
+
+.introd-support-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-top: 0.4rem;
+}
+
+.introd-support-primary,
+.introd-support-secondary,
+.introd-support-close {
+  border: 1px solid #94a3b8;
+  padding: 0.55rem 0.85rem;
+  font-size: 0.82rem;
+}
+
+.introd-support-primary {
+  border-color: #046147;
+  background: #046147;
+  color: #fff;
+}
+
+.introd-support-secondary,
+.introd-support-close {
+  background: #fff;
+  color: #334155;
+}
+
+.introd-support-primary:disabled,
+.introd-support-secondary:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+@media (prefers-color-scheme: dark) {
+  .introd-cookie-settings-button,
+  .introd-support-dialog,
+  .introd-support-secondary,
+  .introd-support-close {
+    border-color: #475569;
+    background: #0f172a;
+    color: #e2e8f0;
+  }
+
+  .introd-support-dialog p {
+    color: #cbd5e1;
+  }
+}
+
+@media (max-width: 40rem) {
+  #introd-support-controls {
+    right: 0.75rem;
+    bottom: 0.75rem;
+  }
+
+  .introd-support-button {
+    min-width: 6.75rem;
+  }
+}

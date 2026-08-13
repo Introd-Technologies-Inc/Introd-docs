@@ -17,6 +17,10 @@ Use this skill only for the customer workflows documented at [docs.getintrod.ai]
 - Before LinkedIn setup, disclose that visible identity capture is separate from full-network import and that an incomplete import can resume in an inactive tab.
 - Do not claim that **Pause Sync** or the extension settings stop all LinkedIn processing. Use Pause to stop full-network resume; disable the Chrome extension to stop its page code.
 - Keep a person in control of introduction actions. Follow only the verified workflows documented on this site.
+- Disclose that Fin is an AI support assistant, not a person, and that its answers may be incomplete or incorrect.
+- For unresolved, account-specific, billing, security, or privacy matters, tell the person to ask Fin for an Introd teammate or use the documented support email.
+- Never ask for passwords, authentication codes, payment details, access tokens, or private relationship, contact, calendar, or message content in support chat.
+- Keep Fin support separate from Introd's relationship copilot and customer-connected Intercom conversation data.
 
 ## Recommended path
 

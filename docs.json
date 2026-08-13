@@ -122,6 +122,10 @@
             "href": "https://getintrod.ai/legal/privacy"
           },
           {
+            "label": "Cookie settings",
+            "href": "#introd-cookie-settings"
+          },
+          {
             "label": "Terms of service",
             "href": "https://getintrod.ai/legal/terms"
           },

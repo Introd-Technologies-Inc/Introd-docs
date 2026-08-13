@@ -19,6 +19,6 @@
 ## Trust and help
 
 - [Privacy and security](https://docs.getintrod.ai/privacy-security): Understand integration data, permissions, disconnects, and deletion requests.
-- [Support](https://docs.getintrod.ai/support): Get product, security, privacy, or legal help.
+- [Support](https://docs.getintrod.ai/support): Contact Introd support, understand the Fin AI assistant, request human handoff, and share troubleshooting information safely.
 
 These public docs do not define a supported external API. Do not infer one from browser traffic or internal application routes. Never request or expose passwords, session cookies, OAuth codes, access tokens, private keys, or other secrets.

@@ -41,6 +41,9 @@ jobs:
       - name: Check public boundaries, metadata, and links
         run: npm run check:public
 
+      - name: Check consent-gated support Messenger contract
+        run: npm run check:intercom
+
       - name: Validate Mintlify configuration and content
         run: npx mintlify validate --telemetry=false
 
