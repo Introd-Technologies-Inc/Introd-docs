@@ -1,54 +1,48 @@
 ---
 title: "People"
-description: "Search people, inspect warm paths, request introductions, and review relationship insight."
+description: "Search the people available to your workspace, inspect relationship context, and choose the next action."
 ---
 
-The people workflow is where users should feel Introd's day-to-day utility most clearly. It turns a target person or role into a ranked path, a connector recommendation, and a next action.
+The **People** page brings together contacts and relationship records currently available to your workspace.
 
-![People search in Introd](/images/product/people-search.png)
+<Card title="Open People" icon="arrow-up-right" href="https://app.getintrod.ai/search/people">
+  Sign-in is required. Search results depend on the sources that have finished syncing or importing.
+</Card>
+
+## What you can do
 
 <Columns cols={2}>
   <Card title="Search people" icon="search" href="/people/search-people">
-    Query the network for targets that matter now and sort by route quality instead of directory volume.
+    Search the current network data by a person's name or other available profile text.
   </Card>
-  <Card title="View paths" icon="git-branch" href="/people/view-paths">
-    Inspect who the connector is, why the route ranks well, and what evidence is still missing.
+  <Card title="Review paths" icon="route" href="/people/view-paths">
+    Inspect available connectors and supporting context before acting.
   </Card>
-  <Card title="Request introductions" icon="handshake" href="/people/request-introductions">
-    Move directly from a promising result into an intro request with the right target and connector preselected.
+  <Card title="Review a person" icon="contact" href="/people/relationship-insights">
+    Understand the selected person's source, profile context, and path summary.
   </Card>
-  <Card title="Relationship insights" icon="sparkles" href="/people/relationship-insights">
-    Surface freshness, trust, and context that help users act instead of just reading profile rows.
+  <Card title="Prepare a request" icon="handshake" href="/people/request-introductions">
+    Carry a reviewed target and connector into an introduction draft.
   </Card>
 </Columns>
 
-## What users can do
+## Recommended workflow
 
-- search for a specific person or role
-- inspect the strongest warm path
-- compare connectors before making an ask
-- move into an introduction request when the route is real
-- save useful searches and import lists into a collection workflow
+<Steps>
+  <Step title="Search a real target">
+    Start with a name, company, or role that is likely to appear in your current network data.
+  </Step>
+  <Step title="Open one result">
+    Review the person's identity, source, available profile details, relationship label, and warm-path count.
+  </Step>
+  <Step title="Inspect the path">
+    Use **View Paths** to confirm who the connector is and what evidence is available. Missing context remains missing; do not infer it from a score.
+  </Step>
+  <Step title="Choose a human-reviewed next step">
+    Save useful context, improve the relationship first, or prepare an introduction draft. Introd does not establish a connector's consent on your behalf.
+  </Step>
+</Steps>
 
-## Search People
-
-People search combines synced contacts, graph intelligence, and external enrichment signals. Results should prioritize trustworthy routes over raw directory coverage.
-
-Use filters to narrow by connection degree, relationship strength, current company, role, and location. Good filters should reduce noise without hiding why a result was ranked.
-
-## View Paths
-
-For a useful result, the UI should make it obvious:
-
-- who the target is
-- who the connector is
-- why the path is ranked
-- whether the route is fresh enough to use
-
-## Request Introductions
-
-When a path looks strong, the user should be able to move directly into the intro compose flow with the target and connector already selected.
-
-## Relationship Insights
-
-The surrounding context matters as much as the name in the result row. Good people pages should surface trust, freshness, evidence, and next-step guidance instead of only titles and companies.
+<Warning>
+  Search results and path labels describe the data available to the workspace. They do not guarantee identity, willingness to connect, or a successful introduction.
+</Warning>

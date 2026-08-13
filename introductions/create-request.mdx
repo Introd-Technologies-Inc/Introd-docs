@@ -1,58 +1,44 @@
 ---
-title: "Request Intro"
-description: "Compose a warm introduction request from a ranked path with enough context to be useful."
+title: "Prepare an Introduction Request"
+description: "Create a reviewed introduction draft and understand exactly what each composer action does."
 ---
 
-The Request Intro composer is where Introd turns path intelligence into an actual ask.
+Open the composer from **Request intro** on a person or path, or from **Request Intro** on the [Introductions](https://app.getintrod.ai/introductions) page.
 
-![Request intro composer in Introd](/images/product/intro-composer.png)
+## Review the path and recipients
 
-## What Request Intro should make easy
+The composer can prefill a target and proposed connector. Before writing:
 
-- selecting the right target
-- confirming the right connector
-- explaining why the intro matters now
-- writing a short message the connector can actually forward
-- adding relevant context, files, and timing
+1. Confirm the target is the correct person.
+2. Confirm the connector is someone you can appropriately ask.
+3. Review the path explanation and any missing context.
+4. Change or abandon the route if it does not match the relationship you understand.
 
-## What the composer should prefill
+## Edit the request
 
-- selected target
-- selected connector
-- path strength
-- mutual count
-- path evidence
-- concise reason the intro matters now
-- estimated response time when enough history exists
-- next-step expectations after sending
+Review the **To** connector, subject, and message. Keep the request easy to evaluate and forward:
 
-## Minimum useful request
+- state who you want to meet;
+- explain why the conversation is relevant now;
+- include the minimum context the connector needs;
+- make it easy to decline; and
+- remove generated text or relationship claims you cannot verify.
 
-| Part | Why it matters |
+## Understand the actions
+
+| Action | Current behavior |
 | --- | --- |
-| Who you want to meet | The target cannot be ambiguous |
-| Why now | Gives the connector context for urgency |
-| Why this connector | Confirms the route is intentional |
-| Short forwardable message | Makes it easy to help |
-| Easy opt-out | Preserves connector trust |
+| Save draft | Creates an Introd record with draft status |
+| Preview intro | Reviews the current draft content in the composer workflow |
+| Send request | Creates or updates an Introd record as pending after setup checks pass |
+| Schedule | Stores a scheduled date and pending workflow state |
 
-## Example forwardable message
+<Warning>
+  **Send request** and **Schedule** do not deliver an external email, LinkedIn message, or calendar invitation. They update the Introd workflow record. Perform and verify external communication through the approved channel yourself.
+</Warning>
 
-> Would you be open to introducing me to Jane Founder at Acme Bio? We are both working on climate infrastructure, and the conversation would be useful right now. No pressure if the timing is not right.
+## Setup check
 
-## Anti-patterns
+Submitting or scheduling a request can be blocked until the required LinkedIn and email setup is available. Follow the visible error, review [Network Setup](/setup-network), and retry after the integration state is ready. Saving a draft remains the safe option while setup is incomplete.
 
-- asking a connector to infer the whole story from a name and company
-- hiding low-confidence routes behind polished copy
-- creating a request before choosing the best connector
-- sending a long memo instead of a forwardable ask
-
-## Good operator behavior
-
-If the route is weak, the composer should say so and suggest a better next step instead of forcing the request through.
-
-## Continue with
-
-- [Opportunity Flow](/introductions/opportunity-flow)
-- [Track Requests](/introductions/track-requests)
-- [Intro Outcomes](/introductions/intro-outcomes)
+After creation, open [Track introduction requests](/introductions/track-requests) to verify the stored record and status.

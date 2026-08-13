@@ -1,36 +1,46 @@
 ---
 title: "Privacy & Security"
-description: "How Introd handles relationship data, provider integrations, OAuth permissions, and deletion workflows."
+description: "Understand the data Introd uses, the access each integration requests, and the controls available to you."
 ---
 
-Trust is part of the product. The docs should make it clear how Introd handles relationship data, where evidence comes from, and how users can disconnect or delete access.
+This section describes the current customer-facing controls for Introd accounts, provider integrations, and the Chrome extension.
+
+> Last verified against current application, extension, API, and legal-site source on August 11, 2026.
+
+<Note>
+  These product docs explain how the current controls behave. The [Privacy Policy](https://getintrod.ai/legal/privacy) and [Terms of Service](https://getintrod.ai/legal/terms) are the governing legal documents.
+</Note>
 
 <Columns cols={2}>
   <Card title="Data handling" icon="database" href="/privacy-security/data-handling">
-    Learn how relationship evidence is stored, scoped, and kept tied to a user or workspace.
+    See which data categories support accounts, relationship search, and introduction drafts.
   </Card>
-  <Card title="Integration usage" icon="plug" href="/privacy-security/integration-data-usage">
-    Understand what LinkedIn, Google, and Microsoft data is used for and where the boundaries are.
+  <Card title="Integration data usage" icon="plug" href="/privacy-security/integration-data-usage">
+    Review the LinkedIn, Google Workspace, and Microsoft 365 data used by current syncs.
   </Card>
   <Card title="OAuth permissions" icon="key-round" href="/privacy-security/oauth-permissions">
-    Review the scopes and consent flows needed for Introd integrations.
+    Review each provider scope before granting consent.
   </Card>
-  <Card title="Deletion workflows" icon="trash-2" href="/privacy-security/gdpr-and-deletion">
-    See how disconnects, deletion requests, and GDPR-aligned cleanup should work.
+  <Card title="Deletion and privacy requests" icon="trash-2" href="/privacy-security/gdpr-and-deletion">
+    Choose the correct action for a provider connection, extension data, or an Introd account.
   </Card>
 </Columns>
 
-## Core principles
+## Controls at a glance
 
-- user-scoped data handling
-- least-privilege integration scope
-- explicit OAuth flows
-- truthful boundaries around what the product knows
-- auditable operational and graph behavior
+| Goal | Current control | Result |
+| --- | --- | --- |
+| Stop Google or Microsoft sync | Disconnect the provider in [Integrations](https://app.getintrod.ai/settings/integrations) | Introd clears the stored connection tokens and stops future sync; imported Introd records remain |
+| Clear one Chrome installation | Use **Clear local extension data** in extension Settings | Browser-local auth, settings, caches, queued signals, and diagnostics are cleared; server data remains and default capture settings return after reinitialization |
+| Start account-data deletion | Use the account deletion control in [Settings](https://app.getintrod.ai/settings) | The current app starts deletion of dashboard-owned records and signs you out |
+| Request complete privacy assistance | Email [privacy@getintrod.ai](mailto:privacy@getintrod.ai) | Introd can confirm the applicable request, identity checks, and policy timeline |
 
-## Read next
+These controls are separate. Clearing extension data does not disconnect a provider, delete an Introd account, or serve as a durable capture opt-out. Disable Introd in Chrome when its page code must stop.
 
-- [Data handling](/privacy-security/data-handling)
-- [Integration data usage](/privacy-security/integration-data-usage)
-- [OAuth permissions](/privacy-security/oauth-permissions)
-- [GDPR and deletion](/privacy-security/gdpr-and-deletion)
+## Get help
+
+- Account and product help: [help@getintrod.ai](mailto:help@getintrod.ai)
+- Privacy requests: [privacy@getintrod.ai](mailto:privacy@getintrod.ai)
+- Security reports: [security@getintrod.ai](mailto:security@getintrod.ai)
+
+Never send a password, OAuth code, access token, or extension archive by email.

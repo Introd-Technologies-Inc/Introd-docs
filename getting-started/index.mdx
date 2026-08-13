@@ -1,74 +1,56 @@
 ---
 title: "Getting Started"
-description: "Understand what Introd is, how it works, and how to reach your first warm introduction."
+description: "Create an Introd account, connect supported sources, verify sync, and save a warm-introduction draft."
 ---
 
-Introd turns relationship evidence into warm introduction workflows. It is designed to help you find the right person, the right connector, and the right moment to ask.
+Introd helps you search a synced relationship network, inspect available connector paths, and prepare an introduction draft.
 
-![Current user onboarding in Introd](/images/product/current-user-onboarding.png)
+> Last verified against the Introd dashboard, API, extension, and website source on August 11, 2026.
 
 <Columns cols={2}>
   <Card title="Quick start" icon="rocket" href="/getting-started/quickstart">
-    Follow the shortest path from sign-up to your first credible warm introduction.
+    Complete the verified account, sync, search, path, and draft workflow.
   </Card>
-  <Card title="Create account" icon="user-plus" href="/getting-started/create-account">
-    Finish sign-in cleanly and move straight into setup instead of landing in an empty workspace.
+  <Card title="Create an account" icon="user-plus" href="/getting-started/create-account">
+    Use email, Google, or LinkedIn to create an account.
   </Card>
-  <Card title="Connect accounts" icon="mail" href="/getting-started/connect-integrations">
-    Add LinkedIn, Gmail, or Outlook so ranking can use real relationship evidence.
+  <Card title="Connect sources" icon="plug" href="/getting-started/connect-integrations">
+    Connect LinkedIn, Google Workspace, or Microsoft 365 and read their status.
   </Card>
-  <Card title="Reach the first intro" icon="handshake" href="/getting-started/first-warm-introduction">
-    Move from setup into the first warm path and intro request without losing trust in the process.
+  <Card title="Save an intro draft" icon="file-pen" href="/getting-started/first-warm-introduction">
+    Review a target and connector, edit the message, and save it without sending.
   </Card>
 </Columns>
 
-## What Introd does
+## Verified customer journey
 
-Introd combines:
+| Step | Open | Expected result |
+| --- | --- | --- |
+| Create an account | [Sign up](https://app.getintrod.ai/sign-up) | A signed-in session opens Network Setup |
+| Connect a source | [Network Setup](https://app.getintrod.ai/setup-network) | The source reports Connected, Partial, or a specific error |
+| Verify integrations | [Integrations](https://app.getintrod.ai/settings/integrations) | Connection, sync, and evidence status are visible |
+| Find a target | [People Search](https://app.getintrod.ai/search/people) | Synced people appear, or Introd reports that no matching data is available |
+| Inspect paths | Select a person, then choose **View Paths** | Introd displays available connector evidence or an empty state |
+| Prepare the ask | Choose **Request intro**, then **Save draft** | Introd reports **Intro draft saved** |
+| Review drafts | [Introductions](https://app.getintrod.ai/introductions) | The saved record appears in the introduction workflow |
 
-- LinkedIn graph context from the Chrome extension and account connections
-- communication and meeting evidence from Google and Microsoft integrations
-- operational product state from the dashboard and introduction workflows
-- trust-aware graph scoring from the API and Neo4j runtime
+## Current boundaries
 
-The result is a relationship layer that helps users decide:
+- The Chrome extension is available only through an Introd-provided testing build; these docs do not offer a public installation link.
+- LinkedIn coverage depends on the identities LinkedIn renders in the signed-in browser session. A partial sync is a valid state.
+- Google Workspace and Microsoft 365 contribute relationship metadata through explicit OAuth consent.
+- A warm path is available only when the synced graph contains usable evidence. Introd does not guarantee a path for every target.
+- **Save draft** stores a draft. It does not email, message, or otherwise contact a connector or target.
 
-- who matters
-- who can credibly get them in
-- which route is strongest right now
-- what evidence is missing
-- what next action should happen
+## Legal and support
 
-## How Introd works
-
-```mermaid
-flowchart LR
-  A[Create account] --> B[Connect LinkedIn]
-  B --> C[Connect Gmail or Outlook]
-  C --> D[Import relationship evidence]
-  D --> E[Search people or companies]
-  E --> F[Inspect warm path]
-  F --> G[Create intro request]
-  G --> H[Track outcome and learn]
-```
-
-## First-use checklist
-
-1. Create an Introd account and complete the sign-in flow.
-2. Connect LinkedIn and trusted data sources.
-3. Discover warm paths through communities and mutual connections.
-4. Join relevant community networks.
-5. Launch a first mission such as fundraising, hiring, partnerships, or sales.
-6. Request your first warm intro only after reviewing the path evidence.
+- [Privacy Policy](https://getintrod.ai/legal/privacy)
+- [Terms of Service](https://getintrod.ai/legal/terms)
+- Account and product support: [help@getintrod.ai](mailto:help@getintrod.ai)
+- Privacy requests: [privacy@getintrod.ai](mailto:privacy@getintrod.ai)
 
 ## Read next
 
 - [Quick start](/getting-started/quickstart)
-- [Create account](/getting-started/create-account)
-- [Connect integrations](/getting-started/connect-integrations)
-- [First warm introduction](/getting-started/first-warm-introduction)
 - [Definitions](/getting-started/definitions)
-
-## For developers and operators
-
-Need the full stack running locally or want the public API details? Head to [Quickstart](/quickstart) and [API Reference](/api).
+- [Privacy and security](/privacy-security)

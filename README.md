@@ -1,28 +1,52 @@
 # Introd Docs
 
-Mintlify documentation for `docs.getintrod.ai`.
+Mintlify source for [docs.getintrod.ai](https://docs.getintrod.ai).
 
 ## Source of truth
 
-This repository is the canonical docs repository for Introd. The production Mintlify project should connect to:
+The production Mintlify project connects to `Introd-Technologies-Inc/introd-docs` with this repository root as the docs path. Keep `docs.json` at the top level.
 
-```text
-Introd-Technologies-Inc/introd-docs
+## Public-content boundary
+
+This site contains customer-facing product guidance. Do not publish:
+
+- internal application routes or authentication headers;
+- environment variables, credentials, or secret names;
+- architecture, infrastructure, deployment, migration, or rollback runbooks;
+- operator-only procedures; or
+- speculative product behavior presented as current functionality.
+
+`.mintignore` provides a publish boundary for internal directory names. The automated quality check also rejects navigation into those directories. These controls are defense in depth, not a place to store secrets.
+
+The public `llms.txt`, `llms-full.txt`, and `skill.md` files are curated product surfaces. Review them whenever navigation or product boundaries change.
+
+## Local verification
+
+Use the pinned toolchain:
+
+```bash
+npm ci --ignore-scripts
+npm run check
 ```
 
-Use the repository root as the docs path because `docs.json` lives at the top level.
+`npm run check` validates public boundaries, metadata, local links, machine-readable surfaces, the Mintlify configuration, and accessibility.
 
-## Local development
+The pinned Mintlify build tool currently brings 7 high and 2 moderate upstream development-only advisories. CI reports them and blocks critical findings. They are not shipped application dependencies; re-evaluate on every Mintlify update and do not use the audit tool's forced CLI downgrade without a compatibility review.
+
+For a local preview:
 
 ```bash
 npx mintlify dev
-npx mintlify validate
 ```
 
-## Content model
+After an approved production deployment, run `npm run check:live`. It verifies all retired internal routes in HTML and Markdown forms, every removed screenshot, contributor-only files, the exact sitemap, skill discovery and digest, `llms` files, robots policy, MCP search/filesystem caches, and key public pages against the release boundary.
 
-- `Documentation` is for user-facing product guides.
-- `API Reference` is for public API docs and generated inventories.
-- `Developers` is for architecture, local setup, deployment, and operational runbooks.
+## Content rules
 
-Keep screenshots under `images/product` and brand assets under `images/brand`.
+- Describe verified current behavior in task-oriented language.
+- Link to the exact app destination when it is stable.
+- Label missing, weak, stale, or conditional data honestly.
+- Treat introduction records as drafts or tracked workflow state, not proof of external message delivery.
+- Describe contextual LinkedIn browsing capture separately from full-network import, automatic resume, and each stop control.
+- Use screenshots only when they were captured from the current product and contain no sensitive data.
+- Store approved product screenshots in `images/product` and brand assets in `images/brand`.

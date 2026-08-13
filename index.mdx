@@ -1,106 +1,68 @@
 ---
 title: "Introd Documentation"
-description: "The authoritative documentation portal for Introd's product, APIs, extension, and trust graph."
+description: "Set up Introd, sync your network, find credible warm paths, and prepare introduction drafts."
 public: true
 ---
 
-Introd is relationship intelligence infrastructure for warm introduction paths, trust graph workflows, relationship memory, and strategic network insight.
+Introd helps you use the relationships already around you to find a credible path to a person or company you want to reach.
 
-These docs are the source for `docs.getintrod.ai`. They intentionally use Introd `.ai` production domains and do not carry over FoundersNest content.
-
-![Warm intro path in Introd](/images/product/warm-intro-path.png)
-
-<Columns cols={3}>
-  <Card title="Getting started" icon="rocket" href="/getting-started">
-    Connect LinkedIn, add communication evidence, and move from zero coverage to a first credible warm path.
+<Columns cols={2}>
+  <Card title="Start with the quickstart" icon="rocket" href="/getting-started/quickstart">
+    Create or sign in to your account, connect a supported network source, and verify that Introd has usable relationship evidence.
   </Card>
-  <Card title="People" icon="users" href="/people">
-    Search targets, inspect ranked paths, and move from a promising route into a real introduction request.
-  </Card>
-  <Card title="Companies" icon="building-2" href="/companies">
-    Map target accounts, compare connectors, and understand which companies are actually reachable now.
-  </Card>
-  <Card title="Relationship intelligence" icon="network" href="/relationship-intelligence">
-    Learn how TrustRank, connector ranking, evidence chips, and graph confidence shape each recommendation.
-  </Card>
-  <Card title="Chrome extension" icon="chrome" href="/chrome-extension">
-    Install the LinkedIn extension, understand its permissions, and troubleshoot sync truthfully.
-  </Card>
-  <Card title="Privacy & security" icon="shield-check" href="/privacy-security">
-    Understand data handling, OAuth scopes, deletion workflows, and provider-specific boundaries.
-  </Card>
-  <Card title="API & platform" icon="blocks" href="/api">
-    Review route families, authentication patterns, generated inventories, and local setup for engineering work.
+  <Card title="Open Introd" icon="arrow-up-right" href="https://app.getintrod.ai">
+    Continue in the app. Protected pages ask you to sign in before showing workspace data.
   </Card>
 </Columns>
 
-## What Introd helps you decide
+## Choose what you want to do
 
 <Columns cols={3}>
-  <Card title="Who matters" icon="target">
-    Focus attention on the people and companies that are worth a warm-intro workflow right now.
+  <Card title="Set up your network" icon="user-round-cog" href="/setup-network">
+    Connect a supported source, review sync status, and understand when the network is ready to use.
   </Card>
-  <Card title="Who can get you in" icon="handshake">
-    Rank connectors by trust, relationship freshness, and demonstrated ability to move a conversation.
+  <Card title="Find a warm path" icon="route" href="/people/search-people">
+    Search for a real target and inspect the connector and evidence before taking action.
   </Card>
-  <Card title="Why the route is credible" icon="shield">
-    Show the evidence behind every path instead of hiding weak graph coverage behind confident UI.
+  <Card title="Prepare an introduction" icon="handshake" href="/introductions/create-request">
+    Carry a verified target and connector into the composer and save an introduction draft for review.
+  </Card>
+  <Card title="Use the Chrome extension" icon="chrome" href="/chrome-extension">
+    Sync visible LinkedIn connection data and review the extension's current status and controls.
+  </Card>
+  <Card title="Understand path confidence" icon="network" href="/relationship-intelligence">
+    Learn how evidence, freshness, and missing context affect a recommendation.
+  </Card>
+  <Card title="Review privacy and security" icon="shield-check" href="/privacy-security">
+    See the difference between disconnecting a source, clearing local extension data, and requesting account deletion.
   </Card>
 </Columns>
 
-## Core workflows
+## The shortest successful path
 
-<Tabs>
-  <Tab title="Find a person">
-    1. Search from the dashboard or people surfaces.
-    2. Review the strongest connector and the evidence supporting that route.
-    3. Move directly into an intro request when the path is actually worth action.
+<Steps>
+  <Step title="Sign in or create an account">
+    Use [app.getintrod.ai](https://app.getintrod.ai). New accounts may be asked to complete access and onboarding steps before a workspace is available.
+  </Step>
+  <Step title="Connect and verify a source">
+    Follow [Sync your network](/setup-network/sync-accounts). A connected label alone is not enough; confirm a recent successful sync or an explicit next action.
+  </Step>
+  <Step title="Search a real target">
+    Use [Search people](/people/search-people), then open a result that includes enough relationship context to review.
+  </Step>
+  <Step title="Review before drafting">
+    Check the connector, evidence, and uncertainty. If the path is weak or incomplete, gather more context instead of treating it as a warm introduction.
+  </Step>
+  <Step title="Save a draft">
+    Use [Prepare an introduction](/introductions/create-request). Creating a draft does not send a message.
+  </Step>
+</Steps>
 
-    Start with [People](/people) and [Introductions](/introductions).
-  </Tab>
-  <Tab title="Break into a company">
-    1. Open a target company and inspect connector density, reachable roles, and company signals.
-    2. Resolve the company-level opportunity down to specific people and connectors.
-    3. Turn the strongest route into an intro request instead of a generic account note.
+## What these docs promise
 
-    Start with [Companies](/companies) and [Relationship intelligence](/relationship-intelligence).
-  </Tab>
-  <Tab title="Set up the graph">
-    1. Create an account and connect LinkedIn.
-    2. Add Google Workspace or Microsoft 365 evidence so ranking can go beyond social adjacency.
-    3. Verify graph coverage before trusting any connector recommendation.
+- Instructions describe supported, reviewable behavior rather than future product ideas.
+- Weak or missing relationship evidence is labeled as a limitation, not converted into a confident path.
+- Introduction actions remain drafts until a person reviews and intentionally sends them through an approved channel.
+- Internal architecture, deployment, credentials, and operator runbooks are not part of the public documentation.
 
-    Start with [Getting started](/getting-started) and the [Chrome extension](/chrome-extension).
-  </Tab>
-</Tabs>
-
-## Product-first docs, with engineering where it belongs
-
-Most of this portal is designed for users, operators, and teams trying to get value from Introd quickly. API references, architecture notes, and local setup live under the separate platform tab so they do not crowd the core product guides.
-
-## Product boundary
-
-Introd should behave like a relationship decision layer, not a generic CRM, scraping product, or LinkedIn utility.
-
-Every recommendation should explain:
-
-- why this person matters
-- why this connector is trustworthy
-- what evidence supports the route
-- what is weak or missing
-- what the user should do next
-
-## Core system map
-
-```mermaid
-flowchart LR
-  A[LinkedIn Extension] --> B[Introd API]
-  C[Dashboard] --> B
-  D[Google and Outlook Integrations] --> B
-  B --> E[Neo4j Trust Graph]
-  B --> F[Postgres Operational Store]
-  E --> G[Warm Path Engine]
-  F --> G
-  G --> C
-  G --> A
-```
+If a guide does not match what you see, contact [help@getintrod.ai](mailto:help@getintrod.ai) and include the page URL and the step that differed.

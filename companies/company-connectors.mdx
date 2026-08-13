@@ -1,55 +1,37 @@
 ---
-title: "Company Connectors"
-description: "Identify the connectors in-network who can unlock a target company credibly."
+title: "Review Company Connectors"
+description: "Compare the people connected to a target company before choosing a warm route."
 ---
 
-Connector analysis at the company level should still resolve down to a person with a real chance of replying. Company coverage without a connector decision is just research.
+A company result is useful only when it resolves to a person you can evaluate as a connector or target.
 
-![Company search in Introd](/images/product/company-search.png)
+## Open the connector context
 
-## Useful signals
+1. Open [Companies](https://app.getintrod.ai/search/companies).
+2. Select a company row.
+3. Review the connector names, roles, relationship labels, and available path count in the detail panel.
+4. Continue to the relevant person or path for the full evidence available to your workspace.
 
-- reachable people count at the account
-- strength of the best connector for each target
-- evidence density across the account
-- department fit for the intro goal
-- outcome history into the account
+## Compare connectors
 
-## Relevant response fields
+Use the information shown in the product to answer:
 
-The current company search and graph layers already surface the right primitives:
+- Is this person actually in my network data?
+- Is their relationship to me direct or brokered through someone else?
+- How recent and specific is the supporting context?
+- Is the person connected to the target company in a way that matters for this request?
+- Would asking them be appropriate now?
 
-- `strongestPath`
-- `bestConnectorInsight`
-- `companyMemory`
-- `topRoles`
-- `introHistoryCount`
-- `relationshipDensity`
+Relationship labels and scores are ranking aids. They do not measure willingness, availability, or consent.
 
-## What to rank highest
+## When no connector is shown
 
-Choose the connector who can move the right conversation, not the connector with the most generic adjacency.
+This means the current company result does not include a usable connector. Try the following:
 
-In practice that means favoring:
+1. [Search people](/people/search-people) using the company name.
+2. Review [Network Setup](/setup-network) for incomplete or failed sources.
+3. Gather more context outside Introd before preparing a request.
 
-- better response history
-- better intro completion history
-- stronger path confidence
-- better context fit by department or goal
-- lower decay and staleness
-
-## Good company-connector view
-
-A strong company connector view should answer:
-
-1. who inside the company is most reachable
-2. which connector should make the ask
-3. what evidence makes that route believable
-4. whether the account is warming up or going dormant
-
-## Follow-on actions
-
-- open the strongest target path
-- compare the fastest connector and most reliable connector
-- turn the best route into a request, not a generic account note
-- add the company to a [Collection](/workspace/collections) when it belongs to a repeatable workflow
+<Warning>
+  Do not choose a connector solely because they have the highest displayed score. Confirm the relationship and the social context with a person who knows it.
+</Warning>

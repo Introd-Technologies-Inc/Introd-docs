@@ -1,41 +1,50 @@
 ---
 title: "Settings"
-description: "Manage account preferences, privacy, integrations, and workspace controls."
+description: "Manage account preferences, privacy choices, integration status, billing, and account data."
 ---
 
-Settings is where account, notification, privacy, integration, and billing controls live. Treat it as the control plane for how Introd uses your data and how your workspace receives updates.
+Settings contains account-level controls for your signed-in Introd workspace.
 
-![Settings in Introd](/images/product/settings.png)
+[Open Settings](https://app.getintrod.ai/settings)
 
-## Account
+## Available sections
 
-Use Account settings to update profile identity, email preferences, password settings, two-factor authentication, active sessions, and data visibility.
+| Section | What is available |
+| --- | --- |
+| Account and Profile | Name, email, phone, time zone, language, and profile picture preferences |
+| Organization | Workspace summary plus links to Team and Network Setup |
+| Notifications | Introduction, network, summary, product, and marketing email preferences |
+| Privacy & Security | Analytics consent, profile visibility, search visibility, and account-data actions |
+| Integrations | Current provider status and a link to Network Setup |
+| Billing | Current plan details and self-service checkout or billing management when available |
 
-## Privacy and security
+Select **Save changes** after editing account information. Email and privacy toggles save when changed.
 
-Privacy settings control how your profile and graph context are visible. Before expanding team access, confirm:
+## Current availability notes
 
-- profile visibility
-- search visibility
-- data personalization settings
-- export and deletion options
-- active sessions
-- two-factor authentication state
+- **Change password** directs you to password reset from the sign-in page.
+- Email-template management is not available in Settings yet.
+- Data exports are handled by support today.
+- Integration connection and sync actions live in **Network Setup**.
+- Billing buttons can be disabled when self-service checkout or the billing portal is not available for the account.
 
-## Integrations
+## Privacy choices
 
-The Integrations panel shows connected and available sources such as Google Contacts, Microsoft 365, LinkedIn, and Salesforce. Use it to reconnect sources, review status, and find providers that are not yet contributing signal.
+The analytics control covers privacy-safe product milestones and is shared across getintrod.ai properties. Profile and search visibility choices are stored with your Introd preferences.
 
-## Notifications
+For the policy governing personal data, see the [Introd Privacy Policy](https://getintrod.ai/legal/privacy).
 
-Keep introduction and request notifications enabled if Introd is part of an active workflow. Disable marketing emails if you only want operational updates.
+## Deactivation and deletion
 
-## Danger zone
+The **Danger Zone** requires a browser confirmation.
 
-Account deactivation and deletion are permanent controls. Before using them, export required data and confirm whether workspace-owned data should remain available to teammates.
+- **Deactivate account** records a deactivation request on the account.
+- **Delete account** starts deletion of dashboard-owned product records and signs out the current session. The in-product confirmation does not prove that every applicable provider, graph, backup, or retained legal record has finished deletion.
+
+Deletion cannot be undone. For a data export or questions about a complete privacy request, contact [privacy@getintrod.ai](mailto:privacy@getintrod.ai) before deleting data.
 
 ## Related guides
 
-- [Connect Integrations](/getting-started/connect-integrations)
-- [OAuth Permissions](/privacy-security/oauth-permissions)
-- [GDPR and Deletion](/privacy-security/gdpr-and-deletion)
+- [Sync accounts](/setup-network/sync-accounts)
+- [Privacy and security](/privacy-security)
+- [OAuth permissions](/privacy-security/oauth-permissions)

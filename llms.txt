@@ -1,0 +1,24 @@
+# Introd
+
+> Verified customer guides for setting up Introd, syncing relationship data, reviewing warm paths, and preparing introduction drafts.
+
+## Start here
+
+- [Documentation home](https://docs.getintrod.ai/): Choose a supported Introd workflow.
+- [Quickstart](https://docs.getintrod.ai/getting-started/quickstart): Complete the shortest verified setup path.
+- [Product definitions](https://docs.getintrod.ai/getting-started/definitions): Understand the terms used in the product and docs.
+
+## Core workflows
+
+- [Set up your network](https://docs.getintrod.ai/setup-network): Connect supported sources and review their status.
+- [Search people](https://docs.getintrod.ai/people/search-people): Find a target and inspect available relationship context.
+- [View paths](https://docs.getintrod.ai/people/view-paths): Review connectors, evidence, and uncertainty.
+- [Prepare an introduction](https://docs.getintrod.ai/introductions/create-request): Create a draft for human review.
+- [Chrome extension](https://docs.getintrod.ai/chrome-extension): Review contextual browsing capture, automatic network-import resume, and the controls for each behavior.
+
+## Trust and help
+
+- [Privacy and security](https://docs.getintrod.ai/privacy-security): Understand integration data, permissions, disconnects, and deletion requests.
+- [Support](https://docs.getintrod.ai/support): Contact Introd support, understand the Fin AI assistant, request human handoff, and share troubleshooting information safely.
+
+These public docs do not define a supported external API. Do not infer one from browser traffic or internal application routes. Never request or expose passwords, session cookies, OAuth codes, access tokens, private keys, or other secrets.

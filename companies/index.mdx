@@ -1,53 +1,55 @@
 ---
 title: "Companies"
-description: "Use company intelligence, connector insight, and warm paths into target accounts."
+description: "Find companies represented in your network and review the people and paths connected to them."
 ---
 
-Company workflows are how Introd moves from person-level relationship insight to account-level opportunity mapping. Use this section when the target is an account, market, or industry rather than one named person.
+Use **Companies** to move from an account name to the people in your network who may provide a credible path in.
 
-![Company search in Introd](/images/product/company-search.png)
+<Card title="Open Companies" icon="arrow-up-right" href="https://app.getintrod.ai/search/companies">
+  Sign-in is required. Results reflect the relationship data currently available to your workspace.
+</Card>
+
+## Before you start
+
+Company results are assembled from people and relationship records already available to Introd. If the page is empty or an expected company is missing, first review [Network Setup](/setup-network) and the status of your connected sources.
+
+## A reliable company workflow
+
+<Steps>
+  <Step title="Search for the company">
+    Enter a company name or another visible company attribute, then submit the search.
+  </Step>
+  <Step title="Narrow the result set">
+    Use the available tabs to focus on reachable companies, strategic targets, companies already in warm paths, or records that need enrichment. Sort by relevance, contacts, warm paths, or company name.
+  </Step>
+  <Step title="Open a company row">
+    Review the number of people, available warm paths, coverage label, and connector summary. These are workspace-specific signals, not a guarantee that someone will make an introduction.
+  </Step>
+  <Step title="Inspect the people behind the company">
+    Continue to the relevant person or path before preparing a request. Company-level reach always depends on a real person and current relationship context.
+  </Step>
+</Steps>
+
+## What the main fields mean
+
+| Field | Interpretation |
+| --- | --- |
+| Warm paths | Paths currently returned from the relationship graph for people associated with the company |
+| Strong connectors | People whose available relationship evidence is stronger than the alternatives shown |
+| Coverage | A relative summary based on the paths and people currently available to your workspace |
+| People | People associated with the company in the current result set |
+
+<Warning>
+  A company appearing as reachable does not confirm that a connector is willing, available, or appropriate. Review the individual path before asking anyone to spend social capital.
+</Warning>
+
+## Next steps
 
 <Columns cols={2}>
-  <Card title="Company intelligence" icon="building-2" href="/companies/company-intelligence">
-    Understand why a company matters and what context makes it reachable now.
+  <Card title="Search and sort companies" icon="search" href="/companies/company-intelligence">
+    Learn how to narrow the company list and interpret empty states.
   </Card>
-  <Card title="Company connectors" icon="users" href="/companies/company-connectors">
-    Find the people in-network who can credibly unlock the target account.
-  </Card>
-  <Card title="Warm paths into companies" icon="route" href="/companies/warm-paths-into-companies">
-    Resolve an account-level opportunity down to specific people and ranked connectors.
-  </Card>
-  <Card title="Company signals" icon="radar" href="/companies/company-signals">
-    Use role mix, signal density, and recent evidence to decide whether the path is worth an ask.
+  <Card title="Review company connectors" icon="users" href="/companies/company-connectors">
+    Compare the people attached to a company before choosing a route.
   </Card>
 </Columns>
-
-## Core jobs
-
-- understand why a company matters
-- find who in the network can unlock it
-- inspect the strongest route into the company
-- understand which company signals support the recommendation
-- save account collections for repeated work
-
-## What company intelligence should include
-
-| Signal | Why it matters |
-| --- | --- |
-| Shared connectors | Shows whether the company is actually reachable |
-| Top roles in-network | Helps users decide who to target first |
-| Relationship density | Distinguishes one weak edge from broad team reach |
-| Company signals | Context such as industry, role mix, or recent touchpoints |
-| Search confidence | Warns when the current result set is too thin or too noisy |
-
-## Warm paths into companies
-
-Company routing should still resolve down to people. The product should explain which connector can unlock which person at the target company and how reliable that connector is.
-
-## Typical workflow
-
-1. Search for a company segment or target account.
-2. Filter by industry, company size, location, growth stage, or technology.
-3. Review company-level confidence and connection density.
-4. Open the best account and inspect reachable people.
-5. Add relevant accounts to a collection or create a mission.

@@ -1,44 +1,49 @@
 ---
-title: "How Introd Decides"
-description: "How Introd ranks connectors, explains confidence, and decides whether a path is worth action."
+title: "Relationship Intelligence"
+description: "How to read warm-path rankings, supporting evidence, and sharing state in Introd."
 ---
 
-This is the part of Introd that helps users trust the product. Good ranking is not enough on its own. The system also has to explain why a route is strong, weak, or not ready yet.
-
-![Ranked warm intro path in Introd](/images/product/warm-intro-path.png)
+Relationship intelligence helps you compare possible connectors without turning a score into a claim about a person.
 
 <Columns cols={2}>
-  <Card title="Connector ranking" icon="arrow-up-wide-narrow" href="/relationship-intelligence/connector-ranking">
-    Decide which connector is most credible for the target instead of defaulting to the shortest path.
+  <Card title="Compare warm paths" icon="route" href="/relationship-intelligence/connector-ranking">
+    Read the selected route, its supporting reasons, and any alternatives.
   </Card>
-  <Card title="TrustRank & confidence" icon="shield-check" href="/relationship-intelligence/trustrank-and-confidence">
-    Explain how evidence quality, freshness, and route structure change confidence.
+  <Card title="Understand the signals" icon="signal" href="/relationship-intelligence/trustrank-and-confidence">
+    Interpret strength, confidence, and missing evidence cautiously.
   </Card>
-  <Card title="Communities & networks" icon="network" href="/relationship-intelligence/communities-and-networks">
-    Understand alumni, investor, and operator communities as reusable warm-intro context.
+  <Card title="Review sharing" icon="users" href="/relationship-intelligence/communities-and-networks">
+    Check the active sharing level and selected communities.
+  </Card>
+  <Card title="Open Relationship Intelligence" icon="arrow-up-right-from-square" href="https://app.getintrod.ai/relationship-intelligence">
+    Review your current network metrics and graph-sharing settings in Introd.
   </Card>
 </Columns>
 
-## Core concepts
+## Two places to look
 
-| Concept | What it answers |
-| --- | --- |
-| Warm introductions | Is there a credible route into this person or company? |
-| Connector ranking | Who is the best person to make the intro? |
-| TrustRank | How much confidence should the system place in the route? |
-| Relationship strength | How fresh, direct, and proven is the connector's edge? |
-| Evidence chips | What concrete signals support the recommendation? |
-| Graph confidence | How certain is the system that the route is worth action? |
+- A **Warm Intro Path** shows the selected connector chain, path strength, supporting reasons, mutual connections, and other available routes for one target.
+- **Relationship Intelligence** summarizes available and locked paths, connector and outcome activity, sharing settings, and trusted communities for your network.
 
-## Read next
+## Read evidence before the score
 
-- [Connector ranking](/relationship-intelligence/connector-ranking)
-- [TrustRank and confidence](/relationship-intelligence/trustrank-and-confidence)
-- [Communities and networks](/relationship-intelligence/communities-and-networks)
+1. Confirm that the target and connector names match the people you intended to review.
+2. Read **Why this path works** and the relationship context.
+3. Compare other routes for the same target when Introd lists them.
+4. Verify the connector's willingness and the target context before acting.
 
-## Non-negotiables
+<Warning>
+  A path score is a relative product signal based on the evidence available to Introd. It is not proof of a relationship, consent to an introduction, a measure of a person's trustworthiness, or a guaranteed outcome.
+</Warning>
 
-- Do not fabricate a warm path.
-- Do not overstate stale evidence.
-- Do not hide missing data behind confident UI.
-- Do explain why a connector is strong, weak, or unavailable.
+## When evidence is missing
+
+Introd uses explicit empty states such as **No connector context is available yet**, **No named mutual connectors available yet**, **No alternate verified paths are available yet**, and **No connector outcome history yet**. These messages mean that the product does not have enough applicable evidence to show that result. They do not mean that a relationship is bad or that no relationship exists outside Introd.
+
+If a result looks incomplete, sync the relevant network data, confirm the target profile, update the introduction record only after a real outcome occurs, and refresh the view.
+
+## Continue
+
+- [Compare warm intro paths](/relationship-intelligence/connector-ranking)
+- [Understand strength, confidence, and evidence](/relationship-intelligence/trustrank-and-confidence)
+- [Manage sharing and communities](/relationship-intelligence/communities-and-networks)

@@ -2,12 +2,12 @@
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
   "name": "Introd",
-  "description": "User documentation for getting set up, finding warm paths, requesting introductions, and understanding how Introd makes trust decisions.",
+  "description": "Verified guides for setting up Introd, syncing your network, finding warm paths, and preparing introduction drafts.",
   "icons": {
     "library": "lucide"
   },
   "colors": {
-    "primary": "#08AE7E",
+    "primary": "#046147",
     "light": "#57E3BA",
     "dark": "#08976E"
   },
@@ -29,16 +29,41 @@
   "logo": {
     "light": "/images/brand/logo-light.png",
     "dark": "/images/brand/logo-dark.png",
-    "href": "/getting-started/quickstart"
+    "href": "/"
   },
   "favicon": {
     "light": "/images/brand/favicon.png",
     "dark": "/images/brand/favicon.png"
   },
+  "metadata": {
+    "timestamp": true
+  },
+  "search": {
+    "prompt": "Search verified Introd product guides"
+  },
+  "contextual": {
+    "options": [
+      "copy",
+      "view"
+    ],
+    "display": "header"
+  },
   "redirects": [
     {
-      "source": "/",
+      "source": "/quickstart",
       "destination": "/getting-started/quickstart"
+    },
+    {
+      "source": "/workspace/saved-lists",
+      "destination": "/workspace/collections"
+    },
+    {
+      "source": "/companies/company-signals",
+      "destination": "/companies"
+    },
+    {
+      "source": "/introductions/intro-outcomes",
+      "destination": "/introductions/track-requests"
     }
   ],
   "navbar": {
@@ -48,12 +73,12 @@
         "href": "https://getintrod.ai"
       },
       {
-        "label": "FAQ",
-        "href": "/faq"
+        "label": "Privacy",
+        "href": "https://getintrod.ai/legal/privacy"
       },
       {
-        "label": "Trust",
-        "href": "/privacy-security"
+        "label": "Support",
+        "href": "mailto:help@getintrod.ai"
       }
     ],
     "primary": {
@@ -65,19 +90,48 @@
   "footer": {
     "links": [
       {
-        "title": "Docs",
+        "title": "Use Introd",
         "items": [
           {
             "label": "Getting started",
             "href": "/getting-started/quickstart"
           },
           {
-            "label": "Chrome extension",
-            "href": "/chrome-extension"
+            "label": "Sync your network",
+            "href": "/setup-network/sync-accounts"
           },
           {
-            "label": "API reference",
-            "href": "/api"
+            "label": "Prepare an introduction",
+            "href": "/introductions/create-request"
+          },
+          {
+            "label": "Chrome extension",
+            "href": "/chrome-extension"
+          }
+        ]
+      },
+      {
+        "title": "Trust",
+        "items": [
+          {
+            "label": "Privacy & security",
+            "href": "/privacy-security"
+          },
+          {
+            "label": "Privacy policy",
+            "href": "https://getintrod.ai/legal/privacy"
+          },
+          {
+            "label": "Cookie settings",
+            "href": "#introd-cookie-settings"
+          },
+          {
+            "label": "Terms of service",
+            "href": "https://getintrod.ai/legal/terms"
+          },
+          {
+            "label": "Report a security issue",
+            "href": "mailto:security@getintrod.ai"
           }
         ]
       },
@@ -85,21 +139,26 @@
         "title": "Company",
         "items": [
           {
-            "label": "Introd",
+            "label": "Website",
             "href": "https://getintrod.ai"
           },
           {
-            "label": "App",
+            "label": "Open app",
             "href": "https://app.getintrod.ai"
+          },
+          {
+            "label": "Contact support",
+            "href": "mailto:help@getintrod.ai"
           }
         ]
       }
     ],
     "socials": {
-      "linkedin": "https://www.linkedin.com/company/introd-ai"
+      "linkedin": "https://www.linkedin.com/company/warm-intros"
     }
   },
   "seo": {
+    "indexing": "navigable",
     "metatags": {
       "canonical": "https://docs.getintrod.ai"
     }
@@ -119,7 +178,6 @@
               "getting-started/create-account",
               "getting-started/connect-integrations",
               "getting-started/first-warm-introduction",
-              "faq/index",
               "getting-started/definitions"
             ],
             "public": true
@@ -169,8 +227,7 @@
             "pages": [
               "companies/company-intelligence",
               "companies/company-connectors",
-              "companies/warm-paths-into-companies",
-              "companies/company-signals"
+              "companies/warm-paths-into-companies"
             ],
             "public": true
           },
@@ -182,7 +239,6 @@
               "introductions/opportunity-flow",
               "introductions/create-request",
               "introductions/track-requests",
-              "introductions/intro-outcomes",
               "introductions/best-practices"
             ],
             "public": true
@@ -201,7 +257,7 @@
             "public": true
           },
           {
-            "group": "How Introd Decides",
+            "group": "Relationship Intelligence",
             "icon": "network",
             "root": "relationship-intelligence/index",
             "pages": [
@@ -222,102 +278,13 @@
               "privacy-security/gdpr-and-deletion"
             ],
             "public": true
-          }
-        ]
-      },
-      {
-        "tab": "API Reference",
-        "icon": "square-terminal",
-        "groups": [
-          {
-            "group": "API Reference",
-            "icon": "square-terminal",
-            "root": "api/index",
-            "pages": [
-              "api/authentication",
-              "api/graph-apis",
-              "api/people-apis",
-              "api/companies-apis",
-              "api/intro-apis",
-              {
-                "group": "Generated Inventories",
-                "icon": "folder-kanban",
-                "expanded": false,
-                "pages": [
-                  "reference/generated/api-endpoint-inventory",
-                  "reference/generated/environment-variables"
-                ],
-                "public": true
-              }
-            ],
-            "public": true
-          }
-        ]
-      },
-      {
-        "tab": "Developers",
-        "icon": "blocks",
-        "groups": [
-          {
-            "group": "Local Setup",
-            "icon": "terminal",
-            "root": "quickstart",
-            "pages": [],
-            "public": true
           },
           {
-            "group": "Architecture",
-            "icon": "blocks",
-            "root": "architecture/index",
+            "group": "Help",
+            "icon": "life-buoy",
+            "root": "support/index",
             "pages": [
-              "architecture/neograph",
-              "architecture/dashboard",
-              "architecture/extension",
-              "architecture/sync-pipeline",
-              "architecture/warm-path-engine",
-              "architecture/intro-marketplace",
-              "architecture/repository-systems",
-              {
-                "group": "Graph Internals",
-                "icon": "git-branch",
-                "expanded": false,
-                "pages": [
-                  "graph/trust-aware-pathfinding",
-                  "graph/edge-provenance",
-                  "graph/non-user-targets",
-                  "product/relationship-intelligence-defensibility"
-                ],
-                "public": true
-              }
-            ],
-            "public": true
-          },
-          {
-            "group": "Operations",
-            "icon": "server",
-            "root": "operations/index",
-            "pages": [
-              "operations/infrastructure-audit",
-              "operations/migration-plan",
-              "operations/domain-setup",
-              "operations/cloudflare-cutover",
-              "deployment/mintlify-cutover",
-              "operations/deployment-plan",
-              "operations/generated-docs-inventory",
-              "operations/missing-docs-inventory",
-              "operations/go-live-checklist",
-              {
-                "group": "Legacy Migration Context",
-                "icon": "history",
-                "expanded": false,
-                "pages": [
-                  "migration/core-infra-manifest-2026-05-26",
-                  "migration/moat-migration-audit-2026-05-26",
-                  "releases/phase2",
-                  "releases/rollback-phase2"
-                ],
-                "public": true
-              }
+              "faq/index"
             ],
             "public": true
           }

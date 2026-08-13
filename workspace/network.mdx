@@ -1,51 +1,46 @@
 ---
-title: "Network"
-description: "Read network health, connection growth, opportunity coverage, and relationship decay."
+title: "Connections"
+description: "Review synced people, companies, connectors, paths, and source health in one place."
 ---
 
-Network is the operating dashboard for your relationship graph. Use it to understand whether Introd has enough fresh, diverse, and reliable relationship evidence to recommend warm paths.
+The app route named **Connections** summarizes your current relationship graph. Open it from the Network Health card or use the link below.
 
-![Network analytics in Introd](/images/product/network.png)
+[Open Connections](https://app.getintrod.ai/network)
 
-## What Network answers
+## What you can review
 
-- how large your mapped network is
-- whether connection growth is improving
-- how many introductions are moving through the system
-- whether response rates are healthy
-- where hidden high-value paths exist
-- which relationships are decaying and need re-engagement
+- contacts and represented companies
+- warm-path and strong-connector counts
+- top connectors based on available contact and introduction records
+- top companies represented in synced contacts
+- recently discovered paths derived from introduction records
+- LinkedIn sync health and data-quality counts
+- Google, Outlook, and community connection status
 
-## Core metrics
+Relationship-intelligence metrics appear only when the workspace has enough graph evidence. Empty states mean Introd does not have the corresponding record yet.
 
-| Metric | Meaning |
+## Use Connections
+
+1. Check **LinkedIn sync health** and **Network health** first.
+2. If a source is pending, partial, failed, or not connected, select **Manage sync**.
+3. Review **Top connectors** and **Recently discovered paths**.
+4. Open a contact, company, or introduction to verify the underlying evidence before acting.
+
+The search box filters the people used in the top-connector view. Use **People** or **Company** for full search.
+
+## Read LinkedIn sync health
+
+| State | Meaning |
 | --- | --- |
-| Network size | Total mapped relationships across connected sources. |
-| New connections | Recently discovered people and edges. |
-| Introductions made | Warm introductions completed or advanced during the selected period. |
-| Response rate | Share of requests or connector actions that receive a meaningful response. |
-| Average time to intro | How long it typically takes to move from request to useful handoff. |
-| Network score | Aggregate health score across coverage, freshness, diversity, and activity. |
+| Synced | Introd has a completed or usable LinkedIn sync record. |
+| Partial | Some visible records may not yet be imported, or removal checks were skipped. |
+| Pending | The sync has not completed or is still running. |
+| Failed | The latest sync reports an error. |
 
-## Use the right tab
-
-- **Overview** for executive health and trend review.
-- **Relationships** for people-level inspection.
-- **Opportunities** for reachable targets and hidden paths.
-- **Introductions** for request throughput.
-- **Path Explorer** for route analysis.
-- **Organization Map** for company and community structure.
-
-## Relationship decay
-
-Relationship decay warnings surface contacts that were once useful but have become stale. Treat them as maintenance prompts, not failure states. Re-engage before asking for a high-stakes introduction.
-
-## Operating cadence
-
-Review Network weekly if Introd is part of an active fundraising, hiring, sales, or partnership motion. Review it daily when using Missions or time-sensitive intro requests.
+Use the detailed counts to distinguish visible, imported, incomplete, and removed records.
 
 ## Related guides
 
-- [Sync Accounts](/setup-network/sync-accounts)
-- [Missions](/workspace/missions)
-- [Opportunity Flow](/introductions/opportunity-flow)
+- [Sync accounts](/setup-network/sync-accounts)
+- [Search people](/people/search-people)
+- [Connector ranking](/relationship-intelligence/connector-ranking)

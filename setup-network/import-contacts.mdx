@@ -1,38 +1,44 @@
 ---
 title: "Import Contacts"
-description: "Bring existing contacts into Introd from CSV, Gmail, Outlook, or other email sources."
+description: "Preview a CSV before importing contacts, or start a supported Google or Outlook connection."
 ---
 
-Import Contacts helps you fill gaps in your network when integrations alone do not cover everyone you know.
+Import Contacts supports a local CSV preview and provider authorization for Google or Outlook.
 
-![Import contacts in Introd](/images/product/import-contacts.png)
+[Open Import Contacts](https://app.getintrod.ai/setup-network/import)
 
-## Import options
+## Import a CSV
 
-- CSV file
-- Gmail
-- Outlook
-- other email providers
+1. Choose **CSV File**.
+2. Drop a CSV onto the upload area or select **Choose file**.
+3. Review the preview and the number of contacts found.
+4. Select **Import contacts** only when the rows look correct.
 
-## CSV imports
+Introd recognizes common headings for:
 
-Use CSV import when you already have a clean contact list. Include names, emails, companies, and job titles when available.
+- full name, or separate first and last name
+- email
+- company, organization, or account
+- title, job title, or role
 
-## Review before importing
+A parsed row needs at least a name or an email. The page previews the first five rows and imports all parsed rows when you confirm.
 
-Before you import, confirm that:
+<Warning>
+The current importer does not show a duplicate-resolution step. Remove duplicate or unwanted rows from the CSV before importing.
+</Warning>
 
-- the preview looks correct
-- duplicate rows are expected or cleaned up
-- important fields such as name and email are present
-- you are importing contacts you are allowed to store in Introd
+## Google and Outlook
 
-## After importing
+Choosing **Gmail** starts Google authorization. Choosing **Outlook** starts Microsoft authorization. These options connect the provider; they do not show the CSV preview.
 
-Imported contacts should become available for search, collections, contacts, and path discovery once Introd has processed them.
+Choosing **Other Email** records an access request only. It does not import Yahoo, iCloud, AOL, or another mailbox today.
 
-## Continue with
+## After import
 
-- [Contacts](/workspace/contacts)
+Open **People** and search for several known records. A successful import adds contact records to Introd; it does not send them a message.
+
+## Related guides
+
+- [People and contacts](/workspace/contacts)
 - [Collections](/workspace/collections)
-- [Search People](/people/search-people)
+- [Privacy and security](/privacy-security)

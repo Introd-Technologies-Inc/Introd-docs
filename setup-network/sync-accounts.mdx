@@ -1,46 +1,53 @@
 ---
 title: "Sync Accounts"
-description: "Connect LinkedIn, Google, Gmail, Calendar, and Outlook so Introd can keep your network fresh."
+description: "Connect LinkedIn, Google, or Outlook and understand the status Introd reports for each source."
 ---
 
-Sync Accounts is the first setup step most users should complete. It gives Introd the relationship coverage needed to rank paths.
+The **Sync Accounts** list shows the supported connection flows and the most recent status available to Introd.
 
-![Sync accounts in Introd](/images/product/sync-network.png)
+[Open Sync Accounts](https://app.getintrod.ai/setup-network)
 
-## Read connection state
+## Connect a source
 
-Each account row should show provider, status, last sync, evidence count, and the next action.
+### LinkedIn
 
-| State | Meaning | User action |
+LinkedIn sync is backed by the Introd browser extension.
+
+1. Select **Connect** for LinkedIn.
+2. Finish LinkedIn sign-in in the window opened by Introd.
+3. Keep the extension available while the import continues.
+4. Return to Network Setup and wait for the contact count or last-synced value to update.
+
+### Google
+
+The Google Contacts, Calendar, and Gmail rows use a shared Google authorization flow. After you approve access, each row reports whether that specific Google service is connected.
+
+Select **Connect** on any Google row, complete authorization, then return to Network Setup. A partial result means at least one requested Google sync needs attention.
+
+### Outlook
+
+Outlook authorization covers supported email and calendar metadata. Complete the Microsoft authorization and return to Network Setup to see whether both parts connected.
+
+## Read the status
+
+| Status | What it means | What to do |
 | --- | --- | --- |
-| Connected | The source is authorized and contributing data. | Review last sync and coverage. |
-| Partial | The source is connected but some scopes, calendars, or folders are excluded. | Open settings and fix the missing access. |
-| Not connected | Introd cannot read that source. | Connect the provider if it is relevant to your workflow. |
-| Warning | The provider needs attention. | Re-authenticate, update settings, or check permissions. |
+| Connected | Introd has a usable connection or imported LinkedIn records. | Check the detail line and last sync. Use **Manage** to run another sync when needed. |
+| Partial | The account connected, but one or more supported parts need attention. | Select **Update** and complete authorization again. |
+| Not connected | Introd has no usable current connection for that row. | Select **Connect** if you want to use the source. |
 
-## What to connect first
+The detail line can also report a sync still in progress or historical evidence that requires reconnection. Do not use an old evidence count as proof that the current provider connection is healthy.
 
-1. LinkedIn for first-degree network coverage.
-2. Google Contacts or Microsoft 365 for address book context.
-3. Gmail, Calendar, Outlook, or Microsoft Calendar for communication and meeting evidence.
+## Verify the result
 
-## What each connection adds
+1. Check the imported contact count and last-synced time.
+2. Open [People](https://app.getintrod.ai/search/people) and confirm expected records are present.
+3. If the row remains partial or pending, retry authorization before importing the same contacts another way.
 
-| Source | What it helps with |
-| --- | --- |
-| LinkedIn | first-degree graph coverage and profile context |
-| Google Contacts | existing contact identity and reachability |
-| Gmail | communication evidence and freshness |
-| Google Calendar | meeting context and relationship recency |
-| Outlook | Microsoft communication and contact evidence |
+Connecting or syncing an account imports relationship evidence. It does not email contacts or send introduction requests.
 
-## Healthy sync state
+## Related guides
 
-A healthy sync shows connected accounts, recent timestamps, enough evidence to improve path quality, and no provider stuck in warning state. It should also make the network setup summary move in a way the user can understand.
-
-## Continue with
-
-- [Import contacts](/setup-network/import-contacts)
-- [Invite team](/setup-network/invite-team)
 - [Chrome extension](/chrome-extension)
-- [First warm introduction](/getting-started/first-warm-introduction)
+- [Import contacts](/setup-network/import-contacts)
+- [OAuth permissions](/privacy-security/oauth-permissions)

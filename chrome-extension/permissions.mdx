@@ -1,33 +1,54 @@
 ---
 title: "Permissions"
-description: "What the extension requests and why."
+description: "Review every permission and host declared by the current Introd extension manifest."
 ---
 
-The extension manifest is intentionally narrow. It requests only what is needed to support LinkedIn sync, popup state, and Introd callback handling.
+> Last verified against extension manifest version 1.8.4 on August 11, 2026.
 
-## Extension permissions
+## Browser permissions
 
-| Permission | Why it exists |
+| Permission | Current use |
 | --- | --- |
-| `storage` | Persist auth state, sync status, settings, and caches in the browser |
-| `alarms` | Drive scheduled extension housekeeping and refresh behavior |
-| `tabs` | Detect the active LinkedIn page and open required flows |
-| `scripting` | Run page-aware behavior on supported LinkedIn surfaces |
+| storage | Stores extension auth state, settings, sync checkpoints, status, and browser-local caches |
+| alarms | Runs signal sync, cache cleanup, session heartbeat, automatic connection-import resume, and queued profile-image work |
+| tabs | Checks LinkedIn pages, opens sign-in pages, and creates or reuses an inactive connections tab for import |
+| scripting | Runs page-aware identity capture and path-context logic on permitted LinkedIn surfaces |
 
-## Host permissions
+## Host access
 
-| Host pattern | Why it exists |
+| Host | Current use |
 | --- | --- |
-| `https://www.linkedin.com/*` | Detect signed-in state, connections pages, and profile context |
-| `https://linkedin.com/*` | Cover LinkedIn host variations |
-| `https://getintrod.ai/*` | Handle Introd callback and bridge pages |
-| `https://*.getintrod.ai/*` | Support app and API subdomains cleanly |
+| <code>https://www.linkedin.com/*</code> | Detects the LinkedIn session; processes connections; and inspects visible identity containers on profiles, feeds, comments, messaging surfaces, hover cards, organization people pages, events, discovery results, and lists |
+| <code>https://linkedin.com/*</code> | Covers LinkedIn host variations |
+| <code>media.licdn.com</code> over HTTPS (all paths) | Retrieves LinkedIn-hosted profile images used during supported profile processing |
+| <code>https://getintrod.ai/*</code> | Handles Introd pages used by sign-in and extension bridging |
+| <code>https://*.getintrod.ai/*</code> | Handles the Introd app and API subdomains used by the extension |
 
-## What the extension does not request
+The manifest also permits Introd website and app pages to connect to the extension for supported bridge behavior.
 
-- broad cross-site host access
-- clipboard permissions
-- downloads permissions
-- background permissions unrelated to sync
+## Permissions not requested
 
-That narrower scope helps with user trust and Chrome Web Store review.
+The current manifest does not request:
+
+- access to every website
+- clipboard access
+- download management
+- browsing-history access
+- microphone, camera, or location access
+
+## What Chrome permission does not mean
+
+Host access allows the content script to run on a matching page. It does not mean every field on that site is imported, but it does allow the script to inspect rendered page content. With the default capture settings on, derived identity and relationship fields can be recorded locally and submitted to Introd for enrichment when authenticated.
+
+<Warning>
+  Current selectors include LinkedIn messaging containers, and relationship parsing can fall back to their rendered text. Pausing a connection sync does not stop this page processing. Disable the extension in Chrome before opening a sensitive page if you do not want its code to run there.
+</Warning>
+
+## Review before approving
+
+1. Confirm the extension name is **Introd for LinkedIn**.
+2. Confirm the version matches the build information supplied by Introd.
+3. Compare Chrome's permission prompt with this page.
+4. Stop and contact [help@getintrod.ai](mailto:help@getintrod.ai) if the build asks for access outside these hosts or permissions.
+
+See [Integration Data Usage](/privacy-security/integration-data-usage) for the fields used after permission is granted.

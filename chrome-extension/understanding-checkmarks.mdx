@@ -1,49 +1,47 @@
 ---
 title: "Understanding Checkmarks"
-description: "Interpret extension status states, ready indicators, and graph-readiness signals."
+description: "Interpret the extension setup checklist and sync states without treating them as guarantees."
 ---
 
-Introd uses readiness states to tell the truth about what the extension has actually done. A checkmark should mean usable progress, not optimistic UI.
+> Last verified against current Extension Setup source on August 11, 2026.
 
-## Status states
+## Extension Setup checklist
 
-The extension uses a few clear states so the UI tells the truth about progress:
-
-| State | Meaning |
+| Checklist item | When it is marked complete |
 | --- | --- |
-| `disconnected` | No active extension client is visible to the API |
-| `ready` | Extension client is active and LinkedIn is available, but no sync is running |
-| `starting` | A sync run is being created |
-| `running` | Visible LinkedIn rows are being uploaded |
-| `paused` | Import stopped intentionally and can resume |
-| `completed` | A run finished successfully |
-| `failed` | The latest run ended with an error |
-| `auth_required` | The extension needs Introd auth or LinkedIn auth |
-| `awaiting_linkedin` | Introd is ready but LinkedIn context is missing |
-| `resetting` | LinkedIn data is being cleared and rebuilt |
+| Extension installed | The current Introd extension is active |
+| Introd account connected | The extension detects an authenticated Introd account |
+| Logged into LinkedIn | The extension detects a LinkedIn session in this Chrome profile |
+| Profile detected | A LinkedIn profile identity is available from the current session |
+| Connection import available | The extension found a visible connection total or imported records |
+| Connections imported | At least one connection record has been imported |
+| Graph updated | The sync reached the extension's completed graph-ready condition |
+| Last sync completed | The extension has a recorded last-sync time |
 
-## How to read a good completed state
+## Progress is not the same as completion
 
-A completed or checked state should imply:
+During a run, the checklist can show progress while the sync state is Syncing, Paused, Retrying, or Partial. Imported records can exist before **Graph updated** is complete. An incomplete run can also make progress through automatic background resume without the popup remaining open.
 
-- the extension client is active
-- LinkedIn was detected successfully
-- imported records were accepted by the API
-- at least one sync run completed
-- the graph has enough first-degree coverage to begin path discovery
+## What a completion checkmark confirms
 
-## What a checkmark should not imply
+- the associated setup condition was observed by the current extension
+- the condition applies to this Chrome profile and Introd account
+- the extension has a recorded state for that item
 
-- total coverage of every LinkedIn connection
-- proof that a target route is strong
-- permission to skip connector review
-- background access to unsupported LinkedIn surfaces
+## What it does not confirm
 
-## Related signals
+- every LinkedIn connection was imported
+- every imported contact has complete profile data
+- a particular target has a verified warm path
+- a connector has agreed to make an introduction
+- an introduction message was sent or delivered
 
-- imported count
-- last synced timestamp
-- visible total detected on LinkedIn
-- new connections in the latest run
-- relationship changes detected in the latest run
-- retry and error counts
+## Verify before acting
+
+1. Compare imported connections with the visible total when the popup provides both.
+2. Confirm the last-sync time.
+3. Open [People Search](https://app.getintrod.ai/search/people) and inspect the actual target.
+4. Review path evidence and connector identity.
+5. Save a draft rather than treating a checkmark as permission to contact someone.
+
+For status recovery, see [Troubleshooting](/chrome-extension/troubleshooting).

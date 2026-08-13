@@ -1,35 +1,99 @@
 ---
 title: "LinkedIn Integration"
-description: "How the extension connects LinkedIn activity to Introd's trust graph."
+description: "Understand browsing capture, start a full-network import, and control automatic background resume."
 ---
 
-The extension uses LinkedIn as a user-opened, browser-local signal source. It does not operate as a hidden crawler.
+The installed content script runs on permitted LinkedIn pages. Full-network import and authenticated profile enrichment require an Introd session, while the page script can still inspect visible LinkedIn content before that server-side work occurs.
 
-## How sync works
+> Last verified against current extension and API source on August 11, 2026.
 
-```mermaid
-flowchart LR
-  A[Open LinkedIn connections page] --> B[Extension detects page and session]
-  B --> C[Scroll and capture visible rows]
-  C --> D[Upload batches to Introd API]
-  D --> E[Persist imported records]
-  E --> F[Update graph coverage and sync status]
-```
+## Prerequisites
 
-## What gets captured
+- The Introd-provided extension build is loaded.
+- You are connected to Introd in the extension.
+- LinkedIn is signed in in the same Chrome profile.
+- LinkedIn can load its connections page.
 
-- visible first-degree connection rows
-- profile identifiers and URLs
-- headline and company context when available
-- progress, retry, and pacing diagnostics
+## Two different data behaviors
 
-## OAuth and callback handling
+### Contextual capture while browsing
 
-The manifest includes content scripts for Introd LinkedIn callback routes so the extension can complete browser-local sign-in and bridge flows cleanly.
+With the shipped default settings, **Enable extension** and **Auto-capture profile context** are on. As LinkedIn pages change, the extension looks for visible profile links and nearby identity or relationship text. It can store local profile-view signals, upload unsynced signals on a schedule, and submit derived profile fields for enrichment while signed in to Introd. Signed-out use can still leave local signals in Chrome storage.
 
-## Real constraints
+This behavior is not limited to a full-network sync or to a person's main profile page. Current selectors cover visible identity containers on profiles, feeds, comments, messaging surfaces, hover cards, organization people pages, events, discovery results, and list items. Captures are deduplicated for a period, but page processing continues as visible content changes.
 
-- LinkedIn loads large networks incrementally.
-- The extension can only import rows that are visible as LinkedIn renders them.
-- Large networks can pause because of API pacing or LinkedIn row loading.
-- Partial progress is normal and should be shown truthfully.
+### Full-network connection import
+
+Choosing **Start Sync** starts a resumable import from LinkedIn's connections page. After that start, an incomplete run can automatically continue every few minutes or after progress becomes stale. The extension can reuse an existing connections tab or create one in the background without replacing the page you are viewing.
+
+<Warning>
+  In testing build 1.8.4, popup copy that says **Nothing is sent automatically** refers only to outreach. It is not a data-transfer boundary: profile signals, diagnostics, enrichment requests, and connection-import batches can be sent automatically. The control matrix below describes the implemented behavior.
+</Warning>
+
+## Start a sync
+
+1. Open any LinkedIn page.
+2. Open the Introd extension popup.
+3. Confirm that the popup recognizes the LinkedIn session.
+4. Choose **Start Sync**.
+5. Watch the popup for the initial progress.
+
+The popup reports imported connections, the LinkedIn-visible total when available, progress, and last-sync time. Closing the connections tab is not a stop control: an incomplete run can recreate or reuse a background tab. Choose **Pause Sync** to stop automatic full-network resume.
+
+## Sync states
+
+| Visible state | Meaning | Next action |
+| --- | --- | --- |
+| Ready to sync your network | No sync is running | Choose **Start Sync** |
+| Syncing | Connection identities are being processed | Monitor the imported count or choose **Pause Sync** |
+| Sync paused | The checkpoint was saved | Choose **Resume Sync** when ready |
+| Retrying | LinkedIn has not loaded more rows yet | Wait for automatic resume, or pause the run |
+| Partial | Imported records were saved before full visible coverage was reached | Automatic resume can retry; pause if you do not want it to continue |
+| Sync complete | The run completed with imported records | Verify the count in Introd |
+| LinkedIn login required | The LinkedIn session was not detected | Sign in to LinkedIn in this Chrome profile |
+| Sync needs attention | The current run failed | Read the error, refresh LinkedIn, and retry |
+
+## Connection data used
+
+When available on processed LinkedIn surfaces, contextual capture and connection import can derive:
+
+- name and profile identifier or URL
+- headline, current and past work, education, company, and location when visible on the current profile or identity container
+- profile image
+- first-degree or mutual-connection context
+- sync checkpoint and progress information
+
+The documented profile payload contains identity and relationship fields, not a dedicated message-body field. However, current relationship parsing can fall back to text from the surrounding identity container, and those containers include LinkedIn messaging surfaces. Introd has not completed a runtime data-flow attestation proving that message-page text cannot leave the browser.
+
+<Warning>
+  Do not treat **Pause Sync** as a privacy control for ordinary browsing. If you do not want Introd code to inspect a sensitive LinkedIn page, disable the extension in `chrome://extensions` before opening that page.
+</Warning>
+
+## Stop or limit each behavior
+
+| Control | Full-network import | Contextual browsing capture |
+| --- | --- | --- |
+| **Pause Sync** | Stops the run and automatic background resume | Does not stop it |
+| **Enable extension** off | Automatic resume is not currently gated by this setting; pause the run too | Skips new profile-view signals and enrichment, but current-page diagnostics continue and already-queued signals can still upload while authenticated |
+| **Auto-capture profile context** off | Does not stop it | Skips new profile-view signals and enrichment, but current-page diagnostics continue and already-queued signals can still upload while authenticated |
+| Sign out of Introd | Prevents future authenticated recovery, but does not guarantee an already-running page crawler stops immediately | Does not unload the content script; local signals and diagnostics can still occur |
+| Disable the extension in Chrome | Stops extension execution | Stops extension execution |
+| **Clear local extension data** | Clears background state but does not guarantee an already-running page crawler stops immediately | Clears local caches and signals; defaults can turn capture back on after reinitialization, and server-side records remain |
+
+## On-page path context
+
+On a supported LinkedIn identity, the extension can offer **Open Introd paths** or display path and connector context only when Introd returns usable graph evidence.
+
+The extension does not send an introduction request. Use [First Warm Introduction Draft](/getting-started/first-warm-introduction) to save a reviewed draft.
+
+## Limitations
+
+- LinkedIn renders large networks incrementally, so imported totals can remain below the visible total.
+- A partial sync is not a completed sync, even though already imported records remain available.
+- Missing role, company, image, or mutual data can produce an incomplete contact.
+- A synced target can still have no verified warm path.
+- LinkedIn interface changes can interrupt row detection until the extension is updated.
+
+## Verify in Introd
+
+Open [Network Setup](https://app.getintrod.ai/setup-network) or [Integrations](https://app.getintrod.ai/settings/integrations). Confirm the LinkedIn status, imported count, and last-sync time before relying on the data.

@@ -1,48 +1,45 @@
 ---
-title: "TrustRank and Confidence"
-description: "How Introd should explain trust, freshness, evidence, and whether a route is safe to use."
+title: "Understand Strength, Confidence, and Evidence"
+description: "A cautious guide to the relationship signals shown in Introd."
 ---
 
-TrustRank only helps if the score is legible. Users should be able to tell why Introd is confident, why it is uncertain, and what to do next.
+Introd presents several signals alongside warm paths and network activity. Read them as product indicators, then verify the real-world context.
 
-## Trust stack
+## Signal guide
 
-| Layer | Meaning | Where it comes from |
+| Signal | What it means in the interface | What it does not mean |
 | --- | --- | --- |
-| Relationship strength | Directness and quality of a specific edge | Edge strength and interaction evidence |
-| Evidence chips | Human-readable proof points | Provenance, meetings, emails, communities, intros |
-| TrustRank | Composite signal for a person or route | Graph scoring plus execution history |
-| Graph confidence | How safe it is to act on the route now | Edge confidence, freshness, weak links, path quality |
+| Path Strength | A `/100` ranking signal for a route shown in the warm-path view. | A person's trust score or a guaranteed outcome. |
+| Estimated success | A directional percentage attached to the selected route. | A promise that an introduction, reply, or meeting will happen. |
+| Relationship label | A category such as **Strong**, **Moderate**, or **Limited** attached to available route evidence. | Proof that the people have a current relationship. |
+| Graph confidence | A confidence indicator shown for paths and network summaries. | Consent, verified intent, or ground truth about a person. |
+| Evidence reasons | The reasons and context Introd can display for the route. | Independent verification that every underlying fact is current. |
 
-## What should raise confidence
+## Interpret a result
 
-- recent interaction evidence
-- prior successful introductions
-- clear connector-to-target context
-- multiple proof points that agree with each other
-- low decay and low ambiguity in the route
+Start with the named people and evidence, not the number:
 
-## What should lower confidence
+1. Confirm the profile identities.
+2. Read the visible reasons and mutual context.
+3. Check whether the evidence matches what you know about the relationship.
+4. Compare alternate routes for the same target.
+5. Confirm willingness before making an introduction request.
 
-- stale relationships with no recent evidence
-- routes held together only by weak overlap
-- unclear connector intent or availability
-- a single fragile edge inside an otherwise weak path
-- missing proof about why the route should work now
+<Warning>
+  Strength and confidence describe the evidence available to the product. They do not authorize outreach, establish consent, or measure a person's character.
+</Warning>
 
-## What the product should show
+## Unknown is different from weak
 
-Every path or connector score should show:
+An empty evidence list, unavailable score, or **No signal** message indicates missing or insufficient recorded evidence. It does not establish that the relationship is weak.
 
-- the score
-- the reasons it ranked there
-- weak-link diagnostics
-- freshness or decay cues
-- the next best action when confidence is limited
+Likewise, a populated score does not make stale or unfamiliar context true. If the reasons do not match your understanding, pause and verify the connector and target before acting.
 
-## Confidence rules
+## Improve the view
 
-- strong observed evidence should raise confidence
-- stale edges should visibly decay
-- inferred context can support ranking but should not masquerade as proof
-- unknown targets should not produce fabricated warm paths
+- Confirm that you selected the correct target profile.
+- Finish the relevant network sync.
+- Update the introduction record only when an outcome is confirmed.
+- Refresh the view after new evidence is available.
+
+Introd may show different results as the available network and outcome evidence changes.
