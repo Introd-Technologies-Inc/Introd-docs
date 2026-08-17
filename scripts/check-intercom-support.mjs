@@ -113,9 +113,9 @@ requireText(support, "support/index.mdx", "AI-assisted support", "support page d
 requireText(support, "support/index.mdx", "Cookie settings", "support page cookie control guidance is missing");
 requireText(support, "support/index.mdx", "help@getintrod.ai", "support page email fallback is missing");
 
-for (const publicAsset of ["intercom-support.js", "intercom-support.css"]) {
-  if (mintignore.split(/\r?\n/).map((line) => line.trim()).includes(publicAsset)) {
-    findings.push(`.mintignore: ${publicAsset} must be published globally`);
+for (const bundledAsset of ["intercom-support.js", "intercom-support.css"]) {
+  if (mintignore.split(/\r?\n/).map((line) => line.trim()).includes(bundledAsset)) {
+    findings.push(`.mintignore: ${bundledAsset} must remain available to Mintlify's global bundler`);
   }
 }
 

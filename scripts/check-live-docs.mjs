@@ -151,6 +151,8 @@ const PRIVATE_REPOSITORY_FILES = [
   "/scripts/check-live-docs.mjs",
   "/scripts/source-provenance.mjs",
   "/scripts/source-provenance.test.mjs",
+  "/intercom-support.js",
+  "/intercom-support.css",
 ];
 
 const MACHINE_SURFACES = [
@@ -163,11 +165,6 @@ const MACHINE_SURFACES = [
   "/.well-known/agent-card.json",
   "/.well-known/skills/index.json",
   "/.well-known/agent-skills/index.json",
-];
-
-const PUBLIC_SUPPORT_ASSETS = [
-  ["/intercom-support.js", "javascript"],
-  ["/intercom-support.css", "text/css"],
 ];
 
 const DISABLED_DISCOVERY_SURFACES = ["/.well-known/api-catalog"];
@@ -565,14 +562,6 @@ async function main() {
     addFinding("skill.md [tracked]", "non-empty description frontmatter is required");
   }
   const expectedRobotsBody = await readFile(new URL("../robots.txt", import.meta.url), "utf8");
-  const expectedSupportAssets = new Map(
-    await Promise.all(
-      PUBLIC_SUPPORT_ASSETS.map(async ([assetPath]) => [
-        assetPath,
-        await readFile(new URL(`..${assetPath}`, import.meta.url), "utf8"),
-      ]),
-    ),
-  );
   const expectedPublicPaths = await expectedSitemapPaths();
   const publicPages = [...expectedPublicPaths].sort();
   const checks = [];
@@ -619,9 +608,6 @@ async function main() {
   }
   for (const path of MACHINE_SURFACES) {
     checks.push({ type: "machine", path, key: path });
-  }
-  for (const [path, contentType] of PUBLIC_SUPPORT_ASSETS) {
-    checks.push({ type: "support-asset", path, contentType, key: path });
   }
   for (const path of DISABLED_DISCOVERY_SURFACES) {
     checks.push({ type: "retired", path, key: path });
@@ -691,21 +677,6 @@ async function main() {
       }
     }
 
-    if (check.type === "support-asset") {
-      if (response.status !== 200) {
-        addFinding(check.key, `expected 200, received ${response.status}`);
-      } else if (!response.contentType.toLowerCase().includes(check.contentType)) {
-        addFinding(
-          check.key,
-          `expected ${check.contentType}, received ${response.contentType || "no content type"}`,
-        );
-      } else if (
-        normalizeTrackedText(response.body) !==
-        normalizeTrackedText(expectedSupportAssets.get(check.path))
-      ) {
-        addFinding(check.key, "served support asset does not match the tracked release asset");
-      }
-    }
   }
 
   const homeHtml = byKey.get("/ [HTML]");
@@ -912,7 +883,7 @@ async function main() {
       "in five representations, " +
       `${RETIRED_SCREENSHOTS.length} retired screenshots, ${PRIVATE_REPOSITORY_FILES.length} private repository files, ` +
       `${MACHINE_SURFACES.length} static machine surfaces, ${DISABLED_DISCOVERY_SURFACES.length} disabled discovery surface, ` +
-      `${PUBLIC_SUPPORT_ASSETS.length} consent-gated support assets, skill discovery, advertised Link resources, and MCP stale-content checks.`,
+      "global consent-gated support injection, skill discovery, advertised Link resources, and MCP stale-content checks.",
   );
 }
 
