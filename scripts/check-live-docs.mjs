@@ -4,6 +4,8 @@ import { createHash } from "node:crypto";
 import { readFile } from "node:fs/promises";
 import process from "node:process";
 
+import { productionGitSourceFindings } from "./source-provenance.mjs";
+
 const BASE_URL = new URL(process.env.DOCS_BASE_URL || "https://docs.getintrod.ai");
 const REQUEST_TIMEOUT_MS = 20_000;
 const REQUEST_CONCURRENCY = 12;
@@ -147,6 +149,8 @@ const PRIVATE_REPOSITORY_FILES = [
   "/scripts/check-public-docs.mjs",
   "/scripts/check-intercom-support.mjs",
   "/scripts/check-live-docs.mjs",
+  "/scripts/source-provenance.mjs",
+  "/scripts/source-provenance.test.mjs",
 ];
 
 const MACHINE_SURFACES = [
@@ -205,6 +209,10 @@ const findings = [];
 
 function addFinding(path, message) {
   findings.push({ path, message });
+}
+
+function addPriorityFinding(path, message) {
+  findings.unshift({ path, message });
 }
 
 async function request(path, options = {}) {
@@ -337,6 +345,27 @@ function normalizedPathname(url) {
 
 function normalizeTrackedText(value) {
   return value.replace(/\r\n/g, "\n").trimEnd();
+}
+
+function frontmatterScalar(markdown, field) {
+  const frontmatter = markdown.match(/^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)/)?.[1];
+  if (!frontmatter) return null;
+
+  const escapedField = field.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const rawValue = frontmatter.match(new RegExp(`^${escapedField}:\\s*(.+?)\\s*$`, "m"))?.[1];
+  if (!rawValue) return null;
+
+  if (rawValue.startsWith('"') && rawValue.endsWith('"')) {
+    try {
+      return JSON.parse(rawValue);
+    } catch {
+      return null;
+    }
+  }
+  if (rawValue.startsWith("'") && rawValue.endsWith("'")) {
+    return rawValue.slice(1, -1).replace(/''/g, "'");
+  }
+  return rawValue;
 }
 
 function htmlAttribute(tag, name) {
@@ -531,6 +560,10 @@ async function verifySkillDiscovery(byKey) {
 
 async function main() {
   const expectedSkillBody = await readFile(new URL("../skill.md", import.meta.url), "utf8");
+  const expectedSkillDescription = frontmatterScalar(expectedSkillBody, "description");
+  if (!expectedSkillDescription) {
+    addFinding("skill.md [tracked]", "non-empty description frontmatter is required");
+  }
   const expectedRobotsBody = await readFile(new URL("../robots.txt", import.meta.url), "utf8");
   const expectedSupportAssets = new Map(
     await Promise.all(
@@ -677,6 +710,9 @@ async function main() {
 
   const homeHtml = byKey.get("/ [HTML]");
   if (homeHtml?.status === 200) {
+    for (const finding of productionGitSourceFindings(homeHtml.body)) {
+      addPriorityFinding("/ [HTML] source provenance", finding);
+    }
     for (const [marker, message] of [
       ["v8fbftfu", "approved Intercom app ID is not globally injected"],
       ["https://api-iam.intercom.io", "US Intercom API base is not globally injected"],
@@ -832,10 +868,17 @@ async function main() {
   const agentCardSurface = byKey.get("/.well-known/agent-card.json");
   if (agentCardSurface?.status === 200) {
     const card = parseJson(agentCardSurface);
+    const introdSkill = card?.skills?.find((skill) => skill?.id === "introd");
+    if (expectedSkillDescription && introdSkill?.description !== expectedSkillDescription) {
+      addPriorityFinding(
+        agentCardSurface.path,
+        `introd skill description does not match tracked skill.md frontmatter: received ${JSON.stringify(introdSkill?.description)}, expected ${JSON.stringify(expectedSkillDescription)}`,
+      );
+    }
     for (const [label, value] of [
       ["agent URL", card?.url],
       ["documentation URL", card?.documentationUrl],
-      ["skill URL", card?.skills?.find((skill) => skill?.id === "introd")?.url],
+      ["skill URL", introdSkill?.url],
     ]) {
       try {
         const parsed = new URL(value);

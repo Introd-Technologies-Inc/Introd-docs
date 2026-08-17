@@ -2,10 +2,11 @@
   "name": "@introd/docs",
   "private": true,
   "scripts": {
-    "check": "npm run check:public && npm run check:intercom && npm run validate:mintlify && npm run check:a11y",
+    "check": "npm run check:source-provenance && npm run check:public && npm run check:intercom && npm run validate:mintlify && npm run check:a11y",
     "check:a11y": "mintlify a11y --telemetry=false",
     "check:intercom": "node scripts/check-intercom-support.mjs",
     "check:public": "node scripts/check-public-docs.mjs",
+    "check:source-provenance": "node --test scripts/source-provenance.test.mjs",
     "check:live": "node scripts/check-live-docs.mjs",
     "validate:mintlify": "mintlify validate --telemetry=false"
   },
