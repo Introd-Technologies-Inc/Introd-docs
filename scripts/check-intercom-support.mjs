@@ -135,6 +135,12 @@ requireText(
   "the local full gate must include the Intercom contract",
 );
 const liveGate = await text("scripts/check-live-docs.mjs");
+requireText(
+  liveGate,
+  "scripts/check-live-docs.mjs",
+  "embeddedCustomAssetFindings",
+  "live gate must compare Mintlify's embedded support payloads with the tracked assets",
+);
 for (const asset of ["/intercom-support.js", "/intercom-support.css"]) {
   requireText(liveGate, "scripts/check-live-docs.mjs", asset, `live gate must verify ${asset}`);
 }

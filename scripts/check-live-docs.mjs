@@ -4,11 +4,22 @@ import { createHash } from "node:crypto";
 import { readFile } from "node:fs/promises";
 import process from "node:process";
 
+import {
+  embeddedCustomAssetFindings,
+  isRetryableLiveResponse,
+  isVercelSecurityCheckpoint,
+  liveRetryDelayMs,
+} from "./live-gate-helpers.mjs";
 import { productionGitSourceFindings } from "./source-provenance.mjs";
 
 const BASE_URL = new URL(process.env.DOCS_BASE_URL || "https://docs.getintrod.ai");
 const REQUEST_TIMEOUT_MS = 20_000;
-const REQUEST_CONCURRENCY = 12;
+const REQUEST_CONCURRENCY = positiveInteger(process.env.DOCS_REQUEST_CONCURRENCY, 3);
+const REQUEST_START_INTERVAL_MS = positiveInteger(
+  process.env.DOCS_REQUEST_START_INTERVAL_MS,
+  500,
+);
+const REQUEST_RETRY_LIMIT = 1;
 const MAX_REPORTED_FINDINGS = Number.parseInt(process.env.DOCS_MAX_FINDINGS || "0", 10);
 
 const CUSTOMER_REDIRECTS = [
@@ -149,6 +160,8 @@ const PRIVATE_REPOSITORY_FILES = [
   "/scripts/check-public-docs.mjs",
   "/scripts/check-intercom-support.mjs",
   "/scripts/check-live-docs.mjs",
+  "/scripts/live-gate-helpers.mjs",
+  "/scripts/live-gate-helpers.test.mjs",
   "/scripts/source-provenance.mjs",
   "/scripts/source-provenance.test.mjs",
   "/intercom-support.js",
@@ -166,6 +179,8 @@ const MACHINE_SURFACES = [
   "/.well-known/skills/index.json",
   "/.well-known/agent-skills/index.json",
 ];
+
+const BUNDLED_SUPPORT_ASSETS = ["/intercom-support.js", "/intercom-support.css"];
 
 const DISABLED_DISCOVERY_SURFACES = ["/.well-known/api-catalog"];
 
@@ -203,6 +218,15 @@ const FORBIDDEN_PUBLIC_PATTERNS = [
 ];
 
 const findings = [];
+let requestStartQueue = Promise.resolve();
+let nextRequestStartAt = 0;
+let securityCheckpointOpen = false;
+let securityCheckpointFindingRecorded = false;
+
+function positiveInteger(value, fallback) {
+  const parsed = Number.parseInt(value || "", 10);
+  return Number.isInteger(parsed) && parsed > 0 ? parsed : fallback;
+}
 
 function addFinding(path, message) {
   findings.push({ path, message });
@@ -212,18 +236,84 @@ function addPriorityFinding(path, message) {
   findings.unshift({ path, message });
 }
 
+function delay(milliseconds) {
+  return new Promise((resolve) => setTimeout(resolve, milliseconds));
+}
+
+async function waitForRequestSlot() {
+  const previous = requestStartQueue;
+  let release;
+  requestStartQueue = new Promise((resolve) => {
+    release = resolve;
+  });
+  await previous;
+  try {
+    const wait = Math.max(0, nextRequestStartAt - Date.now());
+    if (wait > 0) await delay(wait);
+    nextRequestStartAt = Date.now() + REQUEST_START_INTERVAL_MS;
+  } finally {
+    release();
+  }
+}
+
+async function fetchLiveText(url, options, key) {
+  if (securityCheckpointOpen) return null;
+
+  for (let attempt = 0; attempt <= REQUEST_RETRY_LIMIT; attempt += 1) {
+    await waitForRequestSlot();
+    if (securityCheckpointOpen) return null;
+
+    try {
+      const response = await fetch(url, {
+        ...options,
+        signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
+      });
+      const body = await response.text();
+      const checkpoint = isVercelSecurityCheckpoint(response.status, body);
+
+      if (isRetryableLiveResponse(response.status, body) && attempt < REQUEST_RETRY_LIMIT) {
+        await delay(liveRetryDelayMs(response.status, body, attempt));
+        continue;
+      }
+
+      if (checkpoint) {
+        securityCheckpointOpen = true;
+        if (!securityCheckpointFindingRecorded) {
+          securityCheckpointFindingRecorded = true;
+          addPriorityFinding(
+            "live HTTP",
+            `Vercel Security Checkpoint persisted while requesting ${key}; stopped the remaining requests to avoid amplifying the checkpoint`,
+          );
+        }
+        return null;
+      }
+
+      return { response, body };
+    } catch (error) {
+      if (attempt < REQUEST_RETRY_LIMIT) {
+        await delay(1_000 * 2 ** attempt);
+        continue;
+      }
+      throw error;
+    }
+  }
+
+  return null;
+}
+
 async function request(path, options = {}) {
   const url = new URL(path, BASE_URL);
   const key = options.key || path;
   try {
-    const response = await fetch(url, {
+    const result = await fetchLiveText(url, {
       redirect: options.redirect || "follow",
-      signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
       headers: {
         "user-agent": "introd-docs-live-trust-check/1.0",
         ...options.headers,
       },
-    });
+    }, key);
+    if (!result) return null;
+    const { response, body } = result;
     return {
       key,
       path,
@@ -231,7 +321,7 @@ async function request(path, options = {}) {
       finalUrl: response.url,
       contentType: response.headers.get("content-type") || "",
       linkHeader: response.headers.get("link") || "",
-      body: await response.text(),
+      body,
     };
   } catch (error) {
     addFinding(key, `request failed: ${error.message}`);
@@ -277,10 +367,9 @@ async function requestMcpTool(name, args, label) {
   const path = label || `/mcp ${name}`;
   const url = new URL("/mcp", BASE_URL);
   try {
-    const response = await fetch(url, {
+    const result = await fetchLiveText(url, {
       method: "POST",
       redirect: "follow",
-      signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
       headers: {
         accept: "application/json, text/event-stream",
         "content-type": "application/json",
@@ -295,8 +384,9 @@ async function requestMcpTool(name, args, label) {
           arguments: args,
         },
       }),
-    });
-    const body = await response.text();
+    }, path);
+    if (!result) return null;
+    const { response, body } = result;
     return {
       path,
       status: response.status,
@@ -562,6 +652,14 @@ async function main() {
     addFinding("skill.md [tracked]", "non-empty description frontmatter is required");
   }
   const expectedRobotsBody = await readFile(new URL("../robots.txt", import.meta.url), "utf8");
+  const expectedSupportAssets = new Map(
+    await Promise.all(
+      BUNDLED_SUPPORT_ASSETS.map(async (assetPath) => [
+        assetPath,
+        await readFile(new URL(`..${assetPath}`, import.meta.url), "utf8"),
+      ]),
+    ),
+  );
   const expectedPublicPaths = await expectedSitemapPaths();
   const publicPages = [...expectedPublicPaths].sort();
   const checks = [];
@@ -684,13 +782,8 @@ async function main() {
     for (const finding of productionGitSourceFindings(homeHtml.body)) {
       addPriorityFinding("/ [HTML] source provenance", finding);
     }
-    for (const [marker, message] of [
-      ["v8fbftfu", "approved Intercom app ID is not globally injected"],
-      ["https://api-iam.intercom.io", "US Intercom API base is not globally injected"],
-      ["hide_default_launcher: true", "hidden-launcher setting is not globally injected"],
-      ["introd-support-controls", "support launcher styles are not globally injected"],
-    ]) {
-      if (!homeHtml.body.includes(marker)) addFinding("/ [HTML]", message);
+    for (const finding of embeddedCustomAssetFindings(homeHtml.body, expectedSupportAssets)) {
+      addFinding(`/ [HTML] ${finding.path}`, finding.message);
     }
   }
 
@@ -883,7 +976,7 @@ async function main() {
       "in five representations, " +
       `${RETIRED_SCREENSHOTS.length} retired screenshots, ${PRIVATE_REPOSITORY_FILES.length} private repository files, ` +
       `${MACHINE_SURFACES.length} static machine surfaces, ${DISABLED_DISCOVERY_SURFACES.length} disabled discovery surface, ` +
-      "global consent-gated support injection, skill discovery, advertised Link resources, and MCP stale-content checks.",
+      `${BUNDLED_SUPPORT_ASSETS.length} exact embedded consent-gated support assets, skill discovery, advertised Link resources, and MCP stale-content checks.`,
   );
 }
 
