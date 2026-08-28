@@ -7,9 +7,9 @@
     "library": "lucide"
   },
   "colors": {
-    "primary": "#046147",
-    "light": "#57E3BA",
-    "dark": "#08976E"
+    "primary": "#0F2E1E",
+    "light": "#6DB33F",
+    "dark": "#07883C"
   },
   "appearance": {
     "default": "light",
@@ -18,17 +18,25 @@
   "background": {
     "decoration": "gradient",
     "color": {
-      "light": "#F6FBF8",
-      "dark": "#07131A"
+      "light": "#F5F2EA",
+      "dark": "#0F2E1E"
     }
   },
   "fonts": {
-    "family": "Inter",
-    "weight": 450
+    "family": "DM Sans",
+    "weight": 450,
+    "heading": {
+      "family": "Newsreader",
+      "weight": 550
+    },
+    "body": {
+      "family": "DM Sans",
+      "weight": 450
+    }
   },
   "logo": {
     "light": "/images/brand/logo-light.png",
-    "dark": "/images/brand/logo-dark.png",
+    "dark": "/images/brand/logo-icon.png",
     "href": "/"
   },
   "favicon": {

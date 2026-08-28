@@ -1,0 +1,124 @@
+:root {
+  --introd-forest: #0f2e1e;
+  --introd-green: #07883c;
+  --introd-accent: #6db33f;
+  --introd-ivory: #f5f2ea;
+  --introd-warm-white: #fcfaf5;
+  --introd-stone: #b9b7ae;
+  --introd-surface: var(--introd-warm-white);
+  --introd-ink: #102019;
+  --introd-muted: #647168;
+  --introd-border: color-mix(in srgb, var(--introd-forest) 16%, transparent);
+  --introd-shadow: 0 18px 48px rgb(15 46 30 / 10%);
+  --introd-radius: 12px;
+}
+
+html:not(.dark) body {
+  background-color: var(--introd-ivory);
+  background-image:
+    radial-gradient(circle at 100% 0, rgb(7 136 60 / 7%), transparent 26rem),
+    linear-gradient(180deg, rgb(255 255 255 / 42%), transparent 24rem);
+  color: var(--introd-ink);
+}
+
+html.dark body {
+  background-color: var(--introd-forest);
+  background-image:
+    radial-gradient(circle at 100% 0, rgb(7 136 60 / 9%), transparent 28rem),
+    linear-gradient(180deg, rgb(2 20 12 / 58%), transparent 28rem);
+  color: var(--introd-ivory);
+}
+
+body {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  color: var(--introd-forest);
+  font-family: Newsreader, Georgia, "Times New Roman", serif;
+  font-variation-settings: "opsz" 48;
+  letter-spacing: -0.025em;
+}
+
+html.dark h1,
+html.dark h2,
+html.dark h3 {
+  color: var(--introd-ivory);
+}
+
+h4,
+h5,
+h6,
+button,
+input,
+select,
+textarea {
+  font-family: "DM Sans", Inter, ui-sans-serif, system-ui, sans-serif;
+}
+
+a {
+  text-underline-offset: 0.2em;
+  text-decoration-thickness: 0.08em;
+}
+
+:is(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 3px solid rgb(109 179 63 / 55%);
+  outline-offset: 3px;
+}
+
+header,
+aside {
+  border-color: var(--introd-border) !important;
+}
+
+html:not(.dark) header,
+html:not(.dark) aside {
+  background-color: rgb(245 242 234 / 92%);
+}
+
+html.dark header,
+html.dark aside {
+  background-color: rgb(15 46 30 / 94%);
+}
+
+article :is(blockquote, table, pre) {
+  border-color: var(--introd-border);
+  border-radius: var(--introd-radius);
+}
+
+article blockquote {
+  background: rgb(109 179 63 / 7%);
+  border-left-color: var(--introd-accent);
+}
+
+article table {
+  overflow: hidden;
+}
+
+article thead {
+  background: rgb(15 46 30 / 5%);
+}
+
+html.dark article thead,
+html.dark article blockquote {
+  background: rgb(109 179 63 / 8%);
+}
+
+::selection {
+  background: rgb(109 179 63 / 28%);
+  color: var(--introd-forest);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
