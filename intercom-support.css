@@ -6,8 +6,8 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 0.4rem;
-  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  gap: 0.45rem;
+  font-family: "DM Sans", Inter, ui-sans-serif, system-ui, sans-serif;
 }
 
 .introd-support-button,
@@ -15,7 +15,7 @@
 .introd-support-primary,
 .introd-support-secondary,
 .introd-support-close {
-  border-radius: 999px;
+  border-radius: 10px;
   cursor: pointer;
   font: inherit;
   font-weight: 650;
@@ -23,32 +23,34 @@
 
 .introd-support-button {
   min-width: 7.5rem;
-  border: 1px solid #034b39;
-  background: #046147;
-  color: #fff;
+  min-height: 44px;
+  border: 1px solid #0f2e1e;
+  background: #0f2e1e;
+  color: #f5f2ea;
   padding: 0.7rem 1rem;
-  box-shadow: 0 10px 30px rgb(4 97 71 / 25%);
+  box-shadow: 0 12px 30px rgb(15 46 30 / 22%);
 }
 
 .introd-cookie-settings-button {
-  border: 0;
-  background: rgb(255 255 255 / 94%);
-  color: #334155;
+  min-height: 44px;
+  border: 1px solid rgb(15 46 30 / 14%);
+  background: rgb(245 242 234 / 96%);
+  color: #0f2e1e;
   padding: 0.35rem 0.65rem;
   font-size: 0.75rem;
-  box-shadow: 0 4px 18px rgb(15 23 42 / 12%);
+  box-shadow: 0 4px 18px rgb(15 46 30 / 10%);
 }
 
 .introd-support-button:hover,
 .introd-support-button:focus-visible {
-  background: #034b39;
+  background: #183d28;
 }
 
 .introd-support-button:focus-visible,
 .introd-cookie-settings-button:focus-visible,
 .introd-support-dialog button:focus-visible,
 .introd-support-dialog a:focus-visible {
-  outline: 3px solid #57e3ba;
+  outline: 3px solid rgb(109 179 63 / 58%);
   outline-offset: 2px;
 }
 
@@ -67,32 +69,38 @@
 .introd-support-dialog {
   width: min(31rem, calc(100vw - 2rem));
   max-width: 31rem;
-  border: 1px solid #cbd5e1;
-  border-radius: 1rem;
-  background: #fff;
-  color: #0f172a;
+  border: 1px solid rgb(15 46 30 / 18%);
+  border-radius: 14px;
+  background: #f5f2ea;
+  color: #0f2e1e;
   padding: 1.35rem;
-  box-shadow: 0 24px 70px rgb(15 23 42 / 25%);
+  box-shadow: 0 24px 70px rgb(15 46 30 / 25%);
 }
 
 .introd-support-dialog::backdrop {
-  background: rgb(15 23 42 / 52%);
+  background: rgb(3 22 13 / 58%);
 }
 
 .introd-support-dialog h2 {
   margin: 0 0 0.75rem;
-  font-size: 1.25rem;
+  color: #0f2e1e;
+  font-family: Newsreader, Georgia, "Times New Roman", serif;
+  font-size: 1.3rem;
   line-height: 1.35;
+  letter-spacing: -0.02em;
 }
 
 .introd-support-dialog p {
   margin: 0 0 0.75rem;
-  color: #475569;
+  color: #526158;
   font-size: 0.9rem;
   line-height: 1.55;
 }
 
 .introd-support-dialog .introd-support-safety {
+  padding: 0.7rem 0.8rem;
+  border-left: 2px solid #6db33f;
+  background: rgb(109 179 63 / 7%);
   font-size: 0.8rem;
 }
 
@@ -100,7 +108,7 @@
 .introd-support-policy {
   display: inline-block;
   margin: 0.15rem 1rem 0.85rem 0;
-  color: #046147;
+  color: #305f27;
   font-size: 0.875rem;
   font-weight: 650;
   text-decoration: underline;
@@ -117,21 +125,22 @@
 .introd-support-primary,
 .introd-support-secondary,
 .introd-support-close {
-  border: 1px solid #94a3b8;
+  min-height: 44px;
+  border: 1px solid rgb(15 46 30 / 28%);
   padding: 0.55rem 0.85rem;
   font-size: 0.82rem;
 }
 
 .introd-support-primary {
-  border-color: #046147;
-  background: #046147;
-  color: #fff;
+  border-color: #0f2e1e;
+  background: #0f2e1e;
+  color: #f5f2ea;
 }
 
 .introd-support-secondary,
 .introd-support-close {
-  background: #fff;
-  color: #334155;
+  background: #fcfaf5;
+  color: #0f2e1e;
 }
 
 .introd-support-primary:disabled,
@@ -145,13 +154,17 @@
   .introd-support-dialog,
   .introd-support-secondary,
   .introd-support-close {
-    border-color: #475569;
-    background: #0f172a;
-    color: #e2e8f0;
+    border-color: rgb(245 242 234 / 22%);
+    background: #0f2e1e;
+    color: #f5f2ea;
+  }
+
+  .introd-support-dialog h2 {
+    color: #f5f2ea;
   }
 
   .introd-support-dialog p {
-    color: #cbd5e1;
+    color: #d6d4cc;
   }
 }
 
@@ -163,5 +176,12 @@
 
   .introd-support-button {
     min-width: 6.75rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #introd-support-controls *,
+  .introd-support-dialog * {
+    transition: none !important;
   }
 }
