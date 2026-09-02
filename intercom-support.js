@@ -126,10 +126,10 @@
         "Your browser's Global Privacy Control or Do Not Track signal is active, so optional support-chat cookies remain disabled.";
     } else if (enabled) {
       controls.message.textContent =
-        "AI-assisted support chat is enabled. You can switch back to essential cookies at any time.";
+        "Support chat is enabled. You can switch back to essential cookies at any time.";
     } else {
       controls.message.textContent =
-        "With your permission, Introd uses optional cookies to measure traffic and make chat with Fin, our AI support assistant, available. Fin may be incorrect; ask for a person at any time.";
+        "With your permission, Introd uses optional cookies to measure traffic and make support chat available. You can ask for a person at any time.";
     }
 
     controls.supportButton.textContent = enabled && loaderRequested && !loaderReady

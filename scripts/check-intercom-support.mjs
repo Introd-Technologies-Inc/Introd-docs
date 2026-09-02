@@ -17,6 +17,10 @@ function forbidText(source, file, forbidden, reason) {
   if (source.includes(forbidden)) findings.push(`${file}: ${reason}`);
 }
 
+function forbidPattern(source, file, forbidden, reason) {
+  if (forbidden.test(source)) findings.push(`${file}: ${reason}`);
+}
+
 const [client, styles, configSource, support, mintignore, workflow, packageSource] =
   await Promise.all([
     text("intercom-support.js"),
@@ -94,6 +98,24 @@ forbidText(
   "SPA support updates must not pass full URLs",
 );
 
+for (const [source, file] of [
+  [client, "intercom-support.js"],
+  [support, "support/index.mdx"],
+]) {
+  forbidPattern(
+    source,
+    file,
+    /\bFin\b/i,
+    "published support surfaces must use generic support-chat language, not Fin branding",
+  );
+  forbidPattern(
+    source,
+    file,
+    /\b(?:AI-assisted support|AI support assistant)\b/i,
+    "published support surfaces must not brand support chat as an AI assistant",
+  );
+}
+
 for (const [expected, reason] of [
   ["#introd-support-controls", "support control styling is missing"],
   [".introd-support-dialog", "support dialog styling is missing"],
@@ -109,7 +131,7 @@ requireText(
   "#introd-cookie-settings",
   "docs.json footer must expose persistent cookie settings",
 );
-requireText(support, "support/index.mdx", "AI-assisted support", "support page disclosure is missing");
+requireText(support, "support/index.mdx", "## Support Messenger", "support page Messenger guidance is missing");
 requireText(support, "support/index.mdx", "Cookie settings", "support page cookie control guidance is missing");
 requireText(support, "support/index.mdx", "help@getintrod.ai", "support page email fallback is missing");
 

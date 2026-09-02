@@ -28,6 +28,9 @@ const FORBIDDEN_TERMS = [
   "FoundersNest",
   "rollback-phase2",
 ];
+const FORBIDDEN_PUBLIC_PATTERNS = [
+  ["Fin support branding", /\bFin\b/i],
+];
 const PUBLIC_MACHINE_FILES = ["llms.txt", "llms-full.txt", "skill.md"];
 const REQUIRED_MACHINE_BOUNDARIES = new Map([
   [
@@ -415,6 +418,17 @@ function scanForbiddenTerms(content, file) {
       );
     }
   }
+  for (const [label, expression] of FORBIDDEN_PUBLIC_PATTERNS) {
+    const match = expression.exec(content);
+    if (match) {
+      addFinding(
+        "forbidden-copy",
+        file,
+        lineNumberAt(content, match.index),
+        `public content contains ${label}`,
+      );
+    }
+  }
 }
 
 function reportTargetProblem(reference, resolution, sourceFile, line) {
@@ -508,6 +522,15 @@ async function main() {
   }
 
   scanForbiddenTerms(configContent, CONFIG_PATH);
+  if (Object.prototype.hasOwnProperty.call(config, "contextual")) {
+    const contextualIndex = configContent.search(/"contextual"\s*:/);
+    addFinding(
+      "contextual-menu",
+      CONFIG_PATH,
+      lineNumberAt(configContent, contextualIndex < 0 ? 0 : contextualIndex),
+      "omit the contextual setting so page-copy, raw Markdown, and AI handoff actions remain disabled",
+    );
+  }
   if (config?.seo?.indexing !== "navigable") {
     addFinding(
       "seo-indexing",

@@ -4,6 +4,7 @@ import test from "node:test";
 import {
   embeddedCustomAssetFindings,
   embeddedCustomAssetsFromHtml,
+  forbiddenHomeControlFindings,
   isRetryableLiveResponse,
   isVercelSecurityCheckpoint,
   liveRetryDelayMs,
@@ -73,6 +74,25 @@ test("rejects missing and conflicting embedded assets", () => {
     },
     { path: "/missing.css", message: "embedded custom asset declaration is missing" },
   ]);
+});
+
+test("detects enabled Mintlify AI-facing controls on the homepage", () => {
+  const html = [
+    '<button id="page-context-menu-button">Copy page</button>',
+    '<textarea id="chat-assistant-textarea" placeholder="Ask a question..."></textarea>',
+  ].join("");
+
+  assert.deepEqual(forbiddenHomeControlFindings(html), [
+    {
+      name: "Mintlify contextual page-actions menu",
+      message: "unexpected AI-facing control is enabled",
+    },
+    {
+      name: "Mintlify documentation assistant",
+      message: "unexpected AI-facing control is enabled",
+    },
+  ]);
+  assert.deepEqual(forbiddenHomeControlFindings("<main>Customer documentation</main>"), []);
 });
 
 test("retries only transient responses and the exact Vercel checkpoint", () => {
