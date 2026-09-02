@@ -6,6 +6,7 @@ import process from "node:process";
 
 import {
   embeddedCustomAssetFindings,
+  forbiddenHomeControlFindings,
   isRetryableLiveResponse,
   isVercelSecurityCheckpoint,
   liveRetryDelayMs,
@@ -779,6 +780,9 @@ async function main() {
 
   const homeHtml = byKey.get("/ [HTML]");
   if (homeHtml?.status === 200) {
+    for (const finding of forbiddenHomeControlFindings(homeHtml.body)) {
+      addFinding(`/ [HTML] ${finding.name}`, finding.message);
+    }
     for (const finding of productionGitSourceFindings(homeHtml.body)) {
       addPriorityFinding("/ [HTML] source provenance", finding);
     }

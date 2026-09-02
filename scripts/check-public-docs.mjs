@@ -508,6 +508,15 @@ async function main() {
   }
 
   scanForbiddenTerms(configContent, CONFIG_PATH);
+  if (Object.prototype.hasOwnProperty.call(config, "contextual")) {
+    const contextualIndex = configContent.search(/"contextual"\s*:/);
+    addFinding(
+      "contextual-menu",
+      CONFIG_PATH,
+      lineNumberAt(configContent, contextualIndex < 0 ? 0 : contextualIndex),
+      "omit the contextual setting so page-copy, raw Markdown, and AI handoff actions remain disabled",
+    );
+  }
   if (config?.seo?.indexing !== "navigable") {
     addFinding(
       "seo-indexing",

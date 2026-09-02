@@ -49,13 +49,6 @@
   "search": {
     "prompt": "Search verified Introd product guides"
   },
-  "contextual": {
-    "options": [
-      "copy",
-      "view"
-    ],
-    "display": "header"
-  },
   "redirects": [
     {
       "source": "/quickstart",

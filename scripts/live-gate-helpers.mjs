@@ -5,6 +5,10 @@ const JAVASCRIPT_BINDING_PATTERN =
   /"filePath":"([^"]+)"[\s\S]*?"content":"\$([a-z0-9]+)"/gi;
 const CSS_BINDING_PATTERN =
   /"data-custom-css-path":"([^"]+)"[\s\S]*?"__html":"\$([a-z0-9]+)"/gi;
+const FORBIDDEN_HOME_CONTROLS = [
+  ["Mintlify contextual page-actions menu", /id=["']page-context-menu-button["']/i],
+  ["Mintlify documentation assistant", /id=["']chat-assistant-textarea["']/i],
+];
 
 function normalizeAssetPath(path) {
   return path.replace(/^\/+/, "");
@@ -86,6 +90,12 @@ export function embeddedCustomAssetFindings(html, expectedAssets) {
   }
 
   return findings;
+}
+
+export function forbiddenHomeControlFindings(html) {
+  return FORBIDDEN_HOME_CONTROLS.filter(([, pattern]) => pattern.test(html)).map(
+    ([name]) => ({ name, message: "unexpected AI-facing control is enabled" }),
+  );
 }
 
 export function isVercelSecurityCheckpoint(status, body) {
