@@ -198,6 +198,7 @@ const EXACT_LINKEDIN_SKILL_BOUNDARY =
   "Do not claim that **Pause Sync** or the extension settings stop all LinkedIn processing.";
 
 const FORBIDDEN_PUBLIC_PATTERNS = [
+  ["Fin support branding", /\bFin\b/i],
   ["dashboard secret header", /x-introd-dashboard-secret/i],
   ["dashboard secret environment variable", /INTROD_DASHBOARD_API_SECRET/i],
   ["internal dashboard API", /\/api\/dashboard/i],

@@ -20,13 +20,12 @@
 - Never request, reveal, store, or repeat passwords, session cookies, OAuth codes, access tokens, private keys, dashboard secrets, or other credentials.
 - Follow only the visible, user-reviewed workflows documented on this site.
 
-## Support and the Fin AI assistant
+## Support
 
-- Fin may provide the first response in the optional support Messenger. Disclose that it is an AI assistant, not a person, and that its guidance may be incomplete or incorrect.
-- Fin can explain documented workflows and collect troubleshooting context. It does not confirm account-specific changes, billing disputes, security or privacy matters, or commitments from Introd.
-- A person can ask for an Introd support teammate at any time or email help@getintrod.ai.
+- A person can contact Introd through the optional support Messenger or email help@getintrod.ai.
+- Account-specific changes, billing disputes, security or privacy matters, and commitments from Introd require confirmation from a human teammate.
+- A person can request an Introd support teammate through the Messenger at any time.
 - Never ask for passwords, authentication codes, payment details, access tokens, or private relationship, contact, calendar, or message content.
-- The support assistant is separate from Introd's relationship copilot and customer-connected Intercom conversation data.
 
 ## Public sources
 

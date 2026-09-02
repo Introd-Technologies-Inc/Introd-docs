@@ -29,7 +29,7 @@ const REQUIRED_MINTIGNORE_ENTRIES = [
 ];
 
 async function createFixture({
-  pageBody = "Confirm the browser permission prompt, then return to Introd.",
+  pageBody = "Find help after confirming the browser permission prompt, then return to Introd.",
   contextual,
 } = {}) {
   const root = await mkdtemp(path.join(tmpdir(), "introd-public-docs-check-"));
@@ -120,4 +120,16 @@ test("rejects the Mintlify contextual page-actions menu", async (t) => {
   assert.equal(result.status, 1);
   assert.match(result.stderr, /docs\.json:\d+ \[contextual-menu\]/);
   assert.match(result.stderr, /page-copy, raw Markdown, and AI handoff actions remain disabled/);
+});
+
+test("rejects Fin branding without matching ordinary words such as find", async (t) => {
+  const root = await createFixture({
+    pageBody: "Find help in the support chat. Fin can answer first.",
+  });
+  t.after(() => rm(root, { recursive: true, force: true }));
+
+  const result = await runCheck(root);
+  assert.equal(result.status, 1);
+  assert.match(result.stderr, /index\.mdx:\d+ \[forbidden-copy\]/);
+  assert.match(result.stderr, /Fin support branding/);
 });
