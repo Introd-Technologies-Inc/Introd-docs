@@ -69,17 +69,17 @@ a {
   outline-offset: 3px;
 }
 
-header,
+#navbar,
 aside {
   border-color: var(--introd-border) !important;
 }
 
-html:not(.dark) header,
+html:not(.dark) #navbar,
 html:not(.dark) aside {
   background-color: rgb(245 242 234 / 92%);
 }
 
-html.dark header,
+html.dark #navbar,
 html.dark aside {
   background-color: rgb(15 46 30 / 94%);
 }
