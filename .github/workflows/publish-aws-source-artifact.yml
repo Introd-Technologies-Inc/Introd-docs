@@ -1,0 +1,80 @@
+name: Publish source artifact to AWS
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+concurrency:
+  group: aws-source-artifact-${{ github.repository }}-${{ github.sha }}
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    name: Archive exact source commit
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      AWS_REGION: ${{ vars.AWS_REGION }}
+      AWS_ARTIFACT_BUCKET: ${{ vars.AWS_ARTIFACT_BUCKET }}
+
+    steps:
+      - name: Check out the exact source commit
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+
+      - name: Verify source and AWS identifiers
+        shell: bash
+        env:
+          AWS_DEPLOY_ROLE_ARN: ${{ vars.AWS_DEPLOY_ROLE_ARN }}
+        run: |
+          set -euo pipefail
+          [[ "$GITHUB_SHA" =~ ^[0-9a-f]{40}$ ]]
+          test "$(git rev-parse --verify HEAD)" = "$GITHUB_SHA"
+          test "$(git rev-parse --verify "${GITHUB_SHA}^{commit}")" = "$GITHUB_SHA"
+          test -z "$(git status --porcelain)"
+          test -n "${AWS_DEPLOY_ROLE_ARN:-}"
+          test -n "${AWS_REGION:-}"
+          test -n "${AWS_ARTIFACT_BUCKET:-}"
+
+      - name: Configure keyless AWS credentials
+        uses: aws-actions/configure-aws-credentials@61815dcd50bd041e203e49132bacad1fd04d2708 # v5
+        with:
+          role-to-assume: ${{ vars.AWS_DEPLOY_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+          role-session-name: github-source-artifact-${{ github.run_id }}
+
+      - name: Confirm the AWS account
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(aws sts get-caller-identity --query Account --output text)" = "074839636207"
+
+      - name: Create and publish source archive
+        shell: bash
+        run: |
+          set -euo pipefail
+          archive_dir="$RUNNER_TEMP/aws-source-artifact"
+          archive_name="source.tar.gz"
+          checksum_name="${archive_name}.sha256"
+
+          rm -rf "$archive_dir"
+          mkdir -p "$archive_dir"
+          git archive --format=tar.gz --output="$archive_dir/$archive_name" "$GITHUB_SHA"
+          (
+            cd "$archive_dir"
+            sha256sum "$archive_name" > "$checksum_name"
+            sha256sum --check "$checksum_name"
+          )
+
+          prefix="s3://${AWS_ARTIFACT_BUCKET}/ci-artifacts/${GITHUB_REPOSITORY}/${GITHUB_SHA}/"
+          aws s3 cp "$archive_dir/$archive_name" "${prefix}${archive_name}" --sse AES256 --only-show-errors
+          aws s3 cp "$archive_dir/$checksum_name" "${prefix}${checksum_name}" --sse AES256 --only-show-errors
