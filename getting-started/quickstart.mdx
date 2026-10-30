@@ -1,97 +1,95 @@
 ---
 title: "Quick Start"
-description: "Follow the verified path from account creation to a saved warm-introduction draft."
+description: "Follow the path from access request to a reviewed warm path and a saved introduction draft."
 ---
 
-This guide ends with a saved draft. It does not send an introduction request.
+This guide ends with a reviewed path and a saved draft. Nothing in it contacts the person you want to meet.
 
-> Last verified against current product source on August 11, 2026.
+> Last reviewed against current product source on October 30, 2026.
 
 ## Prerequisites
 
-- A current desktop version of Chrome
-- A LinkedIn account signed in in the same Chrome profile
-- An Introd-provided extension testing build
-- One real person in your network to search for
-- Optional: a Google Workspace or Microsoft 365 account for additional relationship metadata
+- An approved Introd account. If you do not have one yet, start with [Request access](/getting-started/create-account).
+- One real network source you are authorized to use. Choose at least one:
+  - **LinkedIn**, through the Introd Chrome extension (desktop Chrome and a LinkedIn session in the same Chrome profile)
+  - **Google Workspace** or **Microsoft 365**, through provider consent
+  - **A contacts CSV**, including a file exported from Apple Contacts
+- One real person in your network to search for.
 
-If you do not have an approved extension build, contact [help@getintrod.ai](mailto:help@getintrod.ai). Do not install a copy from an unverified source.
+## 1. Request access
 
-## 1. Create your account
+Open [Request access](https://app.getintrod.ai/sign-up), enter your details, and wait for the approval email. See [Request access](/getting-started/create-account).
 
-Open [Create your Introd account](https://app.getintrod.ai/sign-up).
+## 2. Choose a plan
 
-You can create an account with:
+After approval, **Choose your plan** shows plan cards with a Monthly or Annual toggle.
 
-- work email and password
-- Google
-- LinkedIn
+| Choice | What the button says |
+| --- | --- |
+| Free | **Continue free — no card** |
+| A paid plan with a trial | **Start N-day trial** |
+| A paid plan without a trial | **Continue to checkout** |
+| Community | **Continue with our team**, a sales-assisted plan |
 
-Microsoft account creation is not available on the authentication page. Connect Microsoft 365 after you are signed in.
+Plan prices, trial length, and features come from Introd's billing system and can change, so this guide does not list them. Free includes LinkedIn sync with no card. On the Free plan, connecting Google Workspace or Microsoft 365 can require a paid plan or a connector add-on; Introd tells you when it does. See [Settings](/workspace/settings).
 
-**Expected result:** Introd opens [Network Setup](https://app.getintrod.ai/setup-network).
+## 3. Finish required setup
 
-## 2. Connect the extension
+Introd keeps a new account in setup until the first network source is verified. **Getting Started** asks for your goal (Fundraising, Customers, Hiring, or Partnerships) and offers **Continue to dashboard** if you choose to defer setup.
 
-Before installing, read [LinkedIn Integration](/chrome-extension/linkedin-integration). The shipped defaults capture visible LinkedIn identity and relationship fields while you browse, separately from the full-network import started below.
+<Frame caption="Example data in the Introd dashboard. The notice about setup signals appears when Introd cannot verify every setup signal.">
+  <img src="/images/product/dash-getting-started-goals-desktop.png" alt="The Getting Started page titled Find your first potential path. Step 1, Choose your immediate goal, shows four cards: Fundraising, Customers, Hiring, and Partnerships. A Continue to dashboard button is at the top right." />
+</Frame>
 
-1. Install the Introd-provided build using [the installation guide](/chrome-extension/installation).
-2. Open the extension popup.
-3. Choose **Continue with LinkedIn** and finish the opened sign-in flow.
-4. Reopen the popup after sign-in completes.
+On [Network Setup](https://app.getintrod.ai/setup-network), connect a source:
 
-**Expected result:** Extension Setup marks **Introd account connected** and **Logged into LinkedIn** when both sessions are detected.
+| Source | How it connects |
+| --- | --- |
+| LinkedIn | The Introd Chrome extension. See [Chrome extension](/chrome-extension) |
+| Google Workspace | Google consent. See [Connect integrations](/getting-started/connect-integrations) |
+| Microsoft 365 | Microsoft consent |
+| Apple Contacts | Export your contacts and import the file as a CSV; there is no direct connection |
+| CSV | Preview and import a spreadsheet. See [Import contacts](/setup-network/import-contacts) |
 
-## 3. Start a LinkedIn sync
+**Expected result:** the source shows a connected state or an imported count, and Introd lets you into the rest of the app.
 
-1. Keep LinkedIn open and signed in.
-2. Open the extension popup.
-3. Choose **Start Sync**.
-4. Watch the imported count and sync status.
+## 4. Find a person
 
-**Expected result:** the popup shows Syncing, Partial, Paused, Retrying, or Sync complete. An incomplete run can continue automatically in an inactive LinkedIn connections tab. Partial does not mean that already imported records were lost. Choose **Pause Sync** when you want automatic full-network resume to stop.
-
-## 4. Verify the source in Introd
-
-Open [Integrations](https://app.getintrod.ai/settings/integrations) or [Network Setup](https://app.getintrod.ai/setup-network).
-
-Verify that LinkedIn has an imported count or connected state. If you connect Google Workspace or Microsoft 365, complete the provider consent flow and check each source independently.
-
-## 5. Find a person
-
-1. Open [People Search](https://app.getintrod.ai/search/people).
+1. Open [People](https://app.getintrod.ai/search/people).
 2. Search by name, title, or company.
-3. Select a result.
-4. Choose **View Paths**.
+3. Select a result to open its side panel.
+4. Use the path action in the panel to review the path.
 
 **Expected result:** Introd shows available paths and evidence, or a truthful empty or still-syncing state.
 
-## 6. Save an introduction draft
+## 5. Review the path
 
-1. From the selected person or path, choose **Request intro**.
+On **Potential Intro Path**, read the connector, **Why this path works**, **Path Strength**, and **Path confidence**. If the evidence is weak or incomplete, choose another target or add more relationship data.
+
+## 6. Prepare the introduction
+
+1. Choose **Request intro** from the path, or start from **New introduction** on [Introductions](https://app.getintrod.ai/introductions).
 2. Confirm the target and connector.
-3. Review the subject and message.
-4. Choose **Save draft**.
-5. Open [Introductions](https://app.getintrod.ai/introductions).
+3. Edit the message. It can be up to 1,000 characters.
+4. Choose **Save draft** to keep working, or continue to the connector review.
 
-**Expected result:** Introd reports **Intro draft saved**, and the record is available in Introductions.
+**Expected result:** Introd reports that the draft is saved. A saved draft contacts no one.
+
+See [Prepare an introduction](/introductions/create-request) for what each action does.
 
 ## Common failure states
 
 | What you see | Meaning | Recovery |
 | --- | --- | --- |
-| Microsoft sign-up is not available | Microsoft is an integration, not a supported auth method on this page | Create the account with email, Google, or LinkedIn |
-| Extension not detected | Chrome has not loaded the provisioned build in this browser profile | Reload it from chrome://extensions and reopen Introd |
-| LinkedIn login required | LinkedIn is not signed in in the same Chrome profile | Open LinkedIn, sign in, and retry |
-| Partial or Retrying | LinkedIn has not rendered every connection row yet | Automatic resume can retry; choose **Pause Sync** to stop it, or **Resume Sync** when offered |
-| No people found | No synced contact matches the query | Verify imported counts and search a known first-degree contact |
-| No verified warm path | The current graph has no usable connector evidence for the target | Try another target or add more authorized relationship data |
-| Draft save error | The authenticated request failed | Preserve your message, confirm the Introd session, and retry |
+| You land on the Access page | Access is not approved or activated | Check your email or contact help@getintrod.ai |
+| You are returned to Network Setup | No source is verified yet | Connect and verify a source, or choose **Continue to dashboard** on Getting Started |
+| A Google or Microsoft connection asks for a paid plan | Free plan connector limit | Choose a plan or add-on in Settings, or use LinkedIn or CSV |
+| No people found | No synced contact matches | Check imported counts in Network Setup |
+| No verified warm path | The graph has no usable connector evidence | Try another target or add more relationship data |
 
 ## Limitations
 
 - Imported totals can be lower than LinkedIn's visible total.
 - A completed sync does not guarantee a path to a particular person.
-- TrustRank and confidence values are decision-support signals, not promises of an introduction or outcome.
-- Delivery and scheduling are outside this verified draft workflow.
-- Pausing a full-network sync does not stop contextual identity capture during ordinary LinkedIn browsing. Disable the extension in Chrome to stop its code from running on LinkedIn pages.
+- Path scores are decision-support signals, not promises of an introduction or outcome.
+- Introd never contacts the person you want to meet on its own.

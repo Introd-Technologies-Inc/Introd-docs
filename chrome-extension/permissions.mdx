@@ -1,54 +1,55 @@
 ---
 title: "Permissions"
-description: "Review every permission and host declared by the current Introd extension manifest."
+description: "Review every permission and website declared by the Introd for LinkedIn extension."
 ---
 
-> Last verified against extension manifest version 1.8.4 on August 11, 2026.
+> Last reviewed against extension version 3.1.24 on October 30, 2026. This list matches the manifest in the published package.
 
 ## Browser permissions
 
 | Permission | Current use |
 | --- | --- |
-| storage | Stores extension auth state, settings, sync checkpoints, status, and browser-local caches |
-| alarms | Runs signal sync, cache cleanup, session heartbeat, automatic connection-import resume, and queued profile-image work |
-| tabs | Checks LinkedIn pages, opens sign-in pages, and creates or reuses an inactive connections tab for import |
-| scripting | Runs page-aware identity capture and path-context logic on permitted LinkedIn surfaces |
+| storage | Stores extension settings, your sync approval, sync status, and browser-local caches |
+| alarms | Schedules the periodic check-in that asks Introd whether LinkedIn sync work is waiting |
+| scripting | Runs the connection collector in a LinkedIn tab during a sync you approved |
 
-## Host access
+## Website access
 
-| Host | Current use |
+| Website | Current use |
 | --- | --- |
-| <code>https://www.linkedin.com/*</code> | Detects the LinkedIn session; processes connections; and inspects visible identity containers on profiles, feeds, comments, messaging surfaces, hover cards, organization people pages, events, discovery results, and lists |
-| <code>https://linkedin.com/*</code> | Covers LinkedIn host variations |
-| <code>media.licdn.com</code> over HTTPS (all paths) | Retrieves LinkedIn-hosted profile images used during supported profile processing |
-| <code>https://getintrod.ai/*</code> | Handles Introd pages used by sign-in and extension bridging |
-| <code>https://*.getintrod.ai/*</code> | Handles the Introd app and API subdomains used by the extension |
+| `https://www.linkedin.com/*` and `https://linkedin.com/*` | Shows the **i.** button on profiles, people-search results, and company People pages, and reads your first-degree connections during an approved sync |
+| `https://getintrod.ai/*`, `https://www.getintrod.ai/*`, `https://app.getintrod.ai/*` | Links the extension to your Introd account and relays status to the Introd dashboard |
+| `https://api.getintrod.ai/*` | Sends sync data and path lookups to Introd |
 
-The manifest also permits Introd website and app pages to connect to the extension for supported bridge behavior.
+The extension adds scripts to these pages:
+
+| Where | Script |
+| --- | --- |
+| LinkedIn profiles (`/in/…`), people search results, and company People pages | The **i.** button and path popover |
+| Introd sign-in callback pages | Completes account linking |
+| Introd website and app pages | Relays link and status messages with the dashboard |
+
+The Introd website and app pages can also connect to the extension for these link and status messages.
 
 ## Permissions not requested
 
-The current manifest does not request:
+The extension does not request:
 
+- the **tabs** permission
 - access to every website
 - clipboard access
 - download management
 - browsing-history access
 - microphone, camera, or location access
 
-## What Chrome permission does not mean
+## What a permission does not mean
 
-Host access allows the content script to run on a matching page. It does not mean every field on that site is imported, but it does allow the script to inspect rendered page content. With the default capture settings on, derived identity and relationship fields can be recorded locally and submitted to Introd for enrichment when authenticated.
-
-<Warning>
-  Current selectors include LinkedIn messaging containers, and relationship parsing can fall back to their rendered text. Pausing a connection sync does not stop this page processing. Disable the extension in Chrome before opening a sensitive page if you do not want its code to run there.
-</Warning>
+Access to LinkedIn pages lets the extension run on those pages. The **i.** button reads only the profile's address and public identifier. During an approved sync, the collector reads your first-degree connections. The extension does not capture profile data as you browse, and it does not read messages or your feed.
 
 ## Review before approving
 
-1. Confirm the extension name is **Introd for LinkedIn**.
-2. Confirm the version matches the build information supplied by Introd.
-3. Compare Chrome's permission prompt with this page.
-4. Stop and contact [help@getintrod.ai](mailto:help@getintrod.ai) if the build asks for access outside these hosts or permissions.
+1. Confirm the extension name is **Introd for LinkedIn** and the publisher is Introd.
+2. Compare Chrome's permission prompt with this page.
+3. Stop and contact [help@getintrod.ai](mailto:help@getintrod.ai) if the extension asks for access outside these permissions or websites.
 
-See [Integration Data Usage](/privacy-security/integration-data-usage) for the fields used after permission is granted.
+See [Integration Data Usage](/privacy-security/integration-data-usage) for the fields used after you approve a sync.

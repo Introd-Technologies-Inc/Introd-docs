@@ -12,7 +12,7 @@
 - [ ] I removed future-state or aspirational wording presented as current behavior.
 - [ ] I did not expose internal routes, authentication details, credentials, infrastructure, or operator procedures.
 - [ ] Introduction actions are described as drafts or tracked workflow state unless external delivery is proven.
-- [ ] Extension docs distinguish contextual browsing capture from full-network import, automatic resume, and each stop control.
+- [ ] Extension docs match the current store version: consent-gated sync, background resume, the on-page lookup, and what each stop control really stops.
 - [ ] New screenshots are current, approved, and free of sensitive data.
 - [ ] I updated `llms.txt`, `llms-full.txt`, or `skill.md` if the public product boundary changed.
 - [ ] `npm run check` passes locally.

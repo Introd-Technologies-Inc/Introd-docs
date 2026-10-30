@@ -1,0 +1,1106 @@
+diff --git a/e2e/fixtures/company-facts.ts b/e2e/fixtures/company-facts.ts
+index 6cbf504..979bd0f 100644
+--- a/e2e/fixtures/company-facts.ts
++++ b/e2e/fixtures/company-facts.ts
+@@ -62,7 +62,7 @@ const emptyFacts = (): Json => ({
+   profileSources: {},
+ });
+ 
+-/** Andreessen Horowitz: a great deal on file, in two currencies, with a disputed amount, ownership and every kind of person. */
++/** Example Ventures: a great deal on file, in two currencies, with a disputed amount, ownership and every kind of person. */
+ const A16Z_FACTS: Json = {
+   ...emptyFacts(),
+   overview: {
+@@ -316,7 +316,7 @@ const SEQUOIA_FACTS: Json = {
+ 
+ /** Directory rows' funding (CompanyFundingView), by company id. A company not listed has nothing on file. */
+ export const DIRECTORY_FUNDING: Record<string, Json> = {
+-  company_a16z: {
++  company_example_ventures: {
+     status: "reported",
+     observedAt: "2026-10-20T00:00:00.000Z",
+     roundCount: 3,
+@@ -341,7 +341,7 @@ export const DIRECTORY_FUNDING: Record<string, Json> = {
+     roundsDisputed: 1,
+     latestValuation: null,
+   },
+-  company_sequoia: {
++  company_sample_capital: {
+     status: "reported",
+     observedAt: "2026-10-20T00:00:00.000Z",
+     roundCount: 1,
+@@ -384,12 +384,12 @@ export const DIRECTORY_FUNDING: Record<string, Json> = {
+ };
+ 
+ /**
+- * The intelligence payload for a company id, or null when the API does not offer it to this member (a 404). Microsoft is offered but
+- * has nothing on file. GV and Lightspeed are not offered at all.
++ * The intelligence payload for a company id, or null when the API does not offer it to this member (a 404). Example Cloud is offered but
++ * has nothing on file. Test Fund and Demo Partners are not offered at all.
+  */
+ export function companyFactsFor(companyId: string): Json | null {
+-  if (companyId === "company_a16z") return A16Z_FACTS;
+-  if (companyId === "company_sequoia") return SEQUOIA_FACTS;
++  if (companyId === "company_example_ventures") return A16Z_FACTS;
++  if (companyId === "company_sample_capital") return SEQUOIA_FACTS;
+   if (companyId === "company_index" || companyId === "company_microsoft") return emptyFacts();
+   return null;
+ }
+diff --git a/e2e/fixtures/data.ts b/e2e/fixtures/data.ts
+index c67e922..6c3084a 100644
+--- a/e2e/fixtures/data.ts
++++ b/e2e/fixtures/data.ts
+@@ -23,13 +23,13 @@ export type FixturePerson = {
+ };
+ 
+ export const ME: FixturePerson = {
+-  key: "owen",
+-  name: "Owen Sakawa",
++  key: "avery",
++  name: "Avery Example",
+   title: "Founder & CEO",
+-  company: "Elloe AI",
+-  domain: "elloe.ai",
++  company: "Example Co",
++  domain: "example.com",
+   location: "Austin, TX",
+-  linkedinUrl: "https://www.linkedin.com/in/owen-sakawa-fixture",
++  linkedinUrl: "https://www.linkedin.com/in/avery-example-fixture",
+ };
+ 
+ export const PEOPLE: Record<string, FixturePerson> = {
+@@ -37,8 +37,8 @@ export const PEOPLE: Record<string, FixturePerson> = {
+     key: "sarah",
+     name: "Sarah Chen",
+     title: "General Partner",
+-    company: "Andreessen Horowitz",
+-    domain: "a16z.com",
++    company: "Example Ventures",
++    domain: "exampleventures.example.com",
+     location: "Menlo Park, CA",
+     linkedinUrl: "https://www.linkedin.com/in/sarah-chen-fixture",
+   },
+@@ -46,8 +46,8 @@ export const PEOPLE: Record<string, FixturePerson> = {
+     key: "marcus",
+     name: "Marcus Lee",
+     title: "Partner",
+-    company: "Sequoia Capital",
+-    domain: "sequoiacap.com",
++    company: "Sample Capital",
++    domain: "samplecapital.example.com",
+     location: "San Francisco, CA",
+     linkedinUrl: "https://www.linkedin.com/in/marcus-lee-fixture",
+   },
+@@ -55,8 +55,8 @@ export const PEOPLE: Record<string, FixturePerson> = {
+     key: "priya",
+     name: "Priya Desai",
+     title: "Investment Partner",
+-    company: "Index Ventures",
+-    domain: "indexventures.com",
++    company: "Illustrative Ventures",
++    domain: "illustrativeventures.example.com",
+     location: "London, UK",
+     linkedinUrl: "https://www.linkedin.com/in/priya-desai-fixture",
+   },
+@@ -64,8 +64,8 @@ export const PEOPLE: Record<string, FixturePerson> = {
+     key: "james",
+     name: "James Park",
+     title: "Partner",
+-    company: "Lightspeed",
+-    domain: "lsvp.com",
++    company: "Demo Partners",
++    domain: "demopartners.example.com",
+     location: "Menlo Park, CA",
+     linkedinUrl: "https://www.linkedin.com/in/james-park-fixture",
+   },
+@@ -73,8 +73,8 @@ export const PEOPLE: Record<string, FixturePerson> = {
+     key: "alex",
+     name: "Alex Rivera",
+     title: "Partner",
+-    company: "GV",
+-    domain: "gv.com",
++    company: "Test Fund",
++    domain: "testfund.example.com",
+     location: "Mountain View, CA",
+     linkedinUrl: "https://www.linkedin.com/in/alex-rivera-fixture",
+   },
+@@ -82,28 +82,28 @@ export const PEOPLE: Record<string, FixturePerson> = {
+     key: "daniel",
+     name: "Daniel Kim",
+     title: "Partner",
+-    company: "General Catalyst",
+-    domain: "generalcatalyst.com",
++    company: "Fictional Catalyst",
++    domain: "fictionalcatalyst.example.com",
+     location: "Palo Alto, CA",
+     linkedinUrl: "https://www.linkedin.com/in/daniel-kim-fixture",
+   },
+   marc: {
+     key: "marc",
+-    name: "Marc Andreessen",
++    name: "Morgan Placeholder",
+     title: "Co-founder",
+-    company: "Andreessen Horowitz",
+-    domain: "a16z.com",
++    company: "Example Ventures",
++    domain: "exampleventures.example.com",
+     location: "Menlo Park, CA",
+-    linkedinUrl: "https://www.linkedin.com/in/marc-andreessen-fixture",
++    linkedinUrl: "https://www.linkedin.com/in/morgan-placeholder-fixture",
+   },
+   satya: {
+     key: "satya",
+-    name: "Satya Nadella",
++    name: "Sam Placeholder",
+     title: "Chairman & CEO",
+-    company: "Microsoft",
+-    domain: "microsoft.com",
++    company: "Example Cloud",
++    domain: "examplecloud.example.com",
+     location: "Redmond, WA",
+-    linkedinUrl: "https://www.linkedin.com/in/satya-nadella-fixture",
++    linkedinUrl: "https://www.linkedin.com/in/sam-placeholder-fixture",
+   },
+ };
+ 
+@@ -124,31 +124,31 @@ export type FixtureCompany = {
+ 
+ export const COMPANIES: FixtureCompany[] = [
+   {
+-    id: "company_a16z",
+-    name: "Andreessen Horowitz",
+-    domain: "a16z.com",
++    id: "company_example_ventures",
++    name: "Example Ventures",
++    domain: "exampleventures.example.com",
+     industry: "Venture Capital",
+     location: "Menlo Park, CA, USA",
+     description:
+-      "Andreessen Horowitz (a16z) is a venture capital firm investing in technology companies from seed to growth stage.",
+-    linkedinUrl: "https://www.linkedin.com/company/a16z",
++      "Example Ventures (EV) is a venture capital firm investing in technology companies from seed to growth stage.",
++    linkedinUrl: "https://www.linkedin.com/company/example-ventures",
+     employeeRange: "201-500",
+     foundedYear: 2009,
+     hq: { city: "Menlo Park", region: "CA", country: "USA" },
+     connectorKeys: ["sarah", "marcus", "priya"],
+     people: [
+       { key: "sarah", name: "Sarah Chen", title: "General Partner" },
+-      { key: "marc", name: "Marc Andreessen", title: "Co-founder" },
++      { key: "marc", name: "Morgan Placeholder", title: "Co-founder" },
+     ],
+   },
+   {
+-    id: "company_sequoia",
+-    name: "Sequoia Capital",
+-    domain: "sequoiacap.com",
++    id: "company_sample_capital",
++    name: "Sample Capital",
++    domain: "samplecapital.example.com",
+     industry: "Venture Capital",
+     location: "Menlo Park, CA, USA",
+-    description: "Sequoia Capital partners with founders from idea to IPO and beyond.",
+-    linkedinUrl: "https://www.linkedin.com/company/sequoia",
++    description: "Sample Capital partners with founders from idea to IPO and beyond.",
++    linkedinUrl: "https://www.linkedin.com/company/sample-capital",
+     employeeRange: "201-500",
+     foundedYear: 1972,
+     hq: { city: "Menlo Park", region: "CA", country: "USA" },
+@@ -157,12 +157,12 @@ export const COMPANIES: FixtureCompany[] = [
+   },
+   {
+     id: "company_index",
+-    name: "Index Ventures",
+-    domain: "indexventures.com",
++    name: "Illustrative Ventures",
++    domain: "illustrativeventures.example.com",
+     industry: "Venture Capital",
+     location: "London, UK",
+-    description: "Index Ventures is a venture capital firm investing in exceptional entrepreneurs.",
+-    linkedinUrl: "https://www.linkedin.com/company/index-ventures",
++    description: "Illustrative Ventures is a venture capital firm investing in exceptional entrepreneurs.",
++    linkedinUrl: "https://www.linkedin.com/company/illustrative-ventures",
+     employeeRange: "51-200",
+     foundedYear: 1996,
+     hq: { city: "London", region: "", country: "UK" },
+@@ -171,12 +171,12 @@ export const COMPANIES: FixtureCompany[] = [
+   },
+   {
+     id: "company_lightspeed",
+-    name: "Lightspeed",
+-    domain: "lsvp.com",
++    name: "Demo Partners",
++    domain: "demopartners.example.com",
+     industry: "Venture Capital",
+     location: "Menlo Park, CA, USA",
+-    description: "Lightspeed is a multi-stage venture capital firm.",
+-    linkedinUrl: "https://www.linkedin.com/company/lightspeed-venture-partners",
++    description: "Demo Partners is a multi-stage venture capital firm.",
++    linkedinUrl: "https://www.linkedin.com/company/demo-partners",
+     employeeRange: "201-500",
+     foundedYear: 2000,
+     hq: { city: "Menlo Park", region: "CA", country: "USA" },
+@@ -185,12 +185,12 @@ export const COMPANIES: FixtureCompany[] = [
+   },
+   {
+     id: "company_gv",
+-    name: "GV",
+-    domain: "gv.com",
++    name: "Test Fund",
++    domain: "testfund.example.com",
+     industry: "Venture Capital",
+     location: "Mountain View, CA, USA",
+-    description: "GV is a venture capital investment firm.",
+-    linkedinUrl: "https://www.linkedin.com/company/gv",
++    description: "Test Fund is a venture capital investment firm.",
++    linkedinUrl: "https://www.linkedin.com/company/test-fund",
+     employeeRange: "51-200",
+     foundedYear: 2009,
+     hq: { city: "Mountain View", region: "CA", country: "USA" },
+@@ -199,17 +199,17 @@ export const COMPANIES: FixtureCompany[] = [
+   },
+   {
+     id: "company_microsoft",
+-    name: "Microsoft",
+-    domain: "microsoft.com",
++    name: "Example Cloud",
++    domain: "examplecloud.example.com",
+     industry: "Technology",
+     location: "Redmond, WA, USA",
+-    description: "Microsoft builds software, cloud services and devices.",
+-    linkedinUrl: "https://www.linkedin.com/company/microsoft",
++    description: "Example Cloud builds software, cloud services and devices.",
++    linkedinUrl: "https://www.linkedin.com/company/example-cloud",
+     employeeRange: "10001+",
+     foundedYear: 1975,
+     hq: { city: "Redmond", region: "WA", country: "USA" },
+     connectorKeys: [],
+-    people: [{ key: "satya", name: "Satya Nadella", title: "Chairman & CEO" }],
++    people: [{ key: "satya", name: "Sam Placeholder", title: "Chairman & CEO" }],
+   },
+ ];
+ 
+@@ -240,7 +240,7 @@ export const FIXTURE_TARGETS: Record<string, FixtureTarget> = {
+     key: "casey",
+     name: "Casey Whitfield",
+     title: "Partner",
+-    company: "Andreessen Horowitz",
++    company: "Example Ventures",
+     location: "Menlo Park, CA",
+     linkedinUrl: "https://www.linkedin.com/in/casey-whitfield-fixture",
+     connectors: [
+@@ -264,7 +264,7 @@ export const FIXTURE_TARGETS: Record<string, FixtureTarget> = {
+     key: "taylor",
+     name: "Taylor Brooks",
+     title: "Partner",
+-    company: "Sequoia Capital",
++    company: "Sample Capital",
+     location: "San Francisco, CA",
+     linkedinUrl: "https://www.linkedin.com/in/taylor-brooks-fixture",
+     connectors: [
+@@ -281,7 +281,7 @@ export const FIXTURE_TARGETS: Record<string, FixtureTarget> = {
+     key: "jordan",
+     name: "Jordan Ellis",
+     title: "Partner",
+-    company: "Index Ventures",
++    company: "Illustrative Ventures",
+     location: "London, UK",
+     linkedinUrl: "https://www.linkedin.com/in/jordan-ellis-fixture",
+     connectors: [
+@@ -298,7 +298,7 @@ export const FIXTURE_TARGETS: Record<string, FixtureTarget> = {
+     key: "morgan",
+     name: "Morgan Reyes",
+     title: "Partner",
+-    company: "Lightspeed",
++    company: "Demo Partners",
+     location: "Menlo Park, CA",
+     linkedinUrl: "https://www.linkedin.com/in/morgan-reyes-fixture",
+     connectors: [
+@@ -315,7 +315,7 @@ export const FIXTURE_TARGETS: Record<string, FixtureTarget> = {
+     key: "riley",
+     name: "Riley Okafor",
+     title: "Partner",
+-    company: "GV",
++    company: "Test Fund",
+     location: "Mountain View, CA",
+     linkedinUrl: "https://www.linkedin.com/in/riley-okafor-fixture",
+     connectors: [
+@@ -330,11 +330,11 @@ export const FIXTURE_TARGETS: Record<string, FixtureTarget> = {
+   },
+   marc: {
+     key: "marc",
+-    name: "Marc Andreessen",
++    name: "Morgan Placeholder",
+     title: "Co-founder",
+-    company: "Andreessen Horowitz",
++    company: "Example Ventures",
+     location: "Menlo Park, CA",
+-    linkedinUrl: "https://www.linkedin.com/in/marc-andreessen-fixture",
++    linkedinUrl: "https://www.linkedin.com/in/morgan-placeholder-fixture",
+     connectors: [
+       {
+         key: "sarah",
+@@ -347,11 +347,11 @@ export const FIXTURE_TARGETS: Record<string, FixtureTarget> = {
+   },
+   satya: {
+     key: "satya",
+-    name: "Satya Nadella",
++    name: "Sam Placeholder",
+     title: "Chairman & CEO",
+-    company: "Microsoft",
++    company: "Example Cloud",
+     location: "Redmond, WA",
+-    linkedinUrl: "https://www.linkedin.com/in/satya-nadella-fixture",
++    linkedinUrl: "https://www.linkedin.com/in/sam-placeholder-fixture",
+     connectors: [
+       {
+         key: "marcus",
+diff --git a/e2e/fixtures/fake-browser-supabase.ts b/e2e/fixtures/fake-browser-supabase.ts
+index c6cb678..812060b 100644
+--- a/e2e/fixtures/fake-browser-supabase.ts
++++ b/e2e/fixtures/fake-browser-supabase.ts
+@@ -132,7 +132,7 @@ const FIXTURE_SESSION = {
+   access_token: "fixture-access-token",
+   refresh_token: "fixture-refresh-token",
+   expires_at: Math.floor(Date.now() / 1000) + 3600,
+-  user: { id: "00000000-0000-4000-8000-000000000001", email: "owen.sakawa@fixture.introd.test" },
++  user: { id: "00000000-0000-4000-8000-000000000001", email: "avery@example.com" },
+ };
+ 
+ const auth = new Proxy(realSupabase.auth, {
+diff --git a/e2e/fixtures/fake-supabase.ts b/e2e/fixtures/fake-supabase.ts
+index c7c7acb..a63e145 100644
+--- a/e2e/fixtures/fake-supabase.ts
++++ b/e2e/fixtures/fake-supabase.ts
+@@ -5,8 +5,8 @@ import { randomUUID } from "node:crypto";
+ 
+ export const FIXTURE_USER = {
+   id: "00000000-0000-4000-8000-000000000001",
+-  email: "owen.sakawa@fixture.introd.test",
+-  name: "Owen Sakawa",
++  email: "avery@example.com",
++  name: "Avery Example",
+ };
+ 
+ type Row = Record<string, unknown>;
+@@ -27,7 +27,7 @@ const tables: Record<string, Row[]> = {
+         name: FIXTURE_USER.name,
+         title: "Founder & CEO",
+         // FIXTURE_COMPANY lets a capture render a long real-world company name; the default is unchanged.
+-        company: process.env.FIXTURE_COMPANY || "Elloe AI",
++        company: process.env.FIXTURE_COMPANY || "Example Co",
+       },
+     },
+   ],
+diff --git a/e2e/fixtures/routes/communities.ts b/e2e/fixtures/routes/communities.ts
+index fd44739..7e5e8c2 100644
+--- a/e2e/fixtures/routes/communities.ts
++++ b/e2e/fixtures/routes/communities.ts
+@@ -36,8 +36,8 @@ import {
+ 
+ type Register = (method: string, path: string, handler: FixtureHandler) => void;
+ 
+-const VIEWER_EMAIL = "owen.sakawa@fixture.introd.test";
+-const VIEWER_NAME = "Owen Sakawa";
++const VIEWER_EMAIL = "avery@example.com";
++const VIEWER_NAME = "Avery Example";
+ const DASHBOARD_ORIGIN = "http://127.0.0.1:8081";
+ const ACTIVE = ["self_asserted", "corroborated", "verified"];
+ 
+@@ -452,18 +452,18 @@ function seedSpaces() {
+     featuredMembers: [
+       {
+         id: "mem-1",
+-        name: "Aditi Sharma",
++        name: "Ari Sample",
+         title: "Founder",
+-        organization: "DhruvAI",
++        organization: "ExampleAI",
+         avatarUrl: null,
+-        linkedinUrl: "https://www.linkedin.com/in/aditi-sharma-fixture",
++        linkedinUrl: "https://www.linkedin.com/in/ari-sample-fixture",
+         personId: null,
+       },
+       {
+         id: "mem-2",
+         name: "Daniel Kim",
+         title: "Researcher",
+-        organization: "Stanford HAI",
++        organization: "Example University HAI",
+         avatarUrl: null,
+         linkedinUrl: "https://www.linkedin.com/in/daniel-kim-fixture",
+         personId: null,
+@@ -472,16 +472,16 @@ function seedSpaces() {
+         id: "mem-3",
+         name: "Maria Lopez",
+         title: "Policy Director",
+-        organization: "World Resources Institute",
++        organization: "Example Resources Institute",
+         avatarUrl: null,
+         linkedinUrl: null,
+         personId: null,
+       },
+       {
+         id: "mem-4",
+-        name: "Ahmed Al-Rashid",
++        name: "Alex Sample",
+         title: "Founder",
+-        organization: "ClimateMind",
++        organization: "ExampleClimate",
+         avatarUrl: null,
+         linkedinUrl: null,
+         personId: null,
+@@ -492,7 +492,7 @@ function seedSpaces() {
+     activity: [],
+   });
+ 
+-  // ILLUSTRATIVE: curated community, request access (approved design "500 Global Community").
++  // ILLUSTRATIVE: curated community, request access (approved design "Example Accelerator Community").
+   spaces.set("community:500-global", {
+     mode: "full",
+     access: {
+@@ -581,7 +581,7 @@ function seedSpaces() {
+     events: [
+       {
+         id: "evt-1",
+-        title: "500 Global Founder Meetup",
++        title: "Example Accelerator Founder Meetup",
+         subtitle: "San Francisco, CA",
+         format: "in_person",
+         location: "San Francisco, CA",
+@@ -606,16 +606,16 @@ function seedSpaces() {
+     featuredMembers: [
+       {
+         id: "mem-1",
+-        name: "Christine Tsai",
++        name: "Cameron Sample",
+         title: "Partner",
+-        organization: "500 Global",
++        organization: "Example Accelerator",
+         avatarUrl: null,
+-        linkedinUrl: "https://www.linkedin.com/in/christine-tsai-fixture",
++        linkedinUrl: "https://www.linkedin.com/in/cameron-sample-fixture",
+         personId: null,
+       },
+       {
+         id: "mem-2",
+-        name: "Vishal Harnal",
++        name: "Val Sample",
+         title: "Founder & CEO",
+         organization: "Nexus",
+         avatarUrl: null,
+@@ -672,7 +672,7 @@ function seedSpaces() {
+       {
+         id: "disc-3",
+         title: "AI in the public sector: Real-world implementations",
+-        author: named("Aditi Sharma"),
++        author: named("Ari Sample"),
+         space: "Public Sector Innovation",
+         replies: 64,
+         likes: 19,
+@@ -720,7 +720,7 @@ function seedSpaces() {
+       {
+         id: "opp-1",
+         title: "Policy Advisor - AI Governance",
+-        organization: "U.S. Department of State",
++        organization: "Example Government Agency",
+         location: "Washington, DC",
+         employmentType: "Full-time",
+         tags: ["Policy"],
+@@ -729,7 +729,7 @@ function seedSpaces() {
+       {
+         id: "opp-2",
+         title: "Senior Policy Researcher",
+-        organization: "OECD",
++        organization: "Example Policy Council",
+         location: "Paris, France",
+         employmentType: "Full-time",
+         tags: ["Research"],
+@@ -738,7 +738,7 @@ function seedSpaces() {
+       {
+         id: "opp-3",
+         title: "AI Policy Manager",
+-        organization: "World Economic Forum",
++        organization: "Example Economic Forum",
+         location: "Geneva, Switzerland",
+         employmentType: "Full-time",
+         tags: ["Strategy"],
+@@ -760,7 +760,7 @@ function seedSpaces() {
+         id: "lead-2",
+         name: "Sarah Chen",
+         title: "Policy Director",
+-        organization: "OpenAI",
++        organization: "Example AI Lab",
+         avatarUrl: null,
+         role: "lead",
+         isViewer: false,
+@@ -769,16 +769,16 @@ function seedSpaces() {
+         id: "lead-3",
+         name: "James Park",
+         title: "Head of AI Policy",
+-        organization: "Google",
++        organization: "Example Search Co",
+         avatarUrl: null,
+         role: "lead",
+         isViewer: false,
+       },
+       {
+         id: "lead-4",
+-        name: "Aditi Sharma",
++        name: "Ari Sample",
+         title: "Senior Fellow",
+-        organization: "Brookings Institution",
++        organization: "Example Policy Institute",
+         avatarUrl: null,
+         role: "lead",
+         isViewer: false,
+@@ -811,7 +811,7 @@ function seedSpaces() {
+       {
+         id: "act-3",
+         kind: "event_shared",
+-        actorName: "Ahmed Al-Rashid",
++        actorName: "Alex Sample",
+         actorAvatarUrl: null,
+         subject: "Responsible AI Summit 2025",
+         detail: null,
+@@ -874,22 +874,22 @@ function seedCatalog() {
+     ),
+     community(
+       "community:500-global",
+-      "500 Global Community",
++      "Example Accelerator Community",
+       "accelerator",
+       "Accelerator",
+-      "A global community for founders, operators, and LPs across the 500 Global ecosystem.",
++      "A global community for founders, operators, and LPs across the Example Accelerator ecosystem.",
+       11200,
+       { domain: "500.co", officialPartner: true },
+     ),
+     // What the real API supports today: affiliation facts and nothing else (overview is a 404).
+     community(
+-      "school:stanford-university",
+-      "Stanford University",
++      "school:example-university",
++      "Example University",
+       "school",
+       "university",
+-      "Stanford University students, alumni, faculty, and staff.",
++      "Example University students, alumni, faculty, and staff.",
+       null,
+-      { domain: "stanford.edu", aliases: ["Stanford"] },
++      { domain: "example.edu", aliases: ["Example University"] },
+     ),
+     community(
+       "school:university-of-cambridge",
+@@ -902,12 +902,12 @@ function seedCatalog() {
+     ),
+     community(
+       "fund:andreessen-horowitz",
+-      "Andreessen Horowitz",
++      "Example Ventures",
+       "vc",
+       "venture_fund",
+-      "Andreessen Horowitz portfolio founders, investors, and operators.",
++      "Example Ventures portfolio founders, investors, and operators.",
+       1300,
+-      { domain: "a16z.com", aliases: ["a16z"] },
++      { domain: "exampleventures.example.com", aliases: ["example-ventures"] },
+     ),
+     community(
+       "community:closed-circle",
+@@ -1091,23 +1091,23 @@ const NETWORK: NetworkSeed[] = [
+   },
+   {
+     id: "community:500-global",
+-    name: "500 Global Community",
++    name: "Example Accelerator Community",
+     type: "accelerator",
+     kind: "accelerator",
+     category: "Accelerator",
+     description:
+-      "A global community for founders, operators, and LPs across the 500 Global ecosystem.",
++      "A global community for founders, operators, and LPs across the Example Accelerator ecosystem.",
+     domain: "500.co",
+     people: [{ key: "marcus", cohort: "Batch 12", relationship: "Founder" }],
+   },
+   {
+-    id: "school:stanford-university",
+-    name: "Stanford University",
++    id: "school:example-university",
++    name: "Example University",
+     type: "school",
+     kind: "university",
+     category: "university",
+-    description: "Stanford University students, alumni, faculty, and staff.",
+-    domain: "stanford.edu",
++    description: "Example University students, alumni, faculty, and staff.",
++    domain: "example.edu",
+     people: [
+       { key: "sarah", cohort: "2012", relationship: "Alumni" },
+       { key: "marc", cohort: "2009", relationship: "Alumni" },
+@@ -1116,12 +1116,12 @@ const NETWORK: NetworkSeed[] = [
+   },
+   {
+     id: "fund:andreessen-horowitz",
+-    name: "Andreessen Horowitz",
++    name: "Example Ventures",
+     type: "vc",
+     kind: "vc_portfolio",
+     category: "venture_fund",
+-    description: "Andreessen Horowitz portfolio founders, investors, and operators.",
+-    domain: "a16z.com",
++    description: "Example Ventures portfolio founders, investors, and operators.",
++    domain: "exampleventures.example.com",
+     people: [
+       { key: "sarah", cohort: null, relationship: "Investor" },
+       { key: "marc", cohort: null, relationship: "Investor" },
+diff --git a/e2e/fixtures/routes/community-create.ts b/e2e/fixtures/routes/community-create.ts
+index c7117c0..9f71c49 100644
+--- a/e2e/fixtures/routes/community-create.ts
++++ b/e2e/fixtures/routes/community-create.ts
+@@ -29,7 +29,7 @@ import {
+ 
+ type Register = (method: string, path: string, handler: FixtureHandler) => void;
+ 
+-const FIXTURE_USER_ID = "fixture-api-user-owen";
++const FIXTURE_USER_ID = "fixture-api-user-avery";
+ const COMMUNITY_TYPES = ["school", "accelerator", "vc", "community"] as const;
+ const CREATE_KEYS = ["name", "type", "category", "description", "domain", "visibility"] as const;
+ 
+@@ -311,7 +311,7 @@ export function registerCommunityCreate(route: Register) {
+     const email = typeof body.email === "string" ? body.email.trim().toLowerCase() : "";
+     if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email) || email.length > 320)
+       return bad("Invalid email");
+-    if (email === "owen.sakawa@fixture.introd.test") {
++    if (email === "avery@example.com") {
+       return fixtureStatus(400, {
+         code: "SELF_INVITE_NOT_ALLOWED",
+         error: "You cannot invite yourself.",
+@@ -353,7 +353,7 @@ export function registerCommunityCreate(route: Register) {
+   // REAL: POST /api/dashboard/communities/:communityId/invitations/send for communities created here.
+   route("POST", "/api/dashboard/communities/:communityId/invitations/send", (request) =>
+     handleInviteSend(request, {
+-      viewerEmail: "owen.sakawa@fixture.introd.test",
++      viewerEmail: "avery@example.com",
+       community: (id) => {
+         const owned = created.find((item) => item.community.id === id);
+         return owned ? { id: owned.community.id, name: owned.community.name } : null;
+diff --git a/e2e/fixtures/routes/graph.ts b/e2e/fixtures/routes/graph.ts
+index 56a66d8..32d2b9b 100644
+--- a/e2e/fixtures/routes/graph.ts
++++ b/e2e/fixtures/routes/graph.ts
+@@ -90,8 +90,8 @@ export function registerGraphRoutes(route: Register) {
+       .map((company) => fixtureCompanyRecord(company.id))
+       .filter(Boolean);
+     return {
+-      userId: "fixture-api-user-owen",
+-      email: "owen.sakawa@fixture.introd.test",
++      userId: "fixture-api-user-avery",
++      email: "avery@example.com",
+       count: items.length,
+       items,
+     };
+@@ -142,7 +142,7 @@ export function registerGraphRoutes(route: Register) {
+         origin: "discovered",
+         companyId: null,
+         source: {
+-          name: "Wikidata",
++          name: "Example Open Data",
+           url: "https://www.wikidata.org/wiki/Q9001",
+           retrievedAt: ago(0),
+         },
+@@ -152,7 +152,7 @@ export function registerGraphRoutes(route: Register) {
+       items: q.length >= 2 ? world.filter((item) => item.name.toLowerCase().includes(q)) : [],
+       provider: "wikidata",
+       coverage:
+-        "Companies with a public Wikidata record that states an official website. A company Wikidata does not list will not appear here.",
++        "Companies with a public Example Open Data record that states an official website. A company Example Open Data does not list will not appear here.",
+       cached: false,
+     };
+   });
+@@ -166,7 +166,7 @@ export function registerGraphRoutes(route: Register) {
+     return {
+       created: true,
+       matchedOn: null,
+-      company: { companyId: "company_a16z", name: "Orbital Dynamics" },
++      company: { companyId: "company_example_ventures", name: "Orbital Dynamics" },
+     };
+   });
+ 
+@@ -189,8 +189,8 @@ export function registerGraphRoutes(route: Register) {
+       .filter((key) => !search || PEOPLE[key]!.name.toLowerCase().includes(search))
+       .map((key) => fixtureGraphPerson(key));
+     return {
+-      userId: "fixture-api-user-owen",
+-      email: "owen.sakawa@fixture.introd.test",
++      userId: "fixture-api-user-avery",
++      email: "avery@example.com",
+       count: items.length,
+       items,
+     };
+diff --git a/e2e/fixtures/routes/integrations.ts b/e2e/fixtures/routes/integrations.ts
+index bc58387..d1c8931 100644
+--- a/e2e/fixtures/routes/integrations.ts
++++ b/e2e/fixtures/routes/integrations.ts
+@@ -136,7 +136,7 @@ function platform(name: "outlook_email" | "outlook_calendar") {
+         : attention
+           ? "partial"
+           : "active",
+-    accountName: "Owen Sakawa",
++    accountName: "Avery Example",
+     lastSyncAt: state.connected ? state.lastSyncedAt : null,
+     syncStatus: state.syncing ? "running" : state.connected ? "ready" : "not_connected",
+     latestSync: state.connected ? runFor(name) : null,
+@@ -187,8 +187,8 @@ function primaryAccount() {
+   return {
+     id: ACCOUNT_ID,
+     provider: "microsoft",
+-    accountEmail: "owen.sakawa@fixture.introd.test",
+-    accountName: "Owen Sakawa",
++    accountEmail: "avery@example.com",
++    accountName: "Avery Example",
+     status: reconnect ? "reconnect_required" : health === "partial" ? "partial" : "active",
+     grantedScopes: [
+       "openid",
+@@ -242,8 +242,8 @@ function secondAccount() {
+   return {
+     ...primaryAccount(),
+     id: SECOND_ACCOUNT_ID,
+-    accountEmail: "owen.alt@fixture.introd.test",
+-    accountName: "Owen Alt",
++    accountEmail: "avery.alt@example.com",
++    accountName: "Avery Alt",
+     status: "active",
+     tokenHealth: "healthy",
+     lastSuccessfulSyncAt: ago(DAY * 2),
+@@ -293,15 +293,15 @@ export function registerIntegrationRoutes(route: Register) {
+       });
+     }
+     return {
+-      userId: "fixture-api-user-owen",
+-      email: "owen.sakawa@fixture.introd.test",
++      userId: "fixture-api-user-avery",
++      email: "avery@example.com",
+       status: microsoftStatus(),
+     };
+   });
+ 
+   route("GET", "/api/dashboard/google/status", () => ({
+-    userId: "fixture-api-user-owen",
+-    email: "owen.sakawa@fixture.introd.test",
++    userId: "fixture-api-user-avery",
++    email: "avery@example.com",
+     status: {
+       connected: false,
+       partial: false,
+diff --git a/e2e/fixtures/routes/introductions.ts b/e2e/fixtures/routes/introductions.ts
+index 4afeb98..3e7410c 100644
+--- a/e2e/fixtures/routes/introductions.ts
++++ b/e2e/fixtures/routes/introductions.ts
+@@ -120,7 +120,7 @@ function fixturePathsFor(targetKey: string, limit: number) {
+       },
+       nodes: [
+         {
+-          id: "graph:fixture:owen:0000000000",
++          id: "graph:fixture:avery:0000000000",
+           name: ME.name,
+           title: ME.title,
+           company: ME.company,
+@@ -167,15 +167,15 @@ export function registerIntroRoutes(route: Register) {
+         code: "target_not_found",
+       });
+     }
+-    return { userId: "fixture-api-user-owen", email: "owen.sakawa@fixture.introd.test", ...result };
++    return { userId: "fixture-api-user-avery", email: "avery@example.com", ...result };
+   });
+ 
+   // Test-only: what the fake API recorded, so specs can prove nothing was created or sent twice.
+   route("GET", "/__fixture/intro-stats", () => ({ ...stats, introductions: introRequests.length }));
+ 
+   route("GET", "/api/dashboard/intro-requests", () => ({
+-    userId: "fixture-api-user-owen",
+-    email: "owen.sakawa@fixture.introd.test",
++    userId: "fixture-api-user-avery",
++    email: "avery@example.com",
+     items: introRequests,
+   }));
+ 
+@@ -193,8 +193,8 @@ export function registerIntroRoutes(route: Register) {
+       if (existing) {
+         stats.createReplays += 1;
+         return {
+-          userId: "fixture-api-user-owen",
+-          email: "owen.sakawa@fixture.introd.test",
++          userId: "fixture-api-user-avery",
++          email: "avery@example.com",
+           item: existing,
+         };
+       }
+@@ -204,7 +204,7 @@ export function registerIntroRoutes(route: Register) {
+     const status = body?.status === "pending" ? "pending" : "draft";
+     const row: IntroRow = {
+       id: `intro_request_${randomUUID().replace(/-/g, "")}`,
+-      user_id: "fixture-api-user-owen",
++      user_id: "fixture-api-user-avery",
+       created_at: now,
+       updated_at: now,
+       sent_at: null,
+@@ -218,7 +218,7 @@ export function registerIntroRoutes(route: Register) {
+       mission_title: missions.find((item) => item.missionId === body?.mission_id)?.title ?? null,
+       subject: body?.subject ?? "",
+       message: body?.message ?? "",
+-      requester_name: "Owen Sakawa",
++      requester_name: "Avery Example",
+       target_name: body?.target_name ?? "",
+       target_company: body?.target_company ?? "",
+       target_contact_id: body?.target_contact_id ?? null,
+@@ -241,7 +241,7 @@ export function registerIntroRoutes(route: Register) {
+     withReview(row);
+     introRequests.unshift(row);
+     if (key) byIdempotencyKey.set(key, row.id);
+-    return { userId: "fixture-api-user-owen", email: "owen.sakawa@fixture.introd.test", item: row };
++    return { userId: "fixture-api-user-avery", email: "avery@example.com", item: row };
+   });
+ 
+   route("PATCH", "/api/dashboard/intro-requests/:id", ({ params, body }) => {
+@@ -257,7 +257,7 @@ export function registerIntroRoutes(route: Register) {
+     }
+     row.updated_at = NOW();
+     withReview(row);
+-    return { userId: "fixture-api-user-owen", email: "owen.sakawa@fixture.introd.test", item: row };
++    return { userId: "fixture-api-user-avery", email: "avery@example.com", item: row };
+   });
+ 
+   // Connector delivery: records a fake "sent" attempt. No provider, no email.
+@@ -277,7 +277,7 @@ export function registerIntroRoutes(route: Register) {
+       introductionId: params.id,
+       provider: "microsoft",
+       senderAccountId: body?.senderAccountId || "fixture_account_microsoft_0001",
+-      senderEmail: "owen.sakawa@fixture.introd.test",
++      senderEmail: "avery@example.com",
+       status: "sent",
+       providerMessageId: null,
+       providerThreadId: null,
+@@ -329,7 +329,7 @@ export function registerIntroRoutes(route: Register) {
+         target_name: String(row.target_name || ""),
+         target_company: String(row.target_company || ""),
+         requester_name: String(row.requester_name || ""),
+-        requester_company: "Elloe AI",
++        requester_company: "Example Co",
+         subject: String(row.subject || ""),
+         message: String(row.message || ""),
+         sequence: "connector_then_target",
+diff --git a/e2e/fixtures/routes/linkedin-setup.ts b/e2e/fixtures/routes/linkedin-setup.ts
+index 51b0bde..88aad50 100644
+--- a/e2e/fixtures/routes/linkedin-setup.ts
++++ b/e2e/fixtures/routes/linkedin-setup.ts
+@@ -25,7 +25,7 @@ function status(scenario: LinkedInScenario) {
+     networkSync: "up_to_date",
+     graph: "ready",
+     health: "healthy",
+-    connectedAs: "Owen Sakawa",
++    connectedAs: "Avery Example",
+     connections: 18_787,
+     coveragePct: 100,
+     lastCheckedAt: ago(HOUR),
+@@ -116,8 +116,8 @@ export function registerLinkedInSetup(route: Register) {
+   // The extension bridge status the page reads beside the structured status: the browser is linked and the
+   // extension is the active, finalized client (the page's own detection comes from the in-page extension stub).
+   route("GET", "/api/dashboard/linkedin/status", () => ({
+-    userId: "fixture-user-owen",
+-    email: "owen@fixture.invalid",
++    userId: "fixture-user-avery",
++    email: "avery@example.com",
+     workspaceId: FIXTURE_WORKSPACE_ID,
+     bindingWorkspaceId: FIXTURE_WORKSPACE_ID,
+     oauthAccountLinked: true,
+diff --git a/e2e/fixtures/routes/missions.ts b/e2e/fixtures/routes/missions.ts
+index 63f2fe3..63c3446 100644
+--- a/e2e/fixtures/routes/missions.ts
++++ b/e2e/fixtures/routes/missions.ts
+@@ -37,15 +37,15 @@ export const missions: FixtureMission[] = [
+     missionId: SERIES_A_ID,
+     title: "Raise Series A",
+     naturalLanguageGoal:
+-      "Connect with top-tier investors for Elloe AI and move from warm paths to real conversations.",
++      "Connect with top-tier investors for Example Co and move from warm paths to real conversations.",
+     missionType: "FUNDRAISING",
+     targetPersonas: ["Investor"],
+     targetOrganizations: [
+-      "Andreessen Horowitz",
+-      "Sequoia Capital",
+-      "Index Ventures",
+-      "Lightspeed",
+-      "GV",
++      "Example Ventures",
++      "Sample Capital",
++      "Illustrative Ventures",
++      "Demo Partners",
++      "Test Fund",
+     ],
+     targetIndustries: ["AI"],
+     targetGeographies: ["US"],
+@@ -121,7 +121,7 @@ const TARGET_SEEDS: TargetSeed[] = [
+     key: "casey",
+     name: "Casey Whitfield",
+     title: "Partner",
+-    org: "Andreessen Horowitz",
++    org: "Example Ventures",
+     connectorKey: "sarah",
+     strength: 0.92,
+   },
+@@ -129,7 +129,7 @@ const TARGET_SEEDS: TargetSeed[] = [
+     key: "taylor",
+     name: "Taylor Brooks",
+     title: "Partner",
+-    org: "Sequoia Capital",
++    org: "Sample Capital",
+     connectorKey: "marcus",
+     strength: 0.88,
+     intro: {
+@@ -146,7 +146,7 @@ const TARGET_SEEDS: TargetSeed[] = [
+     key: "jordan",
+     name: "Jordan Ellis",
+     title: "Partner",
+-    org: "Index Ventures",
++    org: "Illustrative Ventures",
+     connectorKey: "priya",
+     strength: 0.84,
+   },
+@@ -154,7 +154,7 @@ const TARGET_SEEDS: TargetSeed[] = [
+     key: "morgan",
+     name: "Morgan Reyes",
+     title: "Partner",
+-    org: "Lightspeed",
++    org: "Demo Partners",
+     connectorKey: "james",
+     strength: 0.79,
+   },
+@@ -162,7 +162,7 @@ const TARGET_SEEDS: TargetSeed[] = [
+     key: "riley",
+     name: "Riley Okafor",
+     title: "Partner",
+-    org: "GV",
++    org: "Test Fund",
+     connectorKey: "alex",
+     strength: 0.76,
+     intro: {
+@@ -340,7 +340,7 @@ function commandCenter(mission: FixtureMission) {
+             id: "t2",
+             kind: "mission",
+             type: "new_path",
+-            headline: "New path to Index Ventures discovered via Priya Desai",
++            headline: "New path to Illustrative Ventures discovered via Priya Desai",
+             occurredAt: ago(5 * HOUR),
+             targetRef: personRef("jordan"),
+             connectorRef: personRef("priya"),
+@@ -358,7 +358,7 @@ function commandCenter(mission: FixtureMission) {
+             id: "t4",
+             kind: "introduction",
+             type: "followup",
+-            headline: "Follow-up reminder created for Andreessen Horowitz",
++            headline: "Follow-up reminder created for Example Ventures",
+             occurredAt: ago(DAY + HOUR),
+             targetRef: personRef("casey"),
+             connectorRef: null,
+diff --git a/e2e/fixtures/routes/person-profile.ts b/e2e/fixtures/routes/person-profile.ts
+index 7ff99e1..26f0b34 100644
+--- a/e2e/fixtures/routes/person-profile.ts
++++ b/e2e/fixtures/routes/person-profile.ts
+@@ -112,7 +112,7 @@ const BLANK: Profile = {
+ 
+ const PROFILES: Record<string, Partial<Profile>> = {
+   sarah: {
+-    headline: "Partner at Andreessen Horowitz. Invests in AI and enterprise software.",
++    headline: "Partner at Example Ventures. Invests in AI and enterprise software.",
+     strength: "strong",
+     trustRank: 92,
+     connectedDaysAgo: 876,
+@@ -120,7 +120,7 @@ const PROFILES: Record<string, Partial<Profile>> = {
+     sources: ["linkedin", "microsoft"],
+     evidence: ["Meeting history", "LinkedIn relationship"],
+     signal: "Meeting history",
+-    email: "sarah.chen@fixture.introd.test",
++    email: "sarah.chen@example.com",
+     communities: [
+       {
+         id: "community_fixture_founders",
+@@ -131,17 +131,17 @@ const PROFILES: Record<string, Partial<Profile>> = {
+     ],
+   },
+   marcus: {
+-    headline: "Partner at Sequoia Capital",
++    headline: "Partner at Sample Capital",
+     strength: "strong",
+     trustRank: 88,
+     connectedDaysAgo: 540,
+     lastInteractionDaysAgo: 40,
+     sources: ["linkedin"],
+     evidence: ["LinkedIn relationship"],
+-    email: "marcus.lee@fixture.introd.test",
++    email: "marcus.lee@example.com",
+   },
+   priya: {
+-    headline: "Investment Partner at Index Ventures",
++    headline: "Investment Partner at Illustrative Ventures",
+     strength: "strong",
+     trustRank: 84,
+     connectedDaysAgo: 300,
+@@ -180,7 +180,7 @@ const PROFILES: Record<string, Partial<Profile>> = {
+   satya: { strength: "weak", trustRank: 68, explanation: EVIDENCED_WEAK_EXPLANATION },
+   // Mission targets: the people Series A Autopilot found. Reached through connectors, not direct.
+   casey: {
+-    headline: "Partner at Andreessen Horowitz",
++    headline: "Partner at Example Ventures",
+     strength: "weak",
+     direct: false,
+     degree: 2,
+@@ -223,10 +223,10 @@ const CAREER: Record<string, { experience: unknown[]; education: unknown[] }> =
+       },
+       {
+         title: "General Partner",
+-        company: "Andreessen Horowitz",
+-        companyDomain: "a16z.com",
++        company: "Example Ventures",
++        companyDomain: "exampleventures.example.com",
+         companyLogoUrl: null,
+-        companyLinkedinUrl: "https://www.linkedin.com/company/a16z",
++        companyLinkedinUrl: "https://www.linkedin.com/company/example-ventures",
+         startDate: "2019-03-01T00:00:00.000Z",
+         startPrecision: "month",
+         endDate: null,
+@@ -235,7 +235,7 @@ const CAREER: Record<string, { experience: unknown[]; education: unknown[] }> =
+       },
+       {
+         title: "Associate",
+-        company: "Sequoia Capital",
++        company: "Sample Capital",
+         companyDomain: null,
+         companyLogoUrl: null,
+         companyLinkedinUrl: null,
+@@ -247,8 +247,8 @@ const CAREER: Record<string, { experience: unknown[]; education: unknown[] }> =
+       },
+     ],
+     education: [
+-      { school: "Stanford University", degree: "MBA", fieldOfStudy: "Finance", startYear: 2010, endYear: 2012 },
+-      { school: "University of Texas at Austin", degree: "BA", fieldOfStudy: "Economics", startYear: 2004, endYear: 2008 },
++      { school: "Example University", degree: "MBA", fieldOfStudy: "Finance", startYear: 2010, endYear: 2012 },
++      { school: "Sample State University", degree: "BA", fieldOfStudy: "Economics", startYear: 2004, endYear: 2008 },
+     ],
+   },
+ };
+diff --git a/e2e/fixtures/routes/shell.ts b/e2e/fixtures/routes/shell.ts
+index caf6cea..51aff5d 100644
+--- a/e2e/fixtures/routes/shell.ts
++++ b/e2e/fixtures/routes/shell.ts
+@@ -6,8 +6,8 @@ type Register = (method: string, path: string, handler: FixtureHandler) => void;
+ 
+ export function registerShellRoutes(route: Register) {
+   route("POST", "/api/dashboard/users/ensure", () => ({
+-    userId: "fixture-api-user-owen",
+-    email: "owen.sakawa@fixture.introd.test",
++    userId: "fixture-api-user-avery",
++    email: "avery@example.com",
+     created: false,
+     analytics: null,
+   }));

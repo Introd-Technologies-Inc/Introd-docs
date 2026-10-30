@@ -1,37 +1,39 @@
 ---
 title: "Import Contacts"
-description: "Preview a CSV before importing contacts, or start a supported Google or Outlook connection."
+description: "Preview a CSV before importing contacts, or import your LinkedIn Connections.csv export."
 ---
 
-Import Contacts supports a local CSV preview and provider authorization for Google or Outlook.
+Import Contacts brings in people from a file. Provider connections for Google Workspace and Microsoft 365 are made from [Sync Accounts](/setup-network/sync-accounts).
 
-[Open Import Contacts](https://app.getintrod.ai/setup-network/import)
+[Open Network Setup](https://app.getintrod.ai/setup-network?source=csv)
 
-## Import a CSV
+> Last reviewed against current product source on October 30, 2026.
 
-1. Choose **CSV File**.
-2. Drop a CSV onto the upload area or select **Choose file**.
-3. Review the preview and the number of contacts found.
-4. Select **Import contacts** only when the rows look correct.
+## Import a contacts CSV
 
-Introd recognizes common headings for:
+1. Choose **CSV**.
+2. Drop a `.csv` file onto the upload area or choose a file. The limit is 10 MB. Export Excel files as CSV first.
+3. Review the preview and the number of contacts found. **Show first 5** shows the first rows.
+4. Choose **Import contacts** only when the rows look correct.
 
-- full name, or separate first and last name
-- email
-- company, organization, or account
-- title, job title, or role
-
-A parsed row needs at least a name or an email. The page previews the first five rows and imports all parsed rows when you confirm.
+Download `introd-contact-template.csv` if you want a template. Introd recognizes common headings for full name or separate first and last name, email, company, and title or role. A row needs at least a name or an email.
 
 <Warning>
-The current importer does not show a duplicate-resolution step. Remove duplicate or unwanted rows from the CSV before importing.
+The importer does not show a duplicate-resolution step. Remove duplicate or unwanted rows from the CSV before importing.
 </Warning>
 
-## Google and Outlook
+## Apple Contacts
 
-Choosing **Gmail** starts Google authorization. Choosing **Outlook** starts Microsoft authorization. These options connect the provider; they do not show the CSV preview.
+There is no direct Apple Contacts connection. Export your contacts as a file, then import that file as a CSV.
 
-Choosing **Other Email** records an access request only. It does not import Yahoo, iCloud, AOL, or another mailbox today.
+## Import your LinkedIn `Connections.csv`
+
+1. Open **Import LinkedIn connections** from Collections or Network Setup.
+2. Upload the `Connections.csv` file from your LinkedIn data export. The limit is 7 MB.
+3. Select the workspace and tick the consent checkbox.
+4. Review the server preview, then import.
+
+Introd says it never asks for your LinkedIn password. The import shows **Queued securely**, **Importing connections**, and then **Import complete**, **Import completed with warnings**, or **Import needs attention**.
 
 ## After import
 

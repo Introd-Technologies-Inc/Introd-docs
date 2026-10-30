@@ -1,11 +1,11 @@
 ---
 title: "Deletion and Privacy Requests"
-description: "Choose the correct action to disconnect a provider, clear extension data, or request deletion of Introd data."
+description: "Choose the correct action to disconnect a provider, clear extension data, or request closure or deletion of Introd data."
 ---
 
-Disconnecting a provider, clearing an extension installation, and deleting an Introd account have different effects.
+Disconnecting a provider, clearing an extension installation, and closing an Introd account have different effects.
 
-> Last verified against current application, extension, API, and Privacy Policy source on August 11, 2026.
+> Last reviewed against current product source on October 30, 2026.
 
 <Note>
   This page explains current product behavior, not legal advice. See the [Privacy Policy](https://getintrod.ai/legal/privacy) for the governing retention and rights terms.
@@ -16,41 +16,43 @@ Disconnecting a provider, clearing an extension installation, and deleting an In
 | Your goal | Action | What remains |
 | --- | --- | --- |
 | Stop future Google or Microsoft sync | Disconnect the provider in Introd | Previously imported Introd records remain |
-| Clear one extension installation | Clear local extension data | Server-side Introd data and provider connections remain; default-on capture settings return after reinitialization |
-| Start deletion from the product | Use the account deletion control | The app starts deletion of dashboard-owned records; the current UI does not provide a completion receipt |
+| Stop the extension syncing LinkedIn | Turn off **Enable extension** or choose **Revoke sync permission** in the extension | Connections already synced to Introd remain |
+| Clear one extension installation | **Clear local data** in the extension Options page | Server-side Introd data and provider connections remain |
+| Close your account | **Request verified closure** in Settings | An email request opens; Introd verifies it. Nothing is deleted by clicking it |
 | Make a complete privacy request | Email privacy@getintrod.ai | Records allowed or required by the Privacy Policy can remain for the stated period |
 
 ## Disconnect Google Workspace or Microsoft 365
 
 1. Open [Integrations](https://app.getintrod.ai/settings/integrations).
 2. Open the connected provider card.
-3. Choose **Disconnect**.
-4. Confirm the dialog.
+3. Choose **Disconnect** and confirm.
 
-**Expected result:** Introd clears the stored connection tokens and future sync jobs stop. The confirmation states that imported Introd records are preserved.
+**Expected result:** future sync stops and Introd clears its stored connection. Imported Introd records are preserved.
 
-To revoke consent at the provider, also use the Google or Microsoft account's connected-app controls.
+Introd asks Google to revoke its grant when you disconnect a Google account. For Microsoft, remove Introd's access in your Microsoft account's app permissions as well. Use the provider's account controls to review or revoke consent at any time.
 
-## Clear extension-local data
+## Stop the extension or clear its data
 
-1. Open the Introd extension.
-2. Open Settings.
-3. In **Danger zone**, find **Clear local extension data**.
-4. Choose **Clear local data** and confirm.
+In the extension's **Options page** (right-click the toolbar icon, then **Options**):
 
-**Expected result:** the extension removes browser-local auth state, settings, caches, queued signals, and diagnostics for that installation and returns to setup. Server data is not deleted. Reinitialization restores the build's default-on capture settings.
+- **Revoke sync permission** removes your sync approval and local sync state. No new sync runs until you approve again.
+- **Clear local data** (in **Danger zone**) removes the extension's saved data in this browser and signs you out.
 
-This action does not guarantee that an already-running LinkedIn page crawler stops immediately. Disable Introd in `chrome://extensions` when you need its code to stop running on LinkedIn pages.
+Neither deletes data Introd already stored. See [Sync and consent](/chrome-extension/linkedin-integration).
 
-## Start account deletion
+## Close your account
+
+<Frame caption="Example data in the Introd dashboard.">
+  <img src="/images/product/dash-settings-privacy-security-desktop.png" alt="The Settings page on the Privacy and Security tab. It shows Password and Security, Privacy Settings with a Request data or privacy support button, and an Account closure section with a Request verified closure button." />
+</Frame>
 
 1. Open [Settings](https://app.getintrod.ai/settings).
-2. Locate the account deletion control.
-3. Review and confirm the action.
+2. Choose **Request verified closure**.
+3. Send the email that opens.
 
-**Expected result:** the current app starts deletion of dashboard-owned product records and signs you out. Its confirmation message indicates that deletion started; it is not proof that every applicable account, graph, backup, or provider record has finished deletion.
+**Expected result:** Introd receives your request and verifies it. The product has no self-serve button that deletes your account.
 
-For complete scope or confirmation, continue with a privacy request.
+For a data export, or for the scope and confirmation of what is deleted, use **Request data or privacy support** in Privacy Settings or continue with a privacy request.
 
 ## Submit a privacy request
 
@@ -61,16 +63,19 @@ Email [privacy@getintrod.ai](mailto:privacy@getintrod.ai) from the address assoc
 - any connected provider or extension installation relevant to the request
 - enough non-secret context to identify the affected records
 
-Do not include passwords, OAuth codes, access tokens, or extension files. Introd may request additional information to verify the account before fulfilling the request.
+Do not include passwords, OAuth codes, access tokens, or extension files. Introd may request more information to verify the account first.
 
 The current [Privacy Policy](https://getintrod.ai/legal/privacy) states that deletion or anonymization is completed within 30 days, subject to records retained for legal, fraud-prevention, security, or other stated obligations. It also states that backups are purged on a rolling 35-day cycle.
+
+## What deletion does not do on its own
+
+Disconnecting a source, revoking sync permission, and clearing local data do not remove people, relationships, or other records Introd has already stored. Only a verified privacy request addresses those. Introd does not publish a completion receipt for deletion inside the product, so ask for written confirmation.
 
 ## Failure states
 
 | What you see | Next step |
 | --- | --- |
 | Provider says Disconnected but imported people remain | This is the documented disconnect result; submit a privacy request if deletion is required |
-| Extension setup returns after local clear | Sign in again only if you intend to reconnect that installation |
-| Account deletion signs you out without a receipt | Email privacy@getintrod.ai for scope or status confirmation |
+| Extension setup returns after local clear | Link it again only if you intend to reconnect that installation |
 | You cannot access the account | Email privacy@getintrod.ai from the account address and explain the access problem |
 | You do not receive a response | Retry the privacy address and include the original request date; do not resend secrets |

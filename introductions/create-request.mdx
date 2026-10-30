@@ -1,13 +1,19 @@
 ---
 title: "Prepare an Introduction Request"
-description: "Create a reviewed introduction draft and understand exactly what each composer action does."
+description: "Create a reviewed introduction draft and understand exactly what each action does."
 ---
 
-Open the composer from **Request intro** on a person or path, or from **Request Intro** on the [Introductions](https://app.getintrod.ai/introductions) page.
+Start from **New introduction** on [Introductions](https://app.getintrod.ai/introductions), or from a person, path, mission, or collection.
+
+> Last reviewed against current product source on October 30, 2026.
+
+## The steps
+
+The new-introduction flow has four steps: **Who** (select your target), **Why** (share context), **How** (review and send), and **Track** (follow progress). Choosing a target from a path pre-fills the target and proposed connector.
 
 ## Review the path and recipients
 
-The composer can prefill a target and proposed connector. Before writing:
+Before writing:
 
 1. Confirm the target is the correct person.
 2. Confirm the connector is someone you can appropriately ask.
@@ -16,7 +22,7 @@ The composer can prefill a target and proposed connector. Before writing:
 
 ## Edit the request
 
-Review the **To** connector, subject, and message. Keep the request easy to evaluate and forward:
+On **Draft & Review**, the steps are **Draft message**, **Review & edit**, **Connector approval**, and **Track progress**. The message can be up to 1,000 characters. Keep it easy to evaluate and forward:
 
 - state who you want to meet;
 - explain why the conversation is relevant now;
@@ -24,21 +30,45 @@ Review the **To** connector, subject, and message. Keep the request easy to eval
 - make it easy to decline; and
 - remove generated text or relationship claims you cannot verify.
 
+**Use AI to draft** offers starter templates (**Concise request**, **Seek advice**, **Explore partnership**). Review and edit any generated text before using it. **Copy message** gives you a LinkedIn-ready copy.
+
+<Frame caption="Example data in the Introd dashboard. Here no verified sender is selected, so the button reads Create review link.">
+  <img src="/images/product/dash-introductions-draft-review-desktop.png" alt="The Draft and Review Introduction page. A message to the connector is being edited with a counter of 392 out of 1,000 characters. A preview tab shows the email. The right column shows Introduction settings with Priority and Keep me updated, and a Default sender preference notice saying this flow remains review-link only. Save draft and Create review link buttons are at the top." />
+</Frame>
+
 ## Understand the actions
 
-| Action | Current behavior |
+| Action | What it does |
 | --- | --- |
-| Save draft | Creates an Introd record with draft status |
-| Preview intro | Reviews the current draft content in the composer workflow |
-| Send request | Creates or updates an Introd record as pending after setup checks pass |
-| Schedule | Stores a scheduled date and pending workflow state |
+| **Save draft** | Stores the draft. Introd shows **Draft saved**. |
+| **Copy message** | Copies the message so you can use it elsewhere. |
+| **Create review link** | Creates a private, expiring connector review link for you to share. Introd sends nothing. |
+| **Send for review** | Starts connector review and tries to deliver it from your verified sender account. |
+| **Copy private link** | Copies the connector review link. |
+| **Cancel introduction** | Cancels the record in Introd. It does not retract anything already sent elsewhere. |
 
 <Warning>
-  **Send request** and **Schedule** do not deliver an external email, LinkedIn message, or calendar invitation. They update the Introd workflow record. Perform and verify external communication through the approved channel yourself.
+  None of these actions contacts the person you want to meet. After the connector accepts, Introd shows the next step. Record the introduction as made only after the connector actually sends it.
 </Warning>
 
-## Setup check
+<Frame caption="Example data in the Introd dashboard.">
+  <img src="/images/product/dash-introductions-review-link-created-desktop.png" alt="The Draft and Review page after a review link is created. A banner reads Connector review is ready. Share the private expiring link with the connector; no message is sent automatically. A Copy private link button is shown and the top button reads Review created." />
+</Frame>
 
-Submitting or scheduling a request can be blocked until the required LinkedIn and email setup is available. Follow the visible error, review [Network Setup](/setup-network), and retry after the integration state is ready. Saving a draft remains the safe option while setup is incomplete.
+## What the connector sees
 
-After creation, open [Track introduction requests](/introductions/track-requests) to verify the stored record and status.
+The connector gets a private review page titled **Introduction Request** with tabs for **Overview**, **Suggested message**, **Context**, **Your relationship with both**, and **Activity**. They can choose **Accept request** or **Decline**. **Edit & send** and **Ask a question** appear on the page but are not available yet. If they decline, the introduction stops and nothing is sent to the target. The page also explains what happens next and that they can decline.
+
+<Frame caption="Example data in the Introd dashboard. The expiry date is shown on the page.">
+  <img src="/images/product/dash-intro-consent-connector-review-desktop.png" alt="The private Introduction Request page a connector sees. It shows the requester, the connector, and the recipient, tabs for Overview, Suggested message, Context, Your relationship with both, and Activity, a What happens next panel, and Accept request, Edit and send, Ask a question, and Decline buttons. Edit and send and Ask a question are dimmed." />
+</Frame>
+
+## Not available yet
+
+On the draft screen, **Priority**, **Keep me updated**, and **Add file** are shown but cannot be changed. Introd says why on screen: attachments are not available in signed review links, and update notifications and priority are not stored for introductions yet. A follow-up reminder is saved with the draft.
+
+## Sending from your own account
+
+To use **Send for review**, enable sending for a connected Google or Microsoft account. A connected account that is not send-enabled shows "Connected for relationship signals. Enable sending to deliver introductions from this account." Sending is a separate permission from the metadata sync. See [OAuth permissions](/privacy-security/oauth-permissions).
+
+After creation, open [Track introduction requests](/introductions/track-requests) to verify the record and its status.

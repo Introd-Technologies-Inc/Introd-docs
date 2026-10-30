@@ -1,34 +1,35 @@
 ---
-title: "Understanding Checkmarks"
-description: "Interpret the extension setup checklist and sync states without treating them as guarantees."
+title: "Understanding Status Indicators"
+description: "Interpret the popup's sync status and the on-page i. button without treating them as guarantees."
 ---
 
-> Last verified against current Extension Setup source on August 11, 2026.
+> Last reviewed against extension version 3.1.24 on October 30, 2026.
 
-## Extension Setup checklist
+## The network status strip
 
-| Checklist item | When it is marked complete |
+The popup shows one status line for your network, with a check icon when things are in a good state.
+
+| Status | What it means |
 | --- | --- |
-| Extension installed | The current Introd extension is active |
-| Introd account connected | The extension detects an authenticated Introd account |
-| Logged into LinkedIn | The extension detects a LinkedIn session in this Chrome profile |
-| Profile detected | A LinkedIn profile identity is available from the current session |
-| Connection import available | The extension found a visible connection total or imported records |
-| Connections imported | At least one connection record has been imported |
-| Graph updated | The sync reached the extension's completed graph-ready condition |
-| Last sync completed | The extension has a recorded last-sync time |
+| LinkedIn network up to date | Introd reports your LinkedIn sync is current |
+| Network synced | Introd holds a complete, verified snapshot of your first-degree connections |
+| Network ready from N sources | Introd has relationship evidence from connected sources but no verified LinkedIn snapshot |
+| Your LinkedIn network is syncing… | A sync is in progress |
+| LinkedIn sync partially complete | Some connections are saved and more remain |
+| LinkedIn sync needs attention | The last run failed and Introd will retry |
+| Network source needed | Connect a source to get started |
 
-## Progress is not the same as completion
+Introd decides these states, not the popup. The check icon shows a state; it does not guarantee that every connection was imported.
 
-During a run, the checklist can show progress while the sync state is Syncing, Paused, Retrying, or Partial. Imported records can exist before **Graph updated** is complete. An incomplete run can also make progress through automatic background resume without the popup remaining open.
+## Connected sources
 
-## What a completion checkmark confirms
+In the popup settings, each source (LinkedIn, Gmail, Google Calendar, Google Contacts, Outlook, Outlook Calendar) shows one of **Synced**, **Connected**, **Syncing**, **Needs attention**, **Unavailable**, or **Not connected**, with the last-sync time. **Connected** can mean a source is linked but not yet contributing evidence.
 
-- the associated setup condition was observed by the current extension
-- the condition applies to this Chrome profile and Introd account
-- the extension has a recorded state for that item
+## The on-page i. button
 
-## What it does not confirm
+The **i.** button on LinkedIn is not a sync indicator, a verification badge, or a success mark. It opens a lookup of Introd paths for that profile. It is not LinkedIn verification or an endorsement.
+
+## What a status does not confirm
 
 - every LinkedIn connection was imported
 - every imported contact has complete profile data
@@ -38,10 +39,9 @@ During a run, the checklist can show progress while the sync state is Syncing, P
 
 ## Verify before acting
 
-1. Compare imported connections with the visible total when the popup provides both.
-2. Confirm the last-sync time.
-3. Open [People Search](https://app.getintrod.ai/search/people) and inspect the actual target.
-4. Review path evidence and connector identity.
-5. Save a draft rather than treating a checkmark as permission to contact someone.
+1. Confirm the last-sync time.
+2. Open [People](https://app.getintrod.ai/search/people) and inspect the actual target.
+3. Review path evidence and connector identity.
+4. Start a connector review only when the evidence supports it.
 
 For status recovery, see [Troubleshooting](/chrome-extension/troubleshooting).

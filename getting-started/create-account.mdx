@@ -1,59 +1,64 @@
 ---
-title: "Create an Account"
-description: "Create an Introd account with a supported authentication method and enter Network Setup."
+title: "Request Access"
+description: "Request access to Introd, activate your approved account, choose a plan, and enter Network Setup."
 ---
 
-Open [Create your Introd account](https://app.getintrod.ai/sign-up).
+Open [Request access](https://app.getintrod.ai/sign-up).
 
-> Last verified against current authentication source on August 11, 2026.
+> Last reviewed against current product source on October 30, 2026. The sign-up page copy was also confirmed on the live site.
 
-## Supported methods
+## How access works
 
-| Method | Current behavior |
-| --- | --- |
-| Email and password | Creates an account after the form passes validation |
-| Google | Opens Google authentication and returns to Introd |
-| LinkedIn | Opens LinkedIn authentication and returns to Introd |
-| Microsoft | Not available for account creation or sign-in on the auth page |
+Introd access is approved before you can use a workspace. The sign-up page is titled **Request access** and says: "Request access to join the waitlist. We'll email you when access is approved."
 
-Microsoft 365 can be connected later from [Integrations](https://app.getintrod.ai/settings/integrations).
+Until your access is approved, signing in takes you to the **Access** page instead of the workspace. That page explains that Introd does not create public accounts without an approved invitation.
 
-## Create an account with email
+## Request access
 
-1. Enter your first and last name.
-2. Enter a valid work email.
-3. Create a password with at least eight characters and at least one number.
-4. Enter the same password in **Confirm password**.
-5. Review and accept the [Terms of Service](https://getintrod.ai/legal/terms) and [Privacy Policy](https://getintrod.ai/legal/privacy).
-6. Choose **Create account**.
+1. Open [Request access](https://app.getintrod.ai/sign-up).
+2. Enter your first name, last name, and email address, or choose Google, LinkedIn, or Microsoft.
+3. Choose **Request access**.
 
-**Expected result:** Introd starts an authenticated browser session and opens [Network Setup](https://app.getintrod.ai/setup-network).
+**Expected result:** Introd records your request and shows a confirmation. You do not get a workspace yet.
 
-## Create an account with Google or LinkedIn
+<Frame caption="The Request access page on desktop.">
+  <img src="/images/product/dash-sign-up-request-access-desktop.png" alt="The Introd Request access page. It offers Continue with Google, Continue with LinkedIn, and Continue with Microsoft buttons, then First name, Last name, and Email address fields and a Request access button." />
+</Frame>
 
-1. Choose the Google or LinkedIn button.
-2. Complete the provider's consent and authentication page.
-3. Return to Introd.
+<Frame caption="The same page on a phone-width screen.">
+  <img src="/images/product/dash-sign-up-request-access-mobile.png" alt="The Introd Request access page on a phone-width screen, with the same provider buttons and name and email fields stacked in one column." />
+</Frame>
 
-**Expected result:** the provider callback creates or restores the Introd session and continues to Network Setup.
+## After you are approved
+
+1. Open the invitation or activation link Introd emails you, or return to [Sign in](https://app.getintrod.ai/sign-in).
+2. Complete activation on the **Access** page if it asks you to.
+3. Choose a plan on **Choose your plan**. See [Plans and required setup](/getting-started/quickstart#2-choose-a-plan).
+4. Connect and verify your first network source in [Network Setup](https://app.getintrod.ai/setup-network).
+
+<Note>
+  Introd has not published how quickly requests are reviewed or whether any request is approved automatically. If you have not heard back, email [help@getintrod.ai](mailto:help@getintrod.ai) from the address you used.
+</Note>
+
+## Sign in later
+
+Use [Sign in](https://app.getintrod.ai/sign-in). Social providers and email sign-in are offered there. If your account has two-factor authentication turned on, Introd sends you to a two-factor challenge after sign-in. See [Settings](/workspace/settings).
+
+Microsoft 365 and Google Workspace can also be connected later as relationship sources from [Integrations](https://app.getintrod.ai/settings/integrations). Signing in with a provider and connecting that provider as a source are separate steps.
 
 ## Failure states
 
-| Message or symptom | Recovery |
+| What you see | Recovery |
 | --- | --- |
-| Please enter your first and last name | Complete both name fields |
-| Please enter a valid email address | Correct the email format |
-| Password must be at least 8 characters | Use a longer password |
-| Password must include at least one number | Add a numeric character |
-| Passwords do not match | Re-enter the confirmation |
-| Account created, but the authenticated session could not be started | Open [Sign in](https://app.getintrod.ai/sign-in) and use the account you created |
+| You are sent to the Access page after signing in | Your access is not approved or activated yet. Check your email for an invitation, or email help@getintrod.ai |
 | Provider callback returns an error | Return to Sign in and retry the same provider |
-| Microsoft sign-up is not available | Use email, Google, or LinkedIn, then connect Microsoft 365 after sign-in |
+| Two-factor challenge appears | Enter the code from your authenticator app |
+| You forgot your password | Use **Forgot password** on the sign-in page |
 
 ## Security notes
 
-- Enter your provider credentials only on the provider's own authentication page.
-- Introd's extension does not ask for your LinkedIn password.
-- Never send a password, OAuth code, access token, or extension build to support.
+- Enter provider credentials only on the provider's own authentication page.
+- Introd's extension never asks for your LinkedIn password.
+- Never send a password, OAuth code, access token, or extension file to support.
 
 For account help, email [help@getintrod.ai](mailto:help@getintrod.ai).

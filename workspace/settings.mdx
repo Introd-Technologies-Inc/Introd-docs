@@ -1,50 +1,54 @@
 ---
 title: "Settings"
-description: "Manage account preferences, privacy choices, integration status, billing, and account data."
+description: "Manage account preferences, privacy and security choices, integration status, billing, and account closure."
 ---
 
 Settings contains account-level controls for your signed-in Introd workspace.
 
 [Open Settings](https://app.getintrod.ai/settings)
 
+> Last reviewed against current product source on October 30, 2026.
+
 ## Available sections
 
 | Section | What is available |
 | --- | --- |
-| Account and Profile | Name, email, phone, time zone, language, and profile picture preferences |
-| Organization | Workspace summary plus links to Team and Network Setup |
-| Notifications | Introduction, network, summary, product, and marketing email preferences |
-| Privacy & Security | Analytics consent, profile visibility, search visibility, and account-data actions |
-| Integrations | Current provider status and a link to Network Setup |
-| Billing | Current plan details and self-service checkout or billing management when available |
+| Account | Name, email, avatar (JPG, PNG, or WebP), and password change |
+| Profile | A summary of your profile |
+| Organization | Your billing workspace, the signed-in member, and links to Network Setup, Team & Workspaces, and Communities |
+| Notifications | Optional email delivery, marketing emails, and essential updates |
+| Privacy & Security | Privacy-safe product analytics, password, active sessions, and two-factor authentication |
+| Integrations | Your LinkedIn status and a link to all integrations |
+| Billing | Your plan, trial or payment status, and plan actions |
 
-Select **Save changes** after editing account information. Email and privacy toggles save when changed.
+<Frame caption="Example data in the Introd dashboard.">
+  <img src="/images/product/dash-settings-account-desktop.png" alt="The Settings page on the Account tab. Tabs run from Account to Billing. Cards show Account Information, Notification preferences, Password and Security with Set up authenticator app, Privacy Settings with a privacy-safe analytics toggle and a Request data or privacy support button, Integrations, and an Account closure section with a Request verified closure button." />
+</Frame>
 
-## Current availability notes
+## Security
 
-- **Change password** directs you to password reset from the sign-in page.
-- Email-template management is not available in Settings yet.
-- Data exports are handled by support today.
-- Integration connection and sync actions live in **Network Setup**.
-- Billing buttons can be disabled when self-service checkout or the billing portal is not available for the account.
+**Two-factor authentication** uses an authenticator app. Choose **Set up authenticator app** and follow the prompts. Once it is on, sign-in sends you to a two-factor challenge. **Active sessions** lists where your account is signed in.
 
 ## Privacy choices
 
-The analytics control covers privacy-safe product milestones and is shared across getintrod.ai properties. Profile and search visibility choices are stored with your Introd preferences.
+Privacy Settings explains that expanded visibility choices and data exports are managed with Introd support, and offers **Request data or privacy support**. The analytics control covers privacy-safe product analytics. A consent banner also offers **Decline analytics**. For the policy governing personal data, see the [Introd Privacy Policy](https://getintrod.ai/legal/privacy).
 
-For the policy governing personal data, see the [Introd Privacy Policy](https://getintrod.ai/legal/privacy).
+## Billing
 
-## Deactivation and deletion
+Plans are Free, Pro, Team, and Community. Prices, trials, and features come from Introd's billing system, so check the Billing section for current details. Only a workspace billing manager can change billing. Checkout and the billing portal are handled by Stripe. Community is sales-assisted.
 
-The **Danger Zone** requires a browser confirmation.
+If paid access ends, external syncs other than LinkedIn stop, and imported data remains visible and read-only.
 
-- **Deactivate account** records a deactivation request on the account.
-- **Delete account** starts deletion of dashboard-owned product records and signs out the current session. The in-product confirmation does not prove that every applicable provider, graph, backup, or retained legal record has finished deletion.
+## Close your account
 
-Deletion cannot be undone. For a data export or questions about a complete privacy request, contact [privacy@getintrod.ai](mailto:privacy@getintrod.ai) before deleting data.
+Settings does not include a button that deletes your account. The **Account closure** section says closure is verified across identity, workspace data, integrations, and billing before access is removed. To start it, choose **Request verified closure**, which opens an email request to Introd.
+
+<Warning>
+  Requesting closure starts a conversation with Introd; it does not delete anything on its own. For access, correction, or deletion of your data, see [Deletion and privacy requests](/privacy-security/gdpr-and-deletion) or email [privacy@getintrod.ai](mailto:privacy@getintrod.ai). Data exports are handled by Introd support, so request one before you close your account.
+</Warning>
 
 ## Related guides
 
-- [Sync accounts](/setup-network/sync-accounts)
+- [Connect integrations](/getting-started/connect-integrations)
 - [Privacy and security](/privacy-security)
 - [OAuth permissions](/privacy-security/oauth-permissions)

@@ -1,43 +1,53 @@
 ---
 title: "Search and Sort Companies"
-description: "Use company search, filters, and sort controls without overstating the available coverage."
+description: "Use company search, tabs, and sort controls without overstating the available coverage."
 ---
 
-Open [Companies](https://app.getintrod.ai/search/companies) to search the company records represented in your workspace network.
+Open [Companies](https://app.getintrod.ai/search/companies) to search the companies in your workspace network and, separately, companies beyond it.
+
+> Last reviewed against current product source on October 30, 2026.
 
 ## Search
 
-1. Enter a query in the search field.
-2. Press **Enter** to submit it.
-3. Review the result count and the company rows returned for that query.
+1. Enter a query in **Search companies by name, industry, or location...**.
+2. Review the result count and the company rows returned.
+3. Narrow by **All industries** or **All regions**.
 
-Search coverage depends on the company names and attributes attached to your current network data. A zero-result search does not prove that the company or a relationship does not exist; it means Introd did not return a matching company from the data available to this workspace.
+Coverage depends on the company names and attributes attached to your network data. A zero-result search does not prove a company or relationship does not exist.
 
-## Narrow the list
+## Tabs and sorting
 
-The company page provides workspace-specific views such as:
-
-| View | What it focuses on |
+| Tab | What it focuses on |
 | --- | --- |
-| All companies | The current company result set |
-| Reachable | Companies with at least one warm path in the current data |
-| Strategic targets | Companies with stronger coverage in the current ranking |
-| In warm paths | Companies attached to an active introduction workflow |
-| Needs enrichment | Records with weak coverage or missing company context |
+| Loaded Companies | The companies currently loaded for your workspace |
+| Potential Paths | Companies with at least one potential warm path |
+| Strong Access | Companies where your access looks stronger |
+| Active Introductions | Companies attached to an introduction in progress |
 
-Use **Sort by** to order results by relevance, contact count, warm-path count, or company name.
+Sort by **Most relevant**, **Potential paths**, **Network contacts**, **Recently synced**, or **Company name**.
 
 ## Review a row
 
-Select a row to open its detail panel. The row and panel can show:
+The table shows **Company**, **Industry**, **Location**, **Funding** (on wider screens), **People in my network**, **Strongest relationship**, **Warm paths**, and **Details**. Select a row to open its side panel:
 
-- company name, industry, and location when present;
-- the number of associated people and warm paths;
-- a relative coverage label;
-- available connector names; and
-- actions to inspect paths or prepare an introduction request.
+- **Who you know here**
+- Website, headquarters, industry, company size, founded year, and LinkedIn
+- your relationship, direct contacts, and last-synced time
+- actions to inspect paths or prepare an introduction
 
-Missing industry, location, or connector context is a data limitation. Do not replace an unknown field with an assumption.
+## Funding and company facts
+
+Where Introd holds funding information, the **Funding** column shows the latest round stage and the amount raised. A missing value appears as an em dash and reads "Funding not reported" to screen readers; it is never shown as $0. A total that is not certain is shown as a range or with a plus sign.
+
+The company page can also show the latest round, equity raised, when it was last reported, investors, legal name, registered address (which is not necessarily where the company operates), offices, founders and leadership, and current and former employees. When sources disagree, Introd shows the disagreement. The data source is described in words and a data vendor is not named. Treat these facts as a starting point and verify anything important.
+
+## Beyond your network
+
+**Beyond your network** searches public company registry records. Only companies with a public registry record that states a website can be found there. If you search too often in a minute, Introd asks you to wait. Choose **View company page** or **Open profile** to open one.
+
+## Company detail
+
+A company page has tabs for **Overview**, **People**, **Access**, **Missions**, **Opportunities**, **Activity**, and **Notes**. **Save** adds a company to your company searches. The **Introd intelligence** card is labeled **Beta**.
 
 <Tip>
   If a newly synced or imported company is missing, confirm the source has finished processing, refresh once, and retry a simpler company-name query.

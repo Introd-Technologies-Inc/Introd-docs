@@ -1,25 +1,31 @@
 ---
 title: "Introductions"
-description: "Prepare and track human-reviewed warm introduction requests without confusing workflow state with message delivery."
+description: "Prepare, review, and track warm introductions, and understand what Introd records and what a person still does."
 ---
 
-Use **Introductions** to store the target, connector, request context, and current workflow state for a warm introduction.
+Use **Introductions** to store the target, connector, request context, and current state of a warm introduction.
 
 <Card title="Open Introductions" icon="arrow-up-right" href="https://app.getintrod.ai/introductions">
   Sign-in is required. The page shows introduction records available to your workspace.
 </Card>
 
-## Two separate responsibilities
+> Last reviewed against current product source on October 30, 2026.
 
-| Introd records | A person remains responsible for |
-| --- | --- |
-| Target and connector context | Confirming the identities and relationship |
-| Draft subject and message | Reviewing every claim and edit |
-| Pending, active, or closed workflow state | Contacting the connector through an approved channel |
-| Stored progress and scheduled date | Confirming whether an external message was actually delivered |
+## Four different things
+
+The word "send" can mean four different things. Introd keeps them apart:
+
+| Step | What it means | Contacts anyone? |
+| --- | --- | --- |
+| **Save draft** | Introd stores your message and context | No |
+| **Create review link** | Introd makes a private, expiring link for the connector to review. You share it yourself | Only if you share the link |
+| **Send for review** | Introd tries to deliver the connector's review request from your own verified Google or Microsoft account and shows provider-confirmed status | The connector, when your account is set up to send |
+| The introduction itself | The connector introduces you to the target | Done by the connector, not by Introd |
+
+Introd never contacts the person you want to meet automatically. The target is reached only after the connector accepts, through a separate private review. Introd's wording is explicit: "Introd sends nothing to them automatically."
 
 <Warning>
-  Creating, submitting, scheduling, or moving an introduction record does not deliver an email or LinkedIn message. Introd tracks the workflow; external outreach remains a human action.
+  Which button you see, **Send for review** or **Create review link**, depends on whether you have a verified sender with sending turned on in your connected accounts. Introd shows delivery as sent only when the email provider confirms it. If status is unavailable, Introd does not infer delivery.
 </Warning>
 
 ## Core workflow
@@ -29,21 +35,21 @@ Use **Introductions** to store the target, connector, request context, and curre
     Confirm the target, connector, and evidence in [View and verify paths](/people/view-paths).
   </Step>
   <Step title="Prepare the request">
-    Edit the subject and message, remove unverified claims, and save a draft when it needs more work.
+    Edit the message, remove unverified claims, and save a draft if it needs more work.
   </Step>
-  <Step title="Create the tracked request">
-    When ready, move the record into the pending workflow. Complete any external outreach yourself.
+  <Step title="Start the connector review">
+    Choose **Send for review** or **Create review link**. The connector opens a private page and accepts or declines.
   </Step>
   <Step title="Maintain the status">
-    Use the pipeline or list to keep the stored state aligned with what actually happened.
+    Use the list to keep the stored state aligned with what actually happened.
   </Step>
 </Steps>
 
 <Columns cols={2}>
   <Card title="Prepare a request" icon="edit-3" href="/introductions/create-request">
-    Review composer fields and the difference between save, submit, and schedule.
+    Review the steps and what each action does.
   </Card>
   <Card title="Track requests" icon="list-checks" href="/introductions/track-requests">
-    Search, filter, sort, move, and archive introduction records.
+    Search, filter, and maintain introduction records.
   </Card>
 </Columns>

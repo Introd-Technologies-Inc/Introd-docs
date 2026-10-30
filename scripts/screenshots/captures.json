@@ -1,0 +1,610 @@
+{
+  "viewports": {
+    "desktop": {
+      "width": 1440,
+      "height": 900,
+      "deviceScaleFactor": 1
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "deviceScaleFactor": 1
+    }
+  },
+  "captures": [
+    {
+      "id": "sign-up",
+      "surface": "sign-up",
+      "state": "request-access",
+      "route": "/sign-up",
+      "description": "Request access page: provider buttons and the email form.",
+      "docPages": [
+        "quickstart",
+        "getting-started"
+      ],
+      "expect": [
+        "Request access",
+        {
+          "text": "Continue with Google"
+        },
+        {
+          "text": "Continue with LinkedIn"
+        },
+        {
+          "text": "Continue with Microsoft"
+        },
+        {
+          "label": "First name"
+        },
+        {
+          "label": "Last name"
+        },
+        {
+          "label": "Email address"
+        },
+        {
+          "role": "button",
+          "name": "Request access"
+        }
+      ]
+    },
+    {
+      "id": "sign-in",
+      "surface": "sign-in",
+      "state": "default",
+      "route": "/sign-in",
+      "description": "Sign in page.",
+      "docPages": [
+        "quickstart"
+      ],
+      "expect": [
+        {
+          "text": "Sign in to Introd"
+        },
+        {
+          "label": "Email address"
+        },
+        {
+          "label": "Password"
+        },
+        {
+          "role": "button",
+          "name": "Sign in"
+        }
+      ]
+    },
+    {
+      "id": "choose-plan",
+      "surface": "choose-plan",
+      "state": "plans",
+      "route": "/choose-plan",
+      "description": "Choose plan page (cadence toggle, Free/Pro/Team).",
+      "docPages": [
+        "quickstart",
+        "billing"
+      ],
+      "unavailable": "The fixture API serves no billing status or commercial catalog, so the real page stays on 'Preparing your verified plans...' and never renders the plan cards or the 'Continue free' control. Not fabricated."
+    },
+    {
+      "id": "getting-started",
+      "surface": "getting-started",
+      "state": "goals",
+      "route": "/getting-started",
+      "description": "First-value checklist with the four goal cards.",
+      "docPages": [
+        "getting-started",
+        "quickstart"
+      ],
+      "caveats": "Fixture shows step 2 (connect a source) as complete with 9 imported contacts; this is synthetic state.",
+      "expect": [
+        "Find your first potential path",
+        "Fundraising",
+        "Customers",
+        "Hiring",
+        "Partnerships"
+      ]
+    },
+    {
+      "id": "setup-linkedin",
+      "surface": "setup-network",
+      "state": "linkedin",
+      "route": "/setup-network",
+      "description": "Network Setup, LinkedIn tab: browser companion / Path Finder panel and recent syncs.",
+      "docPages": [
+        "connect-your-network",
+        "linkedin"
+      ],
+      "caveats": "Fixture reports LinkedIn as 'Up to date' with 18,787 connections; extension linking state is simulated. Page-level banner \"Introd couldn’t save your setup progress yet\" appears on Network Setup in the fixture (setup-progress persistence is not simulated).",
+      "expect": [
+        "Browser companion",
+        "Path Finder",
+        "Recent Syncs & Imports"
+      ]
+    },
+    {
+      "id": "setup-google",
+      "surface": "setup-network",
+      "state": "google",
+      "route": "/setup-network",
+      "description": "Network Setup, Google tab.",
+      "docPages": [
+        "connect-your-network"
+      ],
+      "steps": [
+        {
+          "click": {
+            "role": "tab",
+            "name": "Google"
+          }
+        }
+      ],
+      "expect": [
+        {
+          "role": "tab",
+          "name": "Google"
+        }
+      ],
+      "unavailable": "Fixture serves no connected-account or workspace-integration status (GET /api/dashboard/integrations is unimplemented), so the real panel shows its degraded state (\"Active workspace required\" / \"Current account status could not be refreshed\") instead of the connect flow. Not fabricated."
+    },
+    {
+      "id": "setup-microsoft",
+      "surface": "setup-network",
+      "state": "microsoft",
+      "route": "/setup-network",
+      "description": "Network Setup, Microsoft tab.",
+      "docPages": [
+        "connect-your-network"
+      ],
+      "steps": [
+        {
+          "click": {
+            "role": "tab",
+            "name": "Microsoft"
+          }
+        }
+      ],
+      "expect": [
+        {
+          "role": "tab",
+          "name": "Microsoft"
+        }
+      ],
+      "unavailable": "Fixture serves no connected-account or workspace-integration status (GET /api/dashboard/integrations is unimplemented), so the real panel shows its degraded state (\"Active workspace required\" / \"Current account status could not be refreshed\") instead of the connect flow. Not fabricated."
+    },
+    {
+      "id": "setup-apple",
+      "surface": "setup-network",
+      "state": "apple",
+      "route": "/setup-network",
+      "description": "Network Setup, Apple tab.",
+      "docPages": [
+        "connect-your-network"
+      ],
+      "steps": [
+        {
+          "click": {
+            "role": "tab",
+            "name": "Apple"
+          }
+        }
+      ],
+      "expect": [
+        {
+          "role": "tab",
+          "name": "Apple"
+        },
+        "Import an Apple Contacts export",
+        "Drag and drop your CSV file here",
+        "Download Template"
+      ],
+      "caveats": "Page-level banner \"Introd couldn’t save your setup progress yet\" appears on Network Setup in the fixture (setup-progress persistence is not simulated)."
+    },
+    {
+      "id": "setup-csv",
+      "surface": "setup-network",
+      "state": "csv",
+      "route": "/setup-network",
+      "description": "Network Setup, CSV tab.",
+      "docPages": [
+        "connect-your-network",
+        "import-contacts"
+      ],
+      "steps": [
+        {
+          "click": {
+            "role": "tab",
+            "name": "CSV"
+          }
+        }
+      ],
+      "expect": [
+        {
+          "role": "tab",
+          "name": "CSV"
+        },
+        "Upload your contacts",
+        "Drag and drop your CSV file here",
+        "Download Template"
+      ],
+      "caveats": "Page-level banner \"Introd couldn’t save your setup progress yet\" appears on Network Setup in the fixture (setup-progress persistence is not simulated)."
+    },
+    {
+      "id": "linkedin-import",
+      "surface": "setup-network",
+      "state": "linkedin-import",
+      "route": "/setup-network/linkedin-import",
+      "description": "LinkedIn Connections.csv import page.",
+      "docPages": [
+        "connect-your-network",
+        "linkedin"
+      ],
+      "caveats": "Fixture workspace is not enabled for LinkedIn export import, so the page shows the 'not enabled' notice and no consent checkbox. Real gating is API-driven and not demonstrated here.",
+      "expect": [
+        "Import LinkedIn connections",
+        "Choose LinkedIn Connections.csv"
+      ]
+    },
+    {
+      "id": "team",
+      "surface": "team",
+      "state": "workspace",
+      "route": "/setup-network/team",
+      "description": "Team & Workspaces page.",
+      "docPages": [
+        "team"
+      ],
+      "caveats": "Fixture workspace is a personal workspace with 1/1 seats and no members/invitations returned.",
+      "expect": [
+        "Team & Workspaces",
+        {
+          "role": "button",
+          "name": "Invite teammate"
+        },
+        "Members",
+        "Invitations"
+      ]
+    },
+    {
+      "id": "settings-account",
+      "surface": "settings",
+      "state": "account",
+      "route": "/settings",
+      "description": "Settings, Account tab (profile, password, two-factor, sessions, privacy, account closure).",
+      "docPages": [
+        "settings",
+        "account"
+      ],
+      "expect": [
+        {
+          "role": "button",
+          "name": "Account"
+        },
+        "Privacy-safe product analytics",
+        "Two-factor authentication",
+        "Active sessions",
+        "Account closure",
+        {
+          "text": "Request verified closure"
+        }
+      ]
+    },
+    {
+      "id": "settings-privacy",
+      "surface": "settings",
+      "state": "privacy-security",
+      "route": "/settings",
+      "description": "Settings, Privacy & Security tab.",
+      "docPages": [
+        "settings",
+        "privacy"
+      ],
+      "steps": [
+        {
+          "click": {
+            "role": "button",
+            "name": "Privacy & Security"
+          }
+        }
+      ],
+      "expect": [
+        {
+          "role": "button",
+          "name": "Privacy & Security"
+        },
+        "Privacy-safe product analytics",
+        "Request data or privacy support",
+        "Account closure"
+      ]
+    },
+    {
+      "id": "settings-billing",
+      "surface": "settings",
+      "state": "billing",
+      "route": "/settings",
+      "description": "Settings, Billing tab.",
+      "docPages": [
+        "billing"
+      ],
+      "steps": [
+        {
+          "click": {
+            "role": "button",
+            "name": "Billing"
+          }
+        }
+      ],
+      "expect": [
+        {
+          "role": "button",
+          "name": "Billing"
+        }
+      ],
+      "unavailable": "Fixture serves no billing status (GET /api/dashboard/billing/status is unimplemented), so the real tab shows only \"Billing status unavailable\" and no plan or payment controls. Not fabricated."
+    },
+    {
+      "id": "settings-integrations-tab",
+      "surface": "settings",
+      "state": "integrations-tab",
+      "route": "/settings",
+      "description": "Settings, Integrations tab.",
+      "docPages": [
+        "integrations"
+      ],
+      "steps": [
+        {
+          "click": {
+            "role": "button",
+            "name": "Integrations"
+          }
+        }
+      ],
+      "expect": [
+        "View all integrations",
+        "LinkedIn status"
+      ]
+    },
+    {
+      "id": "integrations",
+      "surface": "integrations",
+      "state": "catalog",
+      "route": "/settings/integrations",
+      "description": "Integrations catalog with status vocabulary.",
+      "docPages": [
+        "integrations"
+      ],
+      "caveats": "Provider statuses come from the fixture API and do not demonstrate live availability or gating.",
+      "expect": [
+        "Connect your tools to bring your network, activity, and context together.",
+        "Refresh status",
+        "Connect a new integration"
+      ]
+    },
+    {
+      "id": "intro-list",
+      "surface": "introductions",
+      "state": "list-empty",
+      "route": "/introductions",
+      "description": "Introductions list (empty seeded state) with status tabs.",
+      "docPages": [
+        "introductions"
+      ],
+      "expect": [
+        "Turn warm paths into real conversations.",
+        "All introductions",
+        "Requested",
+        "Drafting",
+        "Connector reviewing",
+        "Awaiting response",
+        "Connected",
+        "Closed"
+      ]
+    },
+    {
+      "id": "intro-new",
+      "surface": "introductions",
+      "state": "request-wizard",
+      "route": "/introductions/new?mission=11111111-aaaa-4aaa-8aaa-000000000001&target_id=graph:fixture:casey:0000000000&connector_id=graph:fixture:sarah:0000000000",
+      "description": "Request an Introduction wizard with a fixture target and connector, context written.",
+      "docPages": [
+        "introductions",
+        "request-an-introduction"
+      ],
+      "steps": [
+        {
+          "fill": {
+            "label": "Why do you want this introduction?",
+            "value": "I am building Example Co and would value a short conversation about our fundraising plans and strategic fit.",
+            "role": null
+          }
+        }
+      ],
+      "expect": [
+        "Request an Introduction",
+        "Who do you want to meet?",
+        {
+          "role": "button",
+          "name": "Save as draft"
+        }
+      ]
+    },
+    {
+      "id": "intro-path",
+      "surface": "introductions",
+      "state": "potential-path",
+      "route": "/introductions/path?target_id=graph:fixture:casey:0000000000&connector_id=graph:fixture:sarah:0000000000&mission=11111111-aaaa-4aaa-8aaa-000000000001",
+      "description": "Potential Intro Path page for a fixture target.",
+      "docPages": [
+        "introductions",
+        "warm-intro-path"
+      ],
+      "expect": [
+        "Potential Intro Path",
+        "Why this path works"
+      ]
+    },
+    {
+      "id": "intro-review",
+      "surface": "introductions",
+      "state": "draft-review",
+      "route": "/introductions/new?mission=11111111-aaaa-4aaa-8aaa-000000000001&target_id=graph:fixture:casey:0000000000&connector_id=graph:fixture:sarah:0000000000",
+      "description": "Draft & Review Introduction after Next: Review message.",
+      "docPages": [
+        "introductions",
+        "request-an-introduction"
+      ],
+      "steps": [
+        {
+          "fill": {
+            "label": "Why do you want this introduction?",
+            "value": "I am building Example Co and would value a short conversation about our fundraising plans and strategic fit."
+          }
+        },
+        {
+          "click": {
+            "role": "button",
+            "name": "Next: Review message"
+          }
+        },
+        {
+          "waitForText": "Introduction message"
+        }
+      ],
+      "expect": [
+        "Draft & Review Introduction",
+        {
+          "role": "button",
+          "name": "Save draft"
+        },
+        "Add file",
+        {
+          "label": "Priority (not available)"
+        },
+        {
+          "role": "switch",
+          "name": "Keep me updated (not available)"
+        },
+        "does not persist files"
+      ]
+    },
+    {
+      "id": "intro-review-link",
+      "surface": "introductions",
+      "state": "review-link-created",
+      "route": "/introductions/new?mission=11111111-aaaa-4aaa-8aaa-000000000001&target_id=graph:fixture:casey:0000000000&connector_id=graph:fixture:sarah:0000000000",
+      "continueFrom": "intro-review",
+      "description": "Draft & Review after creating the connector review link.",
+      "docPages": [
+        "introductions"
+      ],
+      "steps": [
+        {
+          "click": {
+            "role": "button",
+            "name": "Create review link"
+          }
+        },
+        {
+          "wait": 1500
+        }
+      ],
+      "caveats": "Fixture has no healthy sender account, so the real flow is review-link only; delivery by provider email is not demonstrated.",
+      "expect": [
+        "Connector review is ready.",
+        "Copy private link"
+      ]
+    },
+    {
+      "id": "intro-consent",
+      "surface": "intro-consent",
+      "state": "connector-review",
+      "route": "/introductions/new?mission=11111111-aaaa-4aaa-8aaa-000000000001&target_id=graph:fixture:casey:0000000000&connector_id=graph:fixture:sarah:0000000000",
+      "continueFrom": "intro-review-link",
+      "description": "Public connector review page (/intro-consent/<token>) opened from the private link created in the previous step.",
+      "docPages": [
+        "introductions",
+        "consent"
+      ],
+      "steps": [
+        {
+          "click": {
+            "role": "button",
+            "name": "Copy private link"
+          }
+        },
+        {
+          "gotoFromClipboard": "(https?://[^\\s]+)?/intro-consent/[A-Za-z0-9_.-]+"
+        }
+      ],
+      "caveats": "Fixture token and synthetic request; no real person is contacted.",
+      "expect": [
+        "Introduction Request",
+        {
+          "role": "button",
+          "name": "Accept request"
+        },
+        {
+          "role": "button",
+          "name": "Decline"
+        }
+      ]
+    },
+    {
+      "id": "intro-list-populated",
+      "surface": "introductions",
+      "state": "list-connector-reviewing",
+      "route": "/introductions",
+      "continueFrom": "intro-consent",
+      "description": "Introductions list after a connector review link was created (status tabs and a Connector reviewing row).",
+      "docPages": [
+        "introductions"
+      ],
+      "steps": [
+        {
+          "goto": "/introductions"
+        },
+        {
+          "wait": 1500
+        }
+      ],
+      "expect": [
+        {
+          "role": "button",
+          "name": "Connector reviewing"
+        }
+      ]
+    },
+    {
+      "id": "intro-list-drafting",
+      "surface": "introductions",
+      "state": "list-drafting",
+      "route": "/introductions/new?mission=11111111-aaaa-4aaa-8aaa-000000000001&target_id=graph:fixture:casey:0000000000&connector_id=graph:fixture:sarah:0000000000",
+      "description": "Introductions list after Save as draft (Drafting status).",
+      "docPages": [
+        "introductions"
+      ],
+      "steps": [
+        {
+          "fill": {
+            "label": "Why do you want this introduction?",
+            "value": "I am building Example Co and would value a short conversation about our fundraising plans and strategic fit."
+          }
+        },
+        {
+          "click": {
+            "role": "button",
+            "name": "Save as draft"
+          }
+        },
+        {
+          "waitForText": "Drafting"
+        },
+        {
+          "wait": 1500
+        }
+      ],
+      "expect": [
+        "Drafting"
+      ]
+    }
+  ]
+}

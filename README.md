@@ -47,6 +47,6 @@ After an approved production deployment, run `npm run check:live`. It verifies a
 - Link to the exact app destination when it is stable.
 - Label missing, weak, stale, or conditional data honestly.
 - Treat introduction records as drafts or tracked workflow state, not proof of external message delivery.
-- Describe contextual LinkedIn browsing capture separately from full-network import, automatic resume, and each stop control.
+- Describe the extension's consent-gated first-degree sync, background resume, the read-only on-page lookup, and each stop control separately and exactly as the current store version behaves.
 - Use screenshots only when they were captured from the current product and contain no sensitive data.
 - Store approved product screenshots in `images/product` and brand assets in `images/brand`.

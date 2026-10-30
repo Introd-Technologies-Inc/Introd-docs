@@ -1,28 +1,35 @@
 ---
 title: "Connect Integrations"
-description: "Connect and verify the three customer-facing relationship sources supported by the current Introd dashboard."
+description: "Connect and verify the relationship sources you can use today: LinkedIn, Google Workspace, Microsoft 365, and contact files."
 ---
 
-Open [Introd Integrations](https://app.getintrod.ai/settings/integrations).
+Open [Introd Integrations](https://app.getintrod.ai/settings/integrations), or connect your first source from [Network Setup](https://app.getintrod.ai/setup-network).
 
-> Last verified against current dashboard and API source on August 11, 2026.
+> Last reviewed against current product source on October 30, 2026.
 
-## Supported live connection flows
+## Supported relationship sources
 
-| Source | Connection method | Data used by the current sync |
+| Source | Connection method | Data used |
 | --- | --- | --- |
-| LinkedIn | Introd-provided Chrome extension | Visible identity and relationship fields from permitted pages, plus connection-import data |
+| LinkedIn | The Introd Chrome extension | Your first-degree connection identities, after you approve a consent prompt |
+| LinkedIn `Connections.csv` | Upload the export file in Network Setup | The connections in your LinkedIn data export |
 | Google Workspace | OAuth | Gmail metadata, Calendar metadata, and Google Contacts |
 | Microsoft 365 | OAuth | Outlook email metadata and calendar metadata |
+| Apple Contacts | Export and import | A contacts file you import as a CSV; there is no direct connection |
+| Contacts CSV | Upload in Network Setup | Names, emails, companies, and titles in your file |
 
-Other providers can appear in the Integrations catalog, but this guide does not represent them as self-service, live customer syncs.
+The Integrations catalog lists many other tools, such as CRMs, meeting tools, and automation tools. Their availability is set per connector and can read **Beta**, **Setup required**, **Coming soon**, or **Not supported**. This guide does not represent a catalog entry as a live customer sync unless it is listed above.
 
 ## Prerequisites
 
-- A signed-in [Introd account](https://app.getintrod.ai/sign-in)
+- An approved [Introd account](/getting-started/create-account)
 - Access to the provider account you are connecting
 - Browser popups and provider redirects allowed for Introd
-- For LinkedIn, an Introd-provided extension build and a LinkedIn session in the same Chrome profile
+- For LinkedIn, desktop Chrome with a LinkedIn session in the same Chrome profile
+
+<Note>
+  On the Free plan, connecting Google Workspace or Microsoft 365 can require a paid plan or a connector add-on. Introd shows a message when it does. LinkedIn sync is included on Free.
+</Note>
 
 ## Connect Google Workspace
 
@@ -30,7 +37,7 @@ Other providers can appear in the Integrations catalog, but this guide does not 
 2. Choose **Connect**.
 3. Review the Google consent screen and approve only if you accept the listed access.
 4. Return to Introd.
-5. Open the Google card to review status, evidence counts, and last sync.
+5. Open the Google card to review status and last sync.
 6. Choose **Sync now** when the card offers it.
 
 ## Connect Microsoft 365
@@ -42,17 +49,17 @@ Other providers can appear in the Integrations catalog, but this guide does not 
 5. Open the Microsoft card to review email and calendar status.
 6. Choose **Sync now** when the card offers it.
 
+Connecting for relationship signals does not let Introd send mail. Sending introduction review emails from your account is a separate, later permission. See [Prepare an introduction](/introductions/create-request).
+
 ## Connect LinkedIn
 
-1. Install the Introd-provided build.
-2. Open [Network Setup](https://app.getintrod.ai/setup-network).
-3. Open the extension popup and finish **Continue with LinkedIn**.
-4. Keep LinkedIn signed in in the same Chrome profile.
-5. Choose **Start Sync** in the popup.
-6. Expect an incomplete run to resume automatically in an inactive LinkedIn connections tab until paused or completed.
-7. Return to Network Setup or Integrations to verify the imported count.
+1. Install the extension from the [Chrome Web Store](https://chromewebstore.google.com/detail/eoancpljacjbffdfjlbchdaeoainbkkf), or choose the install action in Network Setup.
+2. Open [Network Setup](https://app.getintrod.ai/setup-network) while signed in to Introd and link the extension.
+3. Open the extension popup and choose **Sync now** (or **Start sync**).
+4. Read the consent prompt and choose **Allow direct-connection sync** only if you accept it.
+5. Return to Network Setup or Integrations to verify the imported count.
 
-The extension's default contextual capture also processes visible identities during ordinary LinkedIn browsing. **Pause Sync** stops full-network import, not that contextual capture. Review [LinkedIn Integration](/chrome-extension/linkedin-integration) before connecting the extension.
+Read [LinkedIn sync and consent](/chrome-extension/linkedin-integration) before you connect. The extension syncs your first-degree connections only, and it has no popup pause button. The same page lists what stops a sync.
 
 ## Read the status
 
@@ -61,26 +68,29 @@ The extension's default contextual capture also processes visible identities dur
 | Connected | The provider has an active Introd connection |
 | Partial | Some provider surfaces are connected or some sync work remains |
 | Syncing | A sync is in progress |
-| Reauthorization needed | The provider connection needs new consent or authentication |
-| Disconnected | Future sync is stopped for that connection |
+| Needs attention | The connection has a problem to review |
+| Reconnect | The provider connection needs new consent or authentication |
+| Setup required | The connector needs setup before it can be used |
+| Not connected | No connection exists |
 
 ## Data boundary
 
-The Google and Microsoft flows use relationship metadata. Email bodies, meeting contents, and private notes are not imported by the current metadata sync. See [Integration Data Usage](/privacy-security/integration-data-usage) and [OAuth Permissions](/privacy-security/oauth-permissions) for the exact scopes and fields.
+The Google and Microsoft flows use relationship metadata. Email bodies, meeting contents, and private notes are not imported by the current metadata sync. See [Integration Data Usage](/privacy-security/integration-data-usage) and [OAuth Permissions](/privacy-security/oauth-permissions) for the scopes and fields.
 
 ## Failure states
 
 | What you see | Recovery |
 | --- | --- |
 | OAuth returns with an error | Retry from the provider card and confirm popups are allowed |
+| A paid plan or add-on is required | Choose a plan or add-on in Settings, or use LinkedIn or CSV |
 | Connected but Partial | Open the card to identify the provider surface that remains disconnected |
-| Reauthorization needed | Choose the reconnect action and complete provider consent again |
+| Reconnect | Choose the reconnect action and complete provider consent again |
 | Sync completes with zero evidence | Confirm the connected account contains eligible metadata, then retry once |
-| Extension not detected | Reload the provisioned build in chrome://extensions and use the same Chrome profile |
-| LinkedIn remains Partial | Automatic resume can retry; choose **Pause Sync** to stop it, or resume explicitly from the popup |
+| Extension not detected | Check that it is installed and enabled for this Chrome profile, then reload Network Setup |
+| Consent required | Open the extension popup, choose **Sync now**, and answer the consent prompt |
 
 ## Disconnect behavior
 
-For Google Workspace and Microsoft 365, **Disconnect** clears Introd's stored connection tokens and stops future sync. Previously imported Introd records are preserved. Provider-side consent and complete data deletion are separate actions.
+For Google Workspace and Microsoft 365, **Disconnect** stops future sync and clears Introd's stored connection. Previously imported Introd records are preserved. Introd asks Google to revoke its grant when you disconnect a Google account; for Microsoft, also remove Introd's access in your Microsoft account's app permissions. Complete data deletion is a separate privacy request.
 
-For those additional actions, see [GDPR and Deletion](/privacy-security/gdpr-and-deletion).
+See [Deletion and Privacy Requests](/privacy-security/gdpr-and-deletion).

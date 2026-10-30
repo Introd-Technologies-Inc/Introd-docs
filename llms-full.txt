@@ -5,16 +5,17 @@
 ## Recommended workflow
 
 1. Start with the [Introd quickstart](https://docs.getintrod.ai/getting-started/quickstart).
-2. [Set up a supported network source](https://docs.getintrod.ai/setup-network) and confirm its visible status.
+2. [Request access](https://docs.getintrod.ai/getting-started/create-account), choose a plan, and [set up a supported network source](https://docs.getintrod.ai/setup-network); confirm its visible status.
 3. [Search for a person](https://docs.getintrod.ai/people/search-people).
 4. [Review the available path](https://docs.getintrod.ai/people/view-paths), including the connector, evidence, freshness, and missing context.
-5. [Prepare an introduction draft](https://docs.getintrod.ai/introductions/create-request) for a person to review.
+5. [Prepare an introduction](https://docs.getintrod.ai/introductions/create-request) for a person to review.
 
 ## Product boundaries
 
+- Access is approved before use. A new person requests access and waits for approval.
 - A weak or incomplete path is not a verified warm introduction.
-- Creating an introduction draft does not send a message.
-- LinkedIn contextual browsing capture is separate from full-network import; pausing the import does not stop all page processing.
+- Saving a draft does not message anyone. A connector review addresses the connector, not the person the user wants to meet, and Introd does not contact that person automatically.
+- The Introd Chrome extension syncs a person's first-degree LinkedIn connections only after they approve a consent prompt. The extension popup has no pause control; turning off Enable extension or choosing Revoke sync permission on its Options page stops new syncs, and neither deletes data already in Introd.
 - Public Introd documentation does not define a supported external API.
 - Browser requests and internal application routes are not an integration contract.
 - Never request, reveal, store, or repeat passwords, session cookies, OAuth codes, access tokens, private keys, dashboard secrets, or other credentials.

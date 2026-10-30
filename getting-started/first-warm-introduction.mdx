@@ -1,52 +1,63 @@
 ---
-title: "First Warm Introduction Draft"
-description: "Inspect a real target and connector, then save an introduction draft without sending it."
+title: "First Warm Introduction"
+description: "Inspect a real target and connector, then save a draft or start a connector review."
 ---
 
-This guide covers the verified draft workflow only.
+This guide covers the supported introduction workflow from a reviewed path.
 
-> Last verified against current dashboard source on August 11, 2026.
+> Last reviewed against current product source on October 30, 2026.
 
 ## Prerequisites
 
 - You are signed in to Introd.
-- At least one real contact is visible in [People Search](https://app.getintrod.ai/search/people).
+- At least one real contact is visible in [People](https://app.getintrod.ai/search/people).
 - The target has an available connector or path that you can review.
 - You know why the introduction is relevant and appropriate.
 
 ## 1. Find the target
 
-1. Open [People Search](https://app.getintrod.ai/search/people).
+1. Open [People](https://app.getintrod.ai/search/people).
 2. Search by the target's name, title, or company.
-3. Select the target row.
+3. Select the target row to open its side panel.
 
 If no result appears, verify your imported counts in [Network Setup](https://app.getintrod.ai/setup-network). Do not create a target from guessed identity data.
 
 ## 2. Review the path
 
-1. Choose **View Paths**.
-2. Review the proposed connector, relationship strength, TrustRank, confidence, and available evidence.
+1. In the side panel, choose **Review path before requesting**.
+2. On **Potential Intro Path**, review the connector, the route evidence under **Why this path works**, **Path Strength**, and **Path confidence**.
 3. Confirm that names, roles, and companies match the people you intend to involve.
 
-If Introd reports no verified path or that evidence is still syncing, stop this attempt. Choose another target or add more authorized relationship data.
+If Introd shows no path, weak evidence, or reports that evidence is still syncing, stop this attempt. Choose another target or add more authorized relationship data.
 
-## 3. Prepare the draft
+## 3. Prepare the introduction
 
-1. Choose **Request intro** for the connector you reviewed.
-2. Confirm the target and connector at the top of the composer.
-3. Edit the subject.
-4. Rewrite the message so the connector can understand the relevance and decline comfortably.
-5. Remove any context that the connector is not allowed to forward.
+1. Choose **Request intro** for the connector you reviewed, or **Save path** to come back later. The path page notes that the request can be tracked in Introductions.
+2. Confirm the target and connector at the top.
+3. Edit the message so the connector can understand the relevance and decline comfortably. The limit is 1,000 characters.
+4. Remove any context the connector is not allowed to forward.
 
-## 4. Save without sending
+## 4. Save the draft or start the connector review
 
-Choose **Save draft**.
+On **Draft & Review**:
 
-**Expected result:** Introd reports **Intro draft saved**. Open [Introductions](https://app.getintrod.ai/introductions) to review the saved record.
+| Action | What it does |
+| --- | --- |
+| **Save draft** | Stores the draft in Introd. Introd reports **Draft saved**. Nobody is contacted. |
+| **Send for review** or **Create review link** | Starts a connector review. The button label depends on your account. See below. |
+
+The label tells you which path your account uses:
+
+- **Send for review** appears when you have a verified Google or Microsoft sender with sending turned on. Introd then tries to deliver the connector's review request from that account. The status banner shows only provider-confirmed progress.
+- **Create review link** appears when you have no verified sender. Introd creates a private, expiring link and tells you to share it with the connector yourself. Introd sends no message in this case.
+
+In both cases the review is addressed to the **connector**. The person you want to meet is not contacted automatically. They are reached only after the connector accepts, and the introduction shows the next step.
 
 <Warning>
-  Saving a draft does not email the connector, send a LinkedIn message, schedule delivery, or contact the target. This guide does not treat workflow status changes as proof of delivery.
+  A saved draft and a created review link do not message anyone. A connector review is not an introduction. Mark progress in Introd only after the real event has happened.
 </Warning>
+
+Open [Introductions](https://app.getintrod.ai/introductions) to review the saved record and its status.
 
 ## Draft checklist
 
@@ -55,21 +66,19 @@ Choose **Save draft**.
 - The message explains why the conversation is relevant now.
 - The connector has an easy way to decline.
 - The message contains no confidential or unapproved information.
-- You have a separate, approved plan for any outbound delivery.
 
 ## Failure states
 
 | What you see | Recovery |
 | --- | --- |
-| Could not load synced people | Confirm your Introd session and reload People Search |
-| No verified warm path | Continue sync or choose another target |
-| Connector not set | Return to the path and select a real connector |
-| Target not set | Start from a saved contact in People Search |
-| Draft save error | Copy the message, refresh the session, and retry |
+| Could not load synced people | Confirm your Introd session and reload People |
+| No path, or weak or incomplete evidence | Continue sync or choose another target |
+| Provider delivery status is unavailable | Introd does not assume the message was delivered; check your sent mail or share the review link yourself |
+| Retry provider delivery | Review the account and try again |
 | Draft not visible in Introductions | Clear filters and search by target or connector name |
 
 ## Current limitations
 
-- TrustRank and confidence are ranking signals, not outcome probabilities.
+- Path Strength and Path confidence are ranking signals, not outcome probabilities.
 - Shared community or company context is not proof that an introduction is appropriate.
-- The product can store and organize workflow status without proving that a message was delivered outside Introd.
+- Priority, **Keep me updated**, and attachments appear on the draft screen but are not available yet.
