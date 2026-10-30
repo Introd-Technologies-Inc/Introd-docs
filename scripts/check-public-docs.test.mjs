@@ -54,14 +54,14 @@ async function createFixture({
       "skill.md",
       [
         "Treat the documentation as product-use guidance, not as an external API contract.",
-        "Do not claim that **Pause Sync** or the extension settings stop all LinkedIn processing.",
+        "Do not tell a person to use a **Pause Sync** button: the extension popup has no pause control.",
         "",
       ].join("\n"),
     ],
     ["llms.txt", "These public docs do not define a supported external API.\n"],
     [
       "llms-full.txt",
-      "This file intentionally excludes internal architecture; pausing the import does not stop all page processing.\n",
+      "This file intentionally excludes internal architecture; The extension popup has no pause control.\n",
     ],
     [
       "robots.txt",
@@ -133,3 +133,35 @@ test("rejects Fin branding without matching ordinary words such as find", async 
   assert.match(result.stderr, /index\.mdx:\d+ \[forbidden-copy\]/);
   assert.match(result.stderr, /Fin support branding/);
 });
+
+for (const [label, pageBody, pattern] of [
+  [
+    "the retired extension testing build",
+    "Install the Introd-provided testing build 1.8.4 from a folder.",
+    /public content contains retired extension testing-build reference/,
+  ],
+  [
+    "a popup Pause Sync instruction",
+    "To stop the import, choose **Pause Sync** in the popup.",
+    /public content contains a popup Pause Sync control the extension does not have/,
+  ],
+  [
+    "the retired passive-capture setting",
+    "Turn off Auto-capture profile context to stop capture.",
+    /public content contains a retired passive-capture setting/,
+  ],
+  [
+    "an account deletion button Settings does not have",
+    "Choose Delete account in Settings to remove your data.",
+    /public content contains an account deletion control that Settings does not have/,
+  ],
+]) {
+  test(`rejects ${label}`, async (t) => {
+    const root = await createFixture({ pageBody });
+    t.after(() => rm(root, { recursive: true, force: true }));
+
+    const result = await runCheck(root);
+    assert.equal(result.status, 1);
+    assert.match(result.stderr, pattern);
+  });
+}

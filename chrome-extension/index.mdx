@@ -1,73 +1,70 @@
 ---
 title: "Chrome Extension"
-description: "Understand the current extension's LinkedIn capture, connection indexing, background behavior, and controls."
+description: "What the Introd extension does, what it asks your permission for, and how to stop it."
 ---
 
-The Introd extension has two separate LinkedIn data behaviors:
+**Introd for LinkedIn** does three things. It never messages anyone on your behalf.
 
-- connect an Introd account
-- detect the LinkedIn session in the current Chrome profile
-- capture visible identity and relationship fields while you browse permitted LinkedIn pages when the default capture settings are on
-- start, pause, resume, and monitor a full-network connection import
-- automatically resume an incomplete full-network import in an inactive LinkedIn connections tab
-- show available warm-path context beside supported LinkedIn identities
-- manage extension settings and clear browser-local data
+- **Links to your Introd account** from your signed-in dashboard. It never asks for your LinkedIn password.
+- **Syncs your first-degree LinkedIn connections** to your Introd workspace, only after you approve a consent prompt.
+- **Shows path context on LinkedIn.** On supported profiles, people-search results, and company People pages it can show a small **i.** button that looks up Introd paths for that profile.
 
-> Last verified against extension version 1.8.4 source on August 11, 2026.
-
-<Warning>
-  These docs do not provide a public installation link. Use only a testing build and installation instructions supplied directly by Introd.
-</Warning>
+> Last reviewed against extension version 3.1.24 on October 30, 2026. The manifest and controls described here were also checked in the published 3.1.24 package.
 
 <Columns cols={2}>
-  <Card title="Install a testing build" icon="download" href="/chrome-extension/installation">
-    Load the Introd-provided build and verify its identity and version.
+  <Card title="Install the extension" icon="download" href="/chrome-extension/installation">
+    Install from the Chrome Web Store and link it to your Introd account.
   </Card>
   <Card title="Review permissions" icon="shield" href="/chrome-extension/permissions">
-    See every browser permission and host listed in the current manifest.
+    See every browser permission and website the extension can reach.
   </Card>
-  <Card title="Sync LinkedIn" icon="linkedin" href="/chrome-extension/linkedin-integration">
-    Review browsing capture, start a full-network import, and understand automatic resume.
+  <Card title="Sync and consent" icon="linkedin" href="/chrome-extension/linkedin-integration">
+    Understand the consent prompt, what syncs, and how to stop it.
   </Card>
   <Card title="Troubleshoot" icon="wrench" href="/chrome-extension/troubleshooting">
-    Recover from auth, LinkedIn session, extension detection, and sync failures.
+    Recover from sign-in, LinkedIn session, and sync problems.
   </Card>
 </Columns>
 
 ## Prerequisites
 
-- A desktop version of Chrome
-- An Introd account
-- A LinkedIn account signed in in the same Chrome profile
-- An Introd-provided testing build
+- Desktop Chrome
+- An approved Introd account
+- A LinkedIn account signed in in the same Chrome profile, for LinkedIn sync
 
-## What the extension does not establish
+## What the extension does not do
 
+- It does not send LinkedIn messages, likes, follows, or connection requests.
+- It does not send an introduction request or email.
+- It does not capture profile data as you browse. The **i.** button sends only the profile's address to Introd, and only when you click it.
+- It does not ask for your LinkedIn password.
+- It does not read other websites. Its content scripts run only on the LinkedIn and Introd pages listed in [Permissions](/chrome-extension/permissions).
 - It does not guarantee complete coverage of your LinkedIn connections.
-- It does not create a warm path when the Introd graph has no supporting evidence.
-- It does not send an introduction request, email, or LinkedIn message.
-- It does not ask you to enter your LinkedIn password into the extension.
-- It does not have permission to read arbitrary websites.
 
-## Controls are not interchangeable
+## How to stop it
 
-- **Pause Sync** stops the active full-network import and its automatic background resume. It does not stop contextual identity capture on other LinkedIn pages.
-- Turning off **Enable extension** or **Auto-capture profile context** makes the current background capture handler skip new profile-view signals and enrichment. It does not stop current-page diagnostics, unload the LinkedIn content script, revoke host access, or stop full-network recovery.
-- Disabling Introd from `chrome://extensions` is the reliable way to stop its code from running on LinkedIn pages. Clearing local data does not delete records already stored by Introd.
+There is **no pause button** in the popup. Closing the popup does not stop a sync. Use one of these, from least to most complete:
 
-Read [LinkedIn Integration](/chrome-extension/linkedin-integration) and [Permissions](/chrome-extension/permissions) before installing the testing build.
+| Control | Where | What it stops |
+| --- | --- | --- |
+| **Enable extension** off | Options page (right-click the toolbar icon, then **Options**) | LinkedIn pages, the **i.** button, sync, background work, and Introd requests |
+| **Revoke sync permission** | Options page | Future syncs, until you approve the consent prompt again. Clears local sync state |
+| **Show Introd on LinkedIn profiles** off | Popup settings | Hides the **i.** button only. Does not affect sync |
+| **Sign out** | Popup settings | Unlinks this browser from your Introd account and clears its local data |
+| Disable the extension | `chrome://extensions` | Everything the extension does |
+
+**Clear local data** removes the extension's saved data in this browser and signs you out. It does not delete anything Introd already stored. See [Deletion and privacy requests](/privacy-security/gdpr-and-deletion).
 
 ## Basic workflow
 
-1. [Install the provided build](/chrome-extension/installation).
-2. Open the extension and choose **Continue with LinkedIn**.
-3. Finish sign-in and reopen the popup.
+1. [Install the extension](/chrome-extension/installation).
+2. Open the popup and choose **Connect from Introd dashboard**.
+3. Finish sign-in in the Introd tab that opens, then return to the popup.
 4. Keep LinkedIn signed in in the same Chrome profile.
-5. Choose **Start Sync**.
-6. Expect an incomplete run to continue or resume in an inactive LinkedIn connections tab until it is paused or completed.
-7. Verify the imported count and current status.
-8. Open a supported LinkedIn page to inspect available context.
+5. Choose **Sync now** (or **Start sync**) and answer the consent prompt.
+6. Verify the imported count and status in the popup and in Introd.
+7. Open a supported LinkedIn page to see path context.
 
 ## Support
 
-For extension help, email [help@getintrod.ai](mailto:help@getintrod.ai). Include the extension version, Chrome version, exact visible status, and the time of the failure. Do not send passwords, OAuth codes, access tokens, or the extension package.
+For extension help, email [help@getintrod.ai](mailto:help@getintrod.ai). Include the extension version from its settings, your Chrome version, the exact visible status, and the time of the failure. Do not send passwords, OAuth codes, access tokens, or the extension package.

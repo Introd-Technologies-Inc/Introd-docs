@@ -3,7 +3,7 @@ title: "Definitions"
 description: "Definitions for the customer-facing relationship, sync, path, and introduction terms used in Introd."
 ---
 
-> Last verified against current product source on August 11, 2026.
+> Last reviewed against current product source on October 30, 2026.
 
 ## Synced contact
 
@@ -17,9 +17,9 @@ A route shown by Introd between you, a possible connector, and a target. A path 
 
 The person positioned between you and the target in a proposed path. Connector ranking is a recommendation for review, not proof that the person will make an introduction.
 
-## TrustRank
+## Path Strength
 
-A value from 0 to 100 displayed when graph relationship data supplies a trust or relationship-confidence signal. Treat it as a relative ranking aid within Introd, not as a published probability or guarantee.
+A value out of 100 shown on a path, labeled "Introd relationship estimate". It summarizes the evidence Introd holds for that route, and **Path confidence** is a separate value out of 100 for how strongly that evidence supports it. Treat it as a relative ranking aid within Introd, not as a published probability or guarantee. Introd does not publish a formula for it.
 
 ## Graph confidence
 
@@ -31,7 +31,7 @@ A short label returned with graph data, such as shared community context, alumni
 
 ## Relationship labels
 
-Contact-level relationship strength can appear as **Strong**, **Medium**, or **Weak**. Warm-path evidence uses the separate labels **Strong**, **Moderate**, or **Limited**. Both are current product signals that can change as relationship data changes; neither is a promise about a person or outcome.
+Contact-level relationship strength can appear as **Strong**, **Medium**, or **Weak**. A **Weak** band can read **Limited evidence** when a connected source has not been read or reconnected. Both are current product signals that can change as relationship data changes; neither is a promise about a person or outcome.
 
 ## Partial sync
 
@@ -39,8 +39,12 @@ A sync that saved imported records but did not reach the full total LinkedIn exp
 
 ## Introduction draft
 
-A target, connector, subject, and message saved with draft status. Saving a draft does not contact anyone.
+A target, connector, and message saved with draft status. Saving a draft does not contact anyone.
 
 ## Introduction workflow status
 
-The status used to organize an introduction record in Introd. A status change tracks workflow state; it is not, by itself, evidence that an email or LinkedIn message was delivered.
+The state used to organize an introduction record in Introd. A status change tracks workflow state; it is not, by itself, evidence that an email or LinkedIn message was delivered.
+
+## Connector review
+
+A private, expiring page where the connector accepts or declines your introduction request. Starting a connector review addresses the connector, not the person you want to meet.

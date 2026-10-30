@@ -5,7 +5,7 @@ description: "Review the exact identity, Gmail, Calendar, Contacts, and Outlook 
 
 OAuth lets you grant provider access without giving Introd your provider password. Review the provider consent screen before approving it.
 
-> Last verified against current dashboard and API source on August 11, 2026.
+> Last reviewed against current dashboard and API source on October 30, 2026.
 
 ## LinkedIn account connection
 
@@ -15,7 +15,7 @@ OAuth lets you grant provider access without giving Introd your provider passwor
 | <code>profile</code> | Read the signed-in LinkedIn profile identity |
 | <code>email</code> | Associate the returned email identity with the Introd account flow |
 
-This OAuth flow is distinct from the Chrome extension's LinkedIn host access. See [Extension Permissions](/chrome-extension/permissions) for the browser permissions.
+This OAuth flow is distinct from the Chrome extension's LinkedIn host access. See [Extension permissions](/chrome-extension/permissions) for the browser permissions.
 
 ## Google Workspace
 
@@ -40,6 +40,10 @@ This OAuth flow is distinct from the Chrome extension's LinkedIn host access. Se
 | <code>Calendars.Read</code> | Read Outlook Calendar metadata |
 | <code>offline_access</code> | Allow the authorized connection to refresh without a new sign-in for every sync |
 
+## Sending introduction review emails
+
+Connecting Google or Microsoft for relationship signals does not let Introd send mail. To use **Send for review** on an introduction, you enable sending for that account, which asks for a separate permission (Google `gmail.send`, Microsoft `Mail.Send`). Enable it only if you want Introd to deliver connector review requests from your mailbox. See [Prepare an introduction](/introductions/create-request).
+
 ## Grant access
 
 1. Start from [Introd Integrations](https://app.getintrod.ai/settings/integrations).
@@ -52,7 +56,7 @@ This OAuth flow is distinct from the Chrome extension's LinkedIn host access. Se
 
 ## Change or remove access
 
-- Use **Disconnect** in Introd to clear Introd's stored Google or Microsoft connection tokens and stop future sync.
+- Use **Disconnect** in Introd to stop future sync and clear Introd's stored connection. Introd asks Google to revoke its grant; for Microsoft, remove Introd in your Microsoft account's app permissions.
 - Use the provider's account controls to review or revoke provider-side consent.
 - Request deletion of imported Introd data separately.
 

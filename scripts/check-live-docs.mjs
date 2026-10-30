@@ -195,7 +195,7 @@ const EXPECTED_DISCOVERY_LINKS = new Map([
 ]);
 
 const EXACT_LINKEDIN_SKILL_BOUNDARY =
-  "Do not claim that **Pause Sync** or the extension settings stop all LinkedIn processing.";
+  "Do not tell a person to use a **Pause Sync** button: the extension popup has no pause control.";
 
 const FORBIDDEN_PUBLIC_PATTERNS = [
   ["Fin support branding", /\bFin\b/i],

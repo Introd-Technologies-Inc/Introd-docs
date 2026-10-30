@@ -1,98 +1,102 @@
 ---
-title: "LinkedIn Integration"
-description: "Understand browsing capture, start a full-network import, and control automatic background resume."
+title: "LinkedIn Sync and Consent"
+description: "Understand the consent prompt, what the extension syncs, what it shows on LinkedIn, and how to stop it."
 ---
 
-The installed content script runs on permitted LinkedIn pages. Full-network import and authenticated profile enrichment require an Introd session, while the page script can still inspect visible LinkedIn content before that server-side work occurs.
+> Last reviewed against extension version 3.1.24 on October 30, 2026.
 
-> Last verified against current extension and API source on August 11, 2026.
+The extension has two separate LinkedIn behaviors. Neither sends messages, likes, follows, or connection requests.
 
 ## Prerequisites
 
-- The Introd-provided extension build is loaded.
-- You are connected to Introd in the extension.
+- The extension is installed and [linked to your Introd account](/chrome-extension/installation).
 - LinkedIn is signed in in the same Chrome profile.
-- LinkedIn can load its connections page.
 
-## Two different data behaviors
+## 1. First-degree connection sync (needs your consent)
 
-### Contextual capture while browsing
+Before the first sync, the popup asks **Allow first-degree connection sync?** It says that Introd will open a background LinkedIn connections tab and sync only your first-degree connection identities to this account and workspace. It lists three points:
 
-With the shipped default settings, **Enable extension** and **Auto-capture profile context** are on. As LinkedIn pages change, the extension looks for visible profile links and nearby identity or relationship text. It can store local profile-view signals, upload unsynced signals on a schedule, and submit derived profile fields for enrichment while signed in to Introd. Signed-out use can still leave local signals in Chrome storage.
+- Only your direct, first-degree connections
+- No messages, likes, follows, or connection requests
+- You can close this popup while sync continues
 
-This behavior is not limited to a full-network sync or to a person's main profile page. Current selectors cover visible identity containers on profiles, feeds, comments, messaging surfaces, hover cards, organization people pages, events, discovery results, and list items. Captures are deduplicated for a period, but page processing continues as visible content changes.
+Choose **Allow direct-connection sync** to approve, or **Not now** to decline. Nothing syncs until you approve.
 
-### Full-network connection import
+Your approval is saved in this browser and is tied to your exact Introd user and workspace. A different account or workspace, or an explicit sign-out, removes it. If your session expires and you link the same account and workspace again, you are not asked again.
 
-Choosing **Start Sync** starts a resumable import from LinkedIn's connections page. After that start, an incomplete run can automatically continue every few minutes or after progress becomes stale. The extension can reuse an existing connections tab or create one in the background without replacing the page you are viewing.
+### How a sync runs
 
-<Warning>
-  In testing build 1.8.4, popup copy that says **Nothing is sent automatically** refers only to outreach. It is not a data-transfer boundary: profile signals, diagnostics, enrichment requests, and connection-import batches can be sent automatically. The control matrix below describes the implemented behavior.
-</Warning>
+Introd's service decides whether there is work to do. After you approve, the extension checks in with Introd from time to time in the background. When Introd asks for work, the extension reads your first-degree connections from LinkedIn in a signed-in LinkedIn tab. If you have no LinkedIn tab open, it opens an inactive one at your connections page and closes it when the run ends. It does not close tabs you opened yourself.
 
-## Start a sync
+This means a sync can continue or resume without the popup open, and without you starting it again. Closing the popup does not stop it. If the background tab closes, the run retries later.
 
-1. Open any LinkedIn page.
-2. Open the Introd extension popup.
-3. Confirm that the popup recognizes the LinkedIn session.
-4. Choose **Start Sync**.
-5. Watch the popup for the initial progress.
+### What syncs
 
-The popup reports imported connections, the LinkedIn-visible total when available, progress, and last-sync time. Closing the connections tab is not a stop control: an incomplete run can recreate or reuse a background tab. Choose **Pause Sync** to stop automatic full-network resume.
+For you and for each first-degree connection, the extension can send:
+
+- name, LinkedIn profile address and public identifier, headline, and profile photo reference
+- current title and company, when LinkedIn gives them as a structured current position
+- location and the date you connected
+- education, when available
+
+When Introd asks, the extension can also read more public profile and company details for people in your first-degree network, such as positions, education, and company page fields. The extension does not send your LinkedIn credentials. It does not read your messages, your feed, or second- and third-degree connections.
+
+Avatar source addresses are redacted from the extension's stored diagnostics.
+
+## 2. The on-page **i.** button
+
+On supported profiles, people-search results, and company People pages, the extension can show a small **i.** button next to the profile. Choosing it opens **Review a potential warm path**.
+
+- It sends only the profile's address and public identifier to Introd, and only when you choose it.
+- It is a read-only lookup. It does not create people or relationships.
+- It can show a connector, strength, and evidence, or a message such as "This profile is not mapped by a permissioned source yet" or "No evidence-backed route is available for this profile yet."
+- It is not LinkedIn verification, an endorsement, or a guarantee of willingness.
+
+The button appears only if Introd has authorized it for your account and you have **Show Introd on LinkedIn profiles** on. If Introd has not authorized it for your account, the setting is disabled and reads "Not available for this linked account yet."
+
+The extension does not capture profile data as you browse. **Profile auto-capture is off** and cannot be turned on from the settings.
 
 ## Sync states
 
 | Visible state | Meaning | Next action |
 | --- | --- | --- |
-| Ready to sync your network | No sync is running | Choose **Start Sync** |
-| Syncing | Connection identities are being processed | Monitor the imported count or choose **Pause Sync** |
-| Sync paused | The checkpoint was saved | Choose **Resume Sync** when ready |
-| Retrying | LinkedIn has not loaded more rows yet | Wait for automatic resume, or pause the run |
-| Partial | Imported records were saved before full visible coverage was reached | Automatic resume can retry; pause if you do not want it to continue |
-| Sync complete | The run completed with imported records | Verify the count in Introd |
-| LinkedIn login required | The LinkedIn session was not detected | Sign in to LinkedIn in this Chrome profile |
-| Sync needs attention | The current run failed | Read the error, refresh LinkedIn, and retry |
+| LinkedIn is ready to sync | No sync has run yet | Choose **Start sync** |
+| Your LinkedIn network is syncing… | A sync is in progress | Wait. You can close the popup |
+| LinkedIn network up to date | Introd reports the sync is current | None |
+| LinkedIn sync partially complete | Some connections are saved and more remain | Choose **Retry**, or wait for the automatic retry |
+| LinkedIn sync needs attention | The last run failed | Read the message and choose **Retry** |
+| LinkedIn needs attention | The signed-in LinkedIn profile does not match, or you need to reconnect | Sign in to the linked LinkedIn profile |
+| LinkedIn sync paused | Introd reports the sync as paused | Choose **Sync now** |
+| LinkedIn sync unavailable | Sync is turned off for this account | Choose **Review** |
 
-## Connection data used
+## Stop or limit the extension
 
-When available on processed LinkedIn surfaces, contextual capture and connection import can derive:
+The popup has no pause or stop button for a running sync.
 
-- name and profile identifier or URL
-- headline, current and past work, education, company, and location when visible on the current profile or identity container
-- profile image
-- first-degree or mutual-connection context
-- sync checkpoint and progress information
+| Control | Where | Effect |
+| --- | --- | --- |
+| **Enable extension** off | Options page | Turns off LinkedIn pages, the **i.** button, sync, background work, and Introd requests. The popup shows "GetIntrod is paused" |
+| **Revoke sync permission** | Options page | Removes your sync approval and local sync state. No new sync runs until you approve again. It does not delete data already in Introd |
+| **Sign out** | Popup settings | Unlinks this browser and clears account-scoped local data and your approval |
+| **Show Introd on LinkedIn profiles** off | Popup settings | Hides the **i.** button. Sync is unaffected |
+| **Clear local data** | Options page, Danger zone | Clears this browser's extension data and signs you out. Introd's stored data is not deleted |
+| Disable the extension | `chrome://extensions` | Stops everything the extension does |
 
-The documented profile payload contains identity and relationship fields, not a dedicated message-body field. However, current relationship parsing can fall back to text from the surrounding identity container, and those containers include LinkedIn messaging surfaces. Introd has not completed a runtime data-flow attestation proving that message-page text cannot leave the browser.
+To open the **Options page**, right-click the extension's toolbar icon and choose **Options**, or open `chrome://extensions`, choose **Details** for Introd for LinkedIn, then **Extension options**.
+
+Other popup privacy settings: **Only analyze supported pages** is on by default. **Allow contextual page detection** is off by default and, when on, lets the popup read the current tab's address only to offer an **Ask Introd** link for a supported profile.
 
 <Warning>
-  Do not treat **Pause Sync** as a privacy control for ordinary browsing. If you do not want Introd code to inspect a sensitive LinkedIn page, disable the extension in `chrome://extensions` before opening that page.
+  Stopping the extension does not remove connections already synced to Introd. To remove data, see [Deletion and privacy requests](/privacy-security/gdpr-and-deletion).
 </Warning>
-
-## Stop or limit each behavior
-
-| Control | Full-network import | Contextual browsing capture |
-| --- | --- | --- |
-| **Pause Sync** | Stops the run and automatic background resume | Does not stop it |
-| **Enable extension** off | Automatic resume is not currently gated by this setting; pause the run too | Skips new profile-view signals and enrichment, but current-page diagnostics continue and already-queued signals can still upload while authenticated |
-| **Auto-capture profile context** off | Does not stop it | Skips new profile-view signals and enrichment, but current-page diagnostics continue and already-queued signals can still upload while authenticated |
-| Sign out of Introd | Prevents future authenticated recovery, but does not guarantee an already-running page crawler stops immediately | Does not unload the content script; local signals and diagnostics can still occur |
-| Disable the extension in Chrome | Stops extension execution | Stops extension execution |
-| **Clear local extension data** | Clears background state but does not guarantee an already-running page crawler stops immediately | Clears local caches and signals; defaults can turn capture back on after reinitialization, and server-side records remain |
-
-## On-page path context
-
-On a supported LinkedIn identity, the extension can offer **Open Introd paths** or display path and connector context only when Introd returns usable graph evidence.
-
-The extension does not send an introduction request. Use [First Warm Introduction Draft](/getting-started/first-warm-introduction) to save a reviewed draft.
 
 ## Limitations
 
 - LinkedIn renders large networks incrementally, so imported totals can remain below the visible total.
-- A partial sync is not a completed sync, even though already imported records remain available.
-- Missing role, company, image, or mutual data can produce an incomplete contact.
+- A partial sync is not a completed sync, even though saved records remain available.
+- Missing role, company, photo, or location data can produce an incomplete contact.
 - A synced target can still have no verified warm path.
-- LinkedIn interface changes can interrupt row detection until the extension is updated.
+- LinkedIn interface changes can interrupt collection until the extension is updated.
 
 ## Verify in Introd
 

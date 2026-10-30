@@ -21,3 +21,6 @@ reference/
 releases/
 research/
 /quickstart.mdx
+
+# Local evidence (audits, screenshot manifests) is never published.
+artifacts/

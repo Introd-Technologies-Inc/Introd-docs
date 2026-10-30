@@ -1,22 +1,31 @@
 ---
 title: "Track Introduction Requests"
-description: "Search, review, and maintain introduction records in the pipeline or list view."
+description: "Search, review, and maintain introduction records in the list view."
 ---
 
 Open [Introductions](https://app.getintrod.ai/introductions) to review the workspace's stored introduction requests.
 
+> Last reviewed against current product source on October 30, 2026.
+
 ## Find a record
 
-- Search by target, company, connector, subject, message, or status text.
-- Filter by a displayed stage.
-- Sort by newest, oldest, or recent activity.
-- Switch between **Pipeline** and **List** view.
+- Search with **Search introductions…**, or use the filter menus for introductions, connectors, and relationships.
+- Choose a tab: **All introductions**, **Requested**, **Drafting**, **Connector reviewing**, **Awaiting response**, **Connected**, or **Closed**.
+- Select a record to open its side panel. It shows the introduction path, an **Introduction lifecycle** (Requested, Connector approved, Recipient accepted, Intro sent, Response recorded, Follow-up planned), and the actions **Find another path**, **Add note**, and **Open request**.
 
-Select a card or row to review its target, connector, relationship context, message, dates, and stored status.
+<Frame caption="Example data in the Introd dashboard.">
+  <img src="/images/product/dash-introductions-list-connector-reviewing-desktop.png" alt="The Introductions page with summary counts, tabs from All introductions to Closed, search and filter menus, and one row whose status reads Connector reviewing. A side panel shows the introduction path and an Introduction lifecycle from Requested to Follow-up planned." />
+</Frame>
+
+## Next action
+
+Each record shows a **Next action**. When a review link was created, it reads along the lines of "Share the private connector review link with the connector. Nothing is sent automatically." Use **Private connector review link** or **Private recipient review link** to copy the link for that step.
+
+When a record is waiting on the connector, wait for their decision. After the connector sends the introduction, record it in Introd.
 
 ## Update the workflow
 
-In pipeline view, drag a card to the stage that best represents confirmed progress. Use **Edit** to reopen the composer context. Use **Archive** only to cancel a request and remove it from active work.
+Use **Add note** to keep context with a record. Use the archive action to cancel a request and remove it from active work. Archiving asks for confirmation.
 
 <Warning>
   Status changes and archive actions update the Introd record only. They do not send, retract, or cancel a message in email, LinkedIn, or another external channel.
@@ -26,9 +35,10 @@ In pipeline view, drag a card to the stage that best represents confirmed progre
 
 | Symptom | Check |
 | --- | --- |
-| No introductions | Clear the search and filter, then confirm a request was saved or submitted in this workspace |
-| Missing target or connector | Edit the record and confirm the source contact still exists |
-| Unexpected stage | Open the record and compare its stored status with the event you confirmed externally |
+| No introductions | Clear the search and tab, then confirm a request was saved in this workspace |
+| Missing target or connector | Open the record and confirm the source contact still exists |
+| Unexpected status | Compare the stored status with the event you confirmed externally |
+| Provider delivery status is unavailable | Introd does not infer delivery; check your sent mail or share the review link yourself |
 | Load error | Refresh once; if it persists, contact [support](/support) with the page URL and approximate time |
 
-For stage definitions, see [Introduction statuses](/introductions/opportunity-flow).
+For label definitions, see [Introduction statuses](/introductions/opportunity-flow).

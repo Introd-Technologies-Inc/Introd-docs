@@ -1,66 +1,54 @@
 ---
-title: "Install a Testing Build"
-description: "Install an Introd-provided extension build in Chrome and verify that it loaded correctly."
+title: "Install the Extension"
+description: "Install Introd for LinkedIn from the Chrome Web Store and link it to your Introd account."
 ---
 
-> Last verified against current extension packaging and manifest source on August 11, 2026.
+> Last reviewed against extension version 3.1.24 on October 30, 2026.
 
-<Warning>
-  There is no public self-service installation link in these docs. Continue only if Introd supplied the build and its installation instructions directly to you.
-</Warning>
-
-Before installing, read [LinkedIn Integration](/chrome-extension/linkedin-integration). The current build performs default-on contextual capture while you browse permitted LinkedIn pages, separately from the full-network import you start from the popup.
+Before installing, read [Sync and consent](/chrome-extension/linkedin-integration). The extension does nothing on your LinkedIn network until you approve its consent prompt.
 
 ## Prerequisites
 
 - Desktop Chrome
-- The Introd-provided extension folder or archive
-- The version or checksum supplied with that build
-- Permission to use the testing build
+- An approved Introd account
+- A LinkedIn account signed in in the same Chrome profile
 
-Do not install an Introd extension obtained from a third-party download, forwarded archive, advertisement, or search result.
+## Install
 
-## Install the build
+1. Open **Introd for LinkedIn** in the [Chrome Web Store](https://chromewebstore.google.com/detail/eoancpljacjbffdfjlbchdaeoainbkkf).
+2. Choose **Add to Chrome** and confirm the permissions Chrome shows. They should match [Permissions](/chrome-extension/permissions).
+3. Pin **Introd for LinkedIn** from Chrome's extension menu.
 
-1. If Introd supplied an archive, extract it to a folder that you will not move during testing.
-2. Confirm that the extracted folder contains manifest.json.
-3. Open chrome://extensions.
-4. Enable **Developer mode**.
-5. Choose **Load unpacked**.
-6. Select the folder that contains manifest.json.
-7. Pin **Introd for LinkedIn** from Chrome's extension menu.
+You can also start from the install action in [Network Setup](https://app.getintrod.ai/setup-network). After a first install, the extension opens Network Setup for you.
+
+Install only from the Chrome Web Store listing or from Introd's own pages. Do not install a copy from an advertisement, search result, or forwarded archive. Chrome installs from the Web Store; Introd has not published a separate Microsoft Edge listing.
+
+## Link the extension to your account
+
+1. Open the extension popup.
+2. Choose **Connect from Introd dashboard**. A Network Setup tab opens.
+3. Finish sign-in there if asked. The popup shows **Finish sign in** while it waits.
+4. Return to the popup and choose **I finished signing in** if it appears.
+
+**Expected result:** the popup shows your network and a connected indicator. The extension is linked to your exact Introd user and workspace. There is no LinkedIn password step.
 
 ## Verify the installation
 
-1. Open the Introd extension popup.
-2. Open Settings using the gear icon.
-3. Confirm that the footer identifies the extension as Introd and shows the expected version.
-4. Return to the popup.
-
-**Expected result:** the popup opens Extension Setup or the signed-in Introd home view. It does not replace the current browser tab.
-
-## First connection
-
-1. Open LinkedIn in the same Chrome profile and sign in.
-2. Open the extension.
-3. Choose **Continue with LinkedIn**.
-4. Complete the opened sign-in flow.
-5. Reopen the popup and choose **I finished signing in** if that control is visible.
-
-**Expected result:** Extension Setup marks **Introd account connected** and **Logged into LinkedIn** when both sessions are available.
+1. Open the popup, then its **Extension Settings**.
+2. Check the footer for the extension version and update status.
+3. Choose **Check for updates** if you want to look for a newer version.
 
 ## Installation failures
 
 | What you see | Recovery |
 | --- | --- |
-| Manifest file is missing or unreadable | Select the extracted folder that directly contains manifest.json |
-| The extension appears with an unexpected name or version | Remove it and contact Introd before signing in |
-| The extension disappears after moving the folder | Return the folder to its original path or reload the supplied build |
-| Introd is not detected in Network Setup | Reload the extension from chrome://extensions and refresh Introd |
-| The popup reports Connection error | Choose **Retry**; if it continues, reload the extension |
+| The popup reports "GetIntrod is unavailable" | Choose **Retry**. If it continues, reload the extension in `chrome://extensions` |
+| The popup says "Link this extension from your signed-in Introd dashboard" | Choose **Connect from Introd dashboard** |
+| Network Setup does not detect the extension | Check that it is enabled for this Chrome profile, then reload Network Setup |
+| The extension has an unexpected name or publisher | Remove it and contact help@getintrod.ai before signing in |
 
 ## Updates
 
-Testing builds do not update through a public distribution channel. Use only the replacement build and version instructions supplied by Introd.
+Chrome updates Web Store extensions automatically. The extension settings show the current version and whether an update is available.
 
-Continue with [LinkedIn Integration](/chrome-extension/linkedin-integration).
+Continue with [Sync and consent](/chrome-extension/linkedin-integration).

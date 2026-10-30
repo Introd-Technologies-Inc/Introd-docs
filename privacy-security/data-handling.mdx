@@ -5,18 +5,18 @@ description: "Understand the customer data categories used by the current Introd
 
 Introd uses authorized account, network, and relationship data to help you review warm paths and prepare introduction drafts.
 
-> Last verified against current product and extension source on August 11, 2026.
+> Last reviewed against current product and extension source on October 30, 2026.
 
 ## Data categories
 
 | Category | Examples in the current product | Customer-facing purpose |
 | --- | --- | --- |
 | Account and session data | Name, email address, authentication method, and session state | Create an account and maintain a signed-in Introd session |
-| LinkedIn relationship data | Visible identity and relationship fields from permitted LinkedIn pages, connection-import records, sync counts, and path context | Build searchable network coverage and display path context |
+| LinkedIn relationship data | First-degree connection identities from an approved extension sync or a LinkedIn export file, sync counts, and path context | Build searchable network coverage and display path context |
 | Google Workspace metadata | Gmail header metadata, Calendar event metadata, and Contacts data | Add authorized relationship evidence |
 | Microsoft 365 metadata | Basic Outlook message metadata and Calendar metadata | Add authorized relationship evidence |
-| Introduction workflow data | Targets, connectors, subjects, draft messages, and workflow status | Save and organize introduction drafts |
-| Extension-local data | Extension auth state, settings, sync checkpoints, cached data, and diagnostics | Operate the installed extension and show sync status |
+| Introduction workflow data | Targets, connectors, messages, connector review links, and workflow status | Save, review, and track introductions |
+| Extension-local data | Extension settings, your sync approval, sync status, and cached data | Operate the installed extension and show sync status |
 
 The current Google and Microsoft metadata syncs do not import email bodies, meeting contents, or private notes.
 
@@ -24,29 +24,27 @@ The current Google and Microsoft metadata syncs do not import email bodies, meet
 
 ### Introd account
 
-[Account Settings](https://app.getintrod.ai/settings) contains the current account deletion control. Starting that action signs you out and begins deletion of dashboard-owned product records. For a complete privacy request or confirmation, email [privacy@getintrod.ai](mailto:privacy@getintrod.ai).
+[Settings](https://app.getintrod.ai/settings) has a **Request verified closure** control. It opens an email request that Introd verifies; it does not delete anything by itself. For a complete privacy request, email [privacy@getintrod.ai](mailto:privacy@getintrod.ai).
 
 ### Provider connections
 
-[Integrations](https://app.getintrod.ai/settings/integrations) controls Google Workspace and Microsoft 365 connections. Disconnecting either provider clears Introd's stored connection tokens and stops future sync jobs. Previously imported Introd records remain.
-
-Provider-side consent is managed separately in the provider account.
+[Integrations](https://app.getintrod.ai/settings/integrations) controls Google Workspace and Microsoft 365 connections. Disconnecting stops future sync jobs and clears Introd's stored connection. Previously imported Introd records remain. Introd asks Google to revoke its grant when you disconnect Google; for Microsoft, also remove Introd's access in your Microsoft account.
 
 ### Chrome extension
 
-**Pause Sync** stops the full-network connection import and automatic background resume. It does not stop contextual identity capture on other LinkedIn pages.
+The extension syncs your first-degree LinkedIn connections only after you approve a consent prompt. It does not capture profile data as you browse. The popup has no pause button. **Enable extension** off and **Revoke sync permission** (both on the extension's Options page) stop it; disabling it in `chrome://extensions` stops everything. **Clear local data** removes the extension's saved data in that browser and signs you out. None of these remove records Introd already stored. See [Sync and consent](/chrome-extension/linkedin-integration).
 
-Turning off either capture setting makes the current background handler skip new profile-view signals and enrichment, but it does not stop current-page diagnostics, full-network recovery, upload of already-queued signals while authenticated, or LinkedIn host access. Disabling Introd in `chrome://extensions` stops its code from running. **Clear local extension data** removes auth state, caches, signals, and diagnostics from that Chrome installation, but defaults can turn capture back on after reinitialization. It does not remove server-side relationship records, disconnect Google or Microsoft, or delete the Introd account.
+Extension usage events, such as a sync starting or finishing, are recorded only if analytics consent is granted.
 
-## Draft data boundary
+## Introduction data boundary
 
-**Save draft** stores the introduction workflow record in Introd. It does not send email, send a LinkedIn message, schedule delivery, or contact the target.
+**Save draft** stores the introduction record in Introd. It does not email anyone. **Create review link** makes a private connector review link you share yourself. **Send for review** can deliver the connector's review request from your own connected Google or Microsoft account, and Introd shows it as delivered only when the provider confirms. Introd does not contact the person you want to meet automatically. See [Introductions](/introductions).
 
 Review a draft before sharing it outside Introd. Remove confidential information and any context the connector is not permitted to forward.
 
 ## If data looks wrong
 
-1. Pause the full-network LinkedIn sync. Disable the extension in Chrome too if you need contextual page processing to stop.
+1. If it involves the extension, turn off **Enable extension** or choose **Revoke sync permission** on its Options page.
 2. Record the affected person, provider, and approximate sync time without copying credentials.
 3. Email [help@getintrod.ai](mailto:help@getintrod.ai).
 4. For access, deletion, or other privacy rights, email [privacy@getintrod.ai](mailto:privacy@getintrod.ai).

@@ -1,0 +1,234 @@
+{
+  "note": "Published screenshots only. Each is a direct Playwright capture of the real Introd dashboard frontend running against the dashboard's synthetic fixture API (example data). It is NOT staging- or production-verified and does not demonstrate live feature gating. See scripts/screenshots/README.md.",
+  "environment": "fixture: real dashboard frontend, synthetic API",
+  "dashboardCommit": "51ccaba63a93c81039e596509221599b2e7fbf00",
+  "captureDate": "2026-10-30T22:21:07.775Z",
+  "count": 11,
+  "shots": [
+    {
+      "file": "images/product/dash-sign-up-request-access-desktop.png",
+      "sha256": "c9866c801e24b4db942aac15146144b4144d68ccc0d3fc90930aec453aa65395",
+      "bytes": 447470,
+      "width": 1440,
+      "height": 900,
+      "route": "/sign-up",
+      "viewport": "1440x900@1x",
+      "captureDate": "2026-10-30T22:21:07.775Z",
+      "dashboardCommit": "51ccaba63a93c81039e596509221599b2e7fbf00",
+      "assertions": [
+        "Request access",
+        "Continue with Google",
+        "Continue with LinkedIn",
+        "Continue with Microsoft",
+        "First name",
+        "Last name",
+        "Email address",
+        "Request access",
+        "no forbidden strings (Owen/Sakawa/Elloe/non-example emails)"
+      ],
+      "status": "captured",
+      "caveats": ""
+    },
+    {
+      "file": "images/product/dash-getting-started-goals-desktop.png",
+      "sha256": "5741da16f6187f1f1c205503c523bc947742d56107177f725f20400fe0db87ed",
+      "bytes": 126950,
+      "width": 1440,
+      "height": 1262,
+      "route": "/getting-started",
+      "viewport": "1440x900@1x",
+      "captureDate": "2026-10-30T22:21:07.775Z",
+      "dashboardCommit": "51ccaba63a93c81039e596509221599b2e7fbf00",
+      "assertions": [
+        "Find your first potential path",
+        "Fundraising",
+        "Customers",
+        "Hiring",
+        "Partnerships",
+        "no forbidden strings (Owen/Sakawa/Elloe/non-example emails)"
+      ],
+      "status": "captured",
+      "caveats": "Fixture shows step 2 (connect a source) as complete with 9 imported contacts; this is synthetic state."
+    },
+    {
+      "file": "images/product/dash-team-workspace-desktop.png",
+      "sha256": "d1160e95ca7f2e919097f1e25f5a70354c0eeac0a880ec2a0260dd6cb7984985",
+      "bytes": 78950,
+      "width": 1440,
+      "height": 969,
+      "route": "/setup-network/team",
+      "viewport": "1440x900@1x",
+      "captureDate": "2026-10-30T22:21:07.775Z",
+      "dashboardCommit": "51ccaba63a93c81039e596509221599b2e7fbf00",
+      "assertions": [
+        "Team & Workspaces",
+        "Invite teammate",
+        "Members",
+        "Invitations",
+        "no forbidden strings (Owen/Sakawa/Elloe/non-example emails)"
+      ],
+      "status": "captured",
+      "caveats": "Fixture workspace is a personal workspace with 1/1 seats and no members/invitations returned."
+    },
+    {
+      "file": "images/product/dash-settings-account-desktop.png",
+      "sha256": "198138d0cf9f5bd1d1eb944820df588b69c9eb5a85e1178035461b7ee76c8a75",
+      "bytes": 143399,
+      "width": 1440,
+      "height": 971,
+      "route": "/settings",
+      "viewport": "1440x900@1x",
+      "captureDate": "2026-10-30T22:21:07.775Z",
+      "dashboardCommit": "51ccaba63a93c81039e596509221599b2e7fbf00",
+      "assertions": [
+        "Account",
+        "Privacy-safe product analytics",
+        "Two-factor authentication",
+        "Active sessions",
+        "Account closure",
+        "Request verified closure",
+        "no forbidden strings (Owen/Sakawa/Elloe/non-example emails)"
+      ],
+      "status": "captured",
+      "caveats": ""
+    },
+    {
+      "file": "images/product/dash-settings-privacy-security-desktop.png",
+      "sha256": "8b54209d269f72ae702bc56689714b7adb338ef082bf380f7f8decd92d500ef2",
+      "bytes": 101621,
+      "width": 1440,
+      "height": 900,
+      "route": "/settings",
+      "viewport": "1440x900@1x",
+      "captureDate": "2026-10-30T22:21:07.775Z",
+      "dashboardCommit": "51ccaba63a93c81039e596509221599b2e7fbf00",
+      "assertions": [
+        "Privacy & Security",
+        "Privacy-safe product analytics",
+        "Request data or privacy support",
+        "Account closure",
+        "no forbidden strings (Owen/Sakawa/Elloe/non-example emails)"
+      ],
+      "status": "captured",
+      "caveats": ""
+    },
+    {
+      "file": "images/product/dash-introductions-potential-path-desktop.png",
+      "sha256": "7bd9d78d85c6539a81ea394794e18de857349fbd53366fe1719682b9791daf65",
+      "bytes": 229549,
+      "width": 1440,
+      "height": 1394,
+      "route": "/introductions/path?target_id=graph:fixture:casey:0000000000&connector_id=graph:fixture:sarah:0000000000&mission=11111111-aaaa-4aaa-8aaa-000000000001",
+      "viewport": "1440x900@1x",
+      "captureDate": "2026-10-30T22:21:07.775Z",
+      "dashboardCommit": "51ccaba63a93c81039e596509221599b2e7fbf00",
+      "assertions": [
+        "Potential Intro Path",
+        "Why this path works",
+        "no forbidden strings (Owen/Sakawa/Elloe/non-example emails)"
+      ],
+      "status": "captured",
+      "caveats": ""
+    },
+    {
+      "file": "images/product/dash-introductions-draft-review-desktop.png",
+      "sha256": "3c53d3b62b3357de072ee135cc9e99e8818f2296ef7dd84293ee39f7d1cae738",
+      "bytes": 242634,
+      "width": 1440,
+      "height": 1676,
+      "route": "/introductions/new?mission=11111111-aaaa-4aaa-8aaa-000000000001&target_id=graph:fixture:casey:0000000000&connector_id=graph:fixture:sarah:0000000000",
+      "viewport": "1440x900@1x",
+      "captureDate": "2026-10-30T22:21:07.775Z",
+      "dashboardCommit": "51ccaba63a93c81039e596509221599b2e7fbf00",
+      "assertions": [
+        "Draft & Review Introduction",
+        "Save draft",
+        "Add file",
+        "Priority (not available)",
+        "Keep me updated (not available)",
+        "does not persist files",
+        "no forbidden strings (Owen/Sakawa/Elloe/non-example emails)"
+      ],
+      "status": "captured",
+      "caveats": ""
+    },
+    {
+      "file": "images/product/dash-introductions-review-link-created-desktop.png",
+      "sha256": "b7b4693ecced489109039269ae93f7fd4102e68213af1baae42ce36acf3b7677",
+      "bytes": 248160,
+      "width": 1440,
+      "height": 1746,
+      "route": "/introductions/new?mission=11111111-aaaa-4aaa-8aaa-000000000001&target_id=graph:fixture:casey:0000000000&connector_id=graph:fixture:sarah:0000000000",
+      "viewport": "1440x900@1x",
+      "captureDate": "2026-10-30T22:21:07.775Z",
+      "dashboardCommit": "51ccaba63a93c81039e596509221599b2e7fbf00",
+      "assertions": [
+        "Connector review is ready.",
+        "Copy private link",
+        "no forbidden strings (Owen/Sakawa/Elloe/non-example emails)"
+      ],
+      "status": "captured",
+      "caveats": "Fixture has no healthy sender account, so the real flow is review-link only; delivery by provider email is not demonstrated."
+    },
+    {
+      "file": "images/product/dash-intro-consent-connector-review-desktop.png",
+      "sha256": "8903b4c8ab0efc3b6a196707572346a54e28086728ae23188598ee36f83cc9dd",
+      "bytes": 189293,
+      "width": 1440,
+      "height": 1402,
+      "route": "/introductions/new?mission=11111111-aaaa-4aaa-8aaa-000000000001&target_id=graph:fixture:casey:0000000000&connector_id=graph:fixture:sarah:0000000000",
+      "viewport": "1440x900@1x",
+      "captureDate": "2026-10-30T22:21:07.775Z",
+      "dashboardCommit": "51ccaba63a93c81039e596509221599b2e7fbf00",
+      "assertions": [
+        "Introduction Request",
+        "Accept request",
+        "Decline",
+        "no forbidden strings (Owen/Sakawa/Elloe/non-example emails)"
+      ],
+      "status": "captured",
+      "caveats": "Fixture token and synthetic request; no real person is contacted."
+    },
+    {
+      "file": "images/product/dash-introductions-list-connector-reviewing-desktop.png",
+      "sha256": "d9db0f946419fc0488a683bfd92fe87cb0f0972c565e13720d6e6aa90c7b55ac",
+      "bytes": 131119,
+      "width": 1440,
+      "height": 1058,
+      "route": "/introductions",
+      "viewport": "1440x900@1x",
+      "captureDate": "2026-10-30T22:21:07.775Z",
+      "dashboardCommit": "51ccaba63a93c81039e596509221599b2e7fbf00",
+      "assertions": [
+        "Connector reviewing",
+        "no forbidden strings (Owen/Sakawa/Elloe/non-example emails)"
+      ],
+      "status": "captured",
+      "caveats": ""
+    },
+    {
+      "file": "images/product/dash-sign-up-request-access-mobile.png",
+      "sha256": "2ad3aec28e29f52281ced6a2b1717e9169716fda923084af43a9a33de6bce80f",
+      "bytes": 35040,
+      "width": 390,
+      "height": 844,
+      "route": "/sign-up",
+      "viewport": "390x844@1x",
+      "captureDate": "2026-10-30T22:21:07.775Z",
+      "dashboardCommit": "51ccaba63a93c81039e596509221599b2e7fbf00",
+      "assertions": [
+        "Request access",
+        "Continue with Google",
+        "Continue with LinkedIn",
+        "Continue with Microsoft",
+        "First name",
+        "Last name",
+        "Email address",
+        "Request access",
+        "no forbidden strings (Owen/Sakawa/Elloe/non-example emails)"
+      ],
+      "status": "captured",
+      "caveats": ""
+    }
+  ]
+}

@@ -30,6 +30,16 @@ const FORBIDDEN_TERMS = [
 ];
 const FORBIDDEN_PUBLIC_PATTERNS = [
   ["Fin support branding", /\bFin\b/i],
+  ["retired extension testing-build reference", /testing build|\b1\.8\.4\b/i],
+  [
+    "a popup Pause Sync control the extension does not have",
+    /(?:choose|select|click|press|use)\s+\*\*Pause Sync\*\*/i,
+  ],
+  ["a retired passive-capture setting", /Auto-capture profile context/i],
+  [
+    "an account deletion control that Settings does not have",
+    /\b(?:Delete|Deactivate) account\b/i,
+  ],
 ];
 const PUBLIC_MACHINE_FILES = ["llms.txt", "llms-full.txt", "skill.md"];
 const REQUIRED_MACHINE_BOUNDARIES = new Map([
@@ -37,7 +47,7 @@ const REQUIRED_MACHINE_BOUNDARIES = new Map([
     "skill.md",
     [
       "Treat the documentation as product-use guidance, not as an external API contract.",
-      "Do not claim that **Pause Sync** or the extension settings stop all LinkedIn processing.",
+      "Do not tell a person to use a **Pause Sync** button: the extension popup has no pause control.",
     ],
   ],
   ["llms.txt", ["These public docs do not define a supported external API."]],
@@ -45,7 +55,7 @@ const REQUIRED_MACHINE_BOUNDARIES = new Map([
     "llms-full.txt",
     [
       "This file intentionally excludes internal architecture",
-      "pausing the import does not stop all page processing",
+      "The extension popup has no pause control",
     ],
   ],
 ]);
@@ -70,7 +80,14 @@ const REQUIRED_MINTIGNORE_ENTRIES = [
   "research/",
 ];
 const LOCAL_DOCS_HOSTS = new Set(["docs.getintrod.ai", "www.docs.getintrod.ai"]);
-const IGNORED_DIRECTORIES = new Set([".git", ".github", ".mintlify", "node_modules"]);
+const IGNORED_DIRECTORIES = new Set([
+  ".git",
+  ".github",
+  ".mintlify",
+  "artifacts",
+  "node_modules",
+  "scripts",
+]);
 
 const findings = [];
 const navigationReferences = [];

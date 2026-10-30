@@ -1,45 +1,37 @@
 ---
 title: "FAQ"
-description: "Answers about current Introd account, extension, sync, warm-path, draft, and deletion behavior."
+description: "Answers about Introd access, the Chrome extension, sync, warm paths, introductions, and account closure."
 ---
 
-> Last verified against current application, extension, API, and legal-site source on August 11, 2026.
+> Last reviewed against current product source on October 30, 2026.
 
-## How do I create an Introd account?
+## How do I get an Introd account?
 
-Open [Create account](https://app.getintrod.ai/sign-up). Email and password, Google, and LinkedIn are supported on the current sign-up page. Microsoft is not available there; connect Microsoft 365 from [Integrations](https://app.getintrod.ai/settings/integrations) after signing in.
+Open [Request access](https://app.getintrod.ai/sign-up). Introd approves access before you can use a workspace: you join a waitlist and Introd emails you when your access is approved. After that you choose a plan and connect your first network source. See [Request access](/getting-started/create-account).
 
 ## Where can I install the Chrome extension?
 
-These docs do not provide a public store-install link. Install only an Introd-provided testing build and follow [Install a Testing Build](/chrome-extension/installation). Do not install archives or extensions found in advertisements, search results, or third-party downloads.
+From the [Chrome Web Store](https://chromewebstore.google.com/detail/eoancpljacjbffdfjlbchdaeoainbkkf) or the install action in Network Setup. Introd has not published a separate Microsoft Edge listing. Do not install a copy from an advertisement, search result, or forwarded archive. See [Install the extension](/chrome-extension/installation).
 
 ## What does the extension do?
 
-The current extension is limited to:
+- It links to your Introd account from your signed-in dashboard.
+- It syncs your first-degree LinkedIn connections, only after you approve a consent prompt.
+- It shows a small **i.** button on supported LinkedIn profiles, people-search results, and company People pages that looks up Introd paths for that profile.
 
-- Introd authentication and extension settings
-- LinkedIn session, connection sync, progress, pause, resume, and retry status
-- default-on capture of visible identity and relationship fields across permitted LinkedIn pages while you browse
-- automatic background resume of an incomplete full-network import in an inactive connections tab
-- available warm-path context beside supported LinkedIn identities
+It does not send LinkedIn messages, likes, follows, connection requests, or introductions. It does not ask for your LinkedIn password and does not capture profile data as you browse. See [Sync and consent](/chrome-extension/linkedin-integration).
 
-It does not send LinkedIn connection requests, messages, or introductions.
+## How do I stop the extension syncing?
 
-Current identity selectors include messaging surfaces, and relationship parsing can inspect surrounding rendered text. See [LinkedIn Integration](/chrome-extension/linkedin-integration) for the data boundary and control matrix.
+The popup has no pause button. Open the extension's **Options page** (right-click the toolbar icon, then **Options**) and turn **Enable extension** off, or choose **Revoke sync permission**. Disabling the extension in `chrome://extensions` stops everything it does. Closing the popup or the background LinkedIn tab does not reliably stop a sync. None of these delete data already in Introd.
 
-In testing build 1.8.4, **Nothing is sent automatically** means no outreach is sent automatically. Profile signals, diagnostics, enrichment requests, and connection-import batches can still be transferred automatically.
+## Why does Introd say LinkedIn needs attention?
 
-## Does Pause Sync stop all LinkedIn capture?
-
-No. **Pause Sync** stops the full-network import and its automatic background resume. It does not stop contextual identity capture or current-page diagnostics during ordinary LinkedIn browsing. The extension settings do not stop every behavior either. Disable Introd in `chrome://extensions` if you need its code to stop running on LinkedIn pages.
-
-## Why does LinkedIn say login required?
-
-The extension uses the LinkedIn session in the same Chrome profile. Sign in to LinkedIn, wait for the page to load, reopen the popup, and choose **Try Again** or **Resume Sync** when offered.
+The extension uses the LinkedIn session in the same Chrome profile, and it expects the signed-in LinkedIn profile to match the one you linked. Sign in to that profile, then choose **Retry** in the popup.
 
 ## Why is my LinkedIn sync partial?
 
-LinkedIn visibility, page rendering, session state, and rate limits can leave some connections unprocessed. Open the popup to read its status. Automatic background resume can retry an incomplete run; choose **Pause Sync** if you do not want it to continue. Compare the completed imported count in [Network Setup](https://app.getintrod.ai/setup-network).
+LinkedIn visibility, page rendering, session state, and rate limits can leave some connections unprocessed. Open the popup to read its status. The extension also retries automatically. Compare the imported count in [Network Setup](https://app.getintrod.ai/setup-network).
 
 ## Why do I not see a warm path?
 
@@ -47,36 +39,36 @@ A target needs enough imported relationship context and an available connector f
 
 1. Confirm that Network Setup shows imported connections.
 2. Confirm Google or Microsoft sync status if you connected either source.
-3. Search for the target again in [People Search](https://app.getintrod.ai/search/people).
-4. If **View Paths** still reports no verified path, choose another target or add more authorized relationship data.
+3. Search for the target again in [People](https://app.getintrod.ai/search/people).
+4. If the path view still shows no path or only weak evidence, choose another target or add more authorized relationship data.
 
 Shared company or community context is not proof that a warm introduction exists.
 
-## How are TrustRank and connector confidence calculated?
+## How are path scores calculated?
 
-The current UI displays TrustRank, confidence, and relationship-strength signals from available graph evidence. The public product source does not define a stable customer-facing formula. Treat the values as relative ranking signals, not probabilities or guarantees.
+The product shows relationship bands (**Strong**, **Medium**, **Weak**), **Path Strength** and **Path confidence** values out of 100 on a path. Introd does not publish a customer-facing formula. Treat the values as relative ranking signals, not probabilities or guarantees.
 
 ## What do Google and Microsoft import?
 
-Google Workspace uses Gmail header metadata, Calendar event metadata, and Contacts data. Microsoft 365 uses basic Outlook mail metadata and Calendar metadata. The current syncs do not import email bodies, meeting contents, or private notes.
+Google Workspace uses Gmail header metadata, Calendar event metadata, and Contacts data. Microsoft 365 uses basic Outlook mail metadata and Calendar metadata. The current syncs do not import email bodies, meeting contents, or private notes. On the Free plan, these connections can require a paid plan or a connector add-on.
 
 See [Integration Data Usage](/privacy-security/integration-data-usage) and [OAuth Permissions](/privacy-security/oauth-permissions).
 
 ## Does Save draft send the introduction?
 
-No. **Save draft** stores the introduction record in Introd. It does not email the connector, send a LinkedIn message, schedule delivery, or contact the target. See [First Warm Introduction Draft](/getting-started/first-warm-introduction).
+No. **Save draft** stores the draft in Introd and contacts no one. **Create review link** makes a private link for the connector that you share yourself. **Send for review** can deliver the connector's review request from your own connected account when your account is set up to send. Introd never contacts the person you want to meet automatically. See [Introductions](/introductions).
 
 ## How do I disconnect Google or Microsoft?
 
-Open [Integrations](https://app.getintrod.ai/settings/integrations), open the provider card, and choose **Disconnect**. Introd clears its stored connection tokens and stops future sync. Previously imported Introd records remain, and provider-side consent is separate.
+Open [Integrations](https://app.getintrod.ai/settings/integrations), open the provider card, and choose **Disconnect**. Future sync stops. Previously imported Introd records remain. Introd asks Google to revoke its grant; for Microsoft, also remove Introd in your Microsoft account's app permissions.
 
 ## Does clearing extension data delete my Introd data?
 
-No. **Clear local extension data** removes browser-local auth state, settings, caches, queued signals, and diagnostics for that Chrome installation. It does not delete server-side Introd records, disconnect Google or Microsoft, or delete the account. Reinitialization restores the build's default-on capture settings.
+No. **Clear local data** removes the extension's saved data in that Chrome installation and signs you out. It does not delete server-side Introd records, disconnect Google or Microsoft, or close the account.
 
-## How do I request deletion?
+## How do I close my account or request deletion?
 
-Use the account deletion control in [Settings](https://app.getintrod.ai/settings) to start the current in-product flow. For complete scope, confirmation, or another privacy-rights request, email [privacy@getintrod.ai](mailto:privacy@getintrod.ai). See [Deletion and Privacy Requests](/privacy-security/gdpr-and-deletion).
+In [Settings](https://app.getintrod.ai/settings), choose **Request verified closure**. It opens an email request that Introd verifies. There is no button that deletes your account on its own. For access, correction, or deletion of your data, email [privacy@getintrod.ai](mailto:privacy@getintrod.ai). See [Deletion and Privacy Requests](/privacy-security/gdpr-and-deletion).
 
 ## Where can I get help?
 

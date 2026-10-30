@@ -1,25 +1,43 @@
 ---
 title: "Team Setup"
-description: "Understand the current availability of team collaboration in Introd."
+description: "Invite teammates to your workspace and understand roles, seats, and who can manage invitations."
 ---
 
-<Warning>
-Team collaboration is not configured yet. The current Team page shows only your signed-in account; it does not manage workspace members, roles, approvals, or invitation records.
-</Warning>
+Team collaboration is optional. Solo users can skip this page.
 
-[Open Team](https://app.getintrod.ai/setup-network/team)
+[Open Team & Workspaces](https://app.getintrod.ai/setup-network/team)
+
+> Last reviewed against current product source on October 30, 2026.
 
 ## What the page shows
 
-- your current account as the active owner
-- the number of contacts synced to your workspace
-- zero pending invitations unless a future invitation system is connected
+**Team & Workspaces** shows your workspace's active members, pending invitations, and seat usage.
 
-## About the invite link
+<Frame caption="Example data in the Introd dashboard. This workspace has one seat, so the invite button is unavailable.">
+  <img src="/images/product/dash-team-workspace-desktop.png" alt="The Team and Workspaces page. It shows the active workspace and your role as Owner, cards for Active members, Pending invitations, and Seat usage of 1 of 1, a Workspace seat limit reached notice with a Review workspace button, and empty Members and Invitations tables. The Invite teammate button is dimmed." />
+</Frame>
 
-**Copy invite link** copies the general Introd sign-up URL. It does not create an invitation, assign a role, add a person to your workspace, or track acceptance.
+## Invite a teammate
 
-Do not use this page as evidence that another person has workspace access. Coordinate access with [help@getintrod.ai](mailto:help@getintrod.ai) until real membership controls are available.
+1. Choose **Invite teammate**.
+2. Enter the teammate's email address and, optionally, a personal note.
+3. Choose **Send invitation**.
+
+**Expected result:** Introd shows **Workspace invitation sent**. The invitation appears under pending invitations. Secure invitations expire after seven days. A teammate accepts it from the invitation link and sees a confirmation that they joined the workspace. Use **Revoke invitation** to cancel one that is still pending.
+
+## Who can invite
+
+Only workspace owners and admins can send or revoke invitations. Other members see "Member management is restricted: Only workspace owners and admins can send or revoke invitations."
+
+Invitations add the person as a **member**. Workspace roles exist (owner, admin, member, and viewer), but the invite form offers member only.
+
+## Seats
+
+Your plan sets how many seats your workspace has. When you reach capacity, the invite button is disabled and shows "Workspace seat limit reached" with a **Review workspace** link. Upgrading to Team adds workspace members; extra seats are arranged through billing support. See [Settings](/workspace/settings).
+
+## What teammates can see
+
+Adding a teammate does not automatically share your network. Collections shared with the workspace show their people only while the collection's owner shares their network with the workspace. See [Collections](/workspace/collections).
 
 ## Related guides
 

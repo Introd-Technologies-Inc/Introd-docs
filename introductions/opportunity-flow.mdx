@@ -1,27 +1,33 @@
 ---
 title: "Introduction Statuses"
-description: "Interpret the introduction pipeline as a workspace tracker, not proof of external activity."
+description: "Interpret the introduction statuses as a workspace tracker, not proof of external activity."
 ---
 
-The **Introductions** pipeline groups stored records into workflow stages.
+> Last reviewed against current product source on October 30, 2026.
 
-| Displayed stage | Use it for |
+## Lifecycle labels
+
+An introduction record moves through these labels:
+
+| Label | Use it for |
 | --- | --- |
-| Requested | A request recorded as pending |
-| Approved | A request recorded as approved by the workflow |
-| Introduced | A request marked as in progress or introduced |
-| Replied | A stored state indicating a reply |
-| Meeting | A stored state indicating a meeting |
-| Closed | A completed, declined, cancelled, or archived record |
+| Requested | A request has been created for connector review |
+| Connector approved | The connector accepted the review |
+| Recipient accepted | The target accepted their own private review |
+| Intro sent | The introduction has been recorded as made |
+| Response recorded | A reply has been recorded |
+| Follow-up planned | A follow-up has been planned |
 
-Stage labels reflect stored status. They do not independently confirm that a connector approved, a message was delivered, a target replied, or a meeting occurred.
+## List tabs
+
+On [Introductions](https://app.getintrod.ai/introductions), the tabs group records as **All introductions**, **Requested**, **Drafting**, **Connector reviewing**, **Awaiting response**, **Connected**, and **Closed**. The **Introductions** item in the sidebar can show a badge with the number awaiting a response.
+
+Labels reflect stored status. They do not independently confirm that a message was delivered, that a person replied, or that a meeting happened.
 
 ## Keep status grounded in evidence
 
-Update a record only after you have confirmed the corresponding event in the channel where it happened. Add enough context to distinguish a genuine reply or meeting from a planned next step.
-
-Dragging a card to another column updates the Introd workflow state. It does not contact anyone.
+Record an event only after you have confirmed it in the channel where it happened. Introd's own guidance is to "record the introduction only after the connector sends it."
 
 <Warning>
-  Several displayed stages can map to broader stored states. Use the selected record's details and your external communication history as the source of truth.
+  Several displayed labels can map to broader stored states. Use the selected record's details and your own communication history as the source of truth. Changing a status or cancelling a record updates Introd only; it does not send, retract, or cancel a message elsewhere.
 </Warning>
